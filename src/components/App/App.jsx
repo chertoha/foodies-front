@@ -5,8 +5,6 @@ import { useEffect, useState } from "react";
 const App = () => {
   const [message, setMessage] = useState("");
 
-  const testVar = "AAA";
-
   useEffect(() => {
     axios.get(`${process.env.REACT_APP_BASE_API_URL}/users/test`).then(response => {
       setMessage(response?.data?.message);
