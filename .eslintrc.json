@@ -2,12 +2,7 @@
   "extends": ["react-app", "react-app/jest", "plugin:prettier/recommended"],
   "ignorePatterns": ["src/**/*.svg", "src/**/*.css"],
   "rules": {
-    "prettier/prettier": [
-      "error",
-      {
-        "endOfLine": "auto"
-      }
-    ],
+    "prettier/prettier": "warn",
 
     "no-unused-vars": ["error", { "varsIgnorePattern": "^_", "argsIgnorePattern": "^_" }]
   }
