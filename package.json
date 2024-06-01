@@ -24,7 +24,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "lint": "eslint src/** --max-warnings=0",
+    "lint": "eslint src/**/*.{js,jsx} --max-warnings=0",
     "format": "prettier --write 'src/**/*.{js,jsx,css,md}'",
     "test": "react-scripts test"
   },
