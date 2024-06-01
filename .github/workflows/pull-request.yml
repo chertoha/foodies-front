@@ -1,0 +1,32 @@
+name: pull-request
+run-name: ${{ github.actor }} run these jobs
+on:
+  pull_request:
+    types: [opened, reopened, synchronize]
+    branches:
+      - release
+      - main
+
+jobs:
+  install-lint-build-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get repository code
+        uses: actions/checkout@v3
+
+      - name: Set environment varialbles
+        env:
+          REACT_APP_BASE_API_URL: ${{secrets.REACT_APP_BASE_API_URL}}
+        run: echo "Variables REACT_APP_BASE_API_URL=${REACT_APP_BASE_API_URL} successfully set"
+
+      - name: Install depencies
+        run: npm ci
+
+      - name: Linting
+        run: npm run lint
+
+      - name: Install and Build
+        run: npm run build
+
+      # - name: Testing
+      #   run: npm run test
