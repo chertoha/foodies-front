@@ -1,21 +1,21 @@
-import { useEffect } from 'react';
-import { createPortal } from 'react-dom';
-import { Overlay, ModalContainer } from './Modal.styled';
+import { useEffect } from "react";
+import { createPortal } from "react-dom";
+import { Overlay, ModalContainer } from "./Modal.styled";
 
 const modalRoot = document.querySelector("#portal");
 
 export const Modal = ({ children, onClose }) => {
   useEffect(() => {
     const handleKeyDown = e => {
-      if (e.code === 'Escape') {
+      if (e.code === "Escape") {
         onClose();
       }
     };
 
-    document.addEventListener('keydown', handleKeyDown);
+    document.addEventListener("keydown", handleKeyDown);
 
     return () => {
-      document.removeEventListener('keydown', handleKeyDown);
+      document.removeEventListener("keydown", handleKeyDown);
     };
   }, [onClose]);
 
