@@ -6,41 +6,16 @@ export const Avatar = styled.img`
   object-fit: cover;
   background-color: ${theme.colors.light};
 
-  ${theme.mq.mobile} {
-    width: ${props => {
-      switch (props.size) {
-        case 50:
-          return 32;
-        case 120:
-          return 80;
-        case 40:
-          return 32;
-        default:
-          return props.size;
-      }
-    }}px;
-
-    height: ${props => {
-      switch (props.size) {
-        case 50:
-          return 32;
-        case 120:
-          return 80;
-        case 40:
-          return 32;
-        default:
-          return props.size;
-      }
-    }}px;
-  }
+  width: ${props => props.size[0]}px;
+  height: ${props => props.size[0]}px;
 
   ${theme.mq.tablet} {
-    width: ${props => props.size}px;
-    height: ${props => props.size}px;
+    width: ${props => props.size[1]}px;
+    height: ${props => props.size[1]}px;
   }
 
   ${theme.mq.desktop} {
-    width: ${props => props.size}px;
-    height: ${props => props.size}px;
+    width: ${props => props.size[2]}px;
+    height: ${props => props.size[2]}px;
   }
 `;

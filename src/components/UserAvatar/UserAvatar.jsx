@@ -1,13 +1,15 @@
 import React from "react";
 import { Avatar } from "./UserAvatar.styled";
 
-const UserAvatar = ({ size, src }) => {
+const UserAvatar = ({ size, src, alt = "avatar" }) => {
   return (
-    <Avatar
-      size={size}
-      src={src}
-      alt="avatar"
-    />
+    <div>
+      <Avatar
+        size={size}
+        src={src}
+        alt={alt}
+      />
+    </div>
   );
 };
 
