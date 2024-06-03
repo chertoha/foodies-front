@@ -1,4 +1,6 @@
 import axios from "axios";
+import { RouterProvider } from "react-router-dom";
+import router from "config/router";
 import Container from "components/Container";
 import { ReactComponent as ArrowIcon } from "assets/images/icons/arrow.svg";
 import { useEffect, useState } from "react";
@@ -20,6 +22,8 @@ const App = () => {
         <ArrowIcon />
         TEST text
       </Container>
+
+      <RouterProvider router={router} />
     </div>
   );
 };
