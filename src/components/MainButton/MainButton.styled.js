@@ -17,7 +17,7 @@ export const Button = styled("button")`
   ${px(2)}
   ${py(1)}
 
-  ${theme.mq.mobile} {
-    font-size: 16px ${theme.fontSizes.base};
+  ${theme.mq.tablet} {
+    font-size: ${theme.fontSizes.base};
   }
 `;
