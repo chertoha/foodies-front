@@ -7,7 +7,7 @@ export const LogoLink = styled(Link)`
   font-size: ${theme.fontSizes.xl};
   font-weight: ${theme.fontWeights.extraBold};
   line-height: ${theme.lineHeights.normal};
-  letter-spacing: -0.4px;
+  letter-spacing: -0.025em;
   text-transform: lowercase;
   text-decoration: none;
 
