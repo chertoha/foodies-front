@@ -7,7 +7,7 @@ export const Button = styled("button")`
   font-weight: ${theme.fontWeights.bold};
   font-size: ${theme.fontSizes.sm};
   line-height: ${theme.lineHeights.normal};
-  letter-spacing: -0.32px;
+  letter-spacing: -0.02em;
   text-transform: uppercase;
   cursor: pointer;
   transition: ${theme.transitions.default};
