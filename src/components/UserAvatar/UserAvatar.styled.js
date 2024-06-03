@@ -4,6 +4,7 @@ import theme from "styles/theme";
 export const Avatar = styled.img`
   border-radius: 50%;
   object-fit: cover;
+  background-color: ${theme.colors.light};
 
   ${theme.mq.mobile} {
     width: ${props => {
