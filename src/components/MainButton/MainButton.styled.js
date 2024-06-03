@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { px, py, body1, flexCenter } from "../../styles/atomic";
-import theme from "./styles/theme";
+import theme from "../../styles/theme";
 
 export const Button = styled("button")`
   border-radius: 30px;
