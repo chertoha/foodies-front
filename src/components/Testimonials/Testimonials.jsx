@@ -11,7 +11,6 @@ import {
   Text,
   TitleWrapper,
 } from "./Testimonials.styled";
-import MainTitle from "components/UIKit/MainTitle";
 
 const testimonials = [
   {
