@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { flexCenter } from "../../styles/atomic";
 import theme from "../../styles/theme";
+import { px, py, flexCenter } from "../../styles/atomic";
 import { ReactComponent as Close } from "../../assets/images/icons/close.svg";
 
 export const Overlay = styled.div`
@@ -21,9 +21,11 @@ export const ModalContainer = styled.div`
   overflow: hidden;
   transform: translate(-50%, -50%);
   border-radius: ${theme.radii.md};
-  padding: ${theme.spacings[8]} ${theme.spacings[4]};
+  ${py(8)}
+  ${px(4)}
   ${theme.mq.tablet} {
-    padding: ${theme.spacings[8]} ${theme.spacings[4]};
+    ${py(8)}
+    ${px(4)}
   }
 `;
 
