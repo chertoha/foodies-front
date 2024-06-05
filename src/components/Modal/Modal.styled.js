@@ -21,11 +21,11 @@ export const ModalContainer = styled.div`
   overflow: hidden;
   transform: translate(-50%, -50%);
   border-radius: ${theme.radii.md};
-  ${py(8)}
-  ${px(4)}
+  ${py(15)}
+  ${px(7.5)}
   ${theme.mq.tablet} {
-    ${py(8)}
-    ${px(4)}
+    ${px(20)}
+    ${py(20)}
   }
 `;
 
