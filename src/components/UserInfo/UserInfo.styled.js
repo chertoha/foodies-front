@@ -25,8 +25,8 @@ export const UserCard = styled("div")`
   flex-direction: column;
   width: 343px;
   height: 320px;
-  ${py(7.5)}
-  ${px(13.5)}
+  ${py("30")}
+  ${px("54")}
   ${mb(5)};
 
   border: 1px solid #05050533;
@@ -35,7 +35,6 @@ export const UserCard = styled("div")`
   flex-direction: column;
 
   ${theme.mq.mobileOnly} {
-    // max-width: ${theme.breakpoints.mobile};
   }
 
   ${theme.mq.tablet} {
@@ -50,23 +49,21 @@ export const UserCard = styled("div")`
 `;
 
 export const UserCardTitle = styled("h3")`
-  color: #050505;
-
+  color: ${theme.colors.accent}
   font-family: Mulish;
-  font-size: 18px;
-  font-weight: 800;
+  font-size: ${theme.fontSizes.lg};
+  font-weight: ${theme.fontWeights.extraBold};
   line-height: 24px;
   letter-spacing: -0.02em;
   text-align: left;
   ${my(4)}
 
   ${theme.mq.mobileOnly} {
-    // max-width: ${theme.breakpoints.mobile};
   }
 
   ${theme.mq.tablet} {
     ${my(5)}
-    font-size: 20px;
+    font-size: ${theme.fontSizes.xl};
   }
 
   ${theme.mq.desktop} {
@@ -92,7 +89,7 @@ export const UserCardInfo = styled("div")`
 export const UserCardtext = styled("p")`
   color: #050505e5;
   ${body1()};
-  font-weight: 700;
+  font-weight: ${theme.fontWeights.bold};
 
   ${theme.mq.mobileOnly} {
   }

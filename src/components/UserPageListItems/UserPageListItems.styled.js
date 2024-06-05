@@ -53,7 +53,7 @@ export const UserPageListTitle = styled("h4")`
   width: 166px;
   height: 24px;
   overflow: hidden;
-  color: #050505;
+  color: ${theme.colors.accent};
   ${heading5()};
   ${mb(2)};
   ${theme.mq.mobileOnly} {
@@ -61,7 +61,7 @@ export const UserPageListTitle = styled("h4")`
 
   ${theme.mq.tablet} {
     width: 100%;
-    ${mb(2.5)};
+    ${mb("10")};
   }
 
   ${theme.mq.desktop} {

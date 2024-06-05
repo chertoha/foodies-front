@@ -1,4 +1,4 @@
-import list from "../../pages/UserPage/list.json";
+import list from "pages/UserPage/list.json";
 import {
   UserPageList,
   UserPageListItem,

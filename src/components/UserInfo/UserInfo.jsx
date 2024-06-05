@@ -1,5 +1,5 @@
 // import UserAvatar from "../../components/UserAvatar/UserAvatar"
-import ActiveButton from "../../components/Buttons/ActiveButton/ActiveButton";
+import ActiveButton from "components/Buttons/ActiveButton/ActiveButton";
 import {
   UserInfoWrapp,
   UserCard,

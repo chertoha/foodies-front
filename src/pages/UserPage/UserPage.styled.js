@@ -1,29 +1,7 @@
 import styled from "styled-components";
-import { px, heading4 } from "styles/atomic";
+import { heading4 } from "styles/atomic";
 import theme from "styles/theme";
 
-export const StyledContainer = styled("div")`
-  margin: 0 auto;
-  width: 100%;
-
-  ${px(4)}
-
-  ${theme.mq.mobileOnly} {
-    max-width: ${theme.breakpoints.mobile};
-  }
-
-  ${theme.mq.tablet} {
-    width: ${theme.breakpoints.tablet};
-
-    ${px(8)}
-  }
-
-  ${theme.mq.desktop} {
-    width: ${theme.breakpoints.desktop};
-
-    ${px(20)}
-  }
-`;
 export const ProfileWrapp = styled("div")`
   display: flex;
   justify-content: center;
@@ -86,7 +64,7 @@ export const TabsButton = styled("button")`
   }
 
   ${theme.mq.tablet} {
-    font-size: 20px;
+    font-size: ${theme.fontSizes.xl};
   }
 
   ${theme.mq.desktop} {

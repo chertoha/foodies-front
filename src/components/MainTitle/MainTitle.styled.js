@@ -5,7 +5,7 @@ import theme from "styles/theme";
 export const Title = styled("h1")`
   ${mb(4)};
   ${heading2()};
-  color: #050505;
+  color: ${theme.colors.accent};
 
   text-transform: uppercase;
   ${theme.mq.mobileOnly} {
