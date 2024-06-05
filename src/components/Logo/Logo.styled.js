@@ -13,11 +13,11 @@ export const LogoLink = styled(Link)`
 
   ${theme.mq.tablet} {
     font-size: ${theme.fontSizes["2xl"]};
-    letter-spacing: -0.48px;
+    letter-spacing: -0.03em;
   }
 
   ${theme.mq.desktop} {
     font-size: ${theme.fontSizes["2xl"]};
-    letter-spacing: -0.48px;
+    letter-spacing: -0.03em;
   }
 `;
