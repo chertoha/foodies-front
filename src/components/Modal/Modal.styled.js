@@ -22,7 +22,7 @@ export const ModalContainer = styled.div`
   transform: translate(-50%, -50%);
   border-radius: ${theme.radii.md};
   ${py(15)}
-  ${px(7.5)}
+  ${px("30")}
   ${theme.mq.tablet} {
     ${px(20)}
     ${py(20)}
