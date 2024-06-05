@@ -1,4 +1,3 @@
-import list from "pages/UserPage/list.json";
 import {
   UserPageList,
   UserPageListItem,
@@ -6,7 +5,7 @@ import {
   UserPageListTitle,
   UserPageListText,
 } from "./UserPageListItems.styled";
-const UserPageListItems = () => {
+const UserPageListItems = ({ list }) => {
   return (
     <UserPageList>
       {list.map(({ id, img, title, text }) => (
