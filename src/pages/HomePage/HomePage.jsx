@@ -12,7 +12,7 @@ const HomePage = () => {
 
   // const { data } = useGetRecipeQuery("6462a8f74c3d0ddd28897fcd");
 
-  console.log(data);
+  //console.log(data);
   return <h1>HomePage</h1>;
 };
 
