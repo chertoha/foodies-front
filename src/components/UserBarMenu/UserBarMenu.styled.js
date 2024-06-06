@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import theme from 'styles/theme';
+import theme from "styles/theme";
 
 export const UserBarMenuWrapper = styled.div`
   display: flex;
@@ -14,8 +14,8 @@ export const UserBarMenuWrapper = styled.div`
   border: 1px solid rgba(255, 255, 255, 0.2);
   padding: 16px;
   ${theme.mq.tablet} {
-  width: 148px;
-  height: 74px;
+    width: 148px;
+    height: 74px;
   }
 `;
 
