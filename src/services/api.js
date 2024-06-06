@@ -9,7 +9,6 @@ const api = axios.create({
 const axiosBaseQuery =
   (baseUrl = "") =>
   async ({ url, method, data, params, headers }) => {
-    console.log("baseUrl", baseUrl);
     try {
       const result = await api({
         url: baseUrl + url,
