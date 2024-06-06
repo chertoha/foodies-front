@@ -34,7 +34,7 @@ export const NavLinks = styled(NavLink)`
     font-size: ${theme.fontSizes.base};
     line-height: ${theme.lineHeights.normal};
   }
-  
+
   ${theme.mq.desktop} {
     font-size: ${theme.fontSizes.lg};
     line-height: ${theme.lineHeights.loose};

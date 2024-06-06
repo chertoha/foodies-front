@@ -1,7 +1,6 @@
-import { NavMenuWrapper, NavLinks } from './NavBar.styled';
+import { NavMenuWrapper, NavLinks } from "./NavBar.styled";
 
 const NavBar = () => {
-
   return (
     <>
       <NavMenuWrapper>
