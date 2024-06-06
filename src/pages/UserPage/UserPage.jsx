@@ -1,8 +1,8 @@
 import { Outlet } from "react-router-dom";
-import Container from "components/Container/Container";
-import MainTitle from "components/MainTitle/MainTitle";
-import SubTitle from "components/SubTitle/SubTitle";
-import UserInfo from "components/UserInfo/UserInfo";
+import Container from "components/Container";
+import MainTitle from "components/MainTitle";
+import SubTitle from "components/SubTitle";
+import UserInfo from "components/UserInfo";
 
 import MyRecipes from "components/ProfilePages/MyRecipes";
 import MyFavorites from "components/ProfilePages/MyFavorites";

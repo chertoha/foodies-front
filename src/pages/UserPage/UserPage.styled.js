@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { heading4 } from "styles/atomic";
+import { pb, heading4 } from "styles/atomic";
 import theme from "styles/theme";
 
 export const ProfileWrapp = styled("div")`
@@ -41,6 +41,7 @@ export const TabsList = styled("ul")`
 
   width: 343px;
   overflow: scroll;
+  scrollbar-width: none;
   ${theme.mq.mobileOnly} {
   }
 
@@ -54,8 +55,13 @@ export const TabsList = styled("ul")`
   }
 `;
 export const TabsButton = styled("button")`
+  width: 130px;
+  height: 24px;
+
   color: #05050599;
   ${heading4()}
+  // ${pb(4)}
+  padding-bottom: 30px;
   text-transform: uppercase;
 
   border: none;
@@ -64,6 +70,7 @@ export const TabsButton = styled("button")`
   }
 
   ${theme.mq.tablet} {
+    width: 150px;
     font-size: ${theme.fontSizes.xl};
   }
 
