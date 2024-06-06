@@ -5,7 +5,9 @@ const { css } = require("styled-components");
 const SPACING_RATIO = 4;
 
 const createSpacingAtomic = (props, spacing) => css`
-  ${props.map(prop => `${prop}: ${spacing * SPACING_RATIO}px;`).join("")}
+  ${props
+    .map(prop => `${prop}: ${spacing * (typeof spacing !== "string" ? SPACING_RATIO : 1)}px;`)
+    .join("")}
 `;
 
 /* paddings */
