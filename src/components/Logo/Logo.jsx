@@ -1,7 +1,15 @@
+import { ROUTES } from "config/router";
 import { LogoLink } from "./Logo.styled";
 
-const Logo = () => {
-  return <LogoLink to="/">Foodies</LogoLink>;
+const Logo = ({ inverse }) => {
+  return (
+    <LogoLink
+      to={ROUTES.HOME}
+      inverse={inverse}
+    >
+      Foodies
+    </LogoLink>
+  );
 };
 
 export default Logo;
