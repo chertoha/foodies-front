@@ -36,7 +36,7 @@ export const UserName = styled.p`
   font-size: 12px;
   font-weight: 700;
   line-height: 18px;
-  letter-spacing: -0.24px;
+  letter-spacing: 0.02em;
   text-transform: uppercase;
   margin: 0;
 `;
