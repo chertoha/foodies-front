@@ -6,7 +6,6 @@ import IconsSprite from "../../img/sprite.svg";
 import { UserBarWrapper, UserName, WrappersIcons, Wrapper } from "./UserBar.styled";
 
 const UserBar = () => {
-  
   const [showMenu, setShowMenu] = useState(false);
 
   const toggleMenu = () => {

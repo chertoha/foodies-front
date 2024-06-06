@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 export const UserBarMenuWrapper = styled.div`
   display: flex;
@@ -28,4 +28,3 @@ export const UserBarMenuLink = styled(Link)`
   align-items: center;
   justify-content: flex-start;
 `;
-
