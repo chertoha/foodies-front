@@ -1,12 +1,12 @@
 import Logo from "../Logo/Logo";
 // import NavBar from "../NavBar/NavBar";
-import AuthBar from "../AuthBar/AuthBar";
+// import AuthBar from "../AuthBar/AuthBar";
 // import UserBar from "../UserBar/UserBar";
 
 import { TopContainer, ContainerBackground, HeaderWrapper } from "./Header.styled";
 
 const Header = () => {
-  const isLogIn = true;
+  // const isLogIn = true;
 
   return (
     <TopContainer>
