@@ -6,33 +6,36 @@ import RecipeCard from "../../components/RecipeCard/RecipeCard";
 import RecipesPopular from "../../components/RecipesPopular/RecipesPopular";
 import Container from "../../components/Container/Container";
 import { RecipePageContainer } from "./RecipePage.styled";
+import RecipeInfo from "../../components/RecipeInfo/RecipeInfo";
 
 const RecipePage = () => {
   const [recipe, setRecipe] = useState(null);
   const [author, setAuthor] = useState(null);
 
   useEffect(() => {
+    const recipeId = "6462a8f74c3d0ddd28897fcd";
     try {
-      const loadedRecipe = {
-        id: recipeData[0]._id.$oid,
-        title: recipeData[0].title,
-        description: recipeData[0].description,
-        thumb: recipeData[0].thumb,
-        instructions: recipeData[0].instructions,
-        time: recipeData[0].time,
-        ingredients: recipeData[0].ingredients,
-        isFavorite: recipeData[0].isFavorite || false,
-      };
+      const loadedRecipe = recipeData.find(recipe => recipe._id.$oid === recipeId);
+      const loadedAuthor = authorData.find(author => author._id.$oid === loadedRecipe.owner.$oid);
 
-      setRecipe(loadedRecipe);
+      setRecipe({
+        id: loadedRecipe._id.$oid,
+        title: loadedRecipe.title,
+        description: loadedRecipe.description,
+        category: loadedRecipe.category,
+        thumb: loadedRecipe.thumb,
+        instructions: loadedRecipe.instructions,
+        time: loadedRecipe.time,
+        ingredients: loadedRecipe.ingredients,
+        isFavorite: loadedRecipe.isFavorite || false,
+      });
 
-      const loadedAuthor = {
-        id: authorData[0]._id.$oid,
-        name: authorData[0].name,
+      setAuthor({
+        id: loadedAuthor._id.$oid,
+        name: loadedAuthor.name,
         isAuthenticated: true,
-        avatar: authorData[0].avatar,
-      };
-      setAuthor(loadedAuthor);
+        avatar: loadedAuthor.avatar,
+      });
     } catch (error) {
       console.error(error);
     }
@@ -54,17 +57,18 @@ const RecipePage = () => {
     <Container>
       <RecipePageContainer>
         <Breadcrumbs />
+
+        {recipe && author && (
+          <RecipeInfo
+            recipe={recipe}
+            author={author}
+            onSignIn={handleSignIn}
+            onProfile={handleProfile}
+            onToggleFavorite={handleToggleFavorite}
+          />
+        )}
         <RecipesPopular>
-          {recipe && author && (
-            <RecipeCard
-              recipe={recipe}
-              author={author}
-              onSignIn={handleSignIn}
-              onProfile={handleProfile}
-              onToggleFavorite={handleToggleFavorite}
-            />
-          )}
-          {recipeData.slice(1, 4).map(recipe => (
+          {recipeData.slice(0, 4).map(recipe => (
             <RecipeCard
               key={recipe._id.$oid}
               recipe={{

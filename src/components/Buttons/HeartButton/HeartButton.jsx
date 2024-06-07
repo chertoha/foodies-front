@@ -7,7 +7,7 @@ const HeartButton = ({ isFavorite, onClick }) => {
       type="button"
       onClick={onClick}
       aria-pressed={isFavorite}
-      isFavorite={isFavorite}
+      $isFavorite={isFavorite}
     >
       <SpriteIcon
         id="icon-heart"

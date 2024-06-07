@@ -2,8 +2,8 @@ import styled from "styled-components";
 import theme from "styles/theme";
 
 export const ButtonHeart = styled.button`
-  background-color: ${props => (props.isFavorite ? theme.colors.accent : theme.colors.light)};
-  color: ${props => props.theme.colors.light};
+  background-color: ${p => (p.$isFavorite ? theme.colors.accent : theme.colors.light)};
+  color: ${p => p.theme.colors.light};
   border-radius: ${({ theme }) => theme.radii.lg};
   border: 1px solid rgba(5, 5, 5, 0.1);
   cursor: pointer;
@@ -17,18 +17,18 @@ export const ButtonHeart = styled.button`
   }
 
   svg {
-    fill: ${props => (props.isFavorite ? props.theme.colors.light : props.theme.colors.dark)};
+    fill: ${p => (p.$isFavorite ? p.theme.colors.light : p.theme.colors.dark)};
   }
 
   &:hover {
-    background-color: ${props => props.theme.colors.dark};
+    background-color: ${p => p.theme.colors.dark};
     svg {
-      fill: ${props => props.theme.colors.light};
+      fill: ${p => p.theme.colors.light};
     }
   }
 
   &:focus {
     outline: none;
-    box-shadow: 0 0 0 3px rgba(5, 5, 5, 0.2);
+    box-shadow: 0 0 0 1px rgba(5, 5, 5, 0.1);
   }
 `;
