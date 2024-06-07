@@ -3,9 +3,7 @@ import { body1, heading4, numberTextRows } from "styles/atomic";
 
 export const CardWrapper = styled.div`
   display: flex;
-  width: 343px;
   flex-direction: column;
-  gap: 12px;
   border-radius: ${({ theme }) => theme.radii.lg};
 `;
 
@@ -16,11 +14,8 @@ export const Image = styled.img`
   margin-bottom: 16px;
 `;
 
-export const ContentContainer = styled.div`
-  padding: 16px;
-`;
-
 export const TitleCard = styled.h2`
+  ${numberTextRows(1)}
   ${heading4()}
   text-transform: uppercase;
 `;

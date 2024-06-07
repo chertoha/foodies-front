@@ -1,8 +1,11 @@
+import React, { useState, useEffect } from "react";
 import Breadcrumbs from "components/UIKit/Breadcrumbs";
 import recipeData from "./recipe.json";
 import authorData from "./users.json";
 import RecipeCard from "../../components/RecipeCard/RecipeCard";
-import { useState, useEffect } from "react";
+import RecipesPopular from "../../components/RecipesPopular/RecipesPopular";
+import Container from "../../components/Container/Container";
+import { RecipePageContainer } from "./RecipePage.styled";
 
 const RecipePage = () => {
   const [recipe, setRecipe] = useState(null);
@@ -18,6 +21,7 @@ const RecipePage = () => {
         instructions: recipeData[0].instructions,
         time: recipeData[0].time,
         ingredients: recipeData[0].ingredients,
+        isFavorite: recipeData[0].isFavorite || false,
       };
 
       setRecipe(loadedRecipe);
@@ -30,7 +34,7 @@ const RecipePage = () => {
       };
       setAuthor(loadedAuthor);
     } catch (error) {
-      console.error();
+      console.error(error);
     }
   }, []);
 
@@ -47,19 +51,41 @@ const RecipePage = () => {
   };
 
   return (
-    <>
-      <h1>Recipe Page</h1>
-      <Breadcrumbs />
-      {recipe && author && (
-        <RecipeCard
-          recipe={recipe}
-          author={author}
-          onSignIn={handleSignIn}
-          onProfile={handleProfile}
-          onToggleFavorite={handleToggleFavorite}
-        />
-      )}
-    </>
+    <Container>
+      <RecipePageContainer>
+        <Breadcrumbs />
+        <RecipesPopular>
+          {recipe && author && (
+            <RecipeCard
+              recipe={recipe}
+              author={author}
+              onSignIn={handleSignIn}
+              onProfile={handleProfile}
+              onToggleFavorite={handleToggleFavorite}
+            />
+          )}
+          {recipeData.slice(1, 4).map(recipe => (
+            <RecipeCard
+              key={recipe._id.$oid}
+              recipe={{
+                id: recipe._id.$oid,
+                title: recipe.title,
+                description: recipe.description,
+                thumb: recipe.thumb,
+                instructions: recipe.instructions,
+                time: recipe.time,
+                ingredients: recipe.ingredients,
+                isFavorite: recipe.isFavorite || false,
+              }}
+              author={author}
+              onSignIn={handleSignIn}
+              onProfile={handleProfile}
+              onToggleFavorite={handleToggleFavorite}
+            />
+          ))}
+        </RecipesPopular>
+      </RecipePageContainer>
+    </Container>
   );
 };
 
