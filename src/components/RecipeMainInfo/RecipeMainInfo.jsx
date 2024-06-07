@@ -1,5 +1,11 @@
 import React from "react";
-import { RecipeMainInfoContainer } from "./RecipeMainInfo.styled";
+import {
+  AuthorInfoContainer,
+  AuthorName,
+  RecipeMainInfoContainer,
+  RecipeTitle,
+} from "./RecipeMainInfo.styled";
+import AvatarButton from "components/Buttons/AvatarButton";
 
 const RecipeMainInfo = ({ recipe, author, onSignIn, onProfile }) => {
   const handleAuthorClick = () => {
@@ -15,10 +21,17 @@ const RecipeMainInfo = ({ recipe, author, onSignIn, onProfile }) => {
         src={recipe.thumb}
         alt={recipe.title}
       />
-      <h1>{recipe.title}</h1>
-      <p>Category: {recipe.category}</p>
+      <RecipeTitle>{recipe.title}</RecipeTitle>
+      <p>{recipe.category}</p>
+      <p> {recipe.time}</p>
       <p>{recipe.description}</p>
-      <button onClick={handleAuthorClick}>{author.name}</button>
+      <AuthorInfoContainer>
+        <AuthorName>Created by:</AuthorName>
+        <AvatarButton
+          author={author}
+          onClick={handleAuthorClick}
+        />
+      </AuthorInfoContainer>
     </RecipeMainInfoContainer>
   );
 };

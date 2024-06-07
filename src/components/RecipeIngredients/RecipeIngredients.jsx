@@ -1,15 +1,15 @@
-import { RecipeIngredientsContainer } from "./RecipeIngredients.styled";
+import { IngredientsTitle, RecipeIngredientsContainer } from "./RecipeIngredients.styled";
 
 const RecipeIngredients = ({ ingredients }) => {
   return (
     <RecipeIngredientsContainer>
-      <h3>Ingredients</h3>
+      <IngredientsTitle>Ingredients</IngredientsTitle>
       <ul>
         {ingredients.map((ingredient, index) => (
           <li key={index}>
             <img
-              src={`path/to/ingredient/image/${ingredient.id}.jpg`}
-              alt={ingredient.id}
+              src={ingredient.id}
+              alt={ingredient.name}
             />
             <span>{ingredient.id}</span>
             <span>{ingredient.measure}</span>

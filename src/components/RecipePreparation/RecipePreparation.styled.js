@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { body1, heading3, numberTextRows } from "styles/atomic";
+import { body1, heading3 } from "styles/atomic";
 
 export const RecipePreparationContainer = styled.div`
   flex-direction: column;
@@ -43,7 +43,7 @@ export const RecipePreparationButton = styled.button`
   }
 
   &:hover {
-    color: #fff;
+    color: ${({ theme }) => theme.colors.light};
     background-color: ${p => p.theme.colors.dark};
   }
 
