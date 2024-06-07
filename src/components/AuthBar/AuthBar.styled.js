@@ -29,8 +29,8 @@ export const SlideButton = styled(Button)`
 
   cursor: pointer;
   transition: transform 0.4s ease;
-  transform: ${props => (props.position === "left" ? "translateX(0)" : "translateX(104px)")};
-  ${props => buttonColors[props.colors]};
+  transform: ${props => (props.$position === "left" ? "translateX(0)" : "translateX(104px)")};
+  ${props => buttonColors[props.$colors]};
 `;
 
 export const BtnWrapper = styled.div`
