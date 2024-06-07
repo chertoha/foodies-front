@@ -43,7 +43,7 @@ function AddRecipeForm() {
 
       {/* Categories */}
       <label for="categories">Categories:</label>
-      <select iD="categories">
+      <select id="categories">
         <option value="Dessert">Dessert</option>
         <option value="Appetizer">Appetizer</option>
         <option value="Main Course">Main Course</option>
@@ -57,7 +57,16 @@ function AddRecipeForm() {
         <option value="Lunch">Lunch</option>
       </select>
       {/* Cooking Time */}
-      <Counter></Counter>
+      <label for="cookingTime">Cooking Time:</label>
+      <Counter id="cookingTime"></Counter>
+
+      {/* Ingredients */}
+      <label for="ingredients">Ingredients:</label>
+      <select id="ingredients">
+        <option value="1">1</option>
+      </select>
+
+      <button type="button">Add ingredients</button>
 
       {/* Preparartion */}
       <input
