@@ -1,1 +1,1 @@
-export { default } from './AuthBar';
+export { default } from "./AuthBar";
