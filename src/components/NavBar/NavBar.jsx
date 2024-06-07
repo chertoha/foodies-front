@@ -1,21 +1,22 @@
-import { NavMenuWrapper, NavLinks } from "./NavBar.styled";
+import { ROUTES } from "../../config/router";
+import { NavMenuWrapper, NavMenuLink } from "./NavBar.styled";
 
-const NavBar = () => {
+const NavBar = ({ inverse }) => {
   return (
     <>
       <NavMenuWrapper>
-        <NavLinks
-          color="clearRev"
-          size="tiny"
+        <NavMenuLink
+          to={ROUTES.HOME}
+          inverse={inverse}
         >
           Home
-        </NavLinks>
-        <NavLinks
-          color="clearRev"
-          size="tiny"
+        </NavMenuLink>
+        <NavMenuLink
+          to={ROUTES.RECIPE_ADD}
+          inverse={inverse}
         >
           Add recipe
-        </NavLinks>
+        </NavMenuLink>
       </NavMenuWrapper>
     </>
   );
