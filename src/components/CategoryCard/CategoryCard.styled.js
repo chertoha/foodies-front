@@ -9,11 +9,11 @@ export const CardContainer = styled.div`
   overflow: hidden;
 
   ${theme.mq.tablet} {
-    width: calc(50% - 20px);
+    width: ${props => (props.large ? "100%" : "calc(50% - 10px)")};
   }
 
   ${theme.mq.desktop} {
-    width: calc(30% - 20px);
+    width: ${props => (props.large ? "calc(40% - 13.33px)" : "calc(30% - 13.33px)")};
   }
 `;
 

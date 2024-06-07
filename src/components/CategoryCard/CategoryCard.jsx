@@ -7,9 +7,9 @@ import {
 } from "../CategoryCard/CategoryCard.styled";
 import { Link } from "react-router-dom";
 
-const CategoryCard = ({ category }) => {
+const CategoryCard = ({ category, large }) => {
   return (
-    <CardContainer>
+    <CardContainer large={large}>
       <CardImage
         src={category.image}
         alt={category.name}
