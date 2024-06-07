@@ -1,7 +1,6 @@
-
 import Hero from "components/Hero/Hero.jsx";
 const HomePage = () => {
-    // const { data } = useGetRecipiesQuery({
+  // const { data } = useGetRecipiesQuery({
   //   page: 1,
   //   limit: 5,
   //   category: "Dessert",
@@ -17,7 +16,6 @@ const HomePage = () => {
       <Hero />
     </div>
   );
-
 };
 
 export default HomePage;
