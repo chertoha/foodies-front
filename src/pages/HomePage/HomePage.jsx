@@ -1,4 +1,8 @@
 import Hero from "components/Hero/Hero.jsx";
+import Testimonials from "components/Testimonials";
+import { PageWrapper, SectionWrapper } from "./HomePage.styled";
+import Container from "components/Container";
+
 const HomePage = () => {
   // const { data } = useGetRecipiesQuery({
   //   page: 1,
@@ -12,9 +16,19 @@ const HomePage = () => {
 
   //console.log(data);
   return (
-    <div>
+    <PageWrapper>
       <Hero />
-    </div>
+
+      <SectionWrapper>
+        <div>Categories</div>
+      </SectionWrapper>
+
+      <SectionWrapper>
+        <Container>
+          <Testimonials />
+        </Container>
+      </SectionWrapper>
+    </PageWrapper>
   );
 };
 
