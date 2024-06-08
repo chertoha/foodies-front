@@ -10,12 +10,12 @@ import { Link } from "react-router-dom";
 const CategoryCard = ({ category, large }) => {
   return (
     <CardContainer large={large}>
-      <CardImage
-        src={category.image}
-        alt={category.name}
-      />
-      <CardBadge>{category.name}</CardBadge>
       <Link to={`/recipes/${category.id}`}>
+        <CardImage
+          src={category.image}
+          alt={category.name}
+        />
+        <CardBadge>{category.name}</CardBadge>
         <CardButton>→</CardButton>
       </Link>
     </CardContainer>
