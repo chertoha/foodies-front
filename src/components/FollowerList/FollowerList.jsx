@@ -10,7 +10,7 @@ import {
   CardList,
   CardListImage,
   Button,
-  Icon
+  Icon,
 } from "./FollowerList.styled";
 
 const FollowersList = ({ followers }) => {
@@ -43,9 +43,9 @@ const FollowersList = ({ followers }) => {
           </CardList>
           <Button>
             <Icon>
-            <use href={sprite + "#icon-arrow-up-right"}></use>
-        </Icon>
-            </Button>
+              <use href={sprite + "#icon-arrow-up-right"}></use>
+            </Icon>
+          </Button>
         </FollowerItem>
       ))}
     </FollowerList>

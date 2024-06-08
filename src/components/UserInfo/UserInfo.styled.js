@@ -39,10 +39,10 @@ export const UserCard = styled("div")`
   }
 
   ${theme.mq.tablet} {
-  width: 394px;
-  height: 408px;
-  ${py(10)};
-  ${px(20)};
+    width: 394px;
+    height: 408px;
+    ${py(10)};
+    ${px(20)};
   }
 
   ${theme.mq.desktop} {
@@ -73,18 +73,17 @@ export const Button = styled("button")`
 
   ${theme.mq.desktop} {
   }
-
 `;
 export const Icon = styled("svg")`
-  fill: #FFFFFF;
+  fill: #ffffff;
   display: block;
   width: 16px;
-  height: 16px;  
+  height: 16px;
   ${theme.mq.mobileOnly} {
   }
   ${theme.mq.tablet} {
     width: 18px;
-    height: 18px;  
+    height: 18px;
   }
   ${theme.mq.desktop} {
   }

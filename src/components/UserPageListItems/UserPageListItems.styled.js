@@ -102,7 +102,7 @@ export const Button = styled("button")`
   width: 36px;
   height: 36px;
   background-color: transparent;
-  border: 1px solid #0505051A;
+  border: 1px solid #0505051a;
   border-radius: 100px;
   ${theme.mq.tablet} {
     width: 42px;
@@ -111,7 +111,6 @@ export const Button = styled("button")`
 
   ${theme.mq.desktop} {
   }
-
 `;
 export const Icon = styled("svg")`
   fill: #050505;

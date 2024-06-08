@@ -19,17 +19,17 @@ const UserPageListItems = ({ list }) => {
             <UserPageListTitle>{title}</UserPageListTitle>
             <UserPageListText>{text}</UserPageListText>
           </div>
-          
+
           <ButtonWrapp>
-          <Button>
-            <Icon>
-            <use href={sprite + "#icon-arrow-up-right"}></use>
-        </Icon>
+            <Button>
+              <Icon>
+                <use href={sprite + "#icon-arrow-up-right"}></use>
+              </Icon>
             </Button>
             <Button>
-            <Icon>
-            <use href={sprite + "#icon-trash"}></use>
-        </Icon>
+              <Icon>
+                <use href={sprite + "#icon-trash"}></use>
+              </Icon>
             </Button>
           </ButtonWrapp>
         </UserPageListItem>
