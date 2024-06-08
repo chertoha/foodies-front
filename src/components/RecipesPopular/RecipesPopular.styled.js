@@ -1,15 +1,9 @@
 import styled from "styled-components";
-import { heading3 } from "styles/atomic";
 
 export const RecipePopularContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-`;
-
-export const RecipePopularTitle = styled.h3`
-  ${heading3()}
-  text-transform: uppercase;
 `;
 
 export const RecipeCardContainer = styled.div`

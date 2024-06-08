@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { body1, heading4, numberTextRows } from "styles/atomic";
+import { numberTextRows } from "styles/atomic";
 
 export const CardWrapper = styled.div`
   display: flex;
@@ -14,14 +14,11 @@ export const Image = styled.img`
   margin-bottom: 16px;
 `;
 
-export const TitleCard = styled.h2`
+export const TitleCardWrapper = styled.div`
   ${numberTextRows(1)}
-  ${heading4()}
-  text-transform: uppercase;
 `;
 
-export const DescriptionCard = styled.p`
-  ${body1()}
+export const DescriptionCardWrapper = styled.div`
   ${numberTextRows(2)}
   margin-top: 8px;
   margin-bottom: 8px;

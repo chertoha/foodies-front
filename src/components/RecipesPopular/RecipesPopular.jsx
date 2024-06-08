@@ -1,15 +1,11 @@
 import React from "react";
-import {
-  RecipePopularContainer,
-  RecipePopularTitle,
-  RecipePopularList,
-  RecipeListItem,
-} from "./RecipesPopular.styled";
+import { RecipePopularContainer, RecipePopularList, RecipeListItem } from "./RecipesPopular.styled";
+import SectionTitle from "components/SectionTitle";
 
 const RecipesPopular = ({ children }) => {
   return (
     <RecipePopularContainer>
-      <RecipePopularTitle>Popular recipes</RecipePopularTitle>
+      <SectionTitle label={"Popular recipes"} />
       <RecipePopularList>
         {React.Children.map(children, child => (
           <RecipeListItem>{child}</RecipeListItem>

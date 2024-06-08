@@ -1,9 +1,11 @@
+import SubTitle from "components/SubTitle";
 import {
   RecipePreparationContainer,
-  RecipePreparationDescription,
-  RecipePreparationTitle,
   RecipePreparationButton,
+  PreparationDescriptionWrapper,
+  PreparationTitleWrapper,
 } from "./RecipePreparation.styled";
+import SectionTitle from "components/SectionTitle";
 
 const RecipePreparation = ({ preparation, isFavorite, onToggleFavorite }) => {
   const handleFavoriteClick = () => {
@@ -14,10 +16,17 @@ const RecipePreparation = ({ preparation, isFavorite, onToggleFavorite }) => {
 
   return (
     <RecipePreparationContainer>
-      <RecipePreparationTitle>Recipe Preparation</RecipePreparationTitle>
-      {paragraphs.map((paragraph, index) => (
-        <RecipePreparationDescription key={index}>{paragraph}</RecipePreparationDescription>
-      ))}
+      <PreparationTitleWrapper>
+        <SectionTitle label={"Recipe Preparation"} />
+      </PreparationTitleWrapper>
+      <PreparationDescriptionWrapper>
+        {paragraphs.map((paragraph, index) => (
+          <SubTitle
+            key={index}
+            label={paragraph}
+          />
+        ))}
+      </PreparationDescriptionWrapper>
       <RecipePreparationButton onClick={handleFavoriteClick}>
         {isFavorite ? "Remove from favorite" : "Add to favorite"}
       </RecipePreparationButton>

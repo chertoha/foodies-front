@@ -2,14 +2,16 @@ import { useState } from "react";
 import {
   CardWrapper,
   Image,
-  TitleCard,
-  DescriptionCard,
   ActionsContainer,
   Actions,
+  DescriptionCardWrapper,
+  TitleCardWrapper,
 } from "./RecipeCard.styled";
 import AvatarButton from "../Buttons/AvatarButton/AvatarButton";
 import HeartButton from "../Buttons/HeartButton/HeartButton";
 import ArrowButton from "../Buttons/ArrowButton/ArrowButton";
+import SubTitle from "components/SubTitle";
+import SectionTitle from "components/SectionTitle";
 
 const RecipeCard = ({ recipe, author, onSignIn, onProfile, onToggleFavorite }) => {
   const [isFavorite, setIsFavorite] = useState(false);
@@ -33,8 +35,13 @@ const RecipeCard = ({ recipe, author, onSignIn, onProfile, onToggleFavorite }) =
         src={recipe.thumb}
         alt={recipe.title}
       />
-      <TitleCard>{recipe.title}</TitleCard>
-      <DescriptionCard>{recipe.description}</DescriptionCard>
+      <TitleCardWrapper>
+        <SectionTitle label={recipe.title} />
+      </TitleCardWrapper>
+
+      <DescriptionCardWrapper>
+        <SubTitle label={recipe.description} />
+      </DescriptionCardWrapper>
       <ActionsContainer>
         <AvatarButton
           author={author}

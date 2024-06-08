@@ -1,11 +1,16 @@
 import React from "react";
 import {
-  AuthorInfoContainer,
-  AuthorName,
+  AuthorInfoWrapper,
+  AuthorTextWrapper,
+  ButtonWrapper,
+  CreatedByText,
+  RecipeCategory,
   RecipeMainInfoContainer,
-  RecipeTitle,
+  RecipeTime,
 } from "./RecipeMainInfo.styled";
 import AvatarButton from "components/Buttons/AvatarButton";
+import SectionTitle from "components/SectionTitle";
+import SubTitle from "components/SubTitle";
 
 const RecipeMainInfo = ({ recipe, author, onSignIn, onProfile }) => {
   const handleAuthorClick = () => {
@@ -17,21 +22,23 @@ const RecipeMainInfo = ({ recipe, author, onSignIn, onProfile }) => {
   };
   return (
     <RecipeMainInfoContainer>
-      <img
-        src={recipe.thumb}
-        alt={recipe.title}
-      />
-      <RecipeTitle>{recipe.title}</RecipeTitle>
-      <p>{recipe.category}</p>
-      <p> {recipe.time}</p>
-      <p>{recipe.description}</p>
-      <AuthorInfoContainer>
-        <AuthorName>Created by:</AuthorName>
+      <SectionTitle label={recipe.title} />
+      <ButtonWrapper>
+        <RecipeCategory>{recipe.category}</RecipeCategory>
+        <RecipeTime> {recipe.time} min</RecipeTime>
+      </ButtonWrapper>
+      <SubTitle label={recipe.description} />
+      <AuthorInfoWrapper>
         <AvatarButton
           author={author}
           onClick={handleAuthorClick}
+          showName={false}
         />
-      </AuthorInfoContainer>
+        <AuthorTextWrapper>
+          <CreatedByText>Created by:</CreatedByText>
+          <>{author.name}</>
+        </AuthorTextWrapper>
+      </AuthorInfoWrapper>
     </RecipeMainInfoContainer>
   );
 };

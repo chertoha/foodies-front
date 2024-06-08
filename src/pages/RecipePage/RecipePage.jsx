@@ -56,7 +56,7 @@ const RecipePage = () => {
   return (
     <Container>
       <RecipePageContainer>
-        <Breadcrumbs />
+        <Breadcrumbs current={recipe ? recipe.title : "Loading..."} />
 
         {recipe && author && (
           <RecipeInfo

@@ -1,28 +1,24 @@
 import styled from "styled-components";
-import { body1, heading3 } from "styles/atomic";
+import { body1 } from "styles/atomic";
 
 export const RecipePreparationContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding-bottom: 64px;
+`;
+
+export const PreparationTitleWrapper = styled.div`
+  margin-bottom: 20px;
+`;
+
+export const PreparationDescriptionWrapper = styled.div`
+  margin-bottom: 32px;
   ${({ theme }) => theme.mq.tablet} {
-    padding-bottom: 100px;
+    margin-bottom: 40px;
   }
-  ${({ theme }) => theme.mq.desktop} {
-    padding-bottom: 120px;
+  & > *:not(:last-child) {
+    margin-bottom: 20px;
   }
-`;
-
-export const RecipePreparationTitle = styled.h3`
-  ${heading3()}
-  text-transform: uppercase;
-  margin-bottom: 20px;
-`;
-
-export const RecipePreparationDescription = styled.p`
-  ${body1()}
-  margin-bottom: 20px;
 `;
 
 export const RecipePreparationButton = styled.button`
