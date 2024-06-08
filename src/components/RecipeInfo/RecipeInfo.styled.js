@@ -30,9 +30,15 @@ export const RecipeImageWrapper = styled.div`
   }
 `;
 
+export const Image = styled.img`
+  width: 100%;
+  display: block;
+  height: auto;
+  border-radius: ${({ theme }) => theme.radii.lg};
+`;
+
 export const RecipeContentWrapper = styled.div`
   width: 100%;
-
   ${({ theme }) => theme.mq.desktop} {
     display: flex;
     flex-direction: column;

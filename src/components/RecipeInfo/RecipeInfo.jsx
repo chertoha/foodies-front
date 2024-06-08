@@ -1,14 +1,18 @@
-import { RecipeContentWrapper, RecipeImageWrapper, RecipeInfoContainer } from "./RecipeInfo.styled";
+import {
+  Image,
+  RecipeContentWrapper,
+  RecipeImageWrapper,
+  RecipeInfoContainer,
+} from "./RecipeInfo.styled";
 import RecipeMainInfo from "../RecipeMainInfo/RecipeMainInfo";
 import RecipeIngredients from "../RecipeIngredients/RecipeIngredients";
 import RecipePreparation from "../RecipePreparation/RecipePreparation";
-import RecipeImage from "components/RecipeImage";
 
 const RecipeInfo = ({ recipe, author, onSignIn, onProfile, onToggleFavorite }) => {
   return (
     <RecipeInfoContainer>
       <RecipeImageWrapper>
-        <RecipeImage
+        <Image
           src={recipe.thumb}
           alt={recipe.title}
         />

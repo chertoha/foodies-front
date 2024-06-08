@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import { numberTextRows } from "styles/atomic";
+import { body1, my, numberTextRows } from "styles/atomic";
+import theme from "styles/theme";
 
 export const CardWrapper = styled.div`
   display: flex;
@@ -15,13 +16,15 @@ export const Image = styled.img`
 `;
 
 export const TitleCardWrapper = styled.div`
+  max-width: 290px;
   ${numberTextRows(1)}
-`;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 
-export const DescriptionCardWrapper = styled.div`
-  ${numberTextRows(2)}
-  margin-top: 8px;
-  margin-bottom: 8px;
+  ${theme.mq.tabletOnly} {
+    max-width: 340px;
+  }
 `;
 
 export const ActionsContainer = styled.div`
@@ -34,4 +37,10 @@ export const Actions = styled.div`
   display: flex;
   flex-direction: row;
   gap: 4px;
+`;
+
+export const Text = styled.p`
+  ${body1()}
+  ${numberTextRows(2)}
+  ${my(2)}
 `;

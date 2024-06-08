@@ -1,20 +1,10 @@
 import styled from "styled-components";
+import theme from "styles/theme";
 
 export const RecipePopularContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-`;
-
-export const RecipeCardContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
-  ${({ theme }) => theme.mq.mobileOnly} {
-    flex-direction: column;
-    gap: 10px;
-  }
 `;
 
 export const RecipePopularList = styled.ul`
@@ -35,16 +25,11 @@ export const RecipePopularList = styled.ul`
 `;
 
 export const RecipeListItem = styled.li`
-  flex: 1 1 calc(100% - 20px);
-  max-width: calc(100% - 20px);
-
-  ${({ theme }) => theme.mq.tabletOnly} {
-    flex: 1 1 calc(50% - 20px);
-    max-width: calc(50% - 20px);
+  ${theme.mq.tablet} {
+    flex-basis: calc((100% - 20px) / 2);
   }
 
-  ${({ theme }) => theme.mq.desktop} {
-    flex: 1 1 calc(25% - 20px);
-    max-width: calc(25% - 20px);
+  ${theme.mq.desktop} {
+    flex-basis: calc((100% - 60px) / 4);
   }
 `;

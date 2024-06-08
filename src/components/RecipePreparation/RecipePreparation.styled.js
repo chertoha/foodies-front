@@ -48,3 +48,19 @@ export const RecipePreparationButton = styled.button`
     box-shadow: 0 0 0 1px rgba(5, 5, 5, 0.1);
   }
 `;
+export const ReadMoreButton = styled.button`
+  background: none;
+  border: none;
+  color: ${({ theme }) => theme.colors.primary};
+  cursor: pointer;
+  font-size: ${body1()};
+  text-decoration: underline;
+
+  &:hover {
+    color: ${({ theme }) => theme.colors.dark};
+  }
+
+  &:focus {
+    outline: none;
+  }
+`;

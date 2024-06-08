@@ -6,4 +6,7 @@ export const TitleSection = styled.h3`
   ${heading3()}
   text-transform: uppercase;
   color: ${theme.colors.accent};
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 `;

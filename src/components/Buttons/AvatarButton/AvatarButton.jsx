@@ -1,12 +1,11 @@
 import { ButtonAvatar, ImgAvatar } from "./AvatarButton.styled";
 
-const AvatarButton = ({ author, onClick, showName = true }) => {
+const AvatarButton = ({ author, showName = true, to }) => {
   if (!author) {
     return null;
   }
-
   return (
-    <ButtonAvatar onClick={onClick}>
+    <ButtonAvatar to={to}>
       <ImgAvatar
         src={author.avatar}
         alt={author.name}

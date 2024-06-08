@@ -4,13 +4,12 @@ import {
   Image,
   ActionsContainer,
   Actions,
-  DescriptionCardWrapper,
   TitleCardWrapper,
+  Text,
 } from "./RecipeCard.styled";
 import AvatarButton from "../Buttons/AvatarButton/AvatarButton";
 import HeartButton from "../Buttons/HeartButton/HeartButton";
 import ArrowButton from "../Buttons/ArrowButton/ArrowButton";
-import SubTitle from "components/SubTitle";
 import SectionTitle from "components/SectionTitle";
 
 const RecipeCard = ({ recipe, author, onSignIn, onProfile, onToggleFavorite }) => {
@@ -38,10 +37,7 @@ const RecipeCard = ({ recipe, author, onSignIn, onProfile, onToggleFavorite }) =
       <TitleCardWrapper>
         <SectionTitle label={recipe.title} />
       </TitleCardWrapper>
-
-      <DescriptionCardWrapper>
-        <SubTitle label={recipe.description} />
-      </DescriptionCardWrapper>
+      <Text>{recipe.description}</Text>
       <ActionsContainer>
         <AvatarButton
           author={author}
