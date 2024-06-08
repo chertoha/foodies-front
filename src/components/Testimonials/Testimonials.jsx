@@ -11,6 +11,7 @@ import {
   Text,
   TitleWrapper,
 } from "./Testimonials.styled";
+import MainTitle from "components/MainTitle/MainTitle";
 
 const testimonials = [
   {
@@ -43,7 +44,10 @@ const Testimonials = () => {
       <Introduction>What our customer say</Introduction>
 
       <TitleWrapper>
-        <h2>Testimonials</h2>
+        <MainTitle
+          label="Testimonials"
+          as="h2"
+        />
       </TitleWrapper>
 
       <SliderWrapper>
