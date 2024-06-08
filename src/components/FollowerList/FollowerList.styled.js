@@ -7,6 +7,8 @@ export const FollowerList = styled("ul")`
   justify-content: center;
   flex-direction: column;
   ${theme.mq.mobileOnly} {
+    width: 100%;
+    max-width: 343px;
   }
 
   ${theme.mq.tablet} {
@@ -17,6 +19,8 @@ export const FollowerList = styled("ul")`
 `;
 
 export const FollowerItem = styled("li")`
+  display: flex;
+  justify-content: space-between;
   ${py(5)}
   border-bottom: 1px solid #0505051A;
   ${theme.mq.mobileOnly} {
@@ -149,6 +153,37 @@ export const CardListImage = styled("img")`
     width: 100px;
     height: 100px;
     border-radius: 15px;
+  }
+
+  ${theme.mq.desktop} {
+  }
+`;
+export const Button = styled("button")`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 36px;
+  height: 36px;
+  background-color: transparent;
+  border: 1px solid #0505051A;
+  border-radius: 100px;
+  ${theme.mq.tablet} {
+    width: 42px;
+    height: 42px;
+  }
+
+  ${theme.mq.desktop} {
+  }
+
+`;
+export const Icon = styled("svg")`
+  fill: #050505;
+  display: block;
+  width: 16px;
+  height: 16px;
+  ${theme.mq.tablet} {
+    width: 18px;
+    height: 18px;
   }
 
   ${theme.mq.desktop} {

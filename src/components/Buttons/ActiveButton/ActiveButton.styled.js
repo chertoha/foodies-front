@@ -7,7 +7,7 @@ export const StyledButton = styled("button")`
   height: 48px;
 
   ${py("14")};
-  ${px("141")};
+  ${px("113")};
   border-radius: 30px;
   border: none;
   background-color: #050505d9;
@@ -16,13 +16,15 @@ export const StyledButton = styled("button")`
   font-weight: ${theme.fontWeights.bold};
   text-transform: uppercase;
   ${theme.mq.mobileOnly} {
+    width: 100%;
+    max-width: 343px;
   }
 
   ${theme.mq.tablet} {
-    width: 394px;
+    max-width: 394px;
     height: 56px;
     ${py(4)};
-    ${px("162")};
+    ${px("120")};
   }
 
   ${theme.mq.desktop} {

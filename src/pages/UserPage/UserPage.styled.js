@@ -1,16 +1,30 @@
 import styled from "styled-components";
-import { pb, heading4 } from "styles/atomic";
+import { mb, pb, mt, heading4 } from "styles/atomic";
 import theme from "styles/theme";
 
+export const TitleWrapp = styled("div")`
+  ${mb(4)};
+  ${theme.mq.mobileOnly} {
+  }
+
+  ${theme.mq.tablet} {
+    ${mb(5)};
+  }
+
+  ${theme.mq.desktop} {
+  }
+`;
 export const ProfileWrapp = styled("div")`
   display: flex;
   justify-content: center;
   gap: 64px;
   flex-direction: column;
+  ${mt(8)};
   ${theme.mq.mobileOnly} {
   }
 
   ${theme.mq.tablet} {
+    ${mt(10)};
     gap: 80px;
   }
 
@@ -39,10 +53,11 @@ export const TabsList = styled("ul")`
   gap: 30px;
   border-bottom: 1px solid #05050533;
 
-  width: 343px;
   overflow: scroll;
   scrollbar-width: none;
   ${theme.mq.mobileOnly} {
+    width: 100%;
+    max-width: 343px;
   }
 
   ${theme.mq.tablet} {
