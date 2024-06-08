@@ -1,6 +1,6 @@
 // import { useGetRecipiesQuery } from "../../redux/recipes/recipesApi";
-// import { useGetRecipeQuery } from "../../redux/recipes/recipesApi";
 
+// import { useGetRecipeQuery } from "../../redux/recipes/recipesApi";
 const HomePage = () => {
   // const { data } = useGetRecipiesQuery({
   //   page: 1,
@@ -13,7 +13,11 @@ const HomePage = () => {
   // const { data } = useGetRecipeQuery("6462a8f74c3d0ddd28897fcd");
 
   //console.log(data);
-  return <h1>HomePage</h1>;
+  return (
+    <div>
+      <h1>HomePage</h1>
+    </div>
+  );
 };
 
 export default HomePage;
