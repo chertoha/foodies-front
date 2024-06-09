@@ -1,5 +1,5 @@
 import React from "react";
-import IconsSprite from "../../img/sprite.svg";
+import IconsSprite from "../../assets/images/icons/sprite.svg";
 import { MobileMenuIconWrapper } from "./MobileMenuIcon.styled";
 
 const MobileMenuIcon = ({ toggleMenu }) => {
