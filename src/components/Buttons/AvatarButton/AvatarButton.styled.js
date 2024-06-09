@@ -1,7 +1,8 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { body1 } from "styles/atomic";
 
-export const ButtonAvatar = styled.button`
+export const ButtonAvatar = styled(Link)`
   display: flex;
   align-items: center;
   background: none;
@@ -16,4 +17,5 @@ export const ImgAvatar = styled.img`
   width: 32px;
   height: 32px;
   border-radius: ${({ theme }) => theme.radii.lg};
+  object-fit: cover;
 `;
