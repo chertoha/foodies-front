@@ -17,7 +17,8 @@ export const IngredientsList = styled.ul`
   padding: 0;
   margin-top: 20px;
   ${({ theme }) => theme.mq.tablet} {
-    grid-template-columns: repeat(3, calc(33.33% - 10px));
+    grid-template-columns: repeat(3, calc(33.33% - 20px));
+    gap: 20px;
   }
 `;
 
@@ -25,14 +26,19 @@ export const IngredientItem = styled.li`
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 10px;
+  column-gap: 10px;
+  ${({ theme }) => theme.mq.tablet} {
+    column-gap: 15px;
+  }
 `;
+
 export const ImageWrapper = styled.div`
   display: flex;
   width: 55px;
   height: 55px;
   border-radius: 15px;
   padding: 10px;
+
   border: 1px solid rgba(5, 5, 5, 0.1);
   ${({ theme }) => theme.mq.tablet} {
     width: 60px;
