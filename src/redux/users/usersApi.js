@@ -1,8 +1,8 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
 import { BASE_URL, axiosBaseQuery } from "services/api";
 
-const userApi = createApi({
-  reducerPath: "user",
+const usersApi = createApi({
+  reducerPath: "users",
 
   baseQuery: axiosBaseQuery(BASE_URL),
 
@@ -27,5 +27,5 @@ const userApi = createApi({
   }),
 });
 
-export const {} = userApi;
-export default userApi;
+export const {} = usersApi;
+export default usersApi;

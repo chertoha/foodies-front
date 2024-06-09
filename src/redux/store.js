@@ -5,7 +5,7 @@ import testimonialsApi from "./testimonials/testimonialsApi";
 import ingredientsApi from "./ingredients/ingredientsApi";
 import areasApi from "./areas/areasApi";
 import recipesApi from "./recipes/recipesApi";
-import userApi from "./users/userApi";
+import usersApi from "./users/usersApi";
 
 export const store = configureStore({
   reducer: {
@@ -14,7 +14,7 @@ export const store = configureStore({
     [ingredientsApi.reducerPath]: ingredientsApi.reducer,
     [areasApi.reducerPath]: areasApi.reducer,
     [recipesApi.reducerPath]: recipesApi.reducer,
-    [userApi.reducerPath]: userApi.reducer,
+    [usersApi.reducerPath]: usersApi.reducer,
   },
   middleware(getDefaultMiddleware) {
     return getDefaultMiddleware({
@@ -27,7 +27,7 @@ export const store = configureStore({
       ingredientsApi.middleware,
       areasApi.middleware,
       recipesApi.middleware,
-      userApi.middleware
+      usersApi.middleware
     );
   },
 });
