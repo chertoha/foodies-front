@@ -7,6 +7,7 @@ import Container from "components/Container";
 
 const Category = () => {
   const { data, error, isFetching } = useGetCategoriesQuery();
+  console.log(data);
 
   if (isFetching) return <div>Loading...</div>;
   if (error) return <div>Error loading categories.</div>;

@@ -12,7 +12,7 @@ const CategoryCard = ({ category, large }) => {
     <CardContainer large={large}>
       <Link to={`/recipes/${category.id}`}>
         <CardImage
-          src={category.image}
+          src={category.img}
           alt={category.name}
         />
         <CardBadge>{category.name}</CardBadge>

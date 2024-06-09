@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import theme from "styles/theme";
 
-export const CardContainer = styled.div`
+export const CardContainer = styled.li`
   position: relative;
   width: 100%;
   height: 250px;

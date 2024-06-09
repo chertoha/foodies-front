@@ -38,7 +38,7 @@ const CategoryList = ({ categories }) => {
       {displayedCategories.map((category, index) => (
         <CategoryCard
           large={cardSizes[index]}
-          key={category.id}
+          key={category._id}
           category={category}
         />
       ))}
