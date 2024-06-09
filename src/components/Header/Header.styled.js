@@ -1,21 +1,25 @@
 import styled from "styled-components";
+import theme from "../../styles/theme";
+import { py, flexBetween } from "../../styles/atomic";
 
 export const TopContainer = styled.div`
   width: 100%;
   padding: 8px;
+  /* ${py(2)} */
   margin: 0 auto;
 
-  @media screen and (min-width: 375px) {
+  ${theme.mq.mobile} {
     width: 375px;
+    padding: 8px;
   }
 
-  @media screen and (min-width: 768px) {
-    width: 768px;
+  ${theme.mq.tablet} {
+    width: 672px;
     padding: 16px;
   }
 
-  @media screen and (min-width: 1440px) {
-    width: 1140px;
+  ${theme.mq.desktop} {
+    width: 1280px;
     padding: 20px;
   }
 `;
@@ -23,11 +27,19 @@ export const TopContainer = styled.div`
 export const ContainerBackground = styled.div`
   border-radius: 30px;
   background-color: #050505;
+  /* background-color: #fff; */
 `;
 
 export const HeaderWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 60px;
+  ${flexBetween()}
+
+  padding: 16px;
+
+  ${theme.mq.tablet} {
+    padding: 20px 32px;
+  }
+
+  ${theme.mq.desktop} {
+    padding: 20px 60px;
+  }
 `;
