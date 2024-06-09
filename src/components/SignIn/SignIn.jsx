@@ -25,10 +25,10 @@ const schema = object({
     .min(8, "password should be minimum 8 characters"),
 }).required();
 
-const SignIn = ({switch}) => {
+const SignIn = ({ switchForm }) => {
   const navigate = useNavigate();
   const [eyeState, setEyeState] = useState(true);
-  const [_signUp, setSignUp] = useState(false);
+  // const [_signUp, setSignUp] = useState(false);
   const [_state, setState] = useState({});
   const {
     register,
@@ -81,7 +81,8 @@ const SignIn = ({switch}) => {
       </FormStyled>
       <TextContainerStyled>
         <TextStyled>Don't have an account?</TextStyled>
-        <LinkTextStyled onClick={() => setSignUp(true)}>Create an account</LinkTextStyled>
+        {/* <LinkTextStyled onClick={() => setSignUp(true)}>Create an account</LinkTextStyled> */}
+        <LinkTextStyled onClick={switchForm}>Create an account</LinkTextStyled>
       </TextContainerStyled>
     </FormWripper>
   );

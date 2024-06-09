@@ -2,12 +2,14 @@ import { Modal } from "components/Modal/Modal";
 import SignIn from "components/SignIn";
 import SignUp from "components/SignUp";
 import { useModalWindow } from "hooks/useModalWindow";
-import TempAuthSwitcher from "./TempAuthSwitcher";
 import { useState } from "react";
 
 const TempAuthButton = () => {
   const { isOpen, open, close } = useModalWindow();
   const [isLogin, setIslogin] = useState(false);
+
+  const switchToSignIn = () => setIslogin(true);
+  const switchToSignUp = () => setIslogin(false);
 
   return (
     <>
@@ -32,15 +34,11 @@ const TempAuthButton = () => {
 
       {isOpen && (
         <Modal onClose={close}>
-          {/* <SignUp /> */}
-          {/* <SignIn /> */}
-
-          {/* <TempAuthSwitcher
-            isLogin={isLogin}
-            setIslogin={setIslogin}
-          /> */}
-
-          {isLogin ? <SignIn /> : <SignUp />}
+          {isLogin ? (
+            <SignIn switchForm={switchToSignUp} />
+          ) : (
+            <SignUp switchForm={switchToSignIn} />
+          )}
         </Modal>
       )}
     </>
