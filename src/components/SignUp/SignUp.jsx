@@ -27,11 +27,11 @@ const schema = object({
     .matches(/[a-zA-Z]/, "password can only contain Latin letters"),
 }).required();
 
-const SignUp = () => {
+const SignUp = ({ switchForm }) => {
   const navigate = useNavigate();
   const [eyeState, setEyeState] = useState(true);
   const [_state, setState] = useState({});
-  const [_login, setLogin] = useState(false);
+  // const [_login, setLogin] = useState(false);
   const {
     register,
     handleSubmit,
@@ -100,7 +100,8 @@ const SignUp = () => {
       </FormStyled>
       <TextContainerStyled>
         <TextStyled>I already have an account?</TextStyled>
-        <LinkTextStyled onClick={() => setLogin(true)}>Sign in</LinkTextStyled>
+        {/* <LinkTextStyled onClick={() => setLogin(true)}>Sign in</LinkTextStyled> */}
+        <LinkTextStyled onClick={switchForm}>Sign in</LinkTextStyled>
       </TextContainerStyled>
     </FormWripper>
   );
