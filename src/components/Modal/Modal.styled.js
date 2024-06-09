@@ -21,8 +21,7 @@ export const ModalContainer = styled.div`
   overflow: hidden;
   transform: translate(-50%, -50%);
   border-radius: ${theme.radii.md};
-  ${py(15)}
-  ${px("30")}
+  padding: 15px;
   ${theme.mq.tablet} {
     ${px(20)}
     ${py(20)}
@@ -30,9 +29,21 @@ export const ModalContainer = styled.div`
 `;
 
 export const BtnClose = styled(Close)`
+  position: absolute;
+  top: 7%;
+  left: 85%;
+
   display: flex;
   transition: ${theme.transitions.default};
   stroke: ${theme.colors.dark};
-  margin-left: auto;
-  margin-bottom: 10px;
+
+  ${theme.mq.tablet} {
+    top: 16%;
+    left: 81%;
+
+    &:focus,
+    &:hover {
+      cursor: pointer;
+    }
+  }
 `;
