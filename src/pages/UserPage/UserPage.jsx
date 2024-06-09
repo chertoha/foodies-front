@@ -9,7 +9,7 @@ import MyFavorites from "components/ProfilePages/MyFavorites";
 import Followers from "components/ProfilePages/Followers";
 import Following from "components/ProfilePages/Following";
 
-import { ProfileWrapp, ListWrapp, TabsList, TabsButton } from "./UserPage.styled";
+import { TitleWrapp, ProfileWrapp, ListWrapp, TabsList, TabsButton } from "./UserPage.styled";
 import { useState } from "react";
 const tabs = [
   { id: 1, tab: "My recipes", label: "My recipes" },
@@ -26,7 +26,12 @@ const UserPage = () => {
   return (
     <section>
       <Container>
-        <MainTitle label={"Profile"} />
+        <TitleWrapp>
+          <MainTitle
+            as={"h1"}
+            label={"Profile"}
+          />
+        </TitleWrapp>
         <SubTitle
           label={
             "Reveal your culinary art, share your favorite recipe and create gastronomic masterpieces with us."

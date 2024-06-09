@@ -1,7 +1,7 @@
 import { Title } from "./MainTitle.styled";
 
-const MainTitle = ({ label }) => {
-  return <Title>{label}</Title>;
+const MainTitle = ({ as, label }) => {
+  return <Title as={as}>{label}</Title>;
 };
 
 export default MainTitle;
