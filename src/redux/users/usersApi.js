@@ -27,5 +27,5 @@ const usersApi = createApi({
   }),
 });
 
-export const {} = usersApi;
+export const { useGetUserInfoQuery, useUpdateUserAvatarMutation } = usersApi;
 export default usersApi;
