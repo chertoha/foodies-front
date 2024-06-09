@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 import Container from "components/Container";
-import MainTitle from "components/MainTitle";
+import MainTitle from "components/MainTitle/MainTitle";
 import SubTitle from "components/SubTitle";
 import UserInfo from "components/UserInfo";
 

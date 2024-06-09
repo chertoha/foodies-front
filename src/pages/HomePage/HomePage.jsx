@@ -1,5 +1,7 @@
-// import { useGetRecipiesQuery } from "../../redux/recipes/recipesApi";
-// import { useGetRecipeQuery } from "../../redux/recipes/recipesApi";
+import Hero from "components/Hero/Hero.jsx";
+import Testimonials from "components/Testimonials";
+import { PageWrapper, SectionWrapper } from "./HomePage.styled";
+import Container from "components/Container";
 
 const HomePage = () => {
   // const { data } = useGetRecipiesQuery({
@@ -13,7 +15,21 @@ const HomePage = () => {
   // const { data } = useGetRecipeQuery("6462a8f74c3d0ddd28897fcd");
 
   //console.log(data);
-  return <h1>HomePage</h1>;
+  return (
+    <PageWrapper>
+      <Hero />
+
+      <SectionWrapper>
+        <div>Categories</div>
+      </SectionWrapper>
+
+      <SectionWrapper>
+        <Container>
+          <Testimonials />
+        </Container>
+      </SectionWrapper>
+    </PageWrapper>
+  );
 };
 
 export default HomePage;

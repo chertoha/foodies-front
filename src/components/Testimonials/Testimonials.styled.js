@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { body1, flexCenter, heading3, heading5, mt } from "styles/atomic";
 import theme from "styles/theme";
+import iconQuote from "assets/images/icons/quote.svg";
 
 export const Introduction = styled("p")`
   ${body1()}
@@ -14,7 +15,9 @@ export const TitleWrapper = styled("div")`
 `;
 
 export const SliderWrapper = styled("div")`
-  ${mt(16)}
+  position: relative;
+
+  ${mt(16)};
 
   ${theme.mq.tablet} {
     ${mt(20)}
@@ -28,6 +31,29 @@ export const SliderWrapper = styled("div")`
 
   & .swiper-slide {
     height: auto;
+  }
+
+  & .swiper-pagination {
+    position: static;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: -20px;
+    left: 8px;
+    width: 40px;
+    height: 32px;
+    transform: translateY(-100%);
+    background-image: url(${iconQuote});
+    background-repeat: no-repeat;
+
+    ${theme.mq.tablet} {
+      top: -40px;
+      left: 40px;
+      width: 59px;
+      height: 48px;
+    }
   }
 `;
 
