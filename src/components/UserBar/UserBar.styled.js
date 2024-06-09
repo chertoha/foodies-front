@@ -3,14 +3,21 @@ import theme from "styles/theme";
 
 export const UserBarWrapper = styled.div`
   display: flex;
-  flex-direction: column;
-  gap: 6px;
   align-items: center;
+
+  gap: 6px;
+`;
+
+export const UserWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
   width: 122px;
   height: 32px;
-  border-radius: 30px;
-  background-color: #050505;
-  border: 1px solid #ccc;
+  border-radius: ${theme.radii.lg};
+  background-color: ${theme.colors.accent};
+
   ${theme.mq.tablet} {
     width: 148px;
     height: 50px;
@@ -22,21 +29,18 @@ export const Wrapper = styled.div`
   display: flex;
   gap: 6px;
   height: 100%;
+
   ${theme.mq.tablet} {
     width: 148px;
-    display: flex;
-    gap: 6px;
-    height: 100%;
   }
 `;
 
 export const UserName = styled.p`
-  color: #fff;
-  font-family: Mulish;
-  font-size: 12px;
-  font-weight: 700;
+  color: ${theme.colors.light};
+  font-size: ${theme.fontSizes.xs};
+  font-weight: ${theme.fontWeights.bold};
   line-height: 18px;
-  letter-spacing: 0.02em;
+  letter-spacing: -0.02em;
   text-transform: uppercase;
   margin: 0;
 `;
