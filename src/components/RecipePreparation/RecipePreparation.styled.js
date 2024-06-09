@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { body1 } from "styles/atomic";
+import { body1, mb, px, py } from "styles/atomic";
 
 export const RecipePreparationContainer = styled.div`
   flex-direction: column;
@@ -8,16 +8,16 @@ export const RecipePreparationContainer = styled.div`
 `;
 
 export const PreparationTitleWrapper = styled.div`
-  margin-bottom: 20px;
+  ${mb(5)};
 `;
 
 export const PreparationDescriptionWrapper = styled.div`
-  margin-bottom: 32px;
+  ${mb(8)};
   ${({ theme }) => theme.mq.tablet} {
-    margin-bottom: 40px;
+    ${mb(10)};
   }
   & > *:not(:last-child) {
-    margin-bottom: 20px;
+    ${mb(5)};
   }
 `;
 
@@ -26,7 +26,8 @@ export const RecipePreparationButton = styled.button`
   ${body1()}
   text-transform: uppercase;
   display: flex;
-  padding: 14px 20px;
+  ${py("14")};
+  ${px(5)};
   cursor: pointer;
   justify-content: center;
   align-items: center;
@@ -35,7 +36,8 @@ export const RecipePreparationButton = styled.button`
   background-color: ${p => (p.$isFavorite ? p.theme.colors.dark : p.theme.colors.light)};
   transition: ${p => p.theme.transitions.default};
   ${({ theme }) => theme.mq.tabletOnly} {
-    padding: 16px 32px;
+    ${py(4)};
+    ${px(8)};
   }
 
   &:hover {

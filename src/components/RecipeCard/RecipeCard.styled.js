@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { body1, my, numberTextRows } from "styles/atomic";
+import { body1, mb, my, numberTextRows } from "styles/atomic";
 import theme from "styles/theme";
 
 export const CardWrapper = styled.div`
@@ -12,7 +12,7 @@ export const Image = styled.img`
   width: 100%;
   height: auto;
   border-radius: ${({ theme }) => theme.radii.lg};
-  margin-bottom: 16px;
+  ${mb(4)};
 `;
 
 export const TitleCardWrapper = styled.div`

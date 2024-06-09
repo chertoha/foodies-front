@@ -1,27 +1,25 @@
 import styled from "styled-components";
+import { pb, pt, py } from "styles/atomic";
 
 export const RecipeInfoContainer = styled.div`
-  padding-bottom: 64px;
+  ${pb(16)}
   ${({ theme }) => theme.mq.tablet} {
-    padding-bottom: 100px;
+    ${pb(25)}
   }
   ${({ theme }) => theme.mq.desktop} {
     display: flex;
     flex-direction: row;
-    padding-bottom: 64px;
-    padding-bottom: 120px;
-    padding-top: 40px;
+    ${pt(10)}
+    ${pb(30)}
     gap: 80px;
   }
 `;
 
 export const RecipeImageWrapper = styled.div`
   width: 100%;
-  padding-top: 32px;
-  padding-bottom: 32px;
+  ${py(8)}
   ${({ theme }) => theme.mq.tabletOnly} {
-    padding-top: 40px;
-    padding-bottom: 40px;
+    ${py(10)}
   }
   ${({ theme }) => theme.mq.desktop} {
     padding-top: 0px;

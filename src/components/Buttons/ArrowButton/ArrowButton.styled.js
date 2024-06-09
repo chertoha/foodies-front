@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { px, py } from "styles/atomic";
 import theme from "styles/theme";
 
 export const ButtonArrow = styled(Link)`
@@ -10,11 +11,13 @@ export const ButtonArrow = styled(Link)`
   align-items: center;
   border-radius: ${({ theme }) => theme.radii.lg};
   border: 1px solid rgba(5, 5, 5, 0.1);
-  padding: 10px;
+  ${py("10")};
+  ${px("10")};
   color: ${p => p.theme.colors.dark};
   transition: ${p => p.theme.transitions.default};
   ${({ theme }) => theme.mq.tabletOnly} {
-    padding: 12px;
+    ${py(3)};
+    ${px(3)};
   }
 
   &:hover {

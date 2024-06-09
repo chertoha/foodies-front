@@ -1,10 +1,11 @@
 import styled from "styled-components";
+import { pb, pt } from "styles/atomic";
 
 export const RecipePageContainer = styled.div`
-  padding-top: 64px;
-  padding-bottom: 100px;
+  ${pt(16)};
+  ${pb(25)};
   ${({ theme }) => theme.mq.desktop} {
-    padding-top: 80px;
-    padding-bottom: 120px;
+    ${pt(20)};
+    ${pb(30)};
   }
 `;

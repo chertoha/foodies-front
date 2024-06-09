@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { mt, my, px, py } from "styles/atomic";
 
 export const RecipeMainInfoContainer = styled.div`
   display: flex;
@@ -11,7 +12,8 @@ export const RecipeCategory = styled.span`
   color: rgba(5, 5, 5, 0.6);
   border-radius: 20px;
   border: 1px solid rgba(5, 5, 5, 0.12);
-  padding: 10px;
+  ${px("10")};
+  ${py("10")};
 `;
 
 export const RecipeTime = styled.span`
@@ -19,20 +21,20 @@ export const RecipeTime = styled.span`
   color: rgba(5, 5, 5, 0.6);
   border-radius: ${({ theme }) => theme.radii.md};
   border: 1px solid rgba(5, 5, 5, 0.12);
-  padding: 10px;
+  ${px("10")};
+  ${py("10")};
 `;
 
 export const ButtonWrapper = styled.div`
   display: flex;
   gap: 8px;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  ${my(5)};
 `;
 
 export const AuthorInfoWrapper = styled.div`
   display: flex;
   align-items: center;
-  margin-top: 20px;
+  ${mt(4)};
   gap: 16px;
 `;
 

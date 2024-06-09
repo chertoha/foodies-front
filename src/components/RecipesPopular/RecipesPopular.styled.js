@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { mt } from "styles/atomic";
 import theme from "styles/theme";
 
 export const RecipePopularContainer = styled.div`
@@ -11,12 +12,12 @@ export const RecipePopularList = styled.ul`
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
-  margin-top: 32px;
+  ${mt(8)};
   ${({ theme }) => theme.mq.tabletOnly} {
     flex-direction: row;
     column-gap: 20px;
     row-gap: 40px;
-    margin-top: 40px;
+    ${mt(10)};
   }
   ${({ theme }) => theme.mq.desktop} {
     flex-direction: row;

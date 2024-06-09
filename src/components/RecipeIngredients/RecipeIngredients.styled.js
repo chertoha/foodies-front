@@ -1,12 +1,10 @@
 import styled from "styled-components";
-import { body1 } from "styles/atomic";
+import { body1, pt, px, py } from "styles/atomic";
 
 export const RecipeIngredientsContainer = styled.div`
-  padding-top: 32px;
-  padding-bottom: 32px;
+  ${py(8)}
   ${({ theme }) => theme.mq.tabletOnly} {
-    padding-top: 40px;
-    padding-bottom: 40px;
+    ${py(10)}
   }
 `;
 export const IngredientsList = styled.ul`
@@ -15,7 +13,7 @@ export const IngredientsList = styled.ul`
   gap: 16px;
   list-style: none;
   padding: 0;
-  margin-top: 20px;
+  ${pt(5)}
   ${({ theme }) => theme.mq.tablet} {
     grid-template-columns: repeat(3, calc(33.33% - 20px));
     gap: 20px;
@@ -37,13 +35,15 @@ export const ImageWrapper = styled.div`
   width: 55px;
   height: 55px;
   border-radius: 15px;
-  padding: 10px;
+  ${py("10")};
+  ${px("10")};
 
   border: 1px solid rgba(5, 5, 5, 0.1);
   ${({ theme }) => theme.mq.tablet} {
     width: 60px;
     height: 60px;
-    padding: 15px;
+    ${py("15")};
+    ${px("15")};
   }
 `;
 
