@@ -64,6 +64,7 @@ export const Button = styled("button")`
   background-color: #050505;
   border: none;
   border-radius: 30px;
+  cursor: pointer;
   ${theme.mq.tablet} {
     width: 38px;
     height: 38px;

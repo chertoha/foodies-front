@@ -9,7 +9,7 @@ import {
   FollowerButton,
   CardList,
   CardListImage,
-  Button,
+  LinkButton,
   Icon,
 } from "./FollowerList.styled";
 
@@ -20,7 +20,7 @@ const FollowersList = ({ followers }) => {
         <FollowerItem key={id}>
           <FollowerItemWrapp>
             <UserAvatar
-              size={[60, 60, 85, 85]}
+              size={[60, 85, 85]}
               src={image}
             />
 
@@ -32,8 +32,8 @@ const FollowersList = ({ followers }) => {
           </FollowerItemWrapp>
 
           <CardList>
-            {card.map((card, idx) => (
-              <li key={idx}>
+            {card.map(card => (
+              <li key={card}>
                 <CardListImage
                   src={card}
                   alt="follow"
@@ -41,11 +41,11 @@ const FollowersList = ({ followers }) => {
               </li>
             ))}
           </CardList>
-          <Button>
+          <LinkButton to={`/some-page/${id}`}>
             <Icon>
               <use href={sprite + "#icon-arrow-up-right"}></use>
             </Icon>
-          </Button>
+          </LinkButton>
         </FollowerItem>
       ))}
     </FollowerList>

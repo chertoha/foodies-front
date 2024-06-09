@@ -6,6 +6,7 @@ import {
   UserPageListTitle,
   UserPageListText,
   ButtonWrapp,
+  LinkButton,
   Button,
   Icon,
 } from "./UserPageListItems.styled";
@@ -21,11 +22,11 @@ const UserPageListItems = ({ list }) => {
           </div>
 
           <ButtonWrapp>
-            <Button>
+            <LinkButton to={`/some-page/${id}`}>
               <Icon>
                 <use href={sprite + "#icon-arrow-up-right"}></use>
               </Icon>
-            </Button>
+            </LinkButton>
             <Button>
               <Icon>
                 <use href={sprite + "#icon-trash"}></use>

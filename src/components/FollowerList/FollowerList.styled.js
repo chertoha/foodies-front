@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { py, px, mb, heading5, body2, body1 } from "styles/atomic";
 import theme from "styles/theme";
@@ -158,7 +159,7 @@ export const CardListImage = styled("img")`
   ${theme.mq.desktop} {
   }
 `;
-export const Button = styled("button")`
+export const LinkButton = styled(Link)`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -167,6 +168,13 @@ export const Button = styled("button")`
   background-color: transparent;
   border: 1px solid #0505051a;
   border-radius: 100px;
+  cursor: pointer;
+
+  transition: border-color ${theme.transitions.default};
+  &:focus,
+  &:hover {
+    background-color: ${theme.colors.accent};
+  }
   ${theme.mq.tablet} {
     width: 42px;
     height: 42px;
@@ -176,10 +184,14 @@ export const Button = styled("button")`
   }
 `;
 export const Icon = styled("svg")`
-  fill: #050505;
+  fill: ${theme.colors.accent};
   display: block;
   width: 16px;
   height: 16px;
+  &:focus,
+  &:hover {
+    fill: ${theme.colors.light};
+  }
   ${theme.mq.tablet} {
     width: 18px;
     height: 18px;

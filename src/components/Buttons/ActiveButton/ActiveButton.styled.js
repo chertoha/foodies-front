@@ -15,6 +15,7 @@ export const StyledButton = styled("button")`
   ${body1()};
   font-weight: ${theme.fontWeights.bold};
   text-transform: uppercase;
+  cursor: pointer;
   ${theme.mq.mobileOnly} {
     width: 100%;
     max-width: 343px;

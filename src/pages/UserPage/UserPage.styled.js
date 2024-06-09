@@ -81,6 +81,7 @@ export const TabsButton = styled("button")`
 
   border: none;
   background-color: transparent;
+  cursor: pointer;
   ${theme.mq.mobileOnly} {
   }
 
