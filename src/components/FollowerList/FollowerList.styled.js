@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { py, px, mb, heading5, body2, body1 } from "styles/atomic";
 import theme from "styles/theme";
@@ -7,6 +8,8 @@ export const FollowerList = styled("ul")`
   justify-content: center;
   flex-direction: column;
   ${theme.mq.mobileOnly} {
+    width: 100%;
+    max-width: 343px;
   }
 
   ${theme.mq.tablet} {
@@ -17,6 +20,8 @@ export const FollowerList = styled("ul")`
 `;
 
 export const FollowerItem = styled("li")`
+  display: flex;
+  justify-content: space-between;
   ${py(5)}
   border-bottom: 1px solid #0505051A;
   ${theme.mq.mobileOnly} {
@@ -149,6 +154,47 @@ export const CardListImage = styled("img")`
     width: 100px;
     height: 100px;
     border-radius: 15px;
+  }
+
+  ${theme.mq.desktop} {
+  }
+`;
+export const LinkButton = styled(Link)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 36px;
+  height: 36px;
+  background-color: transparent;
+  border: 1px solid #0505051a;
+  border-radius: 100px;
+  cursor: pointer;
+
+  transition: border-color ${theme.transitions.default};
+  &:focus,
+  &:hover {
+    background-color: ${theme.colors.accent};
+  }
+  ${theme.mq.tablet} {
+    width: 42px;
+    height: 42px;
+  }
+
+  ${theme.mq.desktop} {
+  }
+`;
+export const Icon = styled("svg")`
+  fill: ${theme.colors.accent};
+  display: block;
+  width: 16px;
+  height: 16px;
+  &:focus,
+  &:hover {
+    fill: ${theme.colors.light};
+  }
+  ${theme.mq.tablet} {
+    width: 18px;
+    height: 18px;
   }
 
   ${theme.mq.desktop} {
