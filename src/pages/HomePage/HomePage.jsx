@@ -1,6 +1,10 @@
 // import { useGetRecipiesQuery } from "../../redux/recipes/recipesApi";
 
+import { Modal } from "components/Modal/Modal";
+import SignUp from "components/SignUp/SignUp";
+
 // import { useGetRecipeQuery } from "../../redux/recipes/recipesApi";
+
 const HomePage = () => {
   // const { data } = useGetRecipiesQuery({
   //   page: 1,
@@ -16,6 +20,10 @@ const HomePage = () => {
   return (
     <div>
       <h1>HomePage</h1>
+      {/* <Modal>
+        <SignUp />
+      </Modal> */}
+      <SignUp />
     </div>
   );
 };

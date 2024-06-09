@@ -56,16 +56,17 @@ export const InputStyled = styled.input.attrs(props => props)`
   width: 283px;
   height: 48px;
 
-  padding: 14px;
+  padding: 14px 45px 14px 14px;
 
   font-size: 14px;
   font-weight: 500;
   ligth-height: 1.42;
   letter-spacing: -0.02em;
 
-  color: rgba(5, 5, 5, 0.8);
   border-radius: 30px;
   border: 1px solid ${props => (props.$border ? props.$border : "rgba(5, 5, 5, 0.12)")};
+  color: rgba(5, 5, 5, 0.8);
+
   transition: border 250ms cubic-bezier(0.4, 0, 0.2, 1);
   transition: outline-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
@@ -78,7 +79,7 @@ export const InputStyled = styled.input.attrs(props => props)`
     width: 400px;
     height: 56px;
 
-    padding: 16px 18px;
+    padding: 16px 45px 16px 18px;
 
     font-size: 16px;
     ligth-height: 1.5;
@@ -100,16 +101,17 @@ export const InputContainerStyled = styled("div")`
 
 export const IconStyled = styled.svg.attrs(props => props)`
   position: absolute;
-  top: 34%;
+  top: 24%;
   left: 85%;
   display: block;
-  stroke: ${props => props.stroke};
+  // stroke: ${props => props.stroke};
+  stroke: #050505;
 
   width: 18px;
   height: 18px;
 
   ${theme.mq.tablet} {
-    top: 34%;
+    top: 24%;
     left: 90%;
 
     width: 20px;
@@ -215,11 +217,17 @@ export const LinkTextStyled = styled("a")`
 `;
 
 export const ErrorTextStyled = styled("p")`
+  display: block;
+  min-height: 20px;
+  margin: 0 auto;
+  margin-top: 3px;
+
   font-size: 12px;
   font-weight: 500;
   line-height: 1.5;
   letter-spacing: -0.02em;
-  color: red;
+  text-align: center;
+  color: #f42424;
 
   ${theme.mq.tablet} {
     font-size: 14px;
