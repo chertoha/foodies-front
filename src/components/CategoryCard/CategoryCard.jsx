@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 
 const CategoryCard = ({ category, large }) => {
   return (
-    <CardContainer large={large}>
+    <CardContainer $large={large}>
       <Link to={`/recipes/${category.id}`}>
         <CardImage
           src={category.img}
@@ -24,7 +24,7 @@ const CategoryCard = ({ category, large }) => {
 
 const AllCategoriesCard = large => (
   <CardContainer
-    large={large}
+    $large={large}
     style={{ backgroundColor: "black" }}
   >
     <Link

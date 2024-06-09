@@ -1,8 +1,5 @@
 import React from "react";
-import { RouterProvider, createBrowserRouter, Route } from "react-router-dom";
-import Category from "../Category/Category";
-import CategoryList from "../CategoryGrid/CategoryList";
-import CategoryCard from "../CategoryCard/CategoryCard";
+import { RouterProvider } from "react-router-dom";
 import router from "config/router";
 
 const App = () => {

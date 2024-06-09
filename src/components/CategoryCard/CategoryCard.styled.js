@@ -5,15 +5,15 @@ export const CardContainer = styled.li`
   position: relative;
   width: 100%;
   height: 250px;
-  border-radius: 8px;
+  border-radius: 30px;
   overflow: hidden;
 
   ${theme.mq.tablet} {
-    width: ${props => (props.large ? "100%" : "calc(50% - 10px)")};
+    width: ${props => (props.$large ? "100%" : "calc(50% - 10px)")};
   }
 
   ${theme.mq.desktop} {
-    width: ${props => (props.large ? "calc(40% - 13.33px)" : "calc(30% - 13.33px)")};
+    width: ${props => (props.$large ? "calc(40% - 13.33px)" : "calc(30% - 13.33px)")};
   }
 `;
 
