@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import CategoryCard from "../CategoryCard/CategoryCard";
+import { CategoryCard, AllCategoriesCard } from "../CategoryCard/CategoryCard";
 import { GridContainer } from "./CategoryList.styled";
 
 const CategoryList = ({ categories }) => {
@@ -30,15 +30,19 @@ const CategoryList = ({ categories }) => {
     });
     setCardSizes(sizes);
   }, [categories]);
+
+  const displayedCategories = categories.slice(0, Math.ceil(categories.length / 2));
+
   return (
     <GridContainer>
-      {categories.map((category, index) => (
+      {displayedCategories.map((category, index) => (
         <CategoryCard
           large={cardSizes[index]}
           key={category.id}
           category={category}
         />
       ))}
+      <AllCategoriesCard />
     </GridContainer>
   );
 };

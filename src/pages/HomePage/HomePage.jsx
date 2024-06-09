@@ -2,6 +2,7 @@ import Hero from "components/Hero/Hero.jsx";
 import Testimonials from "components/Testimonials";
 import { PageWrapper, SectionWrapper } from "./HomePage.styled";
 import Container from "components/Container";
+import Category from "components/Category/Category";
 
 const HomePage = () => {
   // const { data } = useGetRecipiesQuery({
@@ -21,7 +22,7 @@ const HomePage = () => {
       <Hero />
 
       <SectionWrapper>
-        <div>Categories</div>
+        <Category />
       </SectionWrapper>
 
       <SectionWrapper>

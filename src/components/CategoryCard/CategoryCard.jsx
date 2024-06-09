@@ -22,4 +22,25 @@ const CategoryCard = ({ category, large }) => {
   );
 };
 
-export default CategoryCard;
+const AllCategoriesCard = large => (
+  <CardContainer
+    large={large}
+    style={{ backgroundColor: "black" }}
+  >
+    <Link
+      to="/categories/all"
+      style={{
+        color: "white",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        height: "100%",
+        textDecoration: "none",
+      }}
+    >
+      <h2>ALL CATEGORIES</h2>
+    </Link>
+  </CardContainer>
+);
+
+export { CategoryCard, AllCategoriesCard };
