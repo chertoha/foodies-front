@@ -25,7 +25,7 @@ const schema = object({
     .min(8, "password should be minimum 8 characters"),
 }).required();
 
-const SignIn = () => {
+const SignIn = ({switch}) => {
   const navigate = useNavigate();
   const [eyeState, setEyeState] = useState(true);
   const [_signUp, setSignUp] = useState(false);

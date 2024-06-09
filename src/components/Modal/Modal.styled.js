@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import theme from "../../styles/theme";
-import { px, py, flexCenter } from "../../styles/atomic";
-import { ReactComponent as Close } from "../../assets/images/icons/close.svg";
+import { px, py } from "../../styles/atomic";
 
 export const Overlay = styled.div`
   position: fixed;
@@ -9,41 +8,45 @@ export const Overlay = styled.div`
   left: 0;
   width: 100vw;
   height: 100vh;
-  ${flexCenter()}
   z-index: 1200;
   background: rgba(18, 20, 23, 0.5);
+  overflow-y: auto;
 `;
 
 export const ModalContainer = styled.div`
+  ${px("30")};
+  ${py(15)};
+  width: 90%;
+  max-width: 343px;
+
   position: absolute;
-  top: 50%;
+  top: 20%;
   left: 50%;
-  overflow: hidden;
-  transform: translate(-50%, -50%);
+  transform: translateX(-50%);
   border-radius: ${theme.radii.md};
-  padding: 15px;
+  background-color: #ffffff;
+
   ${theme.mq.tablet} {
-    ${px(20)}
-    ${py(20)}
+    max-width: none;
+    width: 561px;
   }
 `;
 
-export const BtnClose = styled(Close)`
+export const BtnClose = styled("button")`
   position: absolute;
-  top: 7%;
-  left: 85%;
+  top: 16px;
+  right: 16px;
 
   display: flex;
-  transition: ${theme.transitions.default};
-  stroke: ${theme.colors.dark};
+  transition: ${theme.transitions.prop("transform")};
+  color: ${theme.colors.dark};
 
   ${theme.mq.tablet} {
-    top: 16%;
-    left: 81%;
+    top: 20px;
+    right: 20px;
 
-    &:focus,
     &:hover {
-      cursor: pointer;
+      transform: scale(1.2);
     }
   }
 `;
