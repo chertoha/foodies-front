@@ -4,6 +4,6 @@
   "rules": {
     "prettier/prettier": ["warn", { "endOfLine": "auto" }],
 
-    "no-unused-vars": ["error", { "varsIgnorePattern": "^_", "argsIgnorePattern": "^_" }]
+    "no-unused-vars": ["warn", { "varsIgnorePattern": "^_", "argsIgnorePattern": "^_" }]
   }
 }

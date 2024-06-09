@@ -3,13 +3,11 @@ import { Avatar } from "./UserAvatar.styled";
 
 const UserAvatar = ({ size, src, alt = "avatar" }) => {
   return (
-    <div>
-      <Avatar
-        size={size}
-        src={src}
-        alt={alt}
-      />
-    </div>
+    <Avatar
+      size={size}
+      src={src}
+      alt={alt}
+    />
   );
 };
 
