@@ -7,7 +7,6 @@ export const UserInfoWrapp = styled("div")`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-
   ${theme.mq.mobileOnly} {
   }
 
@@ -23,7 +22,7 @@ export const UserCard = styled("div")`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  width: 343px;
+  max-width: 343px;
   height: 320px;
   ${py("30")}
   ${px("54")}
@@ -35,6 +34,8 @@ export const UserCard = styled("div")`
   flex-direction: column;
 
   ${theme.mq.mobileOnly} {
+    width: 100%;
+    max-width: 343px;
   }
 
   ${theme.mq.tablet} {
@@ -47,7 +48,47 @@ export const UserCard = styled("div")`
   ${theme.mq.desktop} {
   }
 `;
+export const IconWrapp = styled("div")`
+  position: relative;
+`;
 
+export const Button = styled("button")`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 73%;
+  left: 30%;
+  width: 28px;
+  height: 28px;
+  background-color: ${theme.colors.accent};
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  ${theme.mq.tablet} {
+    width: 38px;
+    height: 38px;
+    top: 76%;
+    left: 34%;
+  }
+
+  ${theme.mq.desktop} {
+  }
+`;
+export const Icon = styled("svg")`
+  fill: ${theme.colors.light};
+  display: block;
+  width: 16px;
+  height: 16px;
+  ${theme.mq.mobileOnly} {
+  }
+  ${theme.mq.tablet} {
+    width: 18px;
+    height: 18px;
+  }
+  ${theme.mq.desktop} {
+  }
+`;
 export const UserCardTitle = styled("h3")`
   color: ${theme.colors.accent}
   font-family: Mulish;
