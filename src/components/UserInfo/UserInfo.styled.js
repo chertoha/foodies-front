@@ -61,7 +61,7 @@ export const Button = styled("button")`
   left: 30%;
   width: 28px;
   height: 28px;
-  background-color: #050505;
+  background-color: ${theme.colors.accent};
   border: none;
   border-radius: 30px;
   cursor: pointer;
@@ -76,7 +76,7 @@ export const Button = styled("button")`
   }
 `;
 export const Icon = styled("svg")`
-  fill: #ffffff;
+  fill: ${theme.colors.light};
   display: block;
   width: 16px;
   height: 16px;

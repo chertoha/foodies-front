@@ -147,7 +147,7 @@ export const Button = styled("button")`
   }
 `;
 export const Icon = styled("svg")`
-  fill: #050505;
+  fill: ${theme.colors.accent};
   display: block;
   width: 16px;
   height: 16px;
