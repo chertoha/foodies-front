@@ -30,8 +30,8 @@ const schema = object({
 const SignUp = () => {
   const navigate = useNavigate();
   const [eyeState, setEyeState] = useState(true);
-  const [state, setState] = useState({});
-  const [login, setLogin] = useState(false);
+  const [_state, setState] = useState({});
+  const [_login, setLogin] = useState(false);
   const {
     register,
     handleSubmit,
