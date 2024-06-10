@@ -1,9 +1,8 @@
 import styled from "styled-components";
 import { my } from "styles/atomic";
 import theme from "styles/theme";
-import { Form } from "formik";
 
-export const SearchRecipesForm = styled(Form)`
+export const SearchRecipesForm = styled("form")`
   display: flex;
   align-items: center;
   flex-direction: column;

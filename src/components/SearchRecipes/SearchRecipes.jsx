@@ -1,8 +1,6 @@
 import { useState } from "react";
-import { useGetIngredientsQuery } from "../../redux/ingredients/ingredientsApi";
-import { useGetAreasQuery } from "../../redux/areas/areasApi";
-import { Formik } from "formik";
-import * as Yup from "yup";
+// import { useGetIngredientsQuery } from "../../redux/ingredients/ingredientsApi";
+// import { useGetAreasQuery } from "../../redux/areas/areasApi";
 
 import { SearchRecipesForm, SearchWrapp } from "./SearchRecipes.styled";
 import CustomSelect from "../CustomSelect/CustomSelect";
@@ -10,64 +8,56 @@ import CustomSelect from "../CustomSelect/CustomSelect";
 const areasobj = ["Beef", "Breakfast", "Desserts", "Lamb"];
 const ingredientsobj = ["Cabbage", "Cucumber", "Tomato", "Corn", "Radish", "Parsley"];
 
-const initialValues = {
-  ingredients: "",
-  areas: "",
-};
-const validationSchema = Yup.object().shape({
-  ingredients: Yup.string(),
-  areas: Yup.string(),
-});
-
 const SearchRecipes = () => {
-  const [ingredient, setIngredient] = useState("");
-  const [area, setArea] = useState("");
+  const [formValues, setFormValues] = useState({
+    ingredients: "",
+    areas: "",
+  });
+  //   const { data: ingredientsData } = useGetIngredientsQuery();
+  //   const { data: areasData } = useGetAreasQuery();
 
-  const { data, error, isFetching } = useGetIngredientsQuery();
-  const { areas } = useGetAreasQuery();
-  console.log("ingredient", data);
-  console.log("areas", areas);
-
-  const handleSubmit = values => {
-    setIngredient(values.ingredients);
-    setArea(values.areas);
+  //   console.log(ingredientsData);
+  //   console.log(areasData);
+  const handleChange = (name, value) => {
+    setFormValues(prevValues => ({
+      ...prevValues,
+      [name]: value,
+    }));
   };
-  console.log(ingredient);
-  console.log(area);
+
+  const handleSubmit = event => {
+    event.preventDefault();
+    console.log("Form submitted with values:", formValues);
+  };
 
   return (
-    <Formik
-      initialValues={initialValues}
-      validationSchema={validationSchema}
-      onSubmit={handleSubmit}
-    >
-      {props => (
-        <SearchRecipesForm onSubmit={props.handleSubmit}>
-          <SearchWrapp>
-            <CustomSelect
-              name="ingredients"
-              options={ingredientsobj.map(ingredient => ({
-                value: ingredient,
-                label: ingredient,
-              }))}
-              placeholder="Ingredients"
-            />
-          </SearchWrapp>
-          <SearchWrapp>
-            <CustomSelect
-              name="areas"
-              options={areasobj.map(area => ({
-                value: area,
-                label: area,
-              }))}
-              placeholder="Areas"
-            />
-          </SearchWrapp>
-          <button type="submit">Search</button>
-        </SearchRecipesForm>
-      )}
-    </Formik>
+    <SearchRecipesForm onSubmit={handleSubmit}>
+      <SearchWrapp>
+        <CustomSelect
+          name="ingredients"
+          options={ingredientsobj.map(ingredient => ({
+            value: ingredient,
+            label: ingredient,
+          }))}
+          value={formValues.ingredients}
+          onChange={handleChange}
+          placeholder="Ingredients"
+        />
+      </SearchWrapp>
+      <SearchWrapp>
+        <CustomSelect
+          name="areas"
+          options={areasobj.map(area => ({
+            value: area,
+            label: area,
+          }))}
+          value={formValues.areas}
+          onChange={handleChange}
+          placeholder="Areas"
+        />
+      </SearchWrapp>
+      {/* <button type="submit">Search</button> */}
+    </SearchRecipesForm>
   );
 };
-
 export default SearchRecipes;
