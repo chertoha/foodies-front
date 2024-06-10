@@ -3,6 +3,8 @@ import { useForm, useFieldArray, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { api, BASE_URL, axiosBaseQuery } from "../../services/api";
+import { useGetCategoriesQuery } from "../../redux/categories/categoriesApi";
+import { useGetIngredientsQuery } from "../../redux/ingredients/ingredientsApi";
 
 // Валідаційна схема з Yup
 const schema = yup.object().shape({
@@ -50,18 +52,19 @@ const AddRecipeForm = () => {
   const [categories, setCategories] = useState([]);
   const [ingredients, setIngredients] = useState([]);
   const [preview, setPreview] = useState(null);
+  const { data } = useGetCategoriesQuery({ limit: 1111 });
+  console.log(data);
+  // useEffect(() => {
+  //   // Отримання категорій з backend
+  //   axiosBaseQuery("/api/categories").then(response => {
+  //     setCategories(response.data);
+  //   });
 
-  useEffect(() => {
-    // Отримання категорій з backend
-    axiosBaseQuery("/api/categories").then(response => {
-      setCategories(response.data);
-    });
-
-    // Отримання інгредієнтів з backend
-    axiosBaseQuery("/api/ingredients").then(response => {
-      setIngredients(response.data);
-    });
-  }, []);
+  //   // Отримання інгредієнтів з backend
+  //   axiosBaseQuery("/api/ingredients").then(response => {
+  //     setIngredients(response.data);
+  //   });
+  // }, []);
 
   const onSubmit = async data => {
     try {
