@@ -9,8 +9,6 @@ const MobileMenuIcon = ({ toggleMenu }) => {
       onClick={toggleMenu}
       aria-label="Mobile menu"
     >
-      <Menu />
-
       <svg
         width="28"
         height="28"
