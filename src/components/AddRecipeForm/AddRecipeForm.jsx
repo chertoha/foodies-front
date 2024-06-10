@@ -1,39 +1,18 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useForm, useFieldArray, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
-import { api, BASE_URL, axiosBaseQuery } from "../../services/api";
+import { schema } from "./yupValidation";
+import { FieldsInput } from "./InputFields.styled";
 import { useGetCategoriesQuery } from "../../redux/categories/categoriesApi";
 import { useGetIngredientsQuery } from "../../redux/ingredients/ingredientsApi";
 import { useCreateRecipeMutation } from "../../redux/recipes/recipesApi";
 import { Form } from "./AddRecipeForm.styled";
 import ActiveButton from "components/Buttons/ActiveButton";
-import { ButtonArrow } from "components/Buttons/ArrowButton/ArrowButton.styled";
-import SpriteIcon from "components/UIKit/SpriteIcon";
+import TrashButton from "components/Buttons/TrashButton";
+import { RecipeIngredientsContainer } from "components/RecipeIngredients/RecipeIngredients.styled";
+import SectionTitle from "components/SectionTitle";
+import IngredientSelector from "./IngredientSelected";
 // Валідаційна схема з Yup
-const schema = yup.object().shape({
-  photo: yup.mixed().required("Фото є обов'язковим"),
-  title: yup.string().required("Назва є обов'язковою"),
-  description: yup
-    .string()
-    .max(200, "Короткий опис не може перевищувати 200 символів")
-    .required("Короткий опис є обов'язковим"),
-  category: yup.string().required("Категорія є обов'язковою"),
-  cookTime: yup
-    .number()
-    .min(1, "Час приготування повинен бути не менше 1 хвилини")
-    .required("Час приготування є обов'язковим"),
-  instructions: yup
-    .string()
-    .max(200, "Інструкція не може перевищувати 200 символів")
-    .required("Інструкція є обов'язковою"),
-  ingredients: yup.array().of(
-    yup.object().shape({
-      ingredient: yup.string().required("Інгредієнт є обов'язковим"),
-      amount: yup.number().required("Кількість є обов'язковою"),
-    })
-  ),
-});
 
 const AddRecipeForm = () => {
   const {
@@ -133,60 +112,68 @@ const AddRecipeForm = () => {
         {errors.photo && <p>{errors.photo.message}</p>}
       </div>
 
-      <div>
-        <label>
-          Назва рецепта:
-          <input
-            type="text"
-            {...register("title")}
-          />
-        </label>
-        {errors.title && <p>{errors.title.message}</p>}
-      </div>
+      <FieldsInput>
+        <div>
+          <label>
+            Назва рецепта:
+            <input
+              type="text"
+              {...register("title")}
+            />
+          </label>
+          {errors.title && <p>{errors.title.message}</p>}
+        </div>
 
-      <div>
-        <label>
-          Короткий опис:
-          <input
-            type="text"
-            {...register("description")}
-          />
-          <p>{`Символів: ${descriptionLength}/200`}</p>
-        </label>
-        {errors.description && <p>{errors.description.message}</p>}
-      </div>
+        <div>
+          <label>
+            Короткий опис:
+            <input
+              type="text"
+              {...register("description")}
+            />
+            <p>{`Символів: ${descriptionLength}/200`}</p>
+          </label>
+          {errors.description && <p>{errors.description.message}</p>}
+        </div>
 
-      <div>
-        <label>
-          Категорія:
-          <select {...register("category")}>
-            {categories.map(category => (
-              <option
-                key={category.id}
-                value={category.name}
-              >
-                {category.name}
-              </option>
-            ))}
-          </select>
-        </label>
-        {errors.category && <p>{errors.category.message}</p>}
-      </div>
+        <div>
+          <label>
+            Категорія:
+            <select {...register("category")}>
+              {categories.map(category => (
+                <option
+                  key={category.id}
+                  value={category.name}
+                >
+                  {category.name}
+                </option>
+              ))}
+            </select>
+          </label>
+          {errors.category && <p>{errors.category.message}</p>}
+        </div>
 
-      <div>
-        <label>
-          Час приготування (хвилини):
-          <input
-            type="number"
-            {...register("cookTime")}
-          />
-        </label>
-        {errors.cookTime && <p>{errors.cookTime.message}</p>}
-      </div>
+        <div>
+          <label>
+            Час приготування (хвилини):
+            <input
+              type="number"
+              {...register("cookTime")}
+            />
+          </label>
+          {errors.cookTime && <p>{errors.cookTime.message}</p>}
+        </div>
 
-      <div>
-        <label>
-          Інгредієнти:
+        <RecipeIngredientsContainer>
+          <SectionTitle label={"Ingredients"} />
+          <div>
+            <IngredientSelector></IngredientSelector>
+            <input
+              type="number"
+              {...register(`ingredients.`)}
+            />
+          </div>
+
           <button
             type="button"
             onClick={() => append({ ingredient: "", amount: 1 })}
@@ -209,41 +196,30 @@ const AddRecipeForm = () => {
                 type="number"
                 {...register(`ingredients.${index}.amount`)}
               />
-              <button
-                type="button"
-                onClick={() => remove(index)}
-              >
-                Remove
-              </button>
             </div>
           ))}
-        </label>
-      </div>
+        </RecipeIngredientsContainer>
 
-      <div>
-        <label>
-          Інструкція:
-          <textarea {...register("instructions")}></textarea>
-          <p>{`Символів: ${instructionsLength}/200`}</p>
-        </label>
-        {errors.instructions && <p>{errors.instructions.message}</p>}
-      </div>
+        <div>
+          <label>
+            Інструкція:
+            <textarea {...register("instructions")}></textarea>
+            <p>{`Символів: ${instructionsLength}/200`}</p>
+          </label>
+          {errors.instructions && <p>{errors.instructions.message}</p>}
+        </div>
 
-      <div>
-        <ButtonArrow
-          type="button"
-          onClick={handleReset}
-        >
-          <SpriteIcon
-            id="icon-trash"
-            size={[16, 18, 18]}
-          />
-        </ButtonArrow>
-        <ActiveButton
-          label="Publish"
-          type="submit"
-        ></ActiveButton>
-      </div>
+        <div>
+          <TrashButton
+            type="button"
+            onClick={handleReset}
+          ></TrashButton>
+          <ActiveButton
+            label="Publish"
+            type="submit"
+          ></ActiveButton>
+        </div>
+      </FieldsInput>
     </Form>
   );
 };
