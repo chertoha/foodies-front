@@ -1,5 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useModalWindow } from "hooks/useModalWindow";
+import { Modal } from "components/Modal/Modal";
+import SignUp from "components/SignUp";
+import SignIn from "components/SignIn";
 import {
   HeroStyled,
   TitleStyled,
@@ -21,13 +25,23 @@ import heroImageBigTablet2x from "../../assets/images/hero/hero-image2-tablet@2x
 
 const Hero = () => {
   const navagata = useNavigate();
+
+  const [isLogin, setIslogin] = useState(true);
+  const { isOpen, open, close } = useModalWindow();
+  const switchToSignIn = () => setIslogin(true);
+  const switchToSignUp = () => setIslogin(false);
+
   const token = "";
+
+  const onClose = () => {
+    close();
+  };
 
   const addRecipe = () => {
     if (token) {
       navagata("/recipe/add");
     } else {
-      navagata("/openModal");
+      open();
     }
   };
 
@@ -68,6 +82,15 @@ const Hero = () => {
           alt="hero recipe"
         />
       </ImageWriperStyled>
+      {isOpen && (
+        <Modal onClose={onClose}>
+          {isLogin ? (
+            <SignIn switchForm={switchToSignUp} />
+          ) : (
+            <SignUp switchForm={switchToSignIn} />
+          )}
+        </Modal>
+      )}
     </HeroStyled>
   );
 };
