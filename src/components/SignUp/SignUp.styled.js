@@ -11,7 +11,6 @@ export const FormWripper = styled("div")`
 
   border-radius: 20px;
   background-color: white;
-  border: 1px solid red;
 
   ${theme.mq.tablet} {
     max-width: 561px;

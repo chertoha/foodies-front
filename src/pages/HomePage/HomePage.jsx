@@ -4,6 +4,7 @@ import { PageWrapper, SectionWrapper } from "./HomePage.styled";
 import Container from "components/Container";
 import Category from "components/Category/Category";
 import RecipesComponent from "components/RecipesComponent";
+import TempAuthButton from "components/TempComponents/TempAuthButton";
 
 const HomePage = () => {
   // const { data } = useGetRecipiesQuery({
@@ -21,6 +22,8 @@ const HomePage = () => {
   return (
     <PageWrapper>
       <Hero />
+
+      <TempAuthButton />
 
       <SectionWrapper>
         <Container>
