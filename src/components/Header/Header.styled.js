@@ -1,25 +1,21 @@
 import styled from "styled-components";
 import theme from "../../styles/theme";
-import { py, flexBetween } from "../../styles/atomic";
+import { flexBetween } from "../../styles/atomic";
 
-export const TopContainer = styled.div`
-  width: 100%;
-  ${py(2)}
-  margin: 0 auto;
+export const HeaderContainer = styled.div`
+  height: 100%;
 
-  ${theme.mq.mobile} {
-    width: ${theme.breakpoints.mobile}px;
-    ${py(2)}
-  }
+  margin: 0 8px;
+  padding: 0 16px;
+  border-radius: 20px 20px 0 0;
+  background-color: ${theme.colors.accent};
 
   ${theme.mq.tablet} {
-    width: 672px;
-    padding: 16px;
+    margin: 0 16px;
+    border-radius: 30px 30px 0 0;
   }
-
   ${theme.mq.desktop} {
-    width: 1280px;
-    padding: 20px;
+    margin: 0 20px;
   }
 `;
 

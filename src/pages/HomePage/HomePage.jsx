@@ -1,3 +1,4 @@
+import Header from "components/Header/Header";
 import Hero from "components/Hero/Hero.jsx";
 import Testimonials from "components/Testimonials";
 import { PageWrapper, SectionWrapper } from "./HomePage.styled";
@@ -21,6 +22,7 @@ const HomePage = () => {
   //console.log(data);
   return (
     <PageWrapper>
+      <Header />
       <Hero />
 
       <TempAuthButton />
