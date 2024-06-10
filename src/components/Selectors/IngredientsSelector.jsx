@@ -1,38 +1,61 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import CustomSelect from "components/CustomSelect";
+import { useGetIngredientsQuery } from "../../redux/ingredients/ingredientsApi";
 
 const IngredientSelector = () => {
-  const [ingredients, setIngredients] = useState([]);
-  const [selectedIngredient, setSelectedIngredient] = useState(null);
+  const { data: ingredients = [], isLoading, isError } = useGetIngredientsQuery(); // Використовуємо RTK Query для отримання інгредієнтів
 
-  // useEffect(() => {
-  //   const fetchIngredients = async () => {
-  //     try {
-  //       const response = await axios.get("https://example.com/api/ingredients"); // Замініть URL на реальний
-  //       setIngredients(response.data);
-  //     } catch (error) {
-  //       console.error("Error fetching ingredients:", error);
-  //     }
-  //   };
+  const [selectedIngredient, setSelectedIngredient] = useState("");
+  const [quantity, setQuantity] = useState("");
 
-  //   fetchIngredients();
-  // }, []);
-
-  const handleSelectChange = event => {
-    const selectedId = event.target.value;
-    const ingredient = ingredients.find(ing => ing.id === parseInt(selectedId));
-    setSelectedIngredient(ingredient);
+  const handleIngredientChange = event => {
+    setSelectedIngredient(event.target.value);
   };
+
+  const handleQuantityChange = event => {
+    setQuantity(event.target.value);
+  };
+
+  if (isLoading) return <div>Loading...</div>;
+  if (isError) return <div>Error fetching ingredients</div>;
 
   return (
     <div>
-      <CustomSelect
-        name="ingredient"
-        options={ingredients.map(ing => ({ value: ing.id, label: ing.name }))}
-        value={selectedIngredient ? selectedIngredient.id : ""}
-        onChange={handleSelectChange}
-        placeholder="Select ingredient"
+      <label htmlFor="ingredientSelect">Виберіть інгредієнт:</label>
+      {ingredients.length > 0 ? (
+        <select
+          id="ingredientSelect"
+          value={selectedIngredient}
+          onChange={handleIngredientChange}
+          style={{ margin: "10px", padding: "5px", fontSize: "16px" }}
+        >
+          <option value="">--Виберіть інгредієнт--</option>
+          {ingredients.map(ingredient => (
+            <option
+              key={ingredient.id}
+              value={ingredient.id}
+            >
+              {ingredient.name}
+            </option>
+          ))}
+        </select>
+      ) : (
+        <div>No ingredients available</div>
+      )}
+
+      <label htmlFor="quantityInput">Кількість:</label>
+      <input
+        type="number"
+        id="quantityInput"
+        value={quantity}
+        onChange={handleQuantityChange}
+        style={{ margin: "10px", padding: "5px", fontSize: "16px", width: "80px" }}
       />
+
+      <div>
+        <p>Вибраний інгредієнт: {selectedIngredient}</p>
+        <p>Кількість: {quantity}</p>
+      </div>
     </div>
   );
 };
