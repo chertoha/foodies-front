@@ -1,15 +1,16 @@
-// import UserAvatar from "components/UserAvatar/UserAvatar";
-import { CiCircleChevRight } from "react-icons/ci";
+import UserAvatar from "components/UserAvatar/UserAvatar";
+import sprite from "assets/images/icons/sprite.svg";
 import {
   FollowerList,
   FollowerItem,
   FollowerItemWrapp,
-  FollowerImage,
   FollowerTitle,
   FollowerText,
   FollowerButton,
   CardList,
   CardListImage,
+  LinkButton,
+  Icon,
 } from "./FollowerList.styled";
 
 const FollowersList = ({ followers }) => {
@@ -18,10 +19,11 @@ const FollowersList = ({ followers }) => {
       {followers.map(({ id, image, name, recipes, card }) => (
         <FollowerItem key={id}>
           <FollowerItemWrapp>
-            <FollowerImage
+            <UserAvatar
+              size={[60, 85, 85]}
               src={image}
-              alt="follow"
             />
+
             <div>
               <FollowerTitle>{name}</FollowerTitle>
               <FollowerText>Own recipes:{recipes}</FollowerText>
@@ -30,8 +32,8 @@ const FollowersList = ({ followers }) => {
           </FollowerItemWrapp>
 
           <CardList>
-            {card.map((card, idx) => (
-              <li key={idx}>
+            {card.map(card => (
+              <li key={card}>
                 <CardListImage
                   src={card}
                   alt="follow"
@@ -39,10 +41,11 @@ const FollowersList = ({ followers }) => {
               </li>
             ))}
           </CardList>
-          <CiCircleChevRight
-            width={36}
-            height={36}
-          />
+          <LinkButton to={`/some-page/${id}`}>
+            <Icon>
+              <use href={sprite + "#icon-arrow-up-right"}></use>
+            </Icon>
+          </LinkButton>
         </FollowerItem>
       ))}
     </FollowerList>

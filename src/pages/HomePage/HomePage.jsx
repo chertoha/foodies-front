@@ -2,6 +2,8 @@ import Hero from "components/Hero/Hero.jsx";
 import Testimonials from "components/Testimonials";
 import { PageWrapper, SectionWrapper } from "./HomePage.styled";
 import Container from "components/Container";
+import Category from "components/Category/Category";
+import TempAuthButton from "components/TempComponents/TempAuthButton";
 
 const HomePage = () => {
   // const { data } = useGetRecipiesQuery({
@@ -13,14 +15,17 @@ const HomePage = () => {
   // });
 
   // const { data } = useGetRecipeQuery("6462a8f74c3d0ddd28897fcd");
+  // const { data, error, isFetching } = useGetCategoriesQuery();
 
   //console.log(data);
   return (
     <PageWrapper>
       <Hero />
 
+      <TempAuthButton />
+
       <SectionWrapper>
-        <div>Categories</div>
+        <Category />
       </SectionWrapper>
 
       <SectionWrapper>

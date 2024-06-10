@@ -12,43 +12,81 @@
     "ingredients": [
       {
         "id": "640c2dd963a319ea671e367e",
-        "measure": "175g"
+        "measure": "175g",
+        "name": "Butter",
+        "desc": "A dairy product made from churning cream or milk, with a high fat content and a creamy, rich flavor that is often used in cooking and baking.",
+        "img": "https://ftp.goit.study/img/so-yummy/ingredients/640c2dd963a319ea671e367e.png"
       },
       {
         "id": "640c2dd963a319ea671e3687",
-        "measure": "175g"
+        "measure": "175g",
+        "name": "Caster Sugar",
+        "desc": "A type of fine sugar that is commonly used in baking and cooking, with a fine texture that dissolves easily, and is often used in recipes that require quick mixing or dissolving, such as meringues, whipped cream, and cakes.",
+        "img": "https://ftp.goit.study/img/so-yummy/ingredients/640c2dd963a319ea671e3687.png"
       },
       {
         "id": "640c2dd963a319ea671e3762",
-        "measure": "140g"
+        "measure": "140g",
+        "name": "Self-raising Flour",
+        "desc": "Self-raising flour is a type of flour that has a leavening agent, usually baking powder, already added to it. This allows baked goods to rise without the need for yeast or other leavening agents.",
+        "img": "https://ftp.goit.study/img/so-yummy/ingredients/640c2dd963a319ea671e3762.png"
       },
       {
         "id": "640c2dd963a319ea671e3814",
-        "measure": "50g"
+        "measure": "50g",
+        "name": "Almonds",
+        "desc": "A type of nut with a sweet and nutty flavor, commonly used in baking and as a snack.",
+        "img": "https://ftp.goit.study/img/so-yummy/ingredients/640c2dd963a319ea671e3814.png"
       },
       {
         "id": "640c2dd963a319ea671e3665",
-        "measure": "½ tsp"
+        "measure": "½ tsp",
+        "name": "Baking Powder",
+        "desc": "Baking powder is a dry chemical leavening agent, a mixture of a carbonate or bicarbonate and a weak acid. The base and acid are prevented from reacting prematurely by the inclusion of a buffer such as cornstarch. Baking powder is used to increase the volume and lighten the texture of baked goods. It works by releasing carbon dioxide gas into a batter or dough through an acid-base reaction, causing bubbles in the wet mixture to expand and thus leavening the mixture. The first single-acting baking powder was developed by Birmingham based food manufacturer Alfred Bird in England in 1843. The first double-acting baking powder was developed by Eben Norton Horsford in America in the 1860s.",
+        "img": "https://ftp.goit.study/img/so-yummy/ingredients/640c2dd963a319ea671e3665.png"
       },
       {
         "id": "640c2dd963a319ea671e36ca",
-        "measure": "3 Medium"
+        "measure": "3 Medium",
+        "name": "Eggs",
+        "desc": "A reproductive cell laid by female animals, often used in baking and cooking as a binding agent or to add texture and flavor",
+        "img": "https://ftp.goit.study/img/so-yummy/ingredients/640c2dd963a319ea671e36ca.png"
       },
       {
         "id": "640c2dd963a319ea671e3786",
-        "measure": "½ tsp"
+        "measure": "½ tsp",
+        "name": "Vanilla Extract",
+        "desc": "A concentrated liquid extract made from vanilla beans and alcohol, commonly used to add vanilla flavor to baked goods and desserts.",
+        "img": "https://ftp.goit.study/img/so-yummy/ingredients/640c2dd963a319ea671e3786.png"
       },
       {
         "id": "640c2dd963a319ea671e3861",
-        "measure": "¼ teaspoon"
+        "measure": "¼ teaspoon",
+        "name": "Almond Extract",
+        "desc": "The almond (Prunus dulcis, syn. Prunus amygdalus) is a species of tree native to Mediterranean climate regions of the Middle East, but widely cultivated elsewhere. The almond is also the name of the edible and widely cultivated seed of this tree. Within the genus Prunus, it is classified with the peach in the subgenus Amygdalus, distinguished from the other subgenera by corrugations on the shell (endocarp) surrounding the seed.\r\n\r\nThe fruit of the almond is a drupe, consisting of an outer hull and a hard shell with the seed, which is not a true nut, inside. Shelling almonds refers to removing the shell to reveal the seed. Almonds are sold shelled or unshelled. Blanched almonds are shelled almonds that have been treated with hot water to soften the seedcoat, which is then removed to reveal the white embryo.",
+        "img": "https://ftp.goit.study/img/so-yummy/ingredients/640c2dd963a319ea671e3861.png"
       },
       {
         "id": "640c2dd963a319ea671e380f",
-        "measure": "½ tsp"
+        "measure": "½ tsp",
+        "name": "Pink Food Colouring",
+        "desc": "A type of food coloring used to add a pale pink color to foods and drinks.",
+        "img": "https://ftp.goit.study/img/so-yummy/ingredients/640c2dd963a319ea671e380f.png"
       },
       {
         "id": "640c2dd963a319ea671e37bf",
-        "measure": "200g"
+        "measure": "200g",
+        "name": "Apricot",
+        "desc": "Fruit with a soft, velvety skin and a sweet, juicy flesh, commonly eaten fresh or dried.",
+        "img": "https://ftp.goit.study/img/so-yummy/ingredients/640c2dd963a319ea671e37bf.png"
+      },
+      {
+        "id": "640c2dd963a319ea671e3813",
+        "measure": "1kg"
+      },
+      {
+        "id": "640c2dd963a319ea671e379d",
+        "measure": "Dusting"
       }
     ],
     "createdAt": {
@@ -59,6 +97,215 @@
     "updatedAt": {
       "$date": {
         "$numberLong": "1709506071976"
+      }
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6462a8f74c3d0ddd28897fbc"
+    },
+    "title": "Irish stew",
+    "category": "Beef",
+    "owner": {
+      "$oid": "64c8d958249fae54bae90bb9"
+    },
+    "area": "Irish",
+    "instructions": "Heat the oven to 180C/350F/gas mark 4. Drain and rinse the soaked wheat, put it in a medium pan with lots of water, bring to a boil and simmer for an hour, until cooked. Drain and set aside.\r\n\r\nSeason the lamb with a teaspoon of salt and some black pepper. Put one tablespoon of oil in a large, deep sauté pan for which you have a lid; place on a medium-high heat. Add some of the lamb – don't overcrowd the pan – and sear for four minutes on all sides. Transfer to a bowl, and repeat with the remaining lamb, adding oil as needed.\r\n\r\nLower the heat to medium and add a tablespoon of oil to the pan. Add the shallots and fry for four minutes, until caramelised. Tip these into the lamb bowl, and repeat with the remaining vegetables until they are all nice and brown, adding more oil as you need it.\r\n\r\nOnce all the vegetables are seared and removed from the pan, add the wine along with the sugar, herbs, a teaspoon of salt and a good grind of black pepper. Boil on a high heat for about three minutes.\r\n\r\nTip the lamb, vegetables and whole wheat back into the pot, and add the stock. Cover and boil for five minutes, then transfer to the oven for an hour and a half.\r\n\r\nRemove the stew from the oven and check the liquid; if there is a lot, remove the lid and boil for a few minutes.",
+    "description": "A traditional Irish dish made with lamb, potatoes, carrots, onions, and herbs, cooked in a broth or gravy.",
+    "thumb": "https://ftp.goit.study/img/so-yummy/preview/Irish%20stew.jpg",
+    "time": "160",
+    "ingredients": [
+      {
+        "id": "640c2dd963a319ea671e3796",
+        "measure": "300g soaked overnight in water"
+      },
+      {
+        "id": "640c2dd963a319ea671e370c",
+        "measure": "2kg cut into 3cm cubes"
+      },
+      {
+        "id": "640c2dd963a319ea671e372c",
+        "measure": "120ml"
+      },
+      {
+        "id": "640c2dd963a319ea671e3765",
+        "measure": "24 Skinned"
+      },
+      {
+        "id": "640c2dd963a319ea671e3684",
+        "measure": "4 large"
+      },
+      {
+        "id": "640c2dd963a319ea671e3784",
+        "measure": "2"
+      },
+      {
+        "id": "640c2dd963a319ea671e3689",
+        "measure": "1"
+      },
+      {
+        "id": "640c2dd963a319ea671e368d",
+        "measure": "350g"
+      },
+      {
+        "id": "640c2dd963a319ea671e3794",
+        "measure": "150ml"
+      },
+      {
+        "id": "640c2dd963a319ea671e3687",
+        "measure": "1 tsp"
+      },
+      {
+        "id": "640c2dd963a319ea671e36de",
+        "measure": "4 sprigs"
+      },
+      {
+        "id": "640c2dd963a319ea671e3731",
+        "measure": "4 sprigs"
+      },
+      {
+        "id": "640c2dd963a319ea671e3696",
+        "measure": "450ml"
+      }
+    ],
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1678562733240"
+      }
+    },
+    "updatedAt": {
+      "$date": {
+        "$numberLong": "1706220769038"
+      }
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6462a8f74c3d0ddd2889800c"
+    },
+    "title": "Lancashire hotpot",
+    "category": "Lamb",
+    "owner": {
+      "$oid": "64c8d958249fae54bae90bb9"
+    },
+    "area": "British",
+    "instructions": "Heat oven to 160C/fan 140C/gas 3. Heat some dripping or butter in a large shallow casserole dish, brown the lamb in batches, lift to a plate, then repeat with the kidneys.\r\nFry the onions and carrots in the pan with a little more dripping until golden. Sprinkle over the flour, allow to cook for a couple of mins, shake over the Worcestershire sauce, pour in the stock, then bring to the boil. Stir in the meat and bay leaves, then turn off the heat. Arrange the sliced potatoes on top of the meat, then drizzle with a little more dripping. Cover, then place in the oven for about 1½ hrs until the potatoes are cooked.\r\nRemove the lid, brush the potatoes with a little more dripping, then turn the oven up to brown the potatoes, or finish under the grill for 5-8 mins until brown.",
+    "description": "A hearty casserole with tender lamb and vegetables, topped with sliced potatoes.",
+    "thumb": "https://ftp.goit.study/img/so-yummy/preview/Lancashire%20hotpot.jpg",
+    "time": "115",
+    "ingredients": [
+      {
+        "id": "640c2dd963a319ea671e367e",
+        "measure": "100g "
+      },
+      {
+        "id": "640c2dd963a319ea671e370b",
+        "measure": "900g"
+      },
+      {
+        "id": "640c2dd963a319ea671e3801",
+        "measure": "3"
+      },
+      {
+        "id": "640c2dd963a319ea671e372e",
+        "measure": "2 medium"
+      },
+      {
+        "id": "640c2dd963a319ea671e3684",
+        "measure": "4 sliced"
+      },
+      {
+        "id": "640c2dd963a319ea671e3743",
+        "measure": "25g"
+      },
+      {
+        "id": "640c2dd963a319ea671e3798",
+        "measure": "2 tsp"
+      },
+      {
+        "id": "640c2dd963a319ea671e3696",
+        "measure": "500ml"
+      },
+      {
+        "id": "640c2dd963a319ea671e366b",
+        "measure": "2"
+      },
+      {
+        "id": "640c2dd963a319ea671e3746",
+        "measure": "900g"
+      }
+    ],
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1678562733242"
+      }
+    },
+    "updatedAt": {
+      "$date": {
+        "$numberLong": "1701383864274"
+      }
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6462a8f74c3d0ddd28897fbf"
+    },
+    "title": "Teriyaki Chicken Casserole",
+    "category": "Chicken",
+    "owner": {
+      "$oid": "64c8d958249fae54bae90bb9"
+    },
+    "area": "Japanese",
+    "instructions": "Preheat oven to 350° F. Spray a 9x13-inch baking pan with non-stick spray.\r\nCombine soy sauce, ½ cup water, brown sugar, ginger and garlic in a small saucepan and cover. Bring to a boil over medium heat. Remove lid and cook for one minute once boiling.\r\nMeanwhile, stir together the corn starch and 2 tablespoons of water in a separate dish until smooth. Once sauce is boiling, add mixture to the saucepan and stir to combine. Cook until the sauce starts to thicken then remove from heat.\r\nPlace the chicken breasts in the prepared pan. Pour one cup of the sauce over top of chicken. Place chicken in oven and bake 35 minutes or until cooked through. Remove from oven and shred chicken in the dish using two forks.\r\n*Meanwhile, steam or cook the vegetables according to package directions.\r\nAdd the cooked vegetables and rice to the casserole dish with the chicken. Add most of the remaining sauce, reserving a bit to drizzle over the top when serving. Gently toss everything together in the casserole dish until combined. Return to oven and cook 15 minutes. Remove from oven and let stand 5 minutes before serving. Drizzle each serving with remaining sauce. Enjoy!",
+    "description": "A Japanese-inspired casserole made with chicken, teriyaki sauce, rice, and vegetables.",
+    "thumb": "https://ftp.goit.study/img/so-yummy/preview/Teriyaki%20Chicken%20Casserole.jpg",
+    "time": "75",
+    "ingredients": [
+      {
+        "id": "640c2dd963a319ea671e376c",
+        "measure": "3/4 cup"
+      },
+      {
+        "id": "640c2dd963a319ea671e378f",
+        "measure": "1/2 cup"
+      },
+      {
+        "id": "640c2dd963a319ea671e367d",
+        "measure": "1/4 cup"
+      },
+      {
+        "id": "640c2dd963a319ea671e36f8",
+        "measure": "1/2 teaspoon"
+      },
+      {
+        "id": "640c2dd963a319ea671e3720",
+        "measure": "1/2 teaspoon"
+      },
+      {
+        "id": "640c2dd963a319ea671e36b3",
+        "measure": "4 Tablespoons"
+      },
+      {
+        "id": "640c2dd963a319ea671e3694",
+        "measure": "2"
+      },
+      {
+        "id": "640c2dd963a319ea671e3772",
+        "measure": "1 (12 oz.)"
+      },
+      {
+        "id": "640c2dd963a319ea671e367c",
+        "measure": "3 cups"
+      }
+    ],
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1678562733240"
+      }
+    },
+    "updatedAt": {
+      "$date": {
+        "$numberLong": "1706301557199"
       }
     }
   }
