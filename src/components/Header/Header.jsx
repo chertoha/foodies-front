@@ -11,8 +11,8 @@ const Header = () => {
     <TopContainer>
       <ContainerBackground>
         <HeaderWrapper>
-          <Logo inverse="true" />
-          <NavBar inverse="false" />
+          <Logo inverse={false} />
+          <NavBar inverse={false} />
           {isLogIn ? <UserBar /> : <AuthBar />}
         </HeaderWrapper>
       </ContainerBackground>

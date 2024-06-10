@@ -4,13 +4,12 @@ import { py, flexBetween } from "../../styles/atomic";
 
 export const TopContainer = styled.div`
   width: 100%;
-  padding: 8px;
-  /* ${py(2)} */
+  ${py(2)}
   margin: 0 auto;
 
   ${theme.mq.mobile} {
-    width: 375px;
-    padding: 8px;
+    width: ${theme.breakpoints.mobile}px;
+    ${py(2)}
   }
 
   ${theme.mq.tablet} {
@@ -25,7 +24,7 @@ export const TopContainer = styled.div`
 `;
 
 export const ContainerBackground = styled.div`
-  border-radius: 30px;
+  border-radius: ${theme.radii.lg};
   background-color: #050505;
   /* background-color: #fff; */
 `;
