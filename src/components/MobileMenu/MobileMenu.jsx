@@ -31,8 +31,8 @@ const MobileMenu = ({ inverse, open, toggleMenu }) => {
           aria-label="Close Mobile menu"
         >
           <svg
-            width="18"
-            height="18"
+            width="28"
+            height="28"
             fill="#fff"
           >
             <use xlinkHref={`${IconsSprite}#icon-close`} />
