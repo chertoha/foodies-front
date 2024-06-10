@@ -3,18 +3,21 @@ import theme from "styles/theme";
 import { flexCenter } from "styles/atomic";
 
 export const HeroStyled = styled("div")`
-  width: 100%;
   height: 100%;
+
+  margin: 0 8px;
   padding: 0 16px;
   padding-bottom: 100px;
   border-radius: 0 0 20px 20px;
   background-color: ${theme.colors.accent};
 
   ${theme.mq.tablet} {
-    border-radius: 0 0 30px 30px;
+    margin: 0 16px;
     padding-bottom: 91px;
+    border-radius: 0 0 30px 30px;
   }
   ${theme.mq.desktop} {
+    margin: 0 20px;
     padding-bottom: 82px;
   }
 `;
@@ -86,9 +89,9 @@ export const ButtonStyled = styled("button")`
   text-transform: uppercase;
 
   color: ${theme.colors.light};
-  background-color: ${theme.colors.accent};
-  outline: none;
   border-radius: 30px;
+  background-color: ${theme.colors.accent};
+  ontline: none;
   border: 1px solid rgba(255, 255, 255, 0.9);
 
   ${theme.mq.tablet} {
