@@ -1,6 +1,6 @@
 import React from "react";
 import { MobileMenuIconWrapper } from "./MobileMenuIcon.styled";
-import IconsSprite from '../../assets/images/icons/sprite.svg';
+import IconsSprite from "../../assets/images/icons/sprite.svg";
 
 const MobileMenuIcon = ({ toggleMenu }) => {
   return (
@@ -11,7 +11,11 @@ const MobileMenuIcon = ({ toggleMenu }) => {
     >
       <Menu />
 
-      <svg width="28" height="28" fill='#000'>
+      <svg
+        width="28"
+        height="28"
+        fill="#000"
+      >
         <use xlinkHref={`${IconsSprite}#icon-burger`} />
       </svg>
     </MobileMenuIconWrapper>
