@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { mt, mb, heading5, body1 } from "styles/atomic";
 import theme from "styles/theme";
@@ -96,13 +96,14 @@ export const ButtonWrapp = styled("div")`
   display: flex;
   gap: 4px;
 `;
-export const LinkButton = styled(Link)`
+export const LinkButton = styled(NavLink)`
   display: flex;
   justify-content: center;
   align-items: center;
   width: 36px;
   height: 36px;
   background-color: transparent;
+  color: ${theme.colors.accent};
   border: 1px solid #0505051a;
   border-radius: 100px;
   cursor: pointer;
@@ -111,6 +112,7 @@ export const LinkButton = styled(Link)`
   &:focus,
   &:hover {
     background-color: ${theme.colors.accent};
+    color: ${theme.colors.light};
   }
 
   ${theme.mq.tablet} {
