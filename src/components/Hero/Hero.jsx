@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Modal } from "components/Modal/Modal";
 import SignUp from "components/SignUp";
+import SignIn from "components/SignIn";
 import {
   HeroStyled,
   TitleStyled,
@@ -24,6 +25,11 @@ import heroImageBigTablet2x from "../../assets/images/hero/hero-image2-tablet@2x
 const Hero = () => {
   const navagata = useNavigate();
   const [state, setState] = useState(false);
+  const [isLogin, setIslogin] = useState(true);
+
+  const switchToSignIn = () => setIslogin(true);
+  const switchToSignUp = () => setIslogin(false);
+
   const token = "";
 
   const onClose = () => {
@@ -77,7 +83,11 @@ const Hero = () => {
       </ImageWriperStyled>
       {state && (
         <Modal onClose={onClose}>
-          <SignUp />
+          {isLogin ? (
+            <SignIn switchForm={switchToSignUp} />
+          ) : (
+            <SignUp switchForm={switchToSignIn} />
+          )}
         </Modal>
       )}
     </HeroStyled>
