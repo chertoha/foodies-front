@@ -5,7 +5,11 @@ import * as yup from "yup";
 import { api, BASE_URL, axiosBaseQuery } from "../../services/api";
 import { useGetCategoriesQuery } from "../../redux/categories/categoriesApi";
 import { useGetIngredientsQuery } from "../../redux/ingredients/ingredientsApi";
-
+import { useCreateRecipeMutation } from "../../redux/recipes/recipesApi";
+import { Form } from "./AddRecipeForm.styled";
+import ActiveButton from "components/Buttons/ActiveButton";
+import { ButtonArrow } from "components/Buttons/ArrowButton/ArrowButton.styled";
+import SpriteIcon from "components/UIKit/SpriteIcon";
 // Валідаційна схема з Yup
 const schema = yup.object().shape({
   photo: yup.mixed().required("Фото є обов'язковим"),
@@ -52,8 +56,10 @@ const AddRecipeForm = () => {
   const [categories, setCategories] = useState([]);
   const [ingredients, setIngredients] = useState([]);
   const [preview, setPreview] = useState(null);
+
   const { data } = useGetCategoriesQuery({ limit: 1111 });
   console.log(data);
+  const [createRecipe, {}] = useCreateRecipeMutation();
   // useEffect(() => {
   //   // Отримання категорій з backend
   //   axiosBaseQuery("/api/categories").then(response => {
@@ -79,12 +85,13 @@ const AddRecipeForm = () => {
           formData.append(key, data[key]);
         }
       });
+      createRecipe(formData);
 
-      const response = await axiosBaseQuery("/api/recipes", formData);
-      if (response.status === 200) {
-        // Перенаправлення на сторінку користувача
-        window.location.href = "/user";
-      }
+      // const response = await axiosBaseQuery("/api/recipes", formData);
+      // if (response.status === 200) {
+      //   // Перенаправлення на сторінку користувача
+      //   window.location.href = "/user";
+      // }
     } catch (error) {
       alert("Помилка: " + error.message);
     }
@@ -107,7 +114,7 @@ const AddRecipeForm = () => {
   const instructionsLength = watch("instructions")?.length || 0;
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <Form onSubmit={handleSubmit(onSubmit)}>
       <div>
         <label>
           Фото рецепта:
@@ -223,15 +230,21 @@ const AddRecipeForm = () => {
       </div>
 
       <div>
-        <button
+        <ButtonArrow
           type="button"
           onClick={handleReset}
         >
-          Очистити
-        </button>
-        <button type="submit">Опублікувати</button>
+          <SpriteIcon
+            id="icon-trash"
+            size={[16, 18, 18]}
+          />
+        </ButtonArrow>
+        <ActiveButton
+          label="Publish"
+          type="submit"
+        ></ActiveButton>
       </div>
-    </form>
+    </Form>
   );
 };
 
