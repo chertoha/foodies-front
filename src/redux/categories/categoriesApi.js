@@ -8,9 +8,10 @@ const categoriesApi = createApi({
 
   endpoints: builder => ({
     getCategories: builder.query({
-      query: () => ({
+      query: ({ page = 1, limit = 11 }) => ({
         url: "/categories",
         method: "GET",
+        params: { page, limit },
       }),
     }),
   }),

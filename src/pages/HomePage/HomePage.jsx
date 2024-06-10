@@ -26,8 +26,8 @@ const HomePage = () => {
       <TempAuthButton />
 
       <SectionWrapper>
+        <Category />
         <Container>
-          <Category />
           <RecipesComponent />
         </Container>
       </SectionWrapper>
