@@ -9,15 +9,13 @@ const GlobalStyle = createGlobalStyle`
   margin: 0;
 }
 
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
+html{ 
   scroll-behavior: smooth;
 }
 
-
 body {
+  max-width: 100vw;
+  overflow-x: hidden;
   margin: 0;
   padding: 0;
   font-size: ${theme.fontSizes.base};
@@ -26,6 +24,10 @@ body {
   font-optical-sizing: auto;
   line-height: ${theme.lineHeights.normal};
   color: ${theme.colors.accent}
+}
+
+body.no-scroll {
+  overflow: hidden;
 }
 
 ul {
@@ -53,6 +55,14 @@ input {
 
 a {
   text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+  border: none;
 }
 `;
 

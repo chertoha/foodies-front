@@ -15,23 +15,21 @@ import {
   TextStyled,
   LinkTextStyled,
   ErrorTextStyled,
-} from "./SignUp.styled";
+} from "./SignIn.styled";
 import { useNavigate } from "react-router-dom";
 
 const schema = object({
-  name: string().required().min(2),
   email: string().email("email must be a valid").required(),
   password: string()
     .required("no password provided")
-    .min(8, "password should be minimum 8 characters")
-    .matches(/[a-zA-Z]/, "password can only contain Latin letters"),
+    .min(8, "password should be minimum 8 characters"),
 }).required();
 
-const SignUp = ({ switchForm }) => {
+const SignIn = ({ switchForm }) => {
   const navigate = useNavigate();
   const [eyeState, setEyeState] = useState(true);
+  // const [_signUp, setSignUp] = useState(false);
   const [_state, setState] = useState({});
-  // const [_login, setLogin] = useState(false);
   const {
     register,
     handleSubmit,
@@ -40,7 +38,6 @@ const SignUp = ({ switchForm }) => {
   } = useForm({
     resolver: yupResolver(schema),
     defaultValues: {
-      name: "",
       email: "",
       password: "",
     },
@@ -49,29 +46,13 @@ const SignUp = ({ switchForm }) => {
   const onSubmit = data => {
     setState(data);
     reset();
-    navigate("/userProfile");
+    navigate("/closeModal");
   };
 
   return (
     <FormWripper>
-      <TitleStyled>Sign up</TitleStyled>
+      <TitleStyled>Sign in</TitleStyled>
       <FormStyled onSubmit={handleSubmit(onSubmit)}>
-        <InputContainerStyled>
-          <InputStyled
-            $border={errors.name ? "#f42424" : ""}
-            name="name"
-            type="text"
-            placeholder="Name*"
-            {...register("name", {
-              required: "Name is required.",
-              minLength: {
-                value: 2,
-                message: "Min length of Name is 2 characters",
-              },
-            })}
-          />
-          <ErrorTextStyled>{errors.name?.message}</ErrorTextStyled>
-        </InputContainerStyled>
         <InputContainerStyled>
           <InputStyled
             $border={errors.email ? "#f42424" : ""}
@@ -96,15 +77,15 @@ const SignUp = ({ switchForm }) => {
           </IconStyled>
           <ErrorTextStyled>{errors.password?.message}</ErrorTextStyled>
         </InputContainerStyled>
-        <ButtonStyled type="submit">Create</ButtonStyled>
+        <ButtonStyled type="submit">Sign in</ButtonStyled>
       </FormStyled>
       <TextContainerStyled>
-        <TextStyled>I already have an account?</TextStyled>
-        {/* <LinkTextStyled onClick={() => setLogin(true)}>Sign in</LinkTextStyled> */}
-        <LinkTextStyled onClick={switchForm}>Sign in</LinkTextStyled>
+        <TextStyled>Don't have an account?</TextStyled>
+        {/* <LinkTextStyled onClick={() => setSignUp(true)}>Create an account</LinkTextStyled> */}
+        <LinkTextStyled onClick={switchForm}>Create an account</LinkTextStyled>
       </TextContainerStyled>
     </FormWripper>
   );
 };
 
-export default SignUp;
+export default SignIn;

@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { createPortal } from "react-dom";
 import { Overlay, ModalContainer, BtnClose } from "./Modal.styled";
+import SpriteIcon from "components/UIKit/SpriteIcon";
 
 const modalRoot = document.querySelector("#portal");
 
@@ -28,7 +29,15 @@ export const Modal = ({ children, onClose }) => {
   return createPortal(
     <Overlay onClick={handleBackdropClick}>
       <ModalContainer>
-        <BtnClose onClick={() => onClose()} />
+        <BtnClose
+          type="button"
+          onClick={onClose}
+        >
+          <SpriteIcon
+            id="icon-close"
+            size={[24, 24, 24]}
+          />
+        </BtnClose>
         {children}
       </ModalContainer>
     </Overlay>,
