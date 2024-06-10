@@ -6,6 +6,10 @@ import { px, py, flexCenter } from "../../styles/atomic";
 export const NavMenuWrapper = styled.nav`
   ${flexCenter()}
   gap: 26px;
+
+  @media (max-width: 767px) {
+    display: none;
+  }
 `;
 
 export const NavMenuLink = styled(NavLink)`
@@ -21,7 +25,7 @@ export const NavMenuLink = styled(NavLink)`
   text-transform: uppercase;
 
   &.active {
-    border: ${p => (p.inverse ? p.theme.colors.accent : "#333")};
+    border: 2px solid ${p => (p.inverse ? p.theme.colors.accent : "rgba(5, 5, 5, 0.20)")};
     border-radius: ${theme.radii.lg};
   }
 `;
