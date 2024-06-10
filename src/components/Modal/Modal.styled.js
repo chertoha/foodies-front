@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import theme from "../../styles/theme";
-import { px, py } from "../../styles/atomic";
 
 export const Overlay = styled.div`
   position: fixed;
@@ -14,8 +13,6 @@ export const Overlay = styled.div`
 `;
 
 export const ModalContainer = styled.div`
-  ${px("30")};
-  ${py(15)};
   width: 90%;
   max-width: 343px;
 
@@ -29,6 +26,7 @@ export const ModalContainer = styled.div`
   ${theme.mq.tablet} {
     max-width: none;
     width: 561px;
+    border-radius: ${theme.radii.lg};
   }
 `;
 
