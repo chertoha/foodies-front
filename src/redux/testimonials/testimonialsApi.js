@@ -8,9 +8,13 @@ const testimonialsApi = createApi({
 
   endpoints: builder => ({
     getTestimonials: builder.query({
-      query: () => ({
+      query: ({ page = 1, limit = 5 }) => ({
         url: "/testimonials",
         method: "GET",
+        params: {
+          page,
+          limit,
+        },
       }),
     }),
   }),

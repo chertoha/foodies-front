@@ -3,6 +3,7 @@ import Testimonials from "components/Testimonials";
 import { PageWrapper, SectionWrapper } from "./HomePage.styled";
 import Container from "components/Container";
 import Category from "components/Category/Category";
+import RecipesComponent from "components/RecipesComponent";
 import TempAuthButton from "components/TempComponents/TempAuthButton";
 
 const HomePage = () => {
@@ -25,7 +26,10 @@ const HomePage = () => {
       <TempAuthButton />
 
       <SectionWrapper>
-        <Category />
+        <Container>
+          <Category />
+          <RecipesComponent />
+        </Container>
       </SectionWrapper>
 
       <SectionWrapper>

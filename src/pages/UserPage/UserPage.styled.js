@@ -1,6 +1,18 @@
 import styled from "styled-components";
-import { mb, pb, mt, heading4 } from "styles/atomic";
+import { mb, pb, mt, my, heading4 } from "styles/atomic";
 import theme from "styles/theme";
+
+export const SectionWrapper = styled("div")`
+  ${my(16)}
+
+  ${theme.mq.tablet} {
+    ${my(25)}
+  }
+
+  ${theme.mq.desktop} {
+    ${my(20)}
+  }
+`;
 
 export const TitleWrapp = styled("div")`
   ${mb(4)};
