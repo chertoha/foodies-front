@@ -48,7 +48,7 @@ const CategoryList = ({ categories: backendCategories }) => {
 
       setTemplateIndexes(newTemplateIndexes);
     }
-  }, [categories.length]);
+  }, [categories.length, size.width, templateIndexes.length]);
 
   const rows = [];
   const cardsPerRow = size.width >= breakpoints.desktop ? 3 : 2;
