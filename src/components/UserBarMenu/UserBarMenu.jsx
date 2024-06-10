@@ -1,11 +1,12 @@
-import IconsSprite from "../../img/sprite.svg";
+import IconsSprite from "../../assets/images/icons/sprite.svg";
+import { ROUTES } from "../../config/router";
 import { UserBarMenuWrapper, UserBarMenuLink } from "./UserBarMenu.styled";
 
 const UserBarMenu = () => {
   return (
     <UserBarMenuWrapper>
-      <UserBarMenuLink>Profile</UserBarMenuLink>
-      <UserBarMenuLink>
+      <UserBarMenuLink to={ROUTES.USER}>Profile</UserBarMenuLink>
+      <UserBarMenuLink to={ROUTES.HOME}>
         Log out
         <svg
           width="18"
