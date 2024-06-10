@@ -9,7 +9,7 @@ import { UserBarWrapper, UserWrapper, UserName, WrappersIcons, Wrapper } from ".
 
 const UserBar = () => {
   const [showMenu, setShowMenu] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  // const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const toggleUserMenu = () => {
     setShowMenu(!showMenu);
