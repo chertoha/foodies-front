@@ -1,14 +1,19 @@
 import styled from "styled-components";
+import { flexCenter } from "../../styles/atomic";
+import theme from "../../styles/theme";
 
-export const MobileMenuIconWrapper = styled.div`
+export const MobileMenuIconWrapper = styled.button`
   display: none;
-  font-size: 30px;
-  cursor: pointer;
-  padding: 15px;
-  background-color: #333;
-  color: white;
 
-  @media (max-width: 768px) {
-    display: block;
+  @media screen and (max-width: 767px) {
+    cursor: pointer;
+    border: none;
+    background-color: ${theme.colors.light};
+
+    ${flexCenter()}
+
+    &:focus {
+      outline: none;
+    }
   }
 `;
