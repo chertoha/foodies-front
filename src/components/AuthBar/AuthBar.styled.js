@@ -1,4 +1,3 @@
-import { Button } from "components/MainButton/MainButton.styled";
 import styled, { css } from "styled-components";
 import theme from "../../styles/theme";
 import { px, py } from "../../styles/atomic";
@@ -15,7 +14,7 @@ const buttonColors = {
   `,
 };
 
-export const SlideButton = styled(Button)`
+export const SlideButton = styled("Button")`
   font-size: ${theme.fontSizes.xs};
   font-weight: ${theme.fontWeights.bold};
   line-height: ${theme.lineHeights.normal};
