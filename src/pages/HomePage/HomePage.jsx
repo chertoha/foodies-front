@@ -5,6 +5,7 @@ import Container from "components/Container";
 import Category from "components/Category/Category";
 import RecipesComponent from "components/RecipesComponent";
 import TempAuthButton from "components/TempComponents/TempAuthButton";
+import IngredientSelector from "components/Selectors/IngredientsSelector";
 
 const HomePage = () => {
   // const { data } = useGetRecipiesQuery({
@@ -37,6 +38,7 @@ const HomePage = () => {
           <Testimonials />
         </Container>
       </SectionWrapper>
+      <IngredientSelector />
     </PageWrapper>
   );
 };
