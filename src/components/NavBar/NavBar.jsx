@@ -1,19 +1,19 @@
 import React from "react";
+import { ROUTES } from "../../config/router";
 import { NavMenuWrapper, NavMenuLink } from "./NavBar.styled";
-import { ROUTES } from "config/router";
 
 const NavBar = ({ inverse }) => {
   return (
     <NavMenuWrapper>
       <NavMenuLink
         to={ROUTES.HOME}
-        inverse={inverse}
+        $inverse={inverse}
       >
         Home
       </NavMenuLink>
       <NavMenuLink
         to={ROUTES.RECIPE_ADD}
-        inverse={inverse}
+        $inverse={inverse}
       >
         Add recipe
       </NavMenuLink>
