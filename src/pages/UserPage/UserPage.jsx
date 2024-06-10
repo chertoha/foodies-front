@@ -9,7 +9,14 @@ import MyFavorites from "components/ProfilePages/MyFavorites";
 import Followers from "components/ProfilePages/Followers";
 import Following from "components/ProfilePages/Following";
 
-import { TitleWrapp, ProfileWrapp, ListWrapp, TabsList, TabsButton } from "./UserPage.styled";
+import {
+  SectionWrapper,
+  TitleWrapp,
+  ProfileWrapp,
+  ListWrapp,
+  TabsList,
+  TabsButton,
+} from "./UserPage.styled";
 import { useState } from "react";
 const tabs = [
   { id: 1, tab: "My recipes", label: "My recipes" },
@@ -24,7 +31,7 @@ const UserPage = () => {
     setActiveTab(tab);
   };
   return (
-    <section>
+    <SectionWrapper>
       <Container>
         <TitleWrapp>
           <MainTitle
@@ -63,7 +70,7 @@ const UserPage = () => {
           </ListWrapp>
         </ProfileWrapp>
       </Container>
-    </section>
+    </SectionWrapper>
   );
 };
 

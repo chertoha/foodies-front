@@ -3,6 +3,7 @@ import Testimonials from "components/Testimonials";
 import { PageWrapper, SectionWrapper } from "./HomePage.styled";
 import Container from "components/Container";
 import Category from "components/Category/Category";
+import RecipesComponent from "components/RecipesComponent";
 
 const HomePage = () => {
   // const { data } = useGetRecipiesQuery({
@@ -22,7 +23,10 @@ const HomePage = () => {
       <Hero />
 
       <SectionWrapper>
-        <Category />
+        <Container>
+          <Category />
+          <RecipesComponent />
+        </Container>
       </SectionWrapper>
 
       <SectionWrapper>
