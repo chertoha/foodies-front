@@ -2,15 +2,16 @@ import { useState } from "react";
 import UserBarMenu from "../UserBarMenu/UserBarMenu";
 import UserAvatar from "../UserAvatar/UserAvatar";
 import IconsSprite from "../../assets/images/icons/sprite.svg";
+
 // import MobileMenu from "components/MobileMenu";
 // import MobileMenuIcon from "components/MobileMenuIcon/MobileMenuIcon";
 import { UserBarWrapper, UserWrapper, UserName, WrappersIcons, Wrapper } from "./UserBar.styled";
 
 const UserBar = () => {
   const [showMenu, setShowMenu] = useState(false);
-  // const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  const toggleMenu = () => {
+  const toggleUserMenu = () => {
     setShowMenu(!showMenu);
   };
 
@@ -28,7 +29,7 @@ const UserBar = () => {
             alt={"avatar"}
           />
 
-          <WrappersIcons onClick={toggleMenu}>
+          <WrappersIcons onClick={toggleUserMenu}>
             <UserName>Victoria</UserName>
             {showMenu ? (
               <svg
@@ -54,7 +55,10 @@ const UserBar = () => {
       </UserWrapper>
 
       {/* <MobileMenuIcon toggleMenu={toggleMobileMenu} />
-      <MobileMenu isOpen={isMobileMenuOpen} /> */}
+      <MobileMenu
+        open={isMobileMenuOpen}
+        toggleMenu={toggleMobileMenu}
+      /> */}
     </UserBarWrapper>
   );
 };

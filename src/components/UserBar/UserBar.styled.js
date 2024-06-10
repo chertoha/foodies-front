@@ -1,13 +1,11 @@
 import styled from "styled-components";
-import theme from "styles/theme";
+import theme from "../../styles/theme";
 
 export const UserBarWrapper = styled.div`
   display: flex;
   align-items: center;
-
   gap: 6px;
 `;
-
 export const UserWrapper = styled.div`
   display: flex;
   flex-direction: column;
