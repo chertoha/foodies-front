@@ -1,38 +1,15 @@
 import Breadcrumbs from "components/UIKit/Breadcrumbs";
 import recipeData from "./recipe.json";
 import authorData from "./users.json";
-import RecipeCard from "../../components/RecipeCard/RecipeCard";
-import { useState, useEffect } from "react";
+import RecipesPopular from "../../components/RecipesPopular/RecipesPopular";
+import Container from "../../components/Container/Container";
+import { RecipePageContainer } from "./RecipePage.styled";
+import RecipeInfo from "../../components/RecipeInfo/RecipeInfo";
 
 const RecipePage = () => {
-  const [recipe, setRecipe] = useState(null);
-  const [author, setAuthor] = useState(null);
-
-  useEffect(() => {
-    try {
-      const loadedRecipe = {
-        id: recipeData[0]._id.$oid,
-        title: recipeData[0].title,
-        description: recipeData[0].description,
-        thumb: recipeData[0].thumb,
-        instructions: recipeData[0].instructions,
-        time: recipeData[0].time,
-        ingredients: recipeData[0].ingredients,
-      };
-
-      setRecipe(loadedRecipe);
-
-      const loadedAuthor = {
-        id: authorData[0]._id.$oid,
-        name: authorData[0].name,
-        isAuthenticated: true,
-        avatar: authorData[0].avatar,
-      };
-      setAuthor(loadedAuthor);
-    } catch (error) {
-      console.error();
-    }
-  }, []);
+  const recipeId = "6462a8f74c3d0ddd28897fcd";
+  const recipe = recipeData.find(recipe => recipe._id.$oid === recipeId);
+  const author = authorData.find(author => author._id.$oid === recipe.owner.$oid);
 
   const handleSignIn = () => {
     console.log("Sign in clicked");
@@ -47,19 +24,25 @@ const RecipePage = () => {
   };
 
   return (
-    <>
-      <h1>Recipe Page</h1>
-      <Breadcrumbs />
-      {recipe && author && (
-        <RecipeCard
-          recipe={recipe}
+    <Container>
+      <RecipePageContainer>
+        <Breadcrumbs current={recipe ? recipe.title : "Loading..."} />
+
+        {recipe && author && (
+          <RecipeInfo
+            recipe={recipe}
+            author={author}
+            onSignIn={handleSignIn}
+            onProfile={handleProfile}
+            onToggleFavorite={handleToggleFavorite}
+          />
+        )}
+        <RecipesPopular
+          list={recipeData}
           author={author}
-          onSignIn={handleSignIn}
-          onProfile={handleProfile}
-          onToggleFavorite={handleToggleFavorite}
         />
-      )}
-    </>
+      </RecipePageContainer>
+    </Container>
   );
 };
 

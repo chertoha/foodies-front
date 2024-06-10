@@ -4,104 +4,104 @@
       "$oid": "6462a6cd4c3d0ddd28897f8a"
     },
     "name": "Seafood",
-    "img": "https://res.cloudinary.com/dvnlykxgs/image/upload/v1717855189/foodies/zsphbrcyuapxqnauxwmd.jpg"
+    "img": "https://res.cloudinary.com/dvnlykxgs/image/upload/v1717961675/foodies/od0ivfk0c40pxfpfhqbk.jpg"
   },
   {
     "_id": {
       "$oid": "6462a6cd4c3d0ddd28897f8b"
     },
     "name": "Lamb",
-    "img": "https://res.cloudinary.com/dvnlykxgs/image/upload/v1717855188/foodies/mexkrzpgfnvwrkxvgtxi.jpg"
+    "img": "https://res.cloudinary.com/dvnlykxgs/image/upload/v1717961675/foodies/ycigjmaw59w7ldagkf0w.jpg"
   },
   {
     "_id": {
       "$oid": "6462a6cd4c3d0ddd28897f8c"
     },
     "name": "Starter",
-    "img": "https://res.cloudinary.com/dvnlykxgs/image/upload/v1717855189/foodies/wnyb3ygz8jru6mmkr644.jpg"
+    "img": "https://res.cloudinary.com/dvnlykxgs/image/upload/v1717961676/foodies/sxluxuabic7pxncczxj9.jpg"
   },
   {
     "_id": {
       "$oid": "6462a6cd4c3d0ddd28897f8d"
     },
     "name": "Chicken",
-    "img": "https://res.cloudinary.com/dvnlykxgs/image/upload/v1717855188/foodies/j5c8c58vzuc3ed2f45ot.jpg"
+    "img": "https://res.cloudinary.com/dvnlykxgs/image/upload/v1717961674/foodies/ztwaxhcwedtxwr7tozfn.jpg"
   },
   {
     "_id": {
       "$oid": "6462a6cd4c3d0ddd28897f8e"
     },
     "name": "Beef",
-    "img": "https://res.cloudinary.com/dvnlykxgs/image/upload/v1717855188/foodies/hhivsxhsikneodv8peaq.jpg"
+    "img": "https://res.cloudinary.com/dvnlykxgs/image/upload/v1717961674/foodies/k9qzsq5dkp0kwopbcxjz.jpg"
   },
   {
     "_id": {
       "$oid": "6462a6cd4c3d0ddd28897f8f"
     },
     "name": "Dessert",
-    "img": "https://res.cloudinary.com/dvnlykxgs/image/upload/v1717855188/foodies/gyncvk0yztwv4cgp4xfk.jpg"
+    "img": "https://res.cloudinary.com/dvnlykxgs/image/upload/v1717961674/foodies/sb62r5wdmx4odbfct9yk.jpg"
   },
   {
     "_id": {
       "$oid": "6462a6cd4c3d0ddd28897f90"
     },
     "name": "Vegan",
-    "img": "https://res.cloudinary.com/dvnlykxgs/image/upload/v1717855189/foodies/ohe4oe24oaw6cfhe7uda.jpg"
+    "img": "https://res.cloudinary.com/dvnlykxgs/image/upload/v1717961676/foodies/vidxu7upamowzpftxdo8.jpg"
   },
   {
     "_id": {
       "$oid": "6462a6cd4c3d0ddd28897f91"
     },
     "name": "Pork",
-    "img": "https://res.cloudinary.com/dvnlykxgs/image/upload/v1717855189/foodies/xk0j7o478cqzhan53qrc.jpg"
+    "img": "https://res.cloudinary.com/dvnlykxgs/image/upload/v1717961674/foodies/ydtg6hafysyj4mbpbclu.jpg"
   },
   {
     "_id": {
       "$oid": "6462a6cd4c3d0ddd28897f92"
     },
     "name": "Vegetarian",
-    "img": "https://res.cloudinary.com/dvnlykxgs/image/upload/v1717855189/foodies/qtn0zc1fxbcz4ujpzur3.jpg"
+    "img": "https://res.cloudinary.com/dvnlykxgs/image/upload/v1717961676/foodies/zud4m7zdpxbobak37t1y.jpg"
   },
   {
     "_id": {
       "$oid": "6462a6cd4c3d0ddd28897f93"
     },
     "name": "Miscellaneous",
-    "img": "https://res.cloudinary.com/dvnlykxgs/image/upload/v1717855188/foodies/rk0wru2piln84gtwvxjz.jpg"
+    "img": "https://res.cloudinary.com/dvnlykxgs/image/upload/v1717961675/foodies/nhyume92y7wgseq4bqad.jpg"
   },
   {
     "_id": {
       "$oid": "6462a6cd4c3d0ddd28897f94"
     },
     "name": "Pasta",
-    "img": "https://res.cloudinary.com/dvnlykxgs/image/upload/v1717855189/foodies/uo0nkrkypqmdngwyn43a.jpg"
+    "img": "https://res.cloudinary.com/dvnlykxgs/image/upload/v1717961674/foodies/jfpc6c5aljguvjm81fys.jpg"
   },
   {
     "_id": {
       "$oid": "6462a6cd4c3d0ddd28897f95"
     },
     "name": "Breakfast",
-    "img": "https://res.cloudinary.com/dvnlykxgs/image/upload/v1717855188/foodies/kuiij3jhcrchameyofv4.jpg"
+    "img": "https://res.cloudinary.com/dvnlykxgs/image/upload/v1717961674/foodies/eyg1a8ij0v8rmeliy2tq.jpg"
   },
   {
     "_id": {
       "$oid": "6462a6cd4c3d0ddd28897f96"
     },
     "name": "Side",
-    "img": "https://res.cloudinary.com/dvnlykxgs/image/upload/v1717855189/foodies/ihxeuprfoodrpq5zl0cq.jpg"
+    "img": "https://res.cloudinary.com/dvnlykxgs/image/upload/v1717961675/foodies/tejt3jl01upybtixxmqs.jpg"
   },
   {
     "_id": {
       "$oid": "6462a6cd4c3d0ddd28897f97"
     },
     "name": "Goat",
-    "img": "https://res.cloudinary.com/dvnlykxgs/image/upload/v1717855188/foodies/k5nrdhpezqv0gy8noxin.jpg"
+    "img": "https://res.cloudinary.com/dvnlykxgs/image/upload/v1717961675/foodies/t4wknkaxhneqavz2fn1i.jpg"
   },
   {
     "_id": {
       "$oid": "6462a6cd4c3d0ddd28897f98"
     },
     "name": "Soup",
-    "img": "https://res.cloudinary.com/dvnlykxgs/image/upload/v1717855189/foodies/ap47dawyjp42vjbv3k09.jpg"
+    "img": "https://res.cloudinary.com/dvnlykxgs/image/upload/v1717961675/foodies/r9tah4lwmehatzh7ttco.jpg"
   }
 ]

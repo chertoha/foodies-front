@@ -95,7 +95,6 @@ export const InputStyled = styled.input.attrs(props => props)`
 export const InputContainerStyled = styled("div")`
   position: relative;
   width: 100%;
-
   ${theme.mq.tablet} {
   }
 
@@ -193,6 +192,7 @@ export const TextStyled = styled("p")`
   font-weight: 500;
   line-height: 1.5;
   letter-spacing: -0.02em;
+
   color: rgba(5, 5, 5, 0.6);
   ${theme.mq.tablet} {
     font-size: 14px;
