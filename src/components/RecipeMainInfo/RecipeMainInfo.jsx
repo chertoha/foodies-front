@@ -12,7 +12,8 @@ import AvatarButton from "components/Buttons/AvatarButton";
 import SectionTitle from "components/SectionTitle";
 import SubTitle from "components/SubTitle";
 
-const RecipeMainInfo = ({ recipe, author, isAuthenticated }) => {
+const RecipeMainInfo = ({ recipe, isAuthenticated }) => {
+  const recipeOwner = recipe.owner;
   return (
     <RecipeMainInfoContainer>
       <SectionTitle label={recipe.title} />
@@ -23,13 +24,13 @@ const RecipeMainInfo = ({ recipe, author, isAuthenticated }) => {
       <SubTitle label={recipe.description} />
       <AuthorInfoWrapper>
         <AvatarButton
-          author={author}
+          author={recipeOwner.avatar}
           isAuthenticated={isAuthenticated}
           showName={false}
         />
         <AuthorTextWrapper>
           <CreatedByText>Created by:</CreatedByText>
-          <>{author.name}</>
+          <>{recipeOwner.name}</>
         </AuthorTextWrapper>
       </AuthorInfoWrapper>
     </RecipeMainInfoContainer>
