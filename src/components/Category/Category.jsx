@@ -3,6 +3,7 @@ import { useGetCategoriesQuery } from "../../redux/categories/categoriesApi";
 import CategoryList from "../CategoryGrid/CategoryList";
 import MainTitle from "components/MainTitle";
 import SubTitle from "components/SubTitle";
+import { MainTitleWrapper, SubTitleWrapper } from "./Category.styled";
 import Container from "components/Container";
 
 const Category = () => {
@@ -15,12 +16,16 @@ const Category = () => {
 
   return (
     <Container>
-      <MainTitle label={"Categories"}></MainTitle>
-      <SubTitle
-        label={
-          "Discover a limitless world of culinary possibilities and enjoy exquisite recipes that combine taste, style and the warm atmosphere of the kitchen."
-        }
-      ></SubTitle>
+      <MainTitleWrapper>
+        <MainTitle label={"Categories"}></MainTitle>
+      </MainTitleWrapper>
+      <SubTitleWrapper>
+        <SubTitle
+          label={
+            "Discover a limitless world of culinary possibilities and enjoy exquisite recipes that combine taste, style and the warm atmosphere of the kitchen."
+          }
+        ></SubTitle>
+      </SubTitleWrapper>
       <CategoryList categories={data.categories} />
     </Container>
   );
