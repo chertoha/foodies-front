@@ -6,10 +6,10 @@ import { flexCenter } from "../../styles/atomic";
 export const MobileNavWrapper = styled.div`
   position: fixed;
   top: 0;
-  right: ${props => (props.open ? "0" : "-100%")};
+  right: ${props => (props.open ? "0" : "-110%")};
   width: 100vw;
   /* height: 100vh; */
-  background: #050505;
+  background-color: ${theme.colors.accent};
   flex-direction: column;
   transition: right 0.3s ease-in-out;
   z-index: 9999;
