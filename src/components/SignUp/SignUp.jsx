@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { authSignUpThunk } from "../../redux/auth/thunks";
+import { getError } from "../../redux/auth/selectors";
 
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -25,12 +27,12 @@ const schema = object({
   email: string().email("email must be a valid").required(),
   password: string()
     .required("no password provided")
-    .min(8, "password should be minimum 8 characters")
-    .matches(/[a-zA-Z]/, "password can only contain Latin letters"),
+    .min(8, "password should be minimum 8 characters"),
 }).required();
 
 const SignUp = ({ switchForm, onClose }) => {
   const dispatch = useDispatch();
+  const error = useSelector(getError);
   const [eyeState, setEyeState] = useState(true);
 
   const {
@@ -50,10 +52,12 @@ const SignUp = ({ switchForm, onClose }) => {
   const onSubmit = async data => {
     try {
       await dispatch(authSignUpThunk(data));
-      reset();
-      onClose();
-    } catch (error) {
-      console.log(error);
+      if (!error) {
+        reset();
+        onClose();
+      }
+    } catch (err) {
+      console.log(err, "onSubmit");
       // "notification error"
     }
   };
