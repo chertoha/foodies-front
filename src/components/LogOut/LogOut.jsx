@@ -1,4 +1,7 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router";
+import { authLogOutThunk } from "../../redux/auth/thunks";
 import {
   Wripper,
   TitleStyled,
@@ -7,13 +10,22 @@ import {
   TextStyled,
 } from "./LogOut.styled";
 
-const logOut = () => {
+const logOut = ({ onClose }) => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const width = window.innerWidth;
 
-  const handleLogOut = () => {
-    console.log("LogoutRadax");
-    console.log("close modal");
-    console.log("notification logOut");
+  const handleLogOut = async () => {
+    const token = "";
+    try {
+      await dispatch(authLogOutThunk(token));
+      reset();
+      onClose();
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+      // "notification error"
+    }
   };
 
   return (
@@ -30,7 +42,7 @@ const logOut = () => {
 
       <ButtonCancelStyled
         type="button"
-        onClick={() => console.log("close modal")}
+        onClick={() => onClose()}
       >
         Cancel
       </ButtonCancelStyled>
