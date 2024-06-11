@@ -8,8 +8,9 @@ export const MobileMenuIconWrapper = styled.button`
   @media screen and (max-width: 767px) {
     cursor: pointer;
     border: none;
-    background-color: ${theme.colors.light};
-
+    /* background-color: ${theme.colors.light}; */
+    background-color: none;
+    color: ${p => (p.inverse ? p.theme.colors.light : p.theme.colors.accent)};
     ${flexCenter()}
 
     &:focus {
