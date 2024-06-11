@@ -1,49 +1,82 @@
 import React, { useState, useEffect } from "react";
-import { CategoryCard, AllCategoriesCard } from "../CategoryCard/CategoryCard";
-import { GridContainer } from "./CategoryList.styled";
+import { CategoryCard } from "../CategoryCard/CategoryCard";
+import styled from "styled-components";
+import theme, { breakpoints } from "styles/theme";
+import { useWindowSize } from "@uidotdev/usehooks";
+import AllCategoriesCard from "components/AllCategoriesCard/AllCategoriesCard";
 
-const CategoryList = ({ categories }) => {
-  const [cardSizes, setCardSizes] = useState([]);
+const gridTemplates = ["1fr 1fr 2fr", "1fr 2fr 1fr", "2fr 1fr 1fr"];
+const gridTemplatesTablet = ["1fr 1fr", "1fr"];
 
+const List = styled("div")`
+  display: grid;
+  row-gap: 20px;
+`;
+
+const Row = styled("div")`
+  display: grid;
+  column-gap: 20px;
+  row-gap: 20px;
+  grid-template-columns: 1fr;
+  ${theme.mq.tablet} {
+    grid-template-columns: ${p => gridTemplatesTablet[p.$template]};
+  }
+  ${theme.mq.desktop} {
+    grid-template-columns: ${p => gridTemplates[p.$template]};
+  }
+`;
+
+const CategoryList = ({ categories: backendCategories }) => {
+  const size = useWindowSize();
+  const [templateIndexes, setTemplateIndexes] = useState([]);
+  const categories = [...backendCategories, { all: true }];
   useEffect(() => {
-    let rowHasLargeCard = false;
-    const sizes = categories.map((category, index) => {
-      const isCardFirstInRow = index % 3 === 0;
-      const isCardLastInRow = (index + 1) % 3 === 0;
-      if (isCardFirstInRow) {
-        if (Math.random() > 0.5) {
-          rowHasLargeCard = true;
-          return true;
-        } else {
-          rowHasLargeCard = false;
-          return false;
-        }
-      }
-      if (rowHasLargeCard) {
-        return false;
-      }
-      if (!rowHasLargeCard && isCardLastInRow) {
-        return true;
-      } else {
-        return false;
-      }
-    });
-    setCardSizes(sizes);
-  }, [categories]);
+    if (templateIndexes.length === 0 || categories.length !== templateIndexes.length) {
+      const cardsPerRow = size.width >= breakpoints.desktop ? 3 : 2;
+      const numberOfRows = Math.ceil(categories.length / cardsPerRow);
+      const length =
+        size.width >= breakpoints.desktop ? gridTemplates.length : gridTemplatesTablet.length;
+      const newTemplateIndexes = [];
 
-  const displayedCategories = categories.slice(0, Math.ceil(categories.length / 2));
+      for (let i = 0; i < numberOfRows; i++) {
+        let randomIdx;
+        do {
+          randomIdx = Math.floor(Math.random() * length);
+        } while (i > 0 && randomIdx === newTemplateIndexes[i - 1]);
+        newTemplateIndexes.push(randomIdx);
+      }
+
+      setTemplateIndexes(newTemplateIndexes);
+    }
+  }, [categories.length, size.width, templateIndexes.length]);
+
+  const rows = [];
+  const cardsPerRow = size.width >= breakpoints.desktop ? 3 : 2;
+
+  for (let i = 0; i < categories.length; i += cardsPerRow) {
+    rows.push(categories.slice(i, i + cardsPerRow));
+  }
 
   return (
-    <GridContainer>
-      {displayedCategories.map((category, index) => (
-        <CategoryCard
-          large={cardSizes[index]}
-          key={category._id}
-          category={category}
-        />
+    <List>
+      {rows.map((row, i) => (
+        <Row
+          $template={templateIndexes[i]}
+          key={i}
+        >
+          {row.map(category =>
+            category?.all ? (
+              <AllCategoriesCard />
+            ) : (
+              <CategoryCard
+                key={category._id}
+                category={category}
+              ></CategoryCard>
+            )
+          )}
+        </Row>
       ))}
-      <AllCategoriesCard />
-    </GridContainer>
+    </List>
   );
 };
 

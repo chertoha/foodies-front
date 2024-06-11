@@ -5,16 +5,21 @@ export const CardContainer = styled.li`
   position: relative;
   width: 100%;
   height: 250px;
-  border-radius: 30px;
+  border-radius: 20px;
   overflow: hidden;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 
   ${theme.mq.tablet} {
-    width: ${props => (props.$large ? "100%" : "calc(50% - 10px)")};
+    height: 369px;
+    border-radius: 30px;
+    /* width: ${props => (props.$large ? "100%" : "calc(50% - 10px)")}; */
   }
 
-  ${theme.mq.desktop} {
+  /* ${theme.mq.desktop} {
     width: ${props => (props.$large ? "calc(40% - 13.33px)" : "calc(30% - 13.33px)")};
-  }
+  } */
 `;
 
 export const CardImage = styled.img`
