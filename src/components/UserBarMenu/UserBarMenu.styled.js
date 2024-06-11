@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 export const UserBarMenuWrapper = styled.div`
   position: absolute;
-  top: 90px;
+  top: 60px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -19,6 +19,7 @@ export const UserBarMenuWrapper = styled.div`
   ${theme.mq.tablet} {
     width: 148px;
     height: 74px;
+    top: 80px;
   }
 `;
 
