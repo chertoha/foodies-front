@@ -47,7 +47,7 @@ const rejectedAuthLogOut = (state, { error }) => {
 };
 
 const authUserSlice = createSlice({
-  name: "authUser",
+  name: "auth",
   initialState,
   extraReducers: bilder => {
     bilder
@@ -64,9 +64,9 @@ const authUserSlice = createSlice({
 });
 
 const authPersistConfig = {
-  key: "authUser",
+  key: "auth",
   storage,
-  // whitelist: ["token"],
+  whitelist: ["token", "user"],
 };
 
 // export const authUserReduser = authUserSlice.reducer;
