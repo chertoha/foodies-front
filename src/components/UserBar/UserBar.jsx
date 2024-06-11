@@ -7,7 +7,7 @@ import MobileMenu from "components/MobileMenu";
 import MobileMenuIcon from "components/MobileMenuIcon/MobileMenuIcon";
 import { UserBarWrapper, UserWrapper, UserName, WrappersIcons, Wrapper } from "./UserBar.styled";
 
-const UserBar = () => {
+const UserBar = ({ inverse }) => {
   const [showMenu, setShowMenu] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -54,7 +54,10 @@ const UserBar = () => {
         {showMenu && <UserBarMenu />}
       </UserWrapper>
 
-      <MobileMenuIcon toggleMenu={toggleMobileMenu} />
+      <MobileMenuIcon
+        $inverse={inverse}
+        toggleMenu={toggleMobileMenu}
+      />
       <MobileMenu
         open={isMobileMenuOpen}
         toggleMenu={toggleMobileMenu}
