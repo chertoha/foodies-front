@@ -5,15 +5,15 @@ import UserBar from "../UserBar/UserBar";
 
 import { HeaderContainer, ContainerBackground, HeaderWrapper } from "./Header.styled";
 
-const Header = () => {
+const Header = ({ inverse }) => {
   const isLogIn = true;
   return (
     <HeaderContainer>
       <ContainerBackground>
         <HeaderWrapper>
-          <Logo inverse={true} />
-          <NavBar inverse={true} />
-          {isLogIn ? <UserBar /> : <AuthBar />}
+          <Logo inverse={inverse} />
+          <NavBar inverse={inverse} />
+          {isLogIn ? <UserBar inverse={inverse} /> : <AuthBar inverse={inverse} />}
         </HeaderWrapper>
       </ContainerBackground>
     </HeaderContainer>

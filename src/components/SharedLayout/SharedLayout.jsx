@@ -7,7 +7,7 @@ import Footer from "components/Footer";
 const SharedLayout = () => {
   return (
     <RootWrapper>
-      <Header />
+      <Header inverse={true} />
       <Main>
         <Suspense>
           <Outlet />
