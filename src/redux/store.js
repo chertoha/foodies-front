@@ -24,7 +24,6 @@ export const store = configureStore({
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
     }).concat(
-      authUserSlice.middleware,
       categoriesApi.middleware,
       testimonialsApi.middleware,
       ingredientsApi.middleware,
