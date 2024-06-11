@@ -1,63 +1,69 @@
 import { useState } from "react";
-// import { useGetIngredientsQuery } from "../../redux/ingredients/ingredientsApi";
-// import { useGetAreasQuery } from "../../redux/areas/areasApi";
-
+import { useGetIngredientsQuery } from "../../redux/ingredients/ingredientsApi";
+import { useGetAreasQuery } from "../../redux/areas/areasApi";
 import { SearchRecipesForm, SearchWrapp } from "./SearchRecipes.styled";
 import CustomSelect from "../CustomSelect/CustomSelect";
 
-const areasobj = ["Beef", "Breakfast", "Desserts", "Lamb"];
-const ingredientsobj = ["Cabbage", "Cucumber", "Tomato", "Corn", "Radish", "Parsley"];
+const SearchRecipes = ({ onChange }) => {
+  const [ingredient, setIngredient] = useState("");
+  const [area, setArea] = useState("");
 
-const SearchRecipes = () => {
-  const [formValues, setFormValues] = useState({
-    ingredients: "",
-    areas: "",
-  });
-  //   const { data: ingredientsData } = useGetIngredientsQuery();
-  //   const { data: areasData } = useGetAreasQuery();
+  const {
+    data: ingredientsData,
+    error: ingredientsError,
+    isFetching: isFetchingIngredients,
+  } = useGetIngredientsQuery();
+  const { data: areasData, error: areasError, isFetching: isFetchingAreas } = useGetAreasQuery();
 
-  //   console.log(ingredientsData);
-  //   console.log(areasData);
   const handleChange = (name, value) => {
-    setFormValues(prevValues => ({
-      ...prevValues,
-      [name]: value,
-    }));
+    if (name === "ingredient") {
+      setIngredient(value);
+    } else if (name === "area") {
+      setArea(value);
+    }
+    onChange(name, value);
   };
 
   const handleSubmit = event => {
     event.preventDefault();
-    console.log("Form submitted with values:", formValues);
+    onChange("ingredient", ingredient);
+    onChange("area", area);
   };
+
+  // console.log("ingredient", ingredient);
+  // console.log("area", area);
+
+  if (isFetchingIngredients || isFetchingAreas) return <div>Loading...</div>;
+  if (ingredientsError || areasError) return <div>Error loading categories.</div>;
 
   return (
     <SearchRecipesForm onSubmit={handleSubmit}>
       <SearchWrapp>
         <CustomSelect
-          name="ingredients"
-          options={ingredientsobj.map(ingredient => ({
-            value: ingredient,
-            label: ingredient,
+          name="ingredient"
+          options={ingredientsData.result.map(({ name }) => ({
+            value: name,
+            label: name,
           }))}
-          value={formValues.ingredients}
+          value={ingredient}
           onChange={handleChange}
           placeholder="Ingredients"
         />
       </SearchWrapp>
       <SearchWrapp>
         <CustomSelect
-          name="areas"
-          options={areasobj.map(area => ({
-            value: area,
-            label: area,
+          name="area"
+          options={areasData.map(({ name }) => ({
+            value: name,
+            label: name,
           }))}
-          value={formValues.areas}
+          value={area}
           onChange={handleChange}
           placeholder="Areas"
         />
       </SearchWrapp>
-      {/* <button type="submit">Search</button> */}
     </SearchRecipesForm>
   );
 };
+
 export default SearchRecipes;
