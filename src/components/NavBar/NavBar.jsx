@@ -14,14 +14,14 @@ const NavBar = ({ inverse }) => {
   const signIn = () => setIsLogin(true);
   const signUp = () => setIsLogin(false);
 
-  const token = ""; 
+  const token = "";
 
   const onClose = () => {
     close();
   };
 
-  const addRecipe = (e) => {
-    e.preventDefault(); 
+  const addRecipe = e => {
+    e.preventDefault();
     if (token) {
       navigate("/recipe/add");
     } else {
@@ -32,7 +32,10 @@ const NavBar = ({ inverse }) => {
   return (
     <>
       <NavMenuWrapper>
-        <NavMenuLink to={ROUTES.HOME} $inverse={inverse}>
+        <NavMenuLink
+          to={ROUTES.HOME}
+          $inverse={inverse}
+        >
           Home
         </NavMenuLink>
         <NavMenuLink
@@ -45,11 +48,7 @@ const NavBar = ({ inverse }) => {
       </NavMenuWrapper>
       {isOpen && (
         <Modal onClose={onClose}>
-          {isLogin ? (
-            <SignIn switchForm={signUp} />
-          ) : (
-            <SignUp switchForm={signIn} />
-          )}
+          {isLogin ? <SignIn switchForm={signUp} /> : <SignUp switchForm={signIn} />}
         </Modal>
       )}
     </>
