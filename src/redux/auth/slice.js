@@ -1,5 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { authSignUpThunk, authSignInThunk, authLogOutThunk } from "./thunks";
+import storage from "redux-persist/lib/storage";
+import { persistReducer } from "redux-persist";
 
 const initialState = {
   user: null,
@@ -45,7 +47,7 @@ const rejectedAuthLogOut = (state, { error }) => {
 };
 
 const authUserSlice = createSlice({
-  name: "authUser",
+  name: "auth",
   initialState,
   extraReducers: bilder => {
     bilder
@@ -61,4 +63,12 @@ const authUserSlice = createSlice({
   },
 });
 
-export const authUserReduser = authUserSlice.reducer;
+const authPersistConfig = {
+  key: "auth",
+  storage,
+  whitelist: ["token", "user"],
+};
+
+// export const authUserReduser = authUserSlice.reducer;
+export const persistedAuthReducer = persistReducer(authPersistConfig, authUserSlice.reducer);
+export default authUserSlice;

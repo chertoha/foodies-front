@@ -6,17 +6,17 @@ import ingredientsApi from "./ingredients/ingredientsApi";
 import areasApi from "./areas/areasApi";
 import recipesApi from "./recipes/recipesApi";
 import usersApi from "./users/usersApi";
-import { authUserReduser } from "./auth/slice";
+import authUserSlice, { persistedAuthReducer } from "./auth/slice";
 
 export const store = configureStore({
   reducer: {
+    [authUserSlice.reducerPath]: persistedAuthReducer,
     [categoriesApi.reducerPath]: categoriesApi.reducer,
     [testimonialsApi.reducerPath]: testimonialsApi.reducer,
     [ingredientsApi.reducerPath]: ingredientsApi.reducer,
     [areasApi.reducerPath]: areasApi.reducer,
     [recipesApi.reducerPath]: recipesApi.reducer,
     [usersApi.reducerPath]: usersApi.reducer,
-    auth: authUserReduser,
   },
   middleware(getDefaultMiddleware) {
     return getDefaultMiddleware({
