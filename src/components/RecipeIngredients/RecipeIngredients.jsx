@@ -8,13 +8,11 @@ import {
 } from "./RecipeIngredients.styled";
 
 const RecipeIngredients = ({ ingredients }) => {
-  const limitedIngredients = ingredients.slice(0, 8);
-
   return (
     <RecipeIngredientsContainer>
       <SectionTitle label={"Ingredients"} />
       <IngredientsList>
-        {limitedIngredients.map((ingredient, index) => (
+        {ingredients.map((ingredient, index) => (
           <IngredientItem key={index}>
             <ImageWrapper>
               <img

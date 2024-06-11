@@ -85,9 +85,15 @@ const Hero = () => {
       {isOpen && (
         <Modal onClose={onClose}>
           {isLogin ? (
-            <SignIn switchForm={switchToSignUp} />
+            <SignIn
+              switchForm={switchToSignUp}
+              onClose={onClose}
+            />
           ) : (
-            <SignUp switchForm={switchToSignIn} />
+            <SignUp
+              switchForm={switchToSignIn}
+              onClose={onClose}
+            />
           )}
         </Modal>
       )}

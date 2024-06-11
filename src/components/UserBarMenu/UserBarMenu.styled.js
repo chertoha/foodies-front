@@ -3,6 +3,8 @@ import theme from "../../styles/theme";
 import { Link } from "react-router-dom";
 
 export const UserBarMenuWrapper = styled.div`
+  position: absolute;
+  top: 90px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;

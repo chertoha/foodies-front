@@ -12,14 +12,8 @@ import AvatarButton from "components/Buttons/AvatarButton";
 import SectionTitle from "components/SectionTitle";
 import SubTitle from "components/SubTitle";
 
-const RecipeMainInfo = ({ recipe, author, onSignIn, onProfile }) => {
-  const handleAuthorClick = () => {
-    if (author.isAuthenticated) {
-      onProfile(author.id);
-    } else {
-      onSignIn();
-    }
-  };
+const RecipeMainInfo = ({ recipe, isAuthenticated }) => {
+  const recipeOwner = recipe.owner;
   return (
     <RecipeMainInfoContainer>
       <SectionTitle label={recipe.title} />
@@ -30,13 +24,13 @@ const RecipeMainInfo = ({ recipe, author, onSignIn, onProfile }) => {
       <SubTitle label={recipe.description} />
       <AuthorInfoWrapper>
         <AvatarButton
-          author={author}
-          onClick={handleAuthorClick}
+          author={recipeOwner.avatar}
+          isAuthenticated={isAuthenticated}
           showName={false}
         />
         <AuthorTextWrapper>
           <CreatedByText>Created by:</CreatedByText>
-          <>{author.name}</>
+          <>{recipeOwner.name}</>
         </AuthorTextWrapper>
       </AuthorInfoWrapper>
     </RecipeMainInfoContainer>

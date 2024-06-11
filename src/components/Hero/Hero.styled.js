@@ -50,7 +50,7 @@ export const TitleStyled = styled("h1")`
   }
 `;
 
-export const SubtitleStyled = styled("h1")`
+export const SubtitleStyled = styled("h3")`
   margin: 0 auto;
   margin-top: 20px;
   max-width: 338px;
