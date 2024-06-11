@@ -1,18 +1,28 @@
 // import { useGetRecipesQuery } from "../../redux/recipes/recipesApi";
+import { useLocation } from "react-router-dom";
+
 import { useLazyGetRecipesQuery } from "../../redux/recipes/recipesApi";
 import { useState, useEffect } from "react";
 import SearchRecipes from "../SearchRecipes";
 import RecipeCard from "../RecipeCard/RecipeCard";
 import MainTitle from "../MainTitle/MainTitle";
 import SubTitle from "../SubTitle/SubTitle";
+
+import sprite from "assets/images/icons/sprite.svg";
 import {
+  BackLink,
+  Icon,
   RecipesWrapper,
   RecipeComponentList,
   RecipeComponentItem,
   RecipeSubDiv,
+  SubTitleWrapp,
+  TitleWrapp,
 } from "./RecipesComponent.styled";
 
 const RecipesComponent = ({ category }) => {
+  const location = useLocation();
+
   const [ingredient, setIngredient] = useState("");
   const [area, setArea] = useState("");
 
@@ -43,7 +53,25 @@ const RecipesComponent = ({ category }) => {
 
   return (
     <>
-      <MainTitle label={category} />
+      <SubTitleWrapp>
+        <BackLink to={location.state?.from || "/"}>
+          <Icon>
+            <use href={sprite + "#icon-arrow-left"}></use>
+          </Icon>
+          <span>Back</span>
+        </BackLink>
+        <TitleWrapp>
+          <MainTitle
+            as={"h2"}
+            label={category}
+          />
+        </TitleWrapp>
+        <SubTitle
+          label={
+            "Go on a taste journey, where every sip is a sophisticated creative chord, and every dessert is an expression of the most refined gastronomic desires."
+          }
+        />
+      </SubTitleWrapp>
       <RecipesWrapper>
         <SearchRecipes onChange={handleFiltersChange} />
         <div>
