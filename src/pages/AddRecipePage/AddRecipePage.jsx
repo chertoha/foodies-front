@@ -1,14 +1,13 @@
 import Container from "components/Container";
 import ImageDropZone from "components/ImageDropZone";
-import { useForm } from "react-hook-form";
+import { FormProvider, useForm } from "react-hook-form";
 
 const AddRecipePage = () => {
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors },
-  } = useForm();
+  const methods = useForm({
+    defaultValues: {
+      thumb: null,
+    },
+  });
 
   const onSubmit = data => console.log(data);
 
@@ -18,10 +17,12 @@ const AddRecipePage = () => {
 
       <div style={{ paddingTop: "200px" }}>
         <Container>
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <ImageDropZone />
-            <button className="">Submit</button>
-          </form>
+          <FormProvider {...methods}>
+            <form onSubmit={methods.handleSubmit(onSubmit)}>
+              <ImageDropZone name="thumb" />
+              <button className="">Submit</button>
+            </form>
+          </FormProvider>
         </Container>
       </div>
     </>

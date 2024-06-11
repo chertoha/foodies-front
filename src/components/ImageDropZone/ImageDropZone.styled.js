@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 import theme from "styles/theme";
-import { flexCenter } from "styles/atomic";
+import { body1, body2, flexCenter } from "styles/atomic";
 
 const activeStyles = () => css`
   color: ${p => p.theme.colors.accent};
@@ -11,6 +11,7 @@ const activeStyles = () => css`
 `;
 
 export const MainWrapper = styled("div")`
+  position: relative;
   height: 318px;
 
   ${theme.mq.tablet} {
@@ -75,4 +76,16 @@ export const ClearPreviewButton = styled("button")`
   &:focus-visible {
     transform: scale(1.1);
   }
+`;
+
+export const ErrorMessage = styled("p")`
+  position: absolute;
+  ${body2()};
+  bottom: 40px;
+  left: 50%;
+
+  width: 90%;
+  text-align: center;
+  transform: translateX(-50%);
+  color: ${p => p.theme.colors.error};
 `;
