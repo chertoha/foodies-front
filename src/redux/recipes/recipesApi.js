@@ -106,6 +106,7 @@ const recipesApi = createApi({
 
 export const {
   useGetRecipesQuery,
+  useLazyGetRecipesQuery,
   useGetRecipeQuery,
   useGetPopularRecipesQuery,
   useGetFavoriteRecipesQuery,

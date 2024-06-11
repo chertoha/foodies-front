@@ -3,7 +3,7 @@ import { useGetCategoriesQuery } from "../../redux/categories/categoriesApi";
 import CategoryList from "../CategoryGrid/CategoryList";
 import MainTitle from "components/MainTitle";
 import SubTitle from "components/SubTitle";
-import Container from "components/Container";
+// import Container from "components/Container";
 
 const Category = () => {
   const { data, error, isFetching } = useGetCategoriesQuery({ page: 1, limit: 11 });
@@ -14,7 +14,7 @@ const Category = () => {
   if (error) return <div>Error loading categories.</div>;
 
   return (
-    <Container>
+    <>
       <MainTitle label={"Categories"}></MainTitle>
       <SubTitle
         label={
@@ -22,7 +22,7 @@ const Category = () => {
         }
       ></SubTitle>
       <CategoryList categories={data.categories} />
-    </Container>
+    </>
   );
 };
 
