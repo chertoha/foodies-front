@@ -5,7 +5,7 @@ const Logo = ({ inverse }) => {
   return (
     <LogoLink
       to={ROUTES.HOME}
-      inverse={inverse}
+      $inverse={inverse}
     >
       Foodies
     </LogoLink>
