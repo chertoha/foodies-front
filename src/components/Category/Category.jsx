@@ -15,14 +15,7 @@ const Category = () => {
   if (error) return <div>Error loading categories.</div>;
 
   return (
-
     <>
-      <MainTitle label={"Categories"}></MainTitle>
-      <SubTitle
-        label={
-          "Discover a limitless world of culinary possibilities and enjoy exquisite recipes that combine taste, style and the warm atmosphere of the kitchen."
-        }
-      ></SubTitle>
       <MainTitleWrapper>
         <MainTitle label={"Categories"}></MainTitle>
       </MainTitleWrapper>
@@ -33,7 +26,6 @@ const Category = () => {
           }
         ></SubTitle>
       </SubTitleWrapper>
-
       <CategoryList categories={data.categories} />
     </>
   );

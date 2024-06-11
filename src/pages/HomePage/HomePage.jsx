@@ -33,7 +33,6 @@ const HomePage = () => {
       <TempAuthButton />
 
       <SectionWrapper>
-        <Category />
         <Container>
           <Category />
           {!values ? (
