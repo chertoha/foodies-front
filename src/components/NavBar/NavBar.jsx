@@ -48,7 +48,17 @@ const NavBar = ({ inverse }) => {
       </NavMenuWrapper>
       {isOpen && (
         <Modal onClose={onClose}>
-          {isLogin ? <SignIn switchForm={signUp} /> : <SignUp switchForm={signIn} />}
+          {isLogin ? (
+            <SignIn
+              switchForm={signUp}
+              onClose={onClose}
+            />
+          ) : (
+            <SignUp
+              switchForm={signIn}
+              onClose={onClose}
+            />
+          )}
         </Modal>
       )}
     </>
