@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { authSignUpThunk } from "../../redux/auth/thunks";
+
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { object, string } from "yup";
@@ -16,7 +19,6 @@ import {
   LinkTextStyled,
   ErrorTextStyled,
 } from "./SignUp.styled";
-import { useNavigate } from "react-router-dom";
 
 const schema = object({
   name: string().required().min(2),
@@ -27,11 +29,10 @@ const schema = object({
     .matches(/[a-zA-Z]/, "password can only contain Latin letters"),
 }).required();
 
-const SignUp = ({ switchForm }) => {
-  const navigate = useNavigate();
+const SignUp = ({ switchForm, onClose }) => {
+  const dispatch = useDispatch();
   const [eyeState, setEyeState] = useState(true);
-  const [_state, setState] = useState({});
-  // const [_login, setLogin] = useState(false);
+
   const {
     register,
     handleSubmit,
@@ -46,10 +47,15 @@ const SignUp = ({ switchForm }) => {
     },
   });
 
-  const onSubmit = data => {
-    setState(data);
-    reset();
-    navigate("/userProfile");
+  const onSubmit = async data => {
+    try {
+      await dispatch(authSignUpThunk(data));
+      reset();
+      onClose();
+    } catch (error) {
+      console.log(error);
+      // "notification error"
+    }
   };
 
   return (
@@ -100,7 +106,6 @@ const SignUp = ({ switchForm }) => {
       </FormStyled>
       <TextContainerStyled>
         <TextStyled>I already have an account?</TextStyled>
-        {/* <LinkTextStyled onClick={() => setLogin(true)}>Sign in</LinkTextStyled> */}
         <LinkTextStyled onClick={switchForm}>Sign in</LinkTextStyled>
       </TextContainerStyled>
     </FormWripper>
