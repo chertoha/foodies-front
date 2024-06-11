@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 import theme from "styles/theme";
-import { body1, body2, flexCenter } from "styles/atomic";
+import { body2, flexCenter } from "styles/atomic";
 
 const activeStyles = () => css`
   color: ${p => p.theme.colors.accent};
