@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { authSignInThunk } from "../../redux/auth/thunks";
+import { getError } from "../../redux/auth/selectors";
 
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -30,6 +32,7 @@ const schema = object({
 const SignIn = ({ switchForm, onClose }) => {
   const dispatch = useDispatch();
   const [eyeState, setEyeState] = useState(true);
+  const error = useSelector(getError);
 
   const {
     register,
@@ -47,10 +50,12 @@ const SignIn = ({ switchForm, onClose }) => {
   const onSubmit = async data => {
     try {
       await dispatch(authSignInThunk(data));
-      reset();
-      onClose();
-    } catch (error) {
-      console.log(error);
+      if (!error) {
+        reset();
+        onClose();
+      }
+    } catch (err) {
+      console.log(err, "onSubmit");
       // "notification error"
     }
   };

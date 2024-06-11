@@ -6,6 +6,7 @@ import ingredientsApi from "./ingredients/ingredientsApi";
 import areasApi from "./areas/areasApi";
 import recipesApi from "./recipes/recipesApi";
 import usersApi from "./users/usersApi";
+import { authUserReduser } from "./auth/slice";
 
 export const store = configureStore({
   reducer: {
@@ -15,6 +16,7 @@ export const store = configureStore({
     [areasApi.reducerPath]: areasApi.reducer,
     [recipesApi.reducerPath]: recipesApi.reducer,
     [usersApi.reducerPath]: usersApi.reducer,
+    auth: authUserReduser,
   },
   middleware(getDefaultMiddleware) {
     return getDefaultMiddleware({
