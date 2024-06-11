@@ -4,6 +4,7 @@ import {
   AuthorTextWrapper,
   ButtonWrapper,
   CreatedByText,
+  OwnerTitle,
   RecipeCategory,
   RecipeMainInfoContainer,
   RecipeTime,
@@ -24,13 +25,13 @@ const RecipeMainInfo = ({ recipe, isAuthenticated }) => {
       <SubTitle label={recipe.description} />
       <AuthorInfoWrapper>
         <AvatarButton
-          author={recipeOwner.avatar}
+          author={recipeOwner}
           isAuthenticated={isAuthenticated}
           showName={false}
         />
         <AuthorTextWrapper>
           <CreatedByText>Created by:</CreatedByText>
-          <>{recipeOwner.name}</>
+          <OwnerTitle>{recipeOwner.name}</OwnerTitle>
         </AuthorTextWrapper>
       </AuthorInfoWrapper>
     </RecipeMainInfoContainer>

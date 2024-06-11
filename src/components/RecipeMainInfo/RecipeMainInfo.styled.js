@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { mt, my, px, py } from "styles/atomic";
+import { body1, mt, my, px, py } from "styles/atomic";
 
 export const RecipeMainInfoContainer = styled.div`
   display: flex;
@@ -46,4 +46,9 @@ export const AuthorTextWrapper = styled.div`
 export const CreatedByText = styled.span`
   font-size: ${({ theme }) => theme.fontSizes.sm};
   color: rgba(5, 5, 5, 0.6);
+`;
+
+export const OwnerTitle = styled.span`
+  ${body1()}
+  color: ${({ theme }) => theme.colors.dark};
 `;
