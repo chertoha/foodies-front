@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useGetIngredientsQuery } from "../../redux/ingredients/ingredientsApi";
 import { useGetAreasQuery } from "../../redux/areas/areasApi";
 import { SearchRecipesForm, SearchWrapp } from "./SearchRecipes.styled";
