@@ -10,7 +10,7 @@ import {
   TextStyled,
 } from "./LogOut.styled";
 
-const logOut = ({ onClose }) => {
+const LogOut = ({ onClose }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const width = window.innerWidth;
@@ -19,7 +19,6 @@ const logOut = ({ onClose }) => {
     const token = "";
     try {
       await dispatch(authLogOutThunk(token));
-      reset();
       onClose();
       navigate("/");
     } catch (error) {
@@ -50,4 +49,4 @@ const logOut = ({ onClose }) => {
   );
 };
 
-export default logOut;
+export default LogOut;
