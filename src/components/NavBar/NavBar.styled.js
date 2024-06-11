@@ -17,7 +17,7 @@ export const NavMenuLink = styled(NavLink)`
   ${py(3)}
   ${px(3)}
  
-  color: ${p => (p.inverse ? p.theme.colors.light : p.theme.colors.accent)};
+  color: ${p => (p.$inverse ? p.theme.colors.light : p.theme.colors.accent)};
   font-size: ${theme.fontSizes.xs};
   font-weight: ${theme.fontWeights.bold};
   line-height: ${theme.lineHeights.normal};
@@ -25,7 +25,7 @@ export const NavMenuLink = styled(NavLink)`
   text-transform: uppercase;
 
   &.active {
-    border: 2px solid ${p => (p.inverse ? p.theme.colors.accent : "rgba(5, 5, 5, 0.20)")};
+    border: 2px solid ${p => (p.$inverse ? "rgba(5, 5, 5, 0.20)" : p.theme.colors.accent)};
     border-radius: ${theme.radii.lg};
   }
 `;

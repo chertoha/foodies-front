@@ -1,7 +1,6 @@
 import React from "react";
 import { MobileMenuIconWrapper } from "./MobileMenuIcon.styled";
-import { ReactComponent as Menu } from "../../assets/images/icons/mobile-menu.svg";
-// import IconsSprite from '../../assets/images/icons/sprite.svg';
+import IconsSprite from "../../assets/images/icons/sprite.svg";
 
 const MobileMenuIcon = ({ toggleMenu }) => {
   return (
@@ -10,11 +9,13 @@ const MobileMenuIcon = ({ toggleMenu }) => {
       onClick={toggleMenu}
       aria-label="Mobile menu"
     >
-      <Menu />
-
-      {/* <svg width="18" height="18" fill='#000'>
-        <use xlinkHref={`${IconsSprite}#icon-mobile-menu`} />
-      </svg> */}
+      <svg
+        width="28"
+        height="28"
+        fill="#000"
+      >
+        <use xlinkHref={`${IconsSprite}#icon-burger`} />
+      </svg>
     </MobileMenuIconWrapper>
   );
 };
