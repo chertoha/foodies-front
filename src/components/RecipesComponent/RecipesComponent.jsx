@@ -90,7 +90,7 @@ const RecipesComponent = ({ category }) => {
                       ingredients: recipe.ingredients,
                       isFavorite: recipe.isFavorite || false,
                     }}
-                    author={"dhsjJs"}
+                    author={{ name: "dhsjJs" }}
                     onSignIn={() => console.log("Sign in clicked")}
                     onProfile={authorId => console.log(`Profile of author ${authorId} clicked`)}
                     onToggleFavorite={recipeId =>
