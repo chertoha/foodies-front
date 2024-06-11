@@ -7,8 +7,41 @@ import {
 import RecipeMainInfo from "../RecipeMainInfo/RecipeMainInfo";
 import RecipeIngredients from "../RecipeIngredients/RecipeIngredients";
 import RecipePreparation from "../RecipePreparation/RecipePreparation";
+import { useGetRecipeQuery } from "../../redux/recipes/recipesApi";
+import { useParams } from "react-router-dom";
+import { useGetIngredientsQuery } from "../../redux/ingredients/ingredientsApi";
 
-const RecipeInfo = ({ recipe, author, onSignIn, onProfile, onToggleFavorite }) => {
+const RecipeInfo = ({ author, onSignIn, onProfile, onToggleFavorite }) => {
+  const { id } = useParams();
+  const { data: recipe, error: recipeError, isLoading: isRecipeLoading } = useGetRecipeQuery(id);
+  const {
+    data: ingredients,
+    error: ingredientsError,
+    isLoading: isIngredientsLoading,
+  } = useGetIngredientsQuery();
+
+  if (!recipe || !ingredients) {
+    return <p>''</p>;
+  }
+  if (recipeError || ingredientsError) {
+    return <p>Error</p>;
+  }
+  if (isRecipeLoading || isIngredientsLoading) {
+    return <p>Loading...</p>;
+  }
+  const ingredientsData = ingredients.result;
+
+  const recipeIngredients = recipe.ingredients.map(recipeIngredient => {
+    const fullIngredient = ingredientsData.find(
+      ingredient => ingredient._id === recipeIngredient.id
+    );
+    return {
+      ...recipeIngredient,
+      img: fullIngredient ? fullIngredient.img : "",
+      desc: fullIngredient ? fullIngredient.desc : "",
+    };
+  });
+
   return (
     <RecipeInfoContainer>
       <RecipeImageWrapper>
@@ -24,7 +57,7 @@ const RecipeInfo = ({ recipe, author, onSignIn, onProfile, onToggleFavorite }) =
           onSignIn={onSignIn}
           onProfile={onProfile}
         />
-        <RecipeIngredients ingredients={recipe.ingredients} />
+        <RecipeIngredients ingredients={recipeIngredients} />
         <RecipePreparation
           preparation={recipe.instructions}
           isFavorite={recipe.isFavorite}
