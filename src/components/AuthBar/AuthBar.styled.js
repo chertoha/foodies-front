@@ -18,6 +18,7 @@ export const SlideButton = styled("Button")`
   font-size: ${theme.fontSizes.xs};
   font-weight: ${theme.fontWeights.bold};
   line-height: ${theme.lineHeights.normal};
+  border-radius: ${theme.radii.lg};
   letter-spacing: -0.025em;
   text-transform: uppercase;
   border: none;
