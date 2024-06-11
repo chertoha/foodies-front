@@ -3,21 +3,21 @@ import UserBarMenu from "../UserBarMenu/UserBarMenu";
 import UserAvatar from "../UserAvatar/UserAvatar";
 import IconsSprite from "../../assets/images/icons/sprite.svg";
 
-// import MobileMenu from "components/MobileMenu";
-// import MobileMenuIcon from "components/MobileMenuIcon/MobileMenuIcon";
+import MobileMenu from "components/MobileMenu";
+import MobileMenuIcon from "components/MobileMenuIcon/MobileMenuIcon";
 import { UserBarWrapper, UserWrapper, UserName, WrappersIcons, Wrapper } from "./UserBar.styled";
 
 const UserBar = () => {
   const [showMenu, setShowMenu] = useState(false);
-  // const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const toggleUserMenu = () => {
     setShowMenu(!showMenu);
   };
 
-  // const toggleMobileMenu = () => {
-  //   setIsMobileMenuOpen(!isMobileMenuOpen);
-  // };
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
 
   return (
     <UserBarWrapper>
@@ -54,11 +54,11 @@ const UserBar = () => {
         {showMenu && <UserBarMenu />}
       </UserWrapper>
 
-      {/* <MobileMenuIcon toggleMenu={toggleMobileMenu} />
+      <MobileMenuIcon toggleMenu={toggleMobileMenu} />
       <MobileMenu
         open={isMobileMenuOpen}
         toggleMenu={toggleMobileMenu}
-      /> */}
+      />
     </UserBarWrapper>
   );
 };
