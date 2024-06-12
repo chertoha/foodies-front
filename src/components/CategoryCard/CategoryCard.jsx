@@ -7,6 +7,7 @@ import {
   ButtonsContainer,
 } from "../CategoryCard/CategoryCard.styled";
 import { Link } from "react-router-dom";
+import SpriteIcon from "components/UIKit/SpriteIcon";
 
 const CategoryCard = ({ category, large }) => {
   return (
@@ -18,7 +19,12 @@ const CategoryCard = ({ category, large }) => {
         />
         <ButtonsContainer>
           <CardBadge>{category.name}</CardBadge>
-          <CardButton>→</CardButton>
+          <CardButton>
+            <SpriteIcon
+              id="icon-arrow-up-right"
+              size={[18, 18, 18]}
+            />
+          </CardButton>
         </ButtonsContainer>
       </Link>
     </CardContainer>

@@ -11,6 +11,15 @@ export const CardContainer = styled.li`
   padding: 0;
   list-style: none;
 
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(0deg, rgba(5, 5, 5, 0.18) 0%, rgba(5, 5, 5, 0.18) 100%);
+  }
   ${theme.mq.tablet} {
     height: 369px;
     border-radius: 30px;
@@ -49,6 +58,7 @@ export const CardBadge = styled.div`
   border: 1px solid rgba(255, 255, 255, 0.4);
   background: rgba(255, 255, 255, 0.3);
   color: rgba(255, 255, 255, 1);
+  font-weight: 700;
 
   ${theme.mq.tablet} {
     padding: 10px 14px;

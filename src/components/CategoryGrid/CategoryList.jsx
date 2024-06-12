@@ -1,30 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { CategoryCard } from "../CategoryCard/CategoryCard";
-import styled from "styled-components";
-import theme, { breakpoints } from "styles/theme";
+import { List, Row } from "./CategoryList.styled";
 import { useWindowSize } from "@uidotdev/usehooks";
 import AllCategoriesCard from "components/AllCategoriesCard/AllCategoriesCard";
+import { breakpoints } from "styles/theme";
 
 const gridTemplates = ["1fr 1fr 2fr", "1fr 2fr 1fr", "2fr 1fr 1fr"];
 const gridTemplatesTablet = ["1fr 1fr", "1fr"];
-
-const List = styled("div")`
-  display: grid;
-  row-gap: 20px;
-`;
-
-const Row = styled("div")`
-  display: grid;
-  column-gap: 20px;
-  row-gap: 20px;
-  grid-template-columns: 1fr;
-  ${theme.mq.tablet} {
-    grid-template-columns: ${p => gridTemplatesTablet[p.$template]};
-  }
-  ${theme.mq.desktop} {
-    grid-template-columns: ${p => gridTemplates[p.$template]};
-  }
-`;
 
 const CategoryList = ({ categories: backendCategories }) => {
   const size = useWindowSize();
