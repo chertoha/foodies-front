@@ -10,6 +10,7 @@ const theme = {
     dark: "rgba(5,5,5,0.9)",
     light: "#FFFFFF",
     grey: "#E8E8E8",
+    error: "#f42424",
   },
 
   fontSizes: {

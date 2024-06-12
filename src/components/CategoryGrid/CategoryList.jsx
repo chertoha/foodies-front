@@ -1,49 +1,71 @@
 import React, { useState, useEffect } from "react";
-import { CategoryCard, AllCategoriesCard } from "../CategoryCard/CategoryCard";
-import { GridContainer } from "./CategoryList.styled";
+import { CategoryCard } from "../CategoryCard/CategoryCard";
+import { List, Row } from "./CategoryList.styled";
+import { useWindowSize } from "@uidotdev/usehooks";
+import AllCategoriesCard from "components/AllCategoriesCard/AllCategoriesCard";
+import { breakpoints } from "styles/theme";
 
-const CategoryList = ({ categories }) => {
-  const [cardSizes, setCardSizes] = useState([]);
+const gridTemplates = ["1fr 1fr 2fr", "1fr 2fr 1fr", "2fr 1fr 1fr"];
+const gridTemplatesTablet = ["1fr 1fr", "1fr"];
+
+const CategoryList = ({ categories: backendCategories }) => {
+  const size = useWindowSize();
+  const [templateIndexes, setTemplateIndexes] = useState([]);
+  const categories = [...backendCategories, { all: true }];
 
   useEffect(() => {
-    let rowHasLargeCard = false;
-    const sizes = categories.map((category, index) => {
-      const isCardFirstInRow = index % 3 === 0;
-      const isCardLastInRow = (index + 1) % 3 === 0;
-      if (isCardFirstInRow) {
-        if (Math.random() > 0.5) {
-          rowHasLargeCard = true;
-          return true;
-        } else {
-          rowHasLargeCard = false;
-          return false;
-        }
-      }
-      if (rowHasLargeCard) {
-        return false;
-      }
-      if (!rowHasLargeCard && isCardLastInRow) {
-        return true;
-      } else {
-        return false;
-      }
-    });
-    setCardSizes(sizes);
-  }, [categories]);
+    const cardsPerRow = size.width >= breakpoints.desktop ? 3 : 2;
+    const numberOfRows = Math.ceil(categories.length / cardsPerRow);
+    const length =
+      size.width >= breakpoints.desktop ? gridTemplates.length : gridTemplatesTablet.length;
 
-  const displayedCategories = categories.slice(0, Math.ceil(categories.length / 2));
+    if (templateIndexes.length !== numberOfRows) {
+      const newTemplateIndexes = [];
+      for (let i = 0; i < numberOfRows; i++) {
+        let randomIdx;
+        do {
+          randomIdx = Math.floor(Math.random() * length);
+        } while (i > 0 && randomIdx === newTemplateIndexes[i - 1]);
+        newTemplateIndexes.push(randomIdx);
+      }
+      setTemplateIndexes(newTemplateIndexes);
+    }
+  }, [categories.length, size.width, templateIndexes.length]);
+
+  const rows = [];
+  const cardsPerRow = size.width >= breakpoints.desktop ? 3 : 2;
+
+  for (let i = 0; i < categories.length; i += cardsPerRow) {
+    rows.push(categories.slice(i, i + cardsPerRow));
+  }
 
   return (
-    <GridContainer>
-      {displayedCategories.map((category, index) => (
-        <CategoryCard
-          large={cardSizes[index]}
-          key={category._id}
-          category={category}
-        />
+    <List>
+      {rows.map((row, i) => (
+        <Row
+          $template={templateIndexes[i]}
+          key={i}
+        >
+          {row.map((category, index) =>
+            category.all ? (
+              <AllCategoriesCard
+                key="all-categories"
+                large={
+                  size.width >= breakpoints.desktop
+                    ? row.length === 1 || index === 2
+                    : row.length === 1
+                }
+              />
+            ) : (
+              <CategoryCard
+                key={category._id}
+                category={category}
+              />
+            )
+          )}
+        </Row>
       ))}
-      <AllCategoriesCard />
-    </GridContainer>
+    </List>
   );
 };
 

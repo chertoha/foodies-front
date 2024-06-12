@@ -1,12 +1,18 @@
-import Hero from "components/Hero/Hero.jsx";
+// import Hero from "components/Hero/Hero.jsx";
 import Testimonials from "components/Testimonials";
 import { PageWrapper, SectionWrapper } from "./HomePage.styled";
 import Container from "components/Container";
 import Category from "components/Category/Category";
 import RecipesComponent from "components/RecipesComponent";
-import TempAuthButton from "components/TempComponents/TempAuthButton";
-
+// import TempAuthButton from "components/TempComponents/TempAuthButton";
+// import { useGetRecipesQuery } from "../../redux/recipes/recipesApi";
+import { useState } from "react";
 const HomePage = () => {
+  const [values, setValues] = useState("");
+
+  const handleOnClick = () => {
+    setValues("Seafood");
+  };
   // const { data } = useGetRecipiesQuery({
   //   page: 1,
   //   limit: 5,
@@ -19,16 +25,26 @@ const HomePage = () => {
   // const { data, error, isFetching } = useGetCategoriesQuery();
 
   //console.log(data);
+
   return (
     <PageWrapper>
-      <Hero />
+      {/* <Hero /> */}
 
-      <TempAuthButton />
+      {/* <TempAuthButton /> */}
 
       <SectionWrapper>
         <Container>
           <Category />
-          <RecipesComponent />
+          {!values ? (
+            <button
+              type="button"
+              onClick={handleOnClick}
+            >
+              Click me
+            </button>
+          ) : (
+            <RecipesComponent category={values} />
+          )}
         </Container>
       </SectionWrapper>
 

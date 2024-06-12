@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import theme from "styles/theme";
 
 export const LogoLink = styled(Link)`
-  color: ${p => (p.inverse ? p.theme.colors.light : p.theme.colors.accent)};
+  color: ${p => (p.$inverse ? p.theme.colors.light : p.theme.colors.accent)};
   font-size: ${p => p.theme.fontSizes.xl};
   font-weight: ${p => p.theme.fontWeights.extraBold};
   line-height: ${p => p.theme.lineHeights.normal};

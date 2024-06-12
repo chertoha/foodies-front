@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { my } from "styles/atomic";
+import {} from "styles/atomic";
 import theme from "styles/theme";
 
 export const SearchRecipesForm = styled("form")`
@@ -8,7 +8,6 @@ export const SearchRecipesForm = styled("form")`
   flex-direction: column;
   row-gap: 14px;
 
-  ${my(8)};
   width: 100%;
   ${theme.mq.mobileOnly} {
     max-width: 343px;
@@ -17,7 +16,6 @@ export const SearchRecipesForm = styled("form")`
   ${theme.mq.tablet} {
     flex-direction: row;
     column-gap: 14px;
-    ${my(10)};
   }
 
   ${theme.mq.desktop} {
