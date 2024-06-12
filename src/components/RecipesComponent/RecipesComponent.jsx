@@ -24,6 +24,7 @@ const RecipesComponent = ({ category }) => {
   const location = useLocation();
 
   const searchArea = searchParams.get("area") || "ingredient" || "";
+
   const [ingredient, setIngredient] = useState("");
   const [area, setArea] = useState("");
 

@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+// import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useGetIngredientsQuery } from "../../redux/ingredients/ingredientsApi";
 import { useGetAreasQuery } from "../../redux/areas/areasApi";
@@ -9,12 +9,13 @@ const SearchRecipes = ({ onChange }) => {
   const {
     register,
     handleSubmit,
-    setValue,
+    // setValue,
     watch,
-    reset,
-    formState: { errors },
+    // reset,
+    // formState: { errors },
   } = useForm();
-  const watchArea = watch("area");
+
+  // const watchArea = watch("area");
 
   // const [ingredient, setIngredient] = useState("");
   // const [area, setArea] = useState("");
