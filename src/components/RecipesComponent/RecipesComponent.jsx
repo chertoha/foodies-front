@@ -23,10 +23,11 @@ const RecipesComponent = ({ category }) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const location = useLocation();
 
-  // const searchArea = searchParams.get("area" || "ingredient") || "";
-  console.log(searchParams);
-  const [ingredient, setIngredient] = useState("");
-  const [area, setArea] = useState("");
+  const searchArea = searchParams.get("area") || "";
+  const searchIngredient = searchParams.get("ingredient") || "";
+
+  // const [ingredient, setIngredient] = useState("");
+  // const [area, setArea] = useState("");
 
   const [trigger, { data: recipesData, error: recipesError, isFetching: isFetchingRecipes }] =
     useLazyGetRecipesQuery();
@@ -36,19 +37,19 @@ const RecipesComponent = ({ category }) => {
       page: 1,
       limit: 12,
       category: category,
-      area: area,
-      ingredient: ingredient,
+      area: searchArea,
+      ingredient: searchIngredient,
     });
-  }, [trigger, category, area, ingredient]);
+  }, [trigger, category, searchArea, searchIngredient ]);
 
   const handleFiltersChange = (name, value) => {
     if (name === "ingredient") {
-      setIngredient(value);
-      setSearchParams({ category, area: "", ingredient: value });
-      setArea("");
+      // setIngredient(value);
+      setSearchParams({ category, area: searchArea, ingredient: value });
+      // setArea("");
     } else if (name === "area") {
-      setArea(value);
-      setSearchParams({ category, area: value, ingredient: "" });
+      // setArea(value);
+      setSearchParams({ category, area: value, ingredient: searchIngredient });
     }
   };
 
