@@ -1,8 +1,7 @@
-// import { useGetRecipesQuery } from "../../redux/recipes/recipesApi";
-import { useLocation } from "react-router-dom";
-
+import { useEffect } from "react";
+import { useLocation, useSearchParams } from "react-router-dom";
 import { useLazyGetRecipesQuery } from "../../redux/recipes/recipesApi";
-import { useState, useEffect } from "react";
+
 import SearchRecipes from "../SearchRecipes";
 import RecipeCard from "../RecipeCard/RecipeCard";
 import MainTitle from "../MainTitle/MainTitle";
@@ -21,10 +20,14 @@ import {
 } from "./RecipesComponent.styled";
 
 const RecipesComponent = ({ category }) => {
+  const [searchParams, setSearchParams] = useSearchParams();
   const location = useLocation();
 
-  const [ingredient, setIngredient] = useState("");
-  const [area, setArea] = useState("");
+  const searchArea = searchParams.get("area") || "";
+  const searchIngredient = searchParams.get("ingredient") || "";
+
+  // const [ingredient, setIngredient] = useState("");
+  // const [area, setArea] = useState("");
 
   const [trigger, { data: recipesData, error: recipesError, isFetching: isFetchingRecipes }] =
     useLazyGetRecipesQuery();
@@ -34,18 +37,22 @@ const RecipesComponent = ({ category }) => {
       page: 1,
       limit: 12,
       category: category,
-      area: area,
-      ingredient: ingredient,
+      area: searchArea,
+      ingredient: searchIngredient,
     });
-  }, [trigger, category, area, ingredient]);
+  }, [trigger, category, searchArea, searchIngredient]);
 
   const handleFiltersChange = (name, value) => {
     if (name === "ingredient") {
-      setIngredient(value);
+      // setIngredient(value);
+      setSearchParams({ category, area: searchArea, ingredient: value });
+      // setArea("");
     } else if (name === "area") {
-      setArea(value);
+      // setArea(value);
+      setSearchParams({ category, area: value, ingredient: searchIngredient });
     }
   };
+
   console.log(recipesData);
   if (isFetchingRecipes) return <div>Loading...</div>;
   if (recipesError) return <div>Error loading recipes.</div>;
@@ -90,7 +97,7 @@ const RecipesComponent = ({ category }) => {
                       ingredients: recipe.ingredients,
                       isFavorite: recipe.isFavorite || false,
                     }}
-                    author={{ name: "dhsjJs" }}
+                    author={{ name: recipe.owner.name }}
                     onSignIn={() => console.log("Sign in clicked")}
                     onProfile={authorId => console.log(`Profile of author ${authorId} clicked`)}
                     onToggleFavorite={recipeId =>
