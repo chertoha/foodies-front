@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useLocation, useSearchParams } from "react-router-dom";
 import { useLazyGetRecipesQuery } from "../../redux/recipes/recipesApi";
 
@@ -40,7 +40,7 @@ const RecipesComponent = ({ category }) => {
       area: searchArea,
       ingredient: searchIngredient,
     });
-  }, [trigger, category, searchArea, searchIngredient ]);
+  }, [trigger, category, searchArea, searchIngredient]);
 
   const handleFiltersChange = (name, value) => {
     if (name === "ingredient") {

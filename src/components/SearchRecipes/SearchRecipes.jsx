@@ -28,7 +28,6 @@ const SearchRecipes = ({ onChange }) => {
   const { data: areasData, error: areasError, isFetching: isFetchingAreas } = useGetAreasQuery();
 
   const onSubmit = data => {
-    
     onChange("ingredient", data.ingredient);
     onChange("area", data.area);
   };
