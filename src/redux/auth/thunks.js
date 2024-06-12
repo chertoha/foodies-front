@@ -1,10 +1,10 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { authSignUpAPI, authSignInAPI, authLogOutAPI } from "./authAPI";
+import { api, clearAuthHeader, setAuthHeader } from "services/api";
 
 export const authSignUpThunk = createAsyncThunk("authSignUp", async (data, thunkAPI) => {
   try {
-    const response = await authSignUpAPI(data);
-    return response;
+    const response = await api.post(`/users/signup`, data);
+    return response.data;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
   }
@@ -12,8 +12,9 @@ export const authSignUpThunk = createAsyncThunk("authSignUp", async (data, thunk
 
 export const authSignInThunk = createAsyncThunk("authSignIn", async (data, thunkAPI) => {
   try {
-    const response = await authSignInAPI(data);
-    return response;
+    const response = await api.post(`/users/signin`, data);
+    setAuthHeader(response.data.token);
+    return response.data;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
   }
@@ -21,8 +22,24 @@ export const authSignInThunk = createAsyncThunk("authSignIn", async (data, thunk
 
 export const authLogOutThunk = createAsyncThunk("authLogOut", async (token, thunkAPI) => {
   try {
-    const response = await authLogOutAPI(token);
+    const response = await api.post(`/users/logout`);
+    clearAuthHeader();
     return response;
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.message);
+  }
+});
+
+export const authCurrentUserThunk = createAsyncThunk("authCurrentUser", async (_, thunkAPI) => {
+  const state = thunkAPI.getState();
+  const token = state.auth.token;
+  if (!token) {
+    return thunkAPI.rejectWithValue("Cant get user");
+  }
+  try {
+    setAuthHeader(token);
+    const response = await api.post(`users/current`);
+    return response.data;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
   }
