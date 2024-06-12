@@ -11,11 +11,12 @@ const initialState = {
 };
 
 const fulfildAuthSignUp = (state, { payload }) => {
-  state.user = payload;
+  state.token = payload.token;
   state.isLoading = false;
 };
 const pandingAuthSignUp = (state, _) => {
   state.isLoading = true;
+  state.error = null;
 };
 const rejectedAuthSignUp = (state, { error }) => {
   state.isLoading = false;
@@ -23,11 +24,13 @@ const rejectedAuthSignUp = (state, { error }) => {
 };
 
 const fulfildAuthSignIn = (state, { payload }) => {
-  state.token = payload;
+  state.token = payload.token;
+  state.user = payload.user;
   state.isLoading = false;
 };
 const pandingAuthSignIn = (state, _) => {
   state.isLoading = true;
+  state.error = null;
 };
 const rejectedAuthSignIn = (state, { error }) => {
   state.isLoading = false;
@@ -35,6 +38,7 @@ const rejectedAuthSignIn = (state, { error }) => {
 };
 
 const fulfildAuthLogOut = (state, _) => {
+  state.error = null;
   state.token = "";
   state.isLoading = false;
 };

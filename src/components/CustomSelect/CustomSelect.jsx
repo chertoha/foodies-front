@@ -1,9 +1,9 @@
+import React from "react";
 import { StyledSelect } from "./CustomSelect.styled";
 
-const CustomSelect = ({ name, options, value, onChange, placeholder }) => {
+const CustomSelect = React.forwardRef(({ name, options, value, onChange, placeholder }, ref) => {
   const handleChange = selectedOption => {
-    // console.log(`Setting ${name} to ${selectedOption ? selectedOption.value : ""}`);
-    onChange(name, selectedOption ? selectedOption.value : "");
+    onChange(name, selectedOption ? selectedOption.value : ""); // Додаємо перевірку на undefined
   };
 
   return (
@@ -16,8 +16,9 @@ const CustomSelect = ({ name, options, value, onChange, placeholder }) => {
       value={options.find(option => option.value === value) || null}
       onChange={handleChange}
       placeholder={placeholder}
+      ref={ref}
     />
   );
-};
+});
 
 export default CustomSelect;

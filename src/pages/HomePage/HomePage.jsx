@@ -6,12 +6,24 @@ import Category from "components/Category/Category";
 import RecipesComponent from "components/RecipesComponent";
 // import TempAuthButton from "components/TempComponents/TempAuthButton";
 // import { useGetRecipesQuery } from "../../redux/recipes/recipesApi";
-import { useState } from "react";
-const HomePage = () => {
-  const [values, setValues] = useState("");
+// import { useState } from "react";
+import { useSearchParams } from "react-router-dom";
 
-  const handleOnClick = () => {
-    setValues("Seafood");
+import { CategoryTest } from "components/Category/Category";
+
+const HomePage = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const category = searchParams.get("category") || "";
+  const area = searchParams.get("area") || "";
+  const ingredient = searchParams.get("ingredient") || "";
+
+  const handleSelectCategory = category => {
+    setSearchParams({ category, area: "", ingredient: "" });
+  };
+
+  const handleFiltersChange = (name, value) => {
+    const newParams = { category, area, ingredient, [name]: value };
+    setSearchParams(newParams);
   };
   // const { data } = useGetRecipiesQuery({
   //   page: 1,
@@ -35,15 +47,14 @@ const HomePage = () => {
       <SectionWrapper>
         <Container>
           <Category />
-          {!values ? (
-            <button
-              type="button"
-              onClick={handleOnClick}
-            >
-              Click me
-            </button>
-          ) : (
-            <RecipesComponent category={values} />
+          <CategoryTest onSelectCategory={handleSelectCategory} />
+          {category && (
+            <RecipesComponent
+              category={category}
+              area={area}
+              ingredient={ingredient}
+              onFiltersChange={handleFiltersChange}
+            />
           )}
         </Container>
       </SectionWrapper>
