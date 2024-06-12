@@ -7,7 +7,7 @@ const IngredientCard = ({ ingredient, onDelete }) => {
     const deleteIngregient = () => {
       onDelete(ingredient.id);
     };
-    const { id, name, quantity, image } = ingredient;
+    const { name, quantity, image } = ingredient;
 
     return (
       <div

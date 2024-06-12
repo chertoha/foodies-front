@@ -28,12 +28,14 @@ const AddRecipePage = () => {
               "Reveal your culinary art, share your favorite recipe and create gastronomic masterpieces with us."
             }
           />
-          <FormProvider {...methods}>
-            <form onSubmit={methods.handleSubmit(onSubmit)}>
-              <ImageDropZone name="thumb" />
-              <button className="">Submit</button>
-            </form>
-          </FormProvider>
+          <AddRecipeForm>
+            <FormProvider {...methods}>
+              <form onSubmit={methods.handleSubmit(onSubmit)}>
+                <ImageDropZone name="thumb" />
+                <button className="">Submit</button>
+              </form>
+            </FormProvider>
+          </AddRecipeForm>
         </Container>
       </div>
     </>

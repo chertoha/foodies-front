@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { useForm, useFieldArray, Controller } from "react-hook-form";
+import { useForm, useFieldArray } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schema } from "./yupValidation";
 import { FieldsInput } from "./InputFields.styled";
 import { useGetCategoriesQuery } from "../../redux/categories/categoriesApi";
-import { useGetIngredientsQuery } from "../../redux/ingredients/ingredientsApi";
+// import { useGetIngredientsQuery } from "../../redux/ingredients/ingredientsApi";
 import { useCreateRecipeMutation } from "../../redux/recipes/recipesApi";
 import { Form } from "./AddRecipeForm.styled";
 import ActiveButton from "components/Buttons/ActiveButton";
