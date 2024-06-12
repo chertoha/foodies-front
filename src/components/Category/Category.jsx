@@ -4,7 +4,6 @@ import CategoryList from "../CategoryGrid/CategoryList";
 import MainTitle from "components/MainTitle";
 import SubTitle from "components/SubTitle";
 import { MainTitleWrapper, SubTitleWrapper } from "./Category.styled";
-import Container from "components/Container";
 
 const Category = () => {
   const { data, error, isFetching } = useGetCategoriesQuery({ page: 1, limit: 11 });
@@ -15,7 +14,7 @@ const Category = () => {
   if (error) return <div>Error loading categories.</div>;
 
   return (
-    <Container>
+    <>
       <MainTitleWrapper>
         <MainTitle label={"Categories"}></MainTitle>
       </MainTitleWrapper>
@@ -27,7 +26,7 @@ const Category = () => {
         ></SubTitle>
       </SubTitleWrapper>
       <CategoryList categories={data.result} />
-    </Container>
+    </>
   );
 };
 
