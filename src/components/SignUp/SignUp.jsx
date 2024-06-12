@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { authSignUpThunk } from "../../redux/auth/thunks";
-import { useAuth } from "../../hooks/useAuth";
 
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -21,6 +20,7 @@ import {
   ErrorTextStyled,
 } from "./SignUp.styled";
 import { toast } from "react-toastify";
+import { async } from "q";
 
 const schema = object({
   name: string().required().min(2),
@@ -33,7 +33,6 @@ const schema = object({
 const SignUp = ({ switchForm, onClose }) => {
   const dispatch = useDispatch();
   const [eyeState, setEyeState] = useState(true);
-  const { token, error } = useAuth();
 
   const {
     register,
@@ -49,14 +48,14 @@ const SignUp = ({ switchForm, onClose }) => {
     },
   });
 
-  const onSubmit = data => {
-    dispatch(authSignUpThunk(data));
-    if (token) {
+  const onSubmit = async data => {
+    const res = await dispatch(authSignUpThunk(data));
+    if (res.type === "authSignUp/fulfilled") {
       reset();
       onClose();
     }
-    if (error) {
-      toast.error(`${error.message}`, {
+    if (res.type === "authSignUp/rejected") {
+      toast.error(`${res.error?.message}`, {
         theme: "light",
       });
     }

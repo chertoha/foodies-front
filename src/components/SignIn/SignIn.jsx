@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { authSignInThunk } from "../../redux/auth/thunks";
-import { useAuth } from "../../hooks/useAuth";
 
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -32,7 +31,6 @@ const schema = object({
 const SignIn = ({ switchForm, onClose }) => {
   const dispatch = useDispatch();
   const [eyeState, setEyeState] = useState(true);
-  const { token, error } = useAuth();
 
   const {
     register,
@@ -47,14 +45,14 @@ const SignIn = ({ switchForm, onClose }) => {
     },
   });
 
-  const onSubmit = data => {
-    dispatch(authSignInThunk(data));
-    if (token) {
+  const onSubmit = async data => {
+    const res = await dispatch(authSignInThunk(data));
+    if (res.type === "authSignIn/fulfilled") {
       reset();
       onClose();
     }
-    if (error) {
-      toast.error(`${error.message}`, {
+    if (res.type === "authSignIn/rejected") {
+      toast.error(`${res.error?.message}`, {
         theme: "light",
       });
     }

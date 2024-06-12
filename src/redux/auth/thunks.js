@@ -30,10 +30,16 @@ export const authLogOutThunk = createAsyncThunk("authLogOut", async (token, thun
   }
 });
 
-export const authCurrentUserThunk = createAsyncThunk("authCurrentUser", async (data, thunkAPI) => {
+export const authCurrentUserThunk = createAsyncThunk("authCurrentUser", async (_, thunkAPI) => {
+  const state = thunkAPI.getState();
+  const token = state.auth.token;
+  if (!token) {
+    return thunkAPI.rejectWithValue("Cant get user");
+  }
   try {
+    setAuthHeader(token);
     const response = await api.post(`users/current`);
-    return response;
+    return response.data;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
   }
