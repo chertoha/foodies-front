@@ -26,7 +26,7 @@ const Category = () => {
           }
         ></SubTitle>
       </SubTitleWrapper>
-      <CategoryList categories={data.categories} />
+      <CategoryList categories={data.result} />
     </Container>
   );
 };
