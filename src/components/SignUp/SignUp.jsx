@@ -20,7 +20,6 @@ import {
   ErrorTextStyled,
 } from "./SignUp.styled";
 import { toast } from "react-toastify";
-import { async } from "q";
 
 const schema = object({
   name: string().required().min(2),
