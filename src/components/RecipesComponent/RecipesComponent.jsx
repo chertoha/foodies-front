@@ -1,8 +1,7 @@
-// import { useGetRecipesQuery } from "../../redux/recipes/recipesApi";
-import { useLocation } from "react-router-dom";
-// import { useSearchParams } from "react-router-dom";
-import { useLazyGetRecipesQuery } from "../../redux/recipes/recipesApi";
 import { useState, useEffect } from "react";
+import { useLocation, useSearchParams } from "react-router-dom";
+import { useLazyGetRecipesQuery } from "../../redux/recipes/recipesApi";
+
 import SearchRecipes from "../SearchRecipes";
 import RecipeCard from "../RecipeCard/RecipeCard";
 import MainTitle from "../MainTitle/MainTitle";
@@ -21,10 +20,10 @@ import {
 } from "./RecipesComponent.styled";
 
 const RecipesComponent = ({ category }) => {
-  // const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const location = useLocation();
 
-  // const searchArea = searchParams.get("area") || "";
+  const searchArea = searchParams.get("area") || "ingredient" || "";
   const [ingredient, setIngredient] = useState("");
   const [area, setArea] = useState("");
 
@@ -44,13 +43,14 @@ const RecipesComponent = ({ category }) => {
   const handleFiltersChange = (name, value) => {
     if (name === "ingredient") {
       setIngredient(value);
+      setSearchParams({ category, area: "", ingredient: value });
       setArea("");
     } else if (name === "area") {
       setArea(value);
-      // setSearchParams(value);
-      setIngredient("");
+      setSearchParams({ category, area: value, ingredient: "" }); // Обновляємо searchParams правильно
     }
   };
+
   console.log(recipesData);
   if (isFetchingRecipes) return <div>Loading...</div>;
   if (recipesError) return <div>Error loading recipes.</div>;

@@ -37,7 +37,7 @@ const UserPage = () => {
   const [allActiveTab, setAllActiveTab] = useState("My recipes");
   const [lessActiveTab, setLessActiveTab] = useState("Recipes");
 
-  const isCurrentUserProfile = location.pathname.includes("/user/12");
+  const isCurrentUserProfile = location.pathname.includes("/user/1");
 
   const handleTabChange = tab => {
     setAllActiveTab(tab);

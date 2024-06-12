@@ -14,9 +14,16 @@ import { CategoryTest } from "components/Category/Category";
 const HomePage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const category = searchParams.get("category") || "";
+  const area = searchParams.get("area") || "";
+  const ingredient = searchParams.get("ingredient") || "";
 
   const handleSelectCategory = category => {
-    setSearchParams({ category });
+    setSearchParams({ category, area: "", ingredient: "" });
+  };
+
+  const handleFiltersChange = (name, value) => {
+    const newParams = { category, area, ingredient, [name]: value };
+    setSearchParams(newParams);
   };
   // const { data } = useGetRecipiesQuery({
   //   page: 1,
@@ -39,9 +46,16 @@ const HomePage = () => {
 
       <SectionWrapper>
         <Container>
-          <Category />
+          {/* <Category /> */}
           <CategoryTest onSelectCategory={handleSelectCategory} />
-          {category && <RecipesComponent category={category} />}
+          {category && (
+            <RecipesComponent
+              category={category}
+              area={area}
+              ingredient={ingredient}
+              onFiltersChange={handleFiltersChange}
+            />
+          )}
         </Container>
       </SectionWrapper>
 
