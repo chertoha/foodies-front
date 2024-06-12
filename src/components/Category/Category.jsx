@@ -5,7 +5,7 @@ import MainTitle from "components/MainTitle";
 import SubTitle from "components/SubTitle";
 import { MainTitleWrapper, SubTitleWrapper } from "./Category.styled";
 
-const Category = () => {
+const Category = ({ onSelectCategory }) => {
   const [page, setPage] = useState(1);
   const [categories, setCategories] = useState([]);
   const [hasMore, setHasMore] = useState(true);
@@ -19,7 +19,7 @@ const Category = () => {
     if (data) {
       setCategories(prev => [...prev, ...data.result]);
       if (data.result.length < 11) {
-        setHasMore(false); // If less than 11 categories are returned, assume no more categories are available
+        setHasMore(false);
       }
     }
   }, [data]);
@@ -43,6 +43,7 @@ const Category = () => {
         />
       </SubTitleWrapper>
       <CategoryList
+        onSelectCategory={onSelectCategory}
         onAllCategoriesClick={handleAllCategoriesClick}
         categories={categories}
         showAllCategoriesCard={hasMore}

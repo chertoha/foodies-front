@@ -46,8 +46,8 @@ const HomePage = () => {
 
       <SectionWrapper>
         <Container>
-          <Category />
-          <CategoryTest onSelectCategory={handleSelectCategory} />
+          {/* <Category /> */}
+          <Category onSelectCategory={handleSelectCategory} />
           {category && (
             <RecipesComponent
               category={category}

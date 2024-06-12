@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { CategoryCard } from "../CategoryCard/CategoryCard";
+import CategoryCard from "../CategoryCard/CategoryCard";
+import AllCategoriesCard from "../AllCategoriesCard/AllCategoriesCard";
 import { List, Row } from "./CategoryList.styled";
 import { useWindowSize } from "@uidotdev/usehooks";
-import AllCategoriesCard from "components/AllCategoriesCard/AllCategoriesCard";
 import { breakpoints } from "styles/theme";
 
 const gridTemplates = ["1fr 1fr 2fr", "1fr 2fr 1fr", "2fr 1fr 1fr"];
@@ -57,18 +57,19 @@ const CategoryList = ({
               showAllCategoriesCard && (
                 <AllCategoriesCard
                   key="all-categories"
-                  onClick={onAllCategoriesClick}
                   large={
                     size.width >= breakpoints.desktop
                       ? row.length === 1 || index === 2
                       : row.length === 1
                   }
+                  onClick={onAllCategoriesClick}
                 />
               )
             ) : (
               <CategoryCard
                 key={category._id}
                 category={category}
+                onSelectCategory={() => console.log(`Selected category: ${category.name}`)}
               />
             )
           )}

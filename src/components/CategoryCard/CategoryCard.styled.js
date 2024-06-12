@@ -23,12 +23,7 @@ export const CardContainer = styled.li`
   ${theme.mq.tablet} {
     height: 369px;
     border-radius: 30px;
-    /* width: ${props => (props.$large ? "100%" : "calc(50% - 10px)")}; */
   }
-
-  /* ${theme.mq.desktop} {
-    width: ${props => (props.$large ? "calc(40% - 13.33px)" : "calc(30% - 13.33px)")};
-  } */
 `;
 
 export const CardImage = styled.img`
