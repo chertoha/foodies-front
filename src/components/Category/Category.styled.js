@@ -16,5 +16,6 @@ export const SubTitleWrapper = styled("div")`
 
   ${theme.mq.tablet} {
     margin-bottom: 40px;
+    width: 531px;
   }
 `;

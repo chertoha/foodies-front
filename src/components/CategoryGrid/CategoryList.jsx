@@ -8,10 +8,16 @@ import { breakpoints } from "styles/theme";
 const gridTemplates = ["1fr 1fr 2fr", "1fr 2fr 1fr", "2fr 1fr 1fr"];
 const gridTemplatesTablet = ["1fr 1fr", "1fr"];
 
-const CategoryList = ({ categories: backendCategories }) => {
+const CategoryList = ({
+  categories: backendCategories,
+  onAllCategoriesClick,
+  showAllCategoriesCard,
+}) => {
   const size = useWindowSize();
   const [templateIndexes, setTemplateIndexes] = useState([]);
-  const categories = [...backendCategories, { all: true }];
+  const categories = showAllCategoriesCard
+    ? [...backendCategories, { all: true }]
+    : backendCategories;
 
   useEffect(() => {
     const cardsPerRow = size.width >= breakpoints.desktop ? 3 : 2;
@@ -48,14 +54,17 @@ const CategoryList = ({ categories: backendCategories }) => {
         >
           {row.map((category, index) =>
             category.all ? (
-              <AllCategoriesCard
-                key="all-categories"
-                large={
-                  size.width >= breakpoints.desktop
-                    ? row.length === 1 || index === 2
-                    : row.length === 1
-                }
-              />
+              showAllCategoriesCard && (
+                <AllCategoriesCard
+                  key="all-categories"
+                  onClick={onAllCategoriesClick}
+                  large={
+                    size.width >= breakpoints.desktop
+                      ? row.length === 1 || index === 2
+                      : row.length === 1
+                  }
+                />
+              )
             ) : (
               <CategoryCard
                 key={category._id}

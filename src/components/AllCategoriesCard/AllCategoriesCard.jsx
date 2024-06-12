@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 import theme from "styles/theme";
 
 const CardContainer = styled.li`
@@ -48,10 +47,10 @@ const CardContainer = styled.li`
 //   } */
 // `;
 
-const AllCategoriesCard = () => (
+const AllCategoriesCard = ({ onClick }) => (
   <CardContainer>
-    <Link
-      to="/categories/all"
+    <button
+      onClick={onClick}
       style={{
         color: "white",
         textAlign: "center",
@@ -59,7 +58,7 @@ const AllCategoriesCard = () => (
       }}
     >
       <h2>ALL CATEGORIES</h2>
-    </Link>
+    </button>
   </CardContainer>
 );
 
