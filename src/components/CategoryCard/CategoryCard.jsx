@@ -9,25 +9,36 @@ import {
 import { Link } from "react-router-dom";
 import SpriteIcon from "components/UIKit/SpriteIcon";
 
-const CategoryCard = ({ category, large }) => {
+import { useState } from "react";
+
+const CategoryCard = ({ category, large, onSelectCategory }) => {
   return (
-    <CardContainer $large={large}>
-      <Link to={`/recipes/${category.id}`}>
+    <>
+      <button
+        key={category.name}
+        onClick={() => onSelectCategory(category.name)}
+      >
+        {category.name}
+      </button>
+
+      <CardContainer $large={large}>
+        {/* <Link to={`/recipes/${category.id}`}> */}
         <CardImage
           src={category.img}
           alt={category.name}
         />
         <ButtonsContainer>
           <CardBadge>{category.name}</CardBadge>
-          <CardButton>
+          <CardButton type="button">
             <SpriteIcon
               id="icon-arrow-up-right"
               size={[18, 18, 18]}
             />
           </CardButton>
         </ButtonsContainer>
-      </Link>
-    </CardContainer>
+        {/* </Link> */}
+      </CardContainer>
+    </>
   );
 };
 

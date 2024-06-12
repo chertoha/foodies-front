@@ -1,20 +1,34 @@
-import list from "pages/UserPage/list.json";
+// import list from "pages/UserPage/list.json";
 import { useGetFavoriteRecipesQuery } from "../../redux/recipes/recipesApi";
-// import UserAvatar from "components/UserAvatar/UserAvatar";
+
 import SubTitle from "../SubTitle/SubTitle";
 import UserPageListItems from "../UserPageListItems/UserPageListItems";
 import { SubTitleWrapper } from "./ProfilePages.styled";
 const MyFavorites = () => {
-  const { data } = useGetFavoriteRecipesQuery({
+  const {
+    data,
+    error: errorMyFavorites,
+    isFetching: isFetchingMyFavorites,
+    refetch: refetchMyFavorites,
+  } = useGetFavoriteRecipesQuery({
     page: 1,
-    limit: 5,
+    limit: 9,
   });
-  console.log(data);
+
+  if (isFetchingMyFavorites) return <div>Loading...</div>;
+  if (errorMyFavorites) return <div>Error loading My Favorites.</div>;
+  if (!data) return null;
+
+  console.log("MyFavorites", data.result);
 
   return (
     <>
-      {list.length > 0 ? (
-        <UserPageListItems list={list} />
+      {data.result.length > 0 ? (
+        <UserPageListItems
+          recipes={data.result}
+          type="myFavorites"
+          refetchRecipes={refetchMyFavorites}
+        />
       ) : (
         <SubTitleWrapper>
           <SubTitle

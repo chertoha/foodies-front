@@ -14,6 +14,8 @@ const clearAuthHeader = () => {
   api.defaults.headers.common.Authorization = "";
 };
 
+api.defaults.headers.common.Authorization = `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NmEwMzk2Mjk5MDA5MWY3NTM2ZTdlNiIsImlhdCI6MTcxODIzNTUyNywiZXhwIjoxNzE4MzIxOTI3fQ.Qfje5PMhD0WiAsqAmFHYa4ZwcOFVB8BvXurur6fHzDE`;
+
 const axiosBaseQuery =
   (baseUrl = "") =>
   async ({ url, method, data, params, headers }) => {

@@ -5,7 +5,7 @@ import MainTitle from "components/MainTitle";
 import SubTitle from "components/SubTitle";
 import { MainTitleWrapper, SubTitleWrapper } from "./Category.styled";
 
-const Category = () => {
+const Category = ({ onSelectCategory }) => {
   const { data, error, isFetching } = useGetCategoriesQuery({ page: 1, limit: 11 });
   console.log(data);
 
@@ -25,7 +25,10 @@ const Category = () => {
           }
         ></SubTitle>
       </SubTitleWrapper>
-      <CategoryList categories={data.result} />
+      <CategoryList
+        onClickCategory={onSelectCategory}
+        categories={data.result}
+      />
     </>
   );
 };

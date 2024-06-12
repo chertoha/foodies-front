@@ -1,4 +1,4 @@
-import { useGetUserInfoQuery } from "../../redux/users/usersApi";
+// import { useGetUserInfoQuery } from "../../redux/users/usersApi";
 import UserAvatar from "../../components/UserAvatar/UserAvatar";
 import sprite from "assets/images/icons/sprite.svg";
 import ActiveButton from "components/Buttons/ActiveButton/ActiveButton";
@@ -14,12 +14,76 @@ import {
   Icon,
 } from "./UserInfo.styled";
 
-const UserInfo = () => {
-  const { data } = useGetUserInfoQuery();
-  console.log(data);
+const UserInfo = ({
+  isCurrentUserProfile,
+  avatar,
+  name,
+  email,
+  recipesCount,
+  favoritesCount,
+  followersCount,
+  followingCount,
+}) => {
   return (
     <UserInfoWrapp>
-      <UserCard>
+      {isCurrentUserProfile ? (
+        <>
+          <UserCard>
+            <IconWrapp>
+              <UserAvatar
+                size={[80, 120, 120]}
+                src={avatar}
+              />
+              <Button>
+                <Icon>
+                  <use href={sprite + "#icon-plus"}></use>
+                </Icon>
+              </Button>
+            </IconWrapp>
+            <UserCardTitle>{name}</UserCardTitle>
+            <UserCardInfo>
+              <UserCardtext>
+                <UserCardspan>Email: {email}</UserCardspan>
+              </UserCardtext>
+              <UserCardtext>
+                <UserCardspan>Added recipes: {recipesCount}</UserCardspan>9
+              </UserCardtext>
+              <UserCardtext>
+                <UserCardspan>Favorites: {favoritesCount}</UserCardspan>9
+              </UserCardtext>
+              <UserCardtext>
+                <UserCardspan>Followers: {followersCount}</UserCardspan>5
+              </UserCardtext>
+              <UserCardtext>
+                <UserCardspan>Following: {followingCount}</UserCardspan>5
+              </UserCardtext>
+            </UserCardInfo>
+          </UserCard>
+        </>
+      ) : (
+        <>
+          <UserCard>
+            <IconWrapp>
+              <UserAvatar
+                size={[80, 120, 120]}
+                src={avatar}
+              />
+            </IconWrapp>
+            <UserCardTitle>{name}</UserCardTitle>
+            <UserCardInfo>
+              <UserCardtext>
+                <UserCardspan>Added recipes: {recipesCount}</UserCardspan>9
+              </UserCardtext>
+
+              <UserCardtext>
+                <UserCardspan>Followers: {followersCount}</UserCardspan>5
+              </UserCardtext>
+            </UserCardInfo>
+          </UserCard>
+        </>
+      )}
+
+      {/* <UserCard>
         <IconWrapp>
           <UserAvatar
             size={[80, 120, 120]}
@@ -52,7 +116,7 @@ const UserInfo = () => {
             <UserCardspan>Following:</UserCardspan>5
           </UserCardtext>
         </UserCardInfo>
-      </UserCard>
+      </UserCard> */}
       <ActiveButton label={"log out"} />
     </UserInfoWrapp>
   );

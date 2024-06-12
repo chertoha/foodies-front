@@ -16,12 +16,12 @@ import {
 const FollowersList = ({ followers }) => {
   return (
     <FollowerList>
-      {followers.map(({ id, image, name, recipes, card }) => (
-        <FollowerItem key={id}>
+      {followers.map(({ _id, avatar, name, recipes, card }) => (
+        <FollowerItem key={_id}>
           <FollowerItemWrapp>
             <UserAvatar
               size={[60, 85, 85]}
-              src={image}
+              src={avatar}
             />
 
             <div>
@@ -32,16 +32,16 @@ const FollowersList = ({ followers }) => {
           </FollowerItemWrapp>
 
           <CardList>
-            {card.map(card => (
+            {[].map(card => (
               <li key={card}>
                 <CardListImage
-                  src={card}
+                  src={"../"}
                   alt="follow"
                 />
               </li>
             ))}
           </CardList>
-          <LinkButton to={`/some-page/${id}`}>
+          <LinkButton to={`/user/${_id}`}>
             <Icon>
               <use href={sprite + "#icon-arrow-up-right"}></use>
             </Icon>

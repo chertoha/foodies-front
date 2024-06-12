@@ -52,6 +52,23 @@ export const UserPageListImage = styled("img")`
   ${theme.mq.desktop} {
   }
 `;
+
+export const UserPageWrappText = styled("div")`
+  width: 166px;
+
+  ${theme.mq.mobileOnly} {
+    width: 100%;
+    max-width: 166px;
+  }
+
+  ${theme.mq.tablet} {
+    width: 468px;
+  }
+
+  ${theme.mq.desktop} {
+    width: 610px;
+  }
+`;
 export const UserPageListTitle = styled("h4")`
   width: 166px;
   height: 24px;

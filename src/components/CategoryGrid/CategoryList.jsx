@@ -8,7 +8,7 @@ import { breakpoints } from "styles/theme";
 const gridTemplates = ["1fr 1fr 2fr", "1fr 2fr 1fr", "2fr 1fr 1fr"];
 const gridTemplatesTablet = ["1fr 1fr", "1fr"];
 
-const CategoryList = ({ categories: backendCategories }) => {
+const CategoryList = ({ categories: backendCategories, onClickCategory }) => {
   const size = useWindowSize();
   const [templateIndexes, setTemplateIndexes] = useState([]);
   const categories = [...backendCategories, { all: true }];
@@ -58,6 +58,7 @@ const CategoryList = ({ categories: backendCategories }) => {
               />
             ) : (
               <CategoryCard
+                onSelectCategory={onClickCategory}
                 key={category._id}
                 category={category}
               />
