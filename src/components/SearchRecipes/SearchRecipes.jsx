@@ -20,6 +20,7 @@ const SearchRecipes = ({ onChange }) => {
       setIngredient(value);
     } else if (name === "area") {
       setArea(value);
+      setIngredient("");
     }
     onChange(name, value);
   };
@@ -30,8 +31,7 @@ const SearchRecipes = ({ onChange }) => {
     onChange("area", area);
   };
 
-  // console.log("ingredient", ingredient);
-  // console.log("area", area);
+  console.log("ingredient", ingredient, "area", area);
 
   if (isFetchingIngredients || isFetchingAreas) return <div>Loading...</div>;
   if (ingredientsError || areasError) return <div>Error loading categories.</div>;

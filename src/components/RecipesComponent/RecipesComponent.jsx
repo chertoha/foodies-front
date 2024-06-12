@@ -1,6 +1,6 @@
-// import { useGetRecipesQuery } from "../../redux/recipes/recipesApi";
+import { useGetRecipesQuery } from "../../redux/recipes/recipesApi";
 import { useLocation } from "react-router-dom";
-
+// import { useSearchParams } from "react-router-dom";
 import { useLazyGetRecipesQuery } from "../../redux/recipes/recipesApi";
 import { useState, useEffect } from "react";
 import SearchRecipes from "../SearchRecipes";
@@ -21,8 +21,10 @@ import {
 } from "./RecipesComponent.styled";
 
 const RecipesComponent = ({ category }) => {
+  // const [searchParams, setSearchParams] = useSearchParams();
   const location = useLocation();
 
+  // const searchArea = searchParams.get("area") || "";
   const [ingredient, setIngredient] = useState("");
   const [area, setArea] = useState("");
 
@@ -42,8 +44,11 @@ const RecipesComponent = ({ category }) => {
   const handleFiltersChange = (name, value) => {
     if (name === "ingredient") {
       setIngredient(value);
+      setArea("");
     } else if (name === "area") {
       setArea(value);
+      // setSearchParams(value);
+      setIngredient("");
     }
   };
   console.log(recipesData);
@@ -90,7 +95,7 @@ const RecipesComponent = ({ category }) => {
                       ingredients: recipe.ingredients,
                       isFavorite: recipe.isFavorite || false,
                     }}
-                    author={"dhsjJs"}
+                    author={{ name: recipe.owner.name }}
                     onSignIn={() => console.log("Sign in clicked")}
                     onProfile={authorId => console.log(`Profile of author ${authorId} clicked`)}
                     onToggleFavorite={recipeId =>

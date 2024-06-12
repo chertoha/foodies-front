@@ -1,4 +1,6 @@
 import { Outlet } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+
 import Container from "components/Container";
 import MainTitle from "components/MainTitle/MainTitle";
 import SubTitle from "components/SubTitle";
@@ -18,18 +20,30 @@ import {
   TabsButton,
 } from "./UserPage.styled";
 import { useState } from "react";
-const tabs = [
+const allTabs = [
   { id: 1, tab: "My recipes", label: "My recipes" },
   { id: 2, tab: "My favorites", label: "My favorites" },
   { id: 3, tab: "Followers", label: "Followers" },
   { id: 4, tab: "Following", label: "Following" },
 ];
+
+const lessTabs = [
+  { id: 1, tab: "Recipes", label: "Recipes" },
+  { id: 2, tab: "Followers", label: "Followers" },
+];
+
 const UserPage = () => {
-  const [activeTab, setActiveTab] = useState("My recipes");
+  const location = useLocation();
+  const [allActiveTab, setAllActiveTab] = useState("My recipes");
+  const [lessActiveTab, setLessActiveTab] = useState("Recipes");
+
+  const isCurrentUserProfile = location.pathname.includes("/user/12");
 
   const handleTabChange = tab => {
-    setActiveTab(tab);
+    setAllActiveTab(tab);
+    setLessActiveTab(tab);
   };
+
   return (
     <SectionWrapper>
       <Container>
@@ -49,22 +63,51 @@ const UserPage = () => {
           <UserInfo />
 
           <ListWrapp>
-            <TabsList>
-              {tabs.map(({ id, label, tab }) => (
-                <li key={id}>
-                  <TabsButton
-                    variant={activeTab === label ? "active" : "inactive"}
-                    onClick={() => handleTabChange(tab)}
-                  >
-                    {label}
-                  </TabsButton>
-                </li>
-              ))}
-            </TabsList>
-            {activeTab === "My recipes" && <MyRecipes />}
-            {activeTab === "My favorites" && <MyFavorites />}
-            {activeTab === "Followers" && <Followers />}
-            {activeTab === "Following" && <Following />}
+            {isCurrentUserProfile ? (
+              <>
+                <TabsList>
+                  {allTabs.map(({ id, label, tab }) => (
+                    <li key={id}>
+                      <TabsButton
+                        variant={allActiveTab === label ? "active" : "inactive"}
+                        onClick={() => handleTabChange(tab)}
+                      >
+                        {label}
+                      </TabsButton>
+                    </li>
+                  ))}
+                </TabsList>
+              </>
+            ) : (
+              <>
+                <TabsList>
+                  {lessTabs.map(({ id, label, tab }) => (
+                    <li key={id}>
+                      <TabsButton
+                        variant={lessActiveTab === label ? "active" : "inactive"}
+                        onClick={() => handleTabChange(tab)}
+                      >
+                        {label}
+                      </TabsButton>
+                    </li>
+                  ))}
+                </TabsList>
+              </>
+            )}
+
+            {isCurrentUserProfile ? (
+              <>
+                {allActiveTab === "My recipes" && <MyRecipes />}
+                {allActiveTab === "My favorites" && <MyFavorites />}
+                {allActiveTab === "Followers" && <Followers />}
+                {allActiveTab === "Following" && <Following />}
+              </>
+            ) : (
+              <>
+                {lessActiveTab === "Recipes" && <MyRecipes />}
+                {lessActiveTab === "Followers" && <Followers />}
+              </>
+            )}
 
             <Outlet />
           </ListWrapp>
