@@ -1,3 +1,4 @@
+import { useGetUserInfoQuery } from "../../redux/users/usersApi";
 import UserAvatar from "../../components/UserAvatar/UserAvatar";
 import sprite from "assets/images/icons/sprite.svg";
 import ActiveButton from "components/Buttons/ActiveButton/ActiveButton";
@@ -14,6 +15,8 @@ import {
 } from "./UserInfo.styled";
 
 const UserInfo = () => {
+  const { data } = useGetUserInfoQuery();
+  console.log(data);
   return (
     <UserInfoWrapp>
       <UserCard>
