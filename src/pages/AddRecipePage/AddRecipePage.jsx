@@ -7,13 +7,13 @@ import Breadcrumbs from "components/UIKit/Breadcrumbs";
 import AddRecipeForm from "components/AddRecipeForm/AddRecipeForm";
 
 const AddRecipePage = () => {
-  const methods = useForm({
-    defaultValues: {
-      thumb: null,
-    },
-  });
+  // const methods = useForm({
+  //   defaultValues: {
+  //     thumb: null,
+  //   },
+  // });
 
-  const onSubmit = data => console.log(data);
+  // const onSubmit = data => console.log(data);
 
   return (
     <>
@@ -29,12 +29,12 @@ const AddRecipePage = () => {
             }
           />
           <AddRecipeForm>
-            <FormProvider {...methods}>
+            {/* <FormProvider {...methods}>
               <form onSubmit={methods.handleSubmit(onSubmit)}>
                 <ImageDropZone name="thumb" />
                 <button className="">Submit</button>
               </form>
-            </FormProvider>
+            </FormProvider> */}
           </AddRecipeForm>
         </Container>
       </div>

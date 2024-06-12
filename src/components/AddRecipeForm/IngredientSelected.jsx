@@ -3,7 +3,7 @@ import { useGetIngredientsQuery } from "../../redux/ingredients/ingredientsApi";
 import IngredientCard from "./IngredientSelectedCard";
 
 const IngredientSelector = () => {
-  const { data: ingredients = [], isLoading, isError } = useGetIngredientsQuery(); // Використовуємо RTK Query для отримання інгредієнтів
+  const { data: ingredients, isLoading, isError } = useGetIngredientsQuery(); // Використовуємо RTK Query для отримання інгредієнтів
 
   const [selectedIngredient, setSelectedIngredient] = useState("");
   const [quantity, setQuantity] = useState("");
@@ -18,7 +18,7 @@ const IngredientSelector = () => {
   };
 
   const handleAddIngredient = () => {
-    const ingredient = ingredients.find(ing => ing.id === selectedIngredient);
+    const ingredient = ingredients.result.find(ing => ing.id === selectedIngredient);
     if (ingredient) {
       const newSelectedIngredients = [...selectedIngredients, { ...ingredient, quantity }];
       setSelectedIngredients(newSelectedIngredients);
@@ -34,6 +34,7 @@ const IngredientSelector = () => {
 
   if (isLoading) return <div>Loading...</div>;
   if (isError) return <div>Error fetching ingredients</div>;
+  if (!ingredients) return null;
 
   return (
     <>
@@ -46,7 +47,7 @@ const IngredientSelector = () => {
         style={{ margin: "10px", padding: "5px", fontSize: "16px" }}
       >
         {<option value=""></option>}
-        {ingredients.map(ingredient => (
+        {ingredients.result.map(ingredient => (
           <option
             key={ingredient.id}
             value={ingredient.id}
