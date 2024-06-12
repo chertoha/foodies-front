@@ -23,8 +23,8 @@ const RecipesComponent = ({ category }) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const location = useLocation();
 
-  const searchArea = searchParams.get("area") || "ingredient" || "";
-
+  // const searchArea = searchParams.get("area" || "ingredient") || "";
+  console.log(searchParams);
   const [ingredient, setIngredient] = useState("");
   const [area, setArea] = useState("");
 

@@ -10,7 +10,7 @@ const SearchRecipes = ({ onChange }) => {
     register,
     handleSubmit,
     // setValue,
-    watch,
+    // watch,
     // reset,
     // formState: { errors },
   } = useForm();
