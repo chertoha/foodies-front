@@ -27,18 +27,18 @@ const AddRecipeForm = () => {
     resolver: yupResolver(schema),
   });
 
-  const { fields, append, remove } = useFieldArray({
+  const { fields, append, _remove } = useFieldArray({
     control,
     name: "ingredients",
   });
 
-  const [categories, setCategories] = useState([]);
-  const [ingredients, setIngredients] = useState([]);
+  const [categories, _setCategories] = useState([]);
+  const [ingredients, _setIngredients] = useState([]);
   const [preview, setPreview] = useState(null);
 
   const { data } = useGetCategoriesQuery({ limit: 1111 });
   console.log(data);
-  const [createRecipe, {}] = useCreateRecipeMutation();
+  const [createRecipe] = useCreateRecipeMutation();
   // useEffect(() => {
   //   // Отримання категорій з backend
   //   axiosBaseQuery("/api/categories").then(response => {

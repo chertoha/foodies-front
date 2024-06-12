@@ -1,6 +1,6 @@
 import Container from "components/Container";
-import ImageDropZone from "components/ImageDropZone";
-import { FormProvider, useForm } from "react-hook-form";
+// import ImageDropZone from "components/ImageDropZone";
+// import { FormProvider, useForm } from "react-hook-form";
 import MainTitle from "components/MainTitle";
 import SubTitle from "components/SubTitle";
 import Breadcrumbs from "components/UIKit/Breadcrumbs";
