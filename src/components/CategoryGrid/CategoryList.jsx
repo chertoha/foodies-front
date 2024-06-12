@@ -12,6 +12,7 @@ const CategoryList = ({
   categories: backendCategories,
   onAllCategoriesClick,
   showAllCategoriesCard,
+  onSelectCategory,
 }) => {
   const size = useWindowSize();
   const [templateIndexes, setTemplateIndexes] = useState([]);
@@ -69,7 +70,7 @@ const CategoryList = ({
               <CategoryCard
                 key={category._id}
                 category={category}
-                onSelectCategory={() => console.log(`Selected category: ${category.name}`)}
+                onSelectCategory={onSelectCategory}
               />
             )
           )}

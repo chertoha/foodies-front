@@ -19,7 +19,6 @@ const CategoryCard = ({ category, large, onSelectCategory }) => {
         <CardBadge>{category.name}</CardBadge>
         <CardButton
           type="button"
-          key={category.name}
           onClick={() => onSelectCategory(category.name)}
         >
           <SpriteIcon
