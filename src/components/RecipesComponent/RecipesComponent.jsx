@@ -47,7 +47,7 @@ const RecipesComponent = ({ category }) => {
       setArea("");
     } else if (name === "area") {
       setArea(value);
-      setSearchParams({ category, area: value, ingredient: "" }); // Обновляємо searchParams правильно
+      setSearchParams({ category, area: value, ingredient: "" });
     }
   };
 
