@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
 import { authSignInThunk } from "../../redux/auth/thunks";
-import { getError } from "../../redux/auth/selectors";
+import { useAuth } from "../../hooks/useAuth";
 
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -21,6 +20,7 @@ import {
   LinkTextStyled,
   ErrorTextStyled,
 } from "./SignIn.styled";
+import { toast } from "react-toastify";
 
 const schema = object({
   email: string().email("email must be a valid").required(),
@@ -32,7 +32,7 @@ const schema = object({
 const SignIn = ({ switchForm, onClose }) => {
   const dispatch = useDispatch();
   const [eyeState, setEyeState] = useState(true);
-  const error = useSelector(getError);
+  const { token, error } = useAuth();
 
   const {
     register,
@@ -47,16 +47,16 @@ const SignIn = ({ switchForm, onClose }) => {
     },
   });
 
-  const onSubmit = async data => {
-    try {
-      await dispatch(authSignInThunk(data));
-      if (!error) {
-        reset();
-        onClose();
-      }
-    } catch (err) {
-      console.log(err, "onSubmit");
-      // "notification error"
+  const onSubmit = data => {
+    dispatch(authSignInThunk(data));
+    if (token) {
+      reset();
+      onClose();
+    }
+    if (error) {
+      toast.error(`${error.message}`, {
+        theme: "light",
+      });
     }
   };
 

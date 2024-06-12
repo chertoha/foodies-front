@@ -1,13 +1,14 @@
 import axios from "axios";
+import { api } from "services/api";
 
 export const authSignUpAPI = async data => {
-  const response = await axios.post(`${process.env.REACT_APP_BASE_API_URL}/users/signup`, data);
+  const response = await api.post(`/users/signup`, data);
   return response.data;
 };
 
 export const authSignInAPI = async data => {
-  const response = await axios.post(`${process.env.REACT_APP_BASE_API_URL}/users/signin`, data);
-  return response.data.token;
+  const response = await api.post(`/users/signin`, data);
+  return response.data;
 };
 
 export const authLogOutAPI = async token => {

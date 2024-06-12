@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
 import { authSignUpThunk } from "../../redux/auth/thunks";
-import { getError } from "../../redux/auth/selectors";
+import { useAuth } from "../../hooks/useAuth";
 
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -21,6 +20,7 @@ import {
   LinkTextStyled,
   ErrorTextStyled,
 } from "./SignUp.styled";
+import { toast } from "react-toastify";
 
 const schema = object({
   name: string().required().min(2),
@@ -32,8 +32,8 @@ const schema = object({
 
 const SignUp = ({ switchForm, onClose }) => {
   const dispatch = useDispatch();
-  const error = useSelector(getError);
   const [eyeState, setEyeState] = useState(true);
+  const { token, error } = useAuth();
 
   const {
     register,
@@ -49,16 +49,16 @@ const SignUp = ({ switchForm, onClose }) => {
     },
   });
 
-  const onSubmit = async data => {
-    try {
-      await dispatch(authSignUpThunk(data));
-      if (!error) {
-        reset();
-        onClose();
-      }
-    } catch (err) {
-      console.log(err, "onSubmit");
-      // "notification error"
+  const onSubmit = data => {
+    dispatch(authSignUpThunk(data));
+    if (token) {
+      reset();
+      onClose();
+    }
+    if (error) {
+      toast.error(`${error.message}`, {
+        theme: "light",
+      });
     }
   };
 
