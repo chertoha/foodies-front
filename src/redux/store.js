@@ -6,9 +6,11 @@ import ingredientsApi from "./ingredients/ingredientsApi";
 import areasApi from "./areas/areasApi";
 import recipesApi from "./recipes/recipesApi";
 import usersApi from "./users/usersApi";
+import authUserSlice, { persistedAuthReducer } from "./auth/slice";
 
 export const store = configureStore({
   reducer: {
+    [authUserSlice.reducerPath]: persistedAuthReducer,
     [categoriesApi.reducerPath]: categoriesApi.reducer,
     [testimonialsApi.reducerPath]: testimonialsApi.reducer,
     [ingredientsApi.reducerPath]: ingredientsApi.reducer,

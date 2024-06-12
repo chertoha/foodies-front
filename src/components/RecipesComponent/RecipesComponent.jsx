@@ -1,4 +1,4 @@
-import { useGetRecipesQuery } from "../../redux/recipes/recipesApi";
+// import { useGetRecipesQuery } from "../../redux/recipes/recipesApi";
 import { useLocation } from "react-router-dom";
 // import { useSearchParams } from "react-router-dom";
 import { useLazyGetRecipesQuery } from "../../redux/recipes/recipesApi";
