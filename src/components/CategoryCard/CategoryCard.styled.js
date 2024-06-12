@@ -30,29 +30,39 @@ export const CardImage = styled.img`
   outline: none;
 `;
 
-export const CardBadge = styled.div`
+export const ButtonsContainer = styled.div`
   position: absolute;
-  bottom: 10px;
-  left: 10px;
-  background-color: rgba(0, 0, 0, 0.5);
-  color: white;
-  padding: 5px 10px;
-  border-radius: 5px;
+  bottom: 16px;
+  left: 16px;
+  display: flex;
+  align-items: center;
+  gap: var(--borderRadius, 4px);
+`;
+
+export const CardBadge = styled.div`
+  display: flex;
+  padding: 8px 12px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 1);
+
+  ${theme.mq.tablet} {
+    padding: 10px 14px;
+  }
 `;
 
 export const CardButton = styled.button`
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
-  background-color: rgba(0, 0, 0, 0.5);
-  color: white;
-  border: none;
-  border-radius: 50%;
-  width: 30px;
-  height: 30px;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  padding: 11px;
+  align-items: flex-start;
+  gap: 10px;
+  border-radius: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 1);
   cursor: pointer;
   font-size: 16px;
 `;

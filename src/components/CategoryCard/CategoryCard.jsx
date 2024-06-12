@@ -4,6 +4,7 @@ import {
   CardImage,
   CardBadge,
   CardButton,
+  ButtonsContainer,
 } from "../CategoryCard/CategoryCard.styled";
 import { Link } from "react-router-dom";
 
@@ -15,8 +16,10 @@ const CategoryCard = ({ category, large }) => {
           src={category.img}
           alt={category.name}
         />
-        <CardBadge>{category.name}</CardBadge>
-        <CardButton>→</CardButton>
+        <ButtonsContainer>
+          <CardBadge>{category.name}</CardBadge>
+          <CardButton>→</CardButton>
+        </ButtonsContainer>
       </Link>
     </CardContainer>
   );

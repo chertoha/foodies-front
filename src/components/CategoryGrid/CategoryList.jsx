@@ -30,14 +30,15 @@ const CategoryList = ({ categories: backendCategories }) => {
   const size = useWindowSize();
   const [templateIndexes, setTemplateIndexes] = useState([]);
   const categories = [...backendCategories, { all: true }];
-  useEffect(() => {
-    if (templateIndexes.length === 0 || categories.length !== templateIndexes.length) {
-      const cardsPerRow = size.width >= breakpoints.desktop ? 3 : 2;
-      const numberOfRows = Math.ceil(categories.length / cardsPerRow);
-      const length =
-        size.width >= breakpoints.desktop ? gridTemplates.length : gridTemplatesTablet.length;
-      const newTemplateIndexes = [];
 
+  useEffect(() => {
+    const cardsPerRow = size.width >= breakpoints.desktop ? 3 : 2;
+    const numberOfRows = Math.ceil(categories.length / cardsPerRow);
+    const length =
+      size.width >= breakpoints.desktop ? gridTemplates.length : gridTemplatesTablet.length;
+
+    if (templateIndexes.length !== numberOfRows) {
+      const newTemplateIndexes = [];
       for (let i = 0; i < numberOfRows; i++) {
         let randomIdx;
         do {
@@ -45,7 +46,6 @@ const CategoryList = ({ categories: backendCategories }) => {
         } while (i > 0 && randomIdx === newTemplateIndexes[i - 1]);
         newTemplateIndexes.push(randomIdx);
       }
-
       setTemplateIndexes(newTemplateIndexes);
     }
   }, [categories.length, size.width, templateIndexes.length]);
@@ -64,14 +64,21 @@ const CategoryList = ({ categories: backendCategories }) => {
           $template={templateIndexes[i]}
           key={i}
         >
-          {row.map(category =>
-            category?.all ? (
-              <AllCategoriesCard />
+          {row.map((category, index) =>
+            category.all ? (
+              <AllCategoriesCard
+                key="all-categories"
+                large={
+                  size.width >= breakpoints.desktop
+                    ? row.length === 1 || index === 2
+                    : row.length === 1
+                }
+              />
             ) : (
               <CategoryCard
                 key={category._id}
                 category={category}
-              ></CategoryCard>
+              />
             )
           )}
         </Row>
