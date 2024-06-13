@@ -3,9 +3,11 @@ import { RecipePopularContainer, RecipePopularList, RecipeListItem } from "./Rec
 import SectionTitle from "components/SectionTitle";
 import RecipeCard from "../RecipeCard/RecipeCard";
 import { useGetPopularRecipesQuery } from "../../redux/recipes/recipesApi";
+import { useAuth } from "hooks/useAuth";
 
 const RecipesPopular = () => {
   const { data, error, isLoading } = useGetPopularRecipesQuery({ page: 1, limit: 4 });
+  const { user } = useAuth();
 
   if (isLoading) {
     return;
@@ -39,6 +41,7 @@ const RecipesPopular = () => {
                 avatar: recipe.owner.avatar,
               }}
               onToggleFavorite={handleToggleFavorite}
+              isAuthenticated={!!user}
             />
           </RecipeListItem>
         ))}

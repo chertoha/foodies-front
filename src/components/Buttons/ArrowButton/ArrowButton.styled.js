@@ -15,7 +15,7 @@ export const ButtonArrow = styled(Link)`
   ${px("10")};
   color: ${p => p.theme.colors.dark};
   transition: ${p => p.theme.transitions.default};
-  ${({ theme }) => theme.mq.tabletOnly} {
+  ${({ theme }) => theme.mq.tablet} {
     ${py(3)};
     ${px(3)};
   }

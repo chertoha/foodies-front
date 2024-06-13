@@ -14,7 +14,7 @@ export const ButtonHeart = styled.button`
   ${py("10")};
   ${px("10")};
   transition: ${p => p.theme.transitions.default};
-  ${({ theme }) => theme.mq.tabletOnly} {
+  ${({ theme }) => theme.mq.tablet} {
     ${py(3)};
     ${px(3)};
   }

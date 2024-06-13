@@ -35,7 +35,7 @@ export const RecipePreparationButton = styled.button`
   border: 1px solid rgba(5, 5, 5, 0.12);
   background-color: ${p => (p.$isFavorite ? p.theme.colors.dark : p.theme.colors.light)};
   transition: ${p => p.theme.transitions.default};
-  ${({ theme }) => theme.mq.tabletOnly} {
+  ${({ theme }) => theme.mq.tablet} {
     ${py(4)};
     ${px(8)};
   }

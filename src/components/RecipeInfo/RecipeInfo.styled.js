@@ -17,7 +17,7 @@ export const RecipeInfoContainer = styled.div`
 
 export const RecipeImageWrapper = styled.div`
   ${py(8)}
-  ${({ theme }) => theme.mq.tabletOnly} {
+  ${({ theme }) => theme.mq.tablet} {
     ${py(10)}
   }
   ${({ theme }) => theme.mq.desktop} {

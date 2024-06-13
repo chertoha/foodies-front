@@ -44,7 +44,7 @@ export const Text = styled.p`
   ${numberTextRows(2)}
   ${my(2)}
   min-height: 40px;
-  ${theme.mq.tabletOnly} {
+  ${theme.mq.tablet} {
     min-height: 48px;
   }
 `;

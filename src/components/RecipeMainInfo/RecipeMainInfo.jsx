@@ -28,6 +28,7 @@ const RecipeMainInfo = ({ recipe, isAuthenticated }) => {
           author={recipeOwner}
           isAuthenticated={isAuthenticated}
           showName={false}
+          to={`/user/${recipeOwner._id}`}
         />
         <AuthorTextWrapper>
           <CreatedByText>Created by:</CreatedByText>

@@ -3,10 +3,12 @@ import { Modal } from "../../Modal/Modal";
 import SignIn from "../../SignIn/SignIn";
 import { useNavigate } from "react-router-dom";
 import { useModalWindow } from "../../../hooks/useModalWindow";
+import { useAuth } from "../../../hooks/useAuth";
 
-const AvatarButton = ({ author, showName = true, to, isAuthenticated }) => {
+const AvatarButton = ({ author, showName = true, to }) => {
   const navigate = useNavigate();
   const { isOpen, open, close } = useModalWindow();
+  const { user } = useAuth();
 
   if (!author) {
     return null;
@@ -37,7 +39,7 @@ const AvatarButton = ({ author, showName = true, to, isAuthenticated }) => {
 
   const handleAvatarClick = e => {
     e.preventDefault();
-    if (!isAuthenticated) {
+    if (!user) {
       open(true);
     } else {
       navigate(to);
