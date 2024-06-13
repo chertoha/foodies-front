@@ -12,8 +12,7 @@ import SectionTitle from "components/SectionTitle";
 import FavoriteWrapper from "../FavoriteWrapper/FavoriteWrapper";
 import HeartButton from "components/Buttons/HeartButton";
 
-const RecipeCard = ({ recipe, author, isAuthenticated, onToggleFavorite }) => {
-  console.log("dasdasdasd", author);
+const RecipeCard = ({ recipe, author, isAuthenticated, favorites }) => {
   return (
     <CardWrapper>
       <Image
@@ -33,8 +32,8 @@ const RecipeCard = ({ recipe, author, isAuthenticated, onToggleFavorite }) => {
         <Actions>
           <FavoriteWrapper
             recipeId={recipe.id}
-            onToggleFavorite={onToggleFavorite}
             Button={HeartButton}
+            favorites={favorites}
           />
           <ArrowButton to={`/recipe/${recipe.id}`} />
         </Actions>

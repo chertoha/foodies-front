@@ -7,8 +7,7 @@ const FavoriteWrapper = ({ recipeId, Button, favorites }) => {
   const [addToFavorite] = useAddRecipeToFavoritesMutation();
   const [removeFromFavorite] = useRemoveRecipeFromFavoritesMutation();
 
-  // const isChecked = favorites?.includes(recipeId);
-  const isChecked = favorites?.some(({ _id }) => (recipeId = _id));
+  const isChecked = favorites?.some(({ _id }) => recipeId === _id);
 
   const onClick = async () => {
     try {

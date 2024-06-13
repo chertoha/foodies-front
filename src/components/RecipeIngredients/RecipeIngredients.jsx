@@ -8,8 +8,6 @@ import {
 } from "./RecipeIngredients.styled";
 
 const RecipeIngredients = ({ ingredients }) => {
-  console.log(ingredients);
-
   return (
     <RecipeIngredientsContainer>
       <SectionTitle label={"Ingredients"} />

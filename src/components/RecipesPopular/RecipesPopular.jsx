@@ -5,17 +5,13 @@ import RecipeCard from "../RecipeCard/RecipeCard";
 import { useGetPopularRecipesQuery } from "../../redux/recipes/recipesApi";
 import { useAuth } from "hooks/useAuth";
 
-const RecipesPopular = () => {
+const RecipesPopular = ({ favorites }) => {
   const { data, error, isLoading } = useGetPopularRecipesQuery({ page: 1, limit: 4 });
   const { user } = useAuth();
 
   if (isLoading || error || !data || !data.result || data.result.length === 0) {
     return null;
   }
-
-  const handleToggleFavorite = recipeId => {
-    console.log(`Favorite toggled for recipe ${recipeId}`);
-  };
 
   return (
     <RecipePopularContainer>
@@ -36,7 +32,7 @@ const RecipesPopular = () => {
                 name: recipe.owner.name,
                 avatar: recipe.owner.avatar,
               }}
-              onToggleFavorite={handleToggleFavorite}
+              favorites={favorites}
               isAuthenticated={!!user}
             />
           </RecipeListItem>

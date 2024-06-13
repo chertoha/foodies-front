@@ -26,7 +26,10 @@ const RecipePage = () => {
           recipe={recipe}
           favorites={favorites.result}
         />
-        <RecipesPopular />
+        <RecipesPopular
+          recipe={recipe}
+          favorites={favorites.result}
+        />
       </RecipePageContainer>
     </Container>
   );

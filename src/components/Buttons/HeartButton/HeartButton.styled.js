@@ -1,10 +1,10 @@
 import styled from "styled-components";
 import { px, py } from "styles/atomic";
-import theme from "styles/theme";
 
 export const ButtonHeart = styled.button`
-  background-color: ${p => (p.$isFavorite ? theme.colors.accent : theme.colors.light)};
-  color: ${p => (p.$isFavorite ? theme.colors.light : theme.colors.dark)};
+  background-color: ${({ theme, $isFavorite }) =>
+    $isFavorite ? theme.colors.dark : theme.colors.light};
+  color: ${({ theme, $isFavorite }) => ($isFavorite ? theme.colors.light : theme.colors.dark)};
   border-radius: ${({ theme }) => theme.radii.lg};
   border: 1px solid rgba(5, 5, 5, 0.1);
   cursor: pointer;
@@ -20,8 +20,8 @@ export const ButtonHeart = styled.button`
   }
 
   &:hover {
-    background-color: ${p => p.theme.colors.dark};
-    color: ${p => p.theme.colors.light};
+    color: ${({ theme }) => theme.colors.light};
+    background-color: ${({ theme }) => theme.colors.dark};
   }
 
   &:focus {
