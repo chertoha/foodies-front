@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { authSignUpThunk, authSignInThunk, authLogOutThunk } from "./thunks";
+import { authSignUpThunk, authSignInThunk, authLogOutThunk, authCurrentUserThunk } from "./thunks";
 import storage from "redux-persist/lib/storage";
 import { persistReducer } from "redux-persist";
 
@@ -11,6 +11,7 @@ const initialState = {
 };
 
 const fulfildAuthSignUp = (state, { payload }) => {
+  state.user = payload.user;
   state.token = payload.token;
   state.isLoading = false;
 };
@@ -18,9 +19,9 @@ const pandingAuthSignUp = (state, _) => {
   state.isLoading = true;
   state.error = null;
 };
-const rejectedAuthSignUp = (state, { error }) => {
+const rejectedAuthSignUp = (state, { payload }) => {
   state.isLoading = false;
-  state.error = error;
+  state.error = payload;
 };
 
 const fulfildAuthSignIn = (state, { payload }) => {
@@ -32,9 +33,9 @@ const pandingAuthSignIn = (state, _) => {
   state.isLoading = true;
   state.error = null;
 };
-const rejectedAuthSignIn = (state, { error }) => {
+const rejectedAuthSignIn = (state, { payload }) => {
   state.isLoading = false;
-  state.error = error;
+  state.error = payload;
 };
 
 const fulfildAuthLogOut = (state, _) => {
@@ -45,9 +46,22 @@ const fulfildAuthLogOut = (state, _) => {
 const pandingAuthLogOut = (state, _) => {
   state.isLoading = true;
 };
-const rejectedAuthLogOut = (state, { error }) => {
+const rejectedAuthLogOut = (state, { payload }) => {
   state.isLoading = false;
-  state.error = error;
+  state.error = payload;
+};
+
+const fulfildAuthCurrentUser = (state, { payload }) => {
+  state.user = payload.user;
+  state.isLoading = false;
+};
+const pandingAuthCurrentUser = (state, _) => {
+  state.isLoading = true;
+  state.error = null;
+};
+const rejectedAuthCurrentUser = (state, { payload }) => {
+  state.isLoading = false;
+  state.error = payload;
 };
 
 const authUserSlice = createSlice({
@@ -63,7 +77,10 @@ const authUserSlice = createSlice({
       .addCase(authSignInThunk.rejected, rejectedAuthSignIn)
       .addCase(authLogOutThunk.fulfilled, fulfildAuthLogOut)
       .addCase(authLogOutThunk.pending, pandingAuthLogOut)
-      .addCase(authLogOutThunk.rejected, rejectedAuthLogOut);
+      .addCase(authLogOutThunk.rejected, rejectedAuthLogOut)
+      .addCase(authCurrentUserThunk.fulfilled, fulfildAuthCurrentUser)
+      .addCase(authCurrentUserThunk.pending, pandingAuthCurrentUser)
+      .addCase(authCurrentUserThunk.rejected, rejectedAuthCurrentUser);
   },
 });
 
