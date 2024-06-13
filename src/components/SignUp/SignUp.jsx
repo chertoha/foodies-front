@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { authSignUpThunk } from "../../redux/auth/thunks";
+
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { object, string } from "yup";
@@ -16,22 +19,20 @@ import {
   LinkTextStyled,
   ErrorTextStyled,
 } from "./SignUp.styled";
-import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const schema = object({
   name: string().required().min(2),
   email: string().email("email must be a valid").required(),
   password: string()
     .required("no password provided")
-    .min(8, "password should be minimum 8 characters")
-    .matches(/[a-zA-Z]/, "password can only contain Latin letters"),
+    .min(8, "password should be minimum 8 characters"),
 }).required();
 
-const SignUp = ({ switchForm }) => {
-  const navigate = useNavigate();
+const SignUp = ({ switchForm, onClose }) => {
+  const dispatch = useDispatch();
   const [eyeState, setEyeState] = useState(true);
-  const [_state, setState] = useState({});
-  // const [_login, setLogin] = useState(false);
+
   const {
     register,
     handleSubmit,
@@ -46,10 +47,17 @@ const SignUp = ({ switchForm }) => {
     },
   });
 
-  const onSubmit = data => {
-    setState(data);
-    reset();
-    navigate("/userProfile");
+  const onSubmit = async data => {
+    const res = await dispatch(authSignUpThunk(data));
+    if (res.type === "authSignUp/fulfilled") {
+      reset();
+      onClose();
+    }
+    if (res.type === "authSignUp/rejected") {
+      toast.error(`${res.error?.message}`, {
+        theme: "light",
+      });
+    }
   };
 
   return (
@@ -100,7 +108,6 @@ const SignUp = ({ switchForm }) => {
       </FormStyled>
       <TextContainerStyled>
         <TextStyled>I already have an account?</TextStyled>
-        {/* <LinkTextStyled onClick={() => setLogin(true)}>Sign in</LinkTextStyled> */}
         <LinkTextStyled onClick={switchForm}>Sign in</LinkTextStyled>
       </TextContainerStyled>
     </FormWripper>

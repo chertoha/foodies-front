@@ -1,7 +1,7 @@
 import React from "react";
 import { RecipePopularContainer, RecipePopularList, RecipeListItem } from "./RecipesPopular.styled";
 import SectionTitle from "components/SectionTitle";
-import RecipeCard from "components/RecipeCard";
+import RecipeCard from "../RecipeCard/RecipeCard";
 
 const RecipesPopular = ({ list, author }) => {
   const handleSignIn = () => {

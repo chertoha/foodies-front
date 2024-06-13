@@ -5,16 +5,30 @@ export const CardContainer = styled.li`
   position: relative;
   width: 100%;
   height: 250px;
-  border-radius: 30px;
+  border-radius: 20px;
   overflow: hidden;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(0deg, rgba(5, 5, 5, 0.18) 0%, rgba(5, 5, 5, 0.18) 100%);
+  }
   ${theme.mq.tablet} {
-    width: ${props => (props.$large ? "100%" : "calc(50% - 10px)")};
+    height: 369px;
+    border-radius: 30px;
+    /* width: ${props => (props.$large ? "100%" : "calc(50% - 10px)")}; */
   }
 
-  ${theme.mq.desktop} {
+  /* ${theme.mq.desktop} {
     width: ${props => (props.$large ? "calc(40% - 13.33px)" : "calc(30% - 13.33px)")};
-  }
+  } */
 `;
 
 export const CardImage = styled.img`
@@ -25,29 +39,40 @@ export const CardImage = styled.img`
   outline: none;
 `;
 
-export const CardBadge = styled.div`
+export const ButtonsContainer = styled.div`
   position: absolute;
-  bottom: 10px;
-  left: 10px;
-  background-color: rgba(0, 0, 0, 0.5);
-  color: white;
-  padding: 5px 10px;
-  border-radius: 5px;
+  bottom: 16px;
+  left: 16px;
+  display: flex;
+  align-items: center;
+  gap: var(--borderRadius, 4px);
+`;
+
+export const CardBadge = styled.div`
+  display: flex;
+  padding: 8px 12px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 1);
+  font-weight: 700;
+
+  ${theme.mq.tablet} {
+    padding: 10px 14px;
+  }
 `;
 
 export const CardButton = styled.button`
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
-  background-color: rgba(0, 0, 0, 0.5);
-  color: white;
-  border: none;
-  border-radius: 50%;
-  width: 30px;
-  height: 30px;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  padding: 11px;
+  align-items: flex-start;
+  gap: 10px;
+  border-radius: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 1);
   cursor: pointer;
   font-size: 16px;
 `;

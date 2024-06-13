@@ -6,6 +6,14 @@ const api = axios.create({
   baseURL: BASE_URL,
 });
 
+const setAuthHeader = token => {
+  api.defaults.headers.common.Authorization = `Bearer ${token}`;
+};
+
+const clearAuthHeader = () => {
+  api.defaults.headers.common.Authorization = "";
+};
+
 const axiosBaseQuery =
   (baseUrl = "") =>
   async ({ url, method, data, params, headers }) => {
@@ -30,4 +38,4 @@ const axiosBaseQuery =
     }
   };
 
-export { api, BASE_URL, axiosBaseQuery };
+export { api, BASE_URL, axiosBaseQuery, setAuthHeader, clearAuthHeader };

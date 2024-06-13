@@ -1,63 +1,93 @@
-import { useState } from "react";
-// import { useGetIngredientsQuery } from "../../redux/ingredients/ingredientsApi";
-// import { useGetAreasQuery } from "../../redux/areas/areasApi";
-
+// import { useEffect } from "react";
+import { useForm } from "react-hook-form";
+import { useGetIngredientsQuery } from "../../redux/ingredients/ingredientsApi";
+import { useGetAreasQuery } from "../../redux/areas/areasApi";
 import { SearchRecipesForm, SearchWrapp } from "./SearchRecipes.styled";
 import CustomSelect from "../CustomSelect/CustomSelect";
 
-const areasobj = ["Beef", "Breakfast", "Desserts", "Lamb"];
-const ingredientsobj = ["Cabbage", "Cucumber", "Tomato", "Corn", "Radish", "Parsley"];
+const SearchRecipes = ({ onChange }) => {
+  const {
+    register,
+    handleSubmit,
+    // setValue,
+    // watch,
+    // reset,
+    // formState: { errors },
+  } = useForm();
 
-const SearchRecipes = () => {
-  const [formValues, setFormValues] = useState({
-    ingredients: "",
-    areas: "",
-  });
-  //   const { data: ingredientsData } = useGetIngredientsQuery();
-  //   const { data: areasData } = useGetAreasQuery();
+  // const watchArea = watch("area");
 
-  //   console.log(ingredientsData);
-  //   console.log(areasData);
-  const handleChange = (name, value) => {
-    setFormValues(prevValues => ({
-      ...prevValues,
-      [name]: value,
-    }));
+  // const [ingredient, setIngredient] = useState("");
+  // const [area, setArea] = useState("");
+
+  const {
+    data: ingredientsData,
+    error: ingredientsError,
+    isFetching: isFetchingIngredients,
+  } = useGetIngredientsQuery();
+  const { data: areasData, error: areasError, isFetching: isFetchingAreas } = useGetAreasQuery();
+
+  const onSubmit = data => {
+    onChange("ingredient", data.ingredient);
+    onChange("area", data.area);
   };
 
-  const handleSubmit = event => {
-    event.preventDefault();
-    console.log("Form submitted with values:", formValues);
-  };
+  // Скидання значення інгредієнта, якщо вибрано нову область
+  // useEffect(() => {
+  //   if (watchArea) {
+  //     reset({ ingredient: "" });
+  //   }
+  // }, [watchArea, reset]);
+
+  // const handleChange = (name, value) => {
+  //   if (name === "ingredient") {
+  //     setIngredient(value);
+  //   } else if (name === "area") {
+  //     setArea(value);
+  //     setIngredient("");
+  //   }
+  //   onChange(name, value);
+  // };
+
+  // const handleSubmit = event => {
+  //   event.preventDefault();
+  //   onChange("ingredient", ingredient);
+  //   onChange("area", area);
+  // };
+
+  if (isFetchingIngredients || isFetchingAreas) return <div>Loading...</div>;
+  if (ingredientsError || areasError) return <div>Error loading categories.</div>;
 
   return (
-    <SearchRecipesForm onSubmit={handleSubmit}>
+    <SearchRecipesForm onSubmit={handleSubmit(onSubmit)}>
       <SearchWrapp>
         <CustomSelect
-          name="ingredients"
-          options={ingredientsobj.map(ingredient => ({
-            value: ingredient,
-            label: ingredient,
+          name="ingredient"
+          {...register("ingredient")}
+          options={ingredientsData.result.map(({ name }) => ({
+            value: name,
+            label: name,
           }))}
-          value={formValues.ingredients}
-          onChange={handleChange}
+          // value={ingredient}
+          onChange={onChange}
           placeholder="Ingredients"
         />
       </SearchWrapp>
       <SearchWrapp>
         <CustomSelect
-          name="areas"
-          options={areasobj.map(area => ({
-            value: area,
-            label: area,
+          name="area"
+          {...register("area")}
+          options={areasData.map(({ name }) => ({
+            value: name,
+            label: name,
           }))}
-          value={formValues.areas}
-          onChange={handleChange}
+          // value={area}
+          onChange={onChange}
           placeholder="Areas"
         />
       </SearchWrapp>
-      {/* <button type="submit">Search</button> */}
     </SearchRecipesForm>
   );
 };
+
 export default SearchRecipes;

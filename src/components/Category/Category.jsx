@@ -3,7 +3,7 @@ import { useGetCategoriesQuery } from "../../redux/categories/categoriesApi";
 import CategoryList from "../CategoryGrid/CategoryList";
 import MainTitle from "components/MainTitle";
 import SubTitle from "components/SubTitle";
-import Container from "components/Container";
+import { MainTitleWrapper, SubTitleWrapper } from "./Category.styled";
 
 const Category = () => {
   const { data, error, isFetching } = useGetCategoriesQuery({ page: 1, limit: 11 });
@@ -14,16 +14,37 @@ const Category = () => {
   if (error) return <div>Error loading categories.</div>;
 
   return (
-    <Container>
-      <MainTitle label={"Categories"}></MainTitle>
-      <SubTitle
-        label={
-          "Discover a limitless world of culinary possibilities and enjoy exquisite recipes that combine taste, style and the warm atmosphere of the kitchen."
-        }
-      ></SubTitle>
-      <CategoryList categories={data.categories} />
-    </Container>
+    <>
+      <MainTitleWrapper>
+        <MainTitle label={"Categories"}></MainTitle>
+      </MainTitleWrapper>
+      <SubTitleWrapper>
+        <SubTitle
+          label={
+            "Discover a limitless world of culinary possibilities and enjoy exquisite recipes that combine taste, style and the warm atmosphere of the kitchen."
+          }
+        ></SubTitle>
+      </SubTitleWrapper>
+      <CategoryList categories={data.result} />
+    </>
   );
 };
 
 export default Category;
+
+export const CategoryTest = ({ onSelectCategory }) => {
+  const categories = ["Seafood", "Dessert", "Breakfast"];
+
+  return (
+    <div>
+      {categories.map(category => (
+        <button
+          key={category}
+          onClick={() => onSelectCategory(category)}
+        >
+          {category}
+        </button>
+      ))}
+    </div>
+  );
+};
