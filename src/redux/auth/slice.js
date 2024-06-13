@@ -53,7 +53,7 @@ const rejectedAuthLogOut = (state, { payload }) => {
 };
 
 const fulfildAuthCurrentUser = (state, { payload }) => {
-  state.user = payload.user;
+  state.user = payload;
   state.isLoading = false;
 };
 const pandingAuthCurrentUser = (state, _) => {
