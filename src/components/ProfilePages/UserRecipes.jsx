@@ -29,7 +29,7 @@ const UserRecipes = ({ id }) => {
   if (errorUserRecipes) return <div>Error loading recipes.</div>;
   if (!data) return null;
 
-//   console.log("UserRecipes", data);
+  // console.log("UserRecipes", data);
   const totalPages = Math.ceil(data.total / itemsPerPage);
   return (
     <>
