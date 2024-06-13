@@ -1,4 +1,3 @@
-import Hero from "components/Hero/Hero.jsx";
 import Testimonials from "components/Testimonials";
 import { PageWrapper, SectionWrapper } from "./HomePage.styled";
 import Container from "components/Container";
@@ -25,8 +24,6 @@ const HomePage = () => {
 
   return (
     <PageWrapper>
-      <Hero />
-
       <SectionWrapper>
         <Container>
           <Category />
