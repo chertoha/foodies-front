@@ -2,41 +2,38 @@ import React from "react";
 import { RecipePopularContainer, RecipePopularList, RecipeListItem } from "./RecipesPopular.styled";
 import SectionTitle from "components/SectionTitle";
 import RecipeCard from "../RecipeCard/RecipeCard";
+import { useGetPopularRecipesQuery } from "../../redux/recipes/recipesApi";
+import { useAuth } from "hooks/useAuth";
 
-const RecipesPopular = ({ list, author }) => {
-  const handleSignIn = () => {
-    console.log("Sign in clicked");
-  };
+const RecipesPopular = ({ favorites }) => {
+  const { data, error, isLoading } = useGetPopularRecipesQuery({ page: 1, limit: 4 });
+  const { user } = useAuth();
 
-  const handleProfile = authorId => {
-    console.log(`Profile of author ${authorId} clicked`);
-  };
-
-  const handleToggleFavorite = recipeId => {
-    console.log(`Favorite toggled for recipe ${recipeId}`);
-  };
+  if (isLoading || error || !data || !data.result || data.result.length === 0) {
+    return null;
+  }
 
   return (
     <RecipePopularContainer>
       <SectionTitle label={"Popular recipes"} />
       <RecipePopularList>
-        {list.slice(0, 4).map(recipe => (
-          <RecipeListItem key={recipe._id.$oid}>
+        {data.result.map(recipe => (
+          <RecipeListItem key={recipe._id}>
             <RecipeCard
               recipe={{
-                id: recipe._id.$oid,
+                id: recipe._id,
                 title: recipe.title,
                 description: recipe.description,
                 thumb: recipe.thumb,
-                instructions: recipe.instructions,
-                time: recipe.time,
-                ingredients: recipe.ingredients,
-                isFavorite: recipe.isFavorite || false,
+                isFavorite: recipe.favorite || false,
               }}
-              author={author}
-              onSignIn={handleSignIn}
-              onProfile={handleProfile}
-              onToggleFavorite={handleToggleFavorite}
+              author={{
+                id: recipe.owner._id,
+                name: recipe.owner.name,
+                avatar: recipe.owner.avatar,
+              }}
+              favorites={favorites}
+              isAuthenticated={!!user}
             />
           </RecipeListItem>
         ))}

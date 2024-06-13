@@ -3,7 +3,7 @@ import { body1, pt, px, py } from "styles/atomic";
 
 export const RecipeIngredientsContainer = styled.div`
   ${py(8)}
-  ${({ theme }) => theme.mq.tabletOnly} {
+  ${({ theme }) => theme.mq.tablet} {
     ${py(10)}
   }
 `;
