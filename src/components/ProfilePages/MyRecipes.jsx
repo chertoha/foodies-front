@@ -1,7 +1,7 @@
 import { useWindowSize } from "../../hooks/useWindowSize";
 import { useState } from "react";
 
-import { useGetOwnRecipesQuery, useDeleteRecipeMutation } from "../../redux/recipes/recipesApi";
+import { useGetOwnRecipesQuery } from "../../redux/recipes/recipesApi";
 
 import Paginator from "../Paginator/Paginator";
 import SubTitle from "../SubTitle/SubTitle";
@@ -32,7 +32,7 @@ const MyRecipes = () => {
   if (errorMyRecipes) return <div>Error loading recipes.</div>;
   if (!data) return null;
 
-  console.log("MyRecipes", data);
+  // console.log("MyRecipes", data);
   const totalPages = Math.ceil(data.total / itemsPerPage);
   return (
     <>

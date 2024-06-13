@@ -53,7 +53,7 @@ const RecipesComponent = ({ category }) => {
       area: searchArea,
       ingredient: searchIngredient,
     });
-  }, [trigger, currentPage, category, searchArea, searchIngredient]);
+  }, [trigger, currentPage, itemsPerPage, category, searchArea, searchIngredient]);
 
   const handleFiltersChange = (name, value) => {
     if (name === "ingredient") {
