@@ -40,7 +40,7 @@ const rejectedAuthSignIn = (state, { payload }) => {
 
 const fulfildAuthLogOut = (state, _) => {
   state.error = null;
-  state.token = "";
+  state.token = null;
   state.user = null;
   state.isLoading = false;
 };
