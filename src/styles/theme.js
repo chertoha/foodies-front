@@ -11,6 +11,7 @@ const theme = {
     light: "#FFFFFF",
     grey: "#E8E8E8",
     error: "#f42424",
+    white: "#ffffff",
   },
 
   fontSizes: {
