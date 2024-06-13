@@ -10,8 +10,7 @@ import { useState } from "react";
 import FavoriteButton from "../Buttons/FavoriteButton/FavoriteButton";
 import FavoriteWrapper from "../FavoriteWrapper/FavoriteWrapper";
 
-const RecipePreparation = ({ preparation, recipeId, onToggleFavorite }) => {
-  console.log(recipeId);
+const RecipePreparation = ({ preparation, recipeId, onToggleFavorite, favorites }) => {
   const [showFullText, setShowFullText] = useState(false);
 
   const handleReadMoreClick = () => {
@@ -43,6 +42,7 @@ const RecipePreparation = ({ preparation, recipeId, onToggleFavorite }) => {
         recipeId={recipeId}
         onToggleFavorite={onToggleFavorite}
         Button={FavoriteButton}
+        favorites={favorites}
       />
     </RecipePreparationContainer>
   );

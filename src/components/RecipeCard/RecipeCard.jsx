@@ -13,6 +13,7 @@ import FavoriteWrapper from "../FavoriteWrapper/FavoriteWrapper";
 import HeartButton from "components/Buttons/HeartButton";
 
 const RecipeCard = ({ recipe, author, isAuthenticated, onToggleFavorite }) => {
+  console.log("dasdasdasd", author);
   return (
     <CardWrapper>
       <Image
@@ -27,7 +28,7 @@ const RecipeCard = ({ recipe, author, isAuthenticated, onToggleFavorite }) => {
         <AvatarButton
           author={author}
           isAuthenticated={isAuthenticated}
-          to={`/user/${recipe.owner_id}`}
+          to={`/user/${author.id}`}
         />
         <Actions>
           <FavoriteWrapper

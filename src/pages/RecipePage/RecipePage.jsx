@@ -4,9 +4,11 @@ import Container from "../../components/Container/Container";
 import { RecipePageContainer } from "./RecipePage.styled";
 import RecipeInfo from "../../components/RecipeInfo/RecipeInfo";
 import { useParams } from "react-router-dom";
-import { useGetRecipeQuery } from "../../redux/recipes/recipesApi";
+import { useGetFavoriteRecipesQuery, useGetRecipeQuery } from "../../redux/recipes/recipesApi";
 
 const RecipePage = () => {
+  const { data: favorites = [] } = useGetFavoriteRecipesQuery({ page: 1, limit: 10000 });
+
   const { id } = useParams();
   const { data: recipe, isLoading, error } = useGetRecipeQuery(id);
 
@@ -20,7 +22,10 @@ const RecipePage = () => {
     <Container>
       <RecipePageContainer>
         <Breadcrumbs current={recipe.title} />
-        <RecipeInfo />
+        <RecipeInfo
+          recipe={recipe}
+          favorites={favorites.result}
+        />
         <RecipesPopular />
       </RecipePageContainer>
     </Container>

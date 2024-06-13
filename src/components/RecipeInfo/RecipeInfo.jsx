@@ -11,7 +11,7 @@ import { useGetRecipeQuery } from "../../redux/recipes/recipesApi";
 import { useParams } from "react-router-dom";
 import { useGetIngredientsQuery } from "../../redux/ingredients/ingredientsApi";
 
-const RecipeInfo = ({ author, onSignIn, onProfile, onToggleFavorite }) => {
+const RecipeInfo = ({ author, onSignIn, favorites, onProfile, onToggleFavorite }) => {
   const { id } = useParams();
   const { data: recipe, error: recipeError, isLoading: isRecipeLoading } = useGetRecipeQuery(id);
   const {
@@ -63,6 +63,7 @@ const RecipeInfo = ({ author, onSignIn, onProfile, onToggleFavorite }) => {
           recipeId={recipe._id}
           isFavorite={recipe.isFavorite}
           onToggleFavorite={onToggleFavorite}
+          favorites={favorites}
         />
       </RecipeContentWrapper>
     </RecipeInfoContainer>

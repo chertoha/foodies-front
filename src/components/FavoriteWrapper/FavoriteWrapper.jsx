@@ -1,15 +1,14 @@
 import {
   useAddRecipeToFavoritesMutation,
-  useGetFavoriteRecipesQuery,
   useRemoveRecipeFromFavoritesMutation,
 } from "../../redux/recipes/recipesApi";
 
-const FavoriteWrapper = ({ recipeId, Button, onToggleFavorite }) => {
-  const { data } = useGetFavoriteRecipesQuery();
+const FavoriteWrapper = ({ recipeId, Button, favorites }) => {
   const [addToFavorite] = useAddRecipeToFavoritesMutation();
   const [removeFromFavorite] = useRemoveRecipeFromFavoritesMutation();
 
-  const isChecked = data?.includes(recipeId);
+  // const isChecked = favorites?.includes(recipeId);
+  const isChecked = favorites?.some(({ _id }) => (recipeId = _id));
 
   const onClick = async () => {
     try {
@@ -17,9 +16,6 @@ const FavoriteWrapper = ({ recipeId, Button, onToggleFavorite }) => {
         await removeFromFavorite(recipeId);
       } else {
         await addToFavorite(recipeId);
-      }
-      if (onToggleFavorite) {
-        onToggleFavorite(recipeId);
       }
     } catch (error) {
       console.error("Error toggling favorite status:", error);
