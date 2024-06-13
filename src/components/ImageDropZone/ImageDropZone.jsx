@@ -8,6 +8,8 @@ import {
   DropZone,
   ErrorMessage,
   Image,
+  ImageUploadBox,
+  ImageUploadBoxText,
   MainWrapper,
   Preview,
 } from "./ImageDropZone.styled";
@@ -83,11 +85,13 @@ const ImageDropZone = ({ name }) => {
               $isdrag={dragIsOver}
               $disabled={preview}
             >
-              <SpriteIcon
-                id="icon-upload-photo"
-                size={[50, 64, 64]}
-              />
-
+              <ImageUploadBox>
+                <SpriteIcon
+                  id="icon-upload-photo"
+                  size={[50, 64, 64]}
+                />
+                <ImageUploadBoxText>Upload a photo</ImageUploadBoxText>
+              </ImageUploadBox>
               <input
                 type="file"
                 accept={allowedImageMIMETypes.join(",")}

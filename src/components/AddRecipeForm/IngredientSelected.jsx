@@ -18,8 +18,9 @@ const IngredientSelector = () => {
   };
 
   const handleAddIngredient = () => {
-    const ingredient = ingredients.result.find(ing => ing.id === selectedIngredient);
+    const ingredient = ingredients.result.find(ing => ing.name === selectedIngredient);
     if (ingredient) {
+      console.log(ingredient, selectedIngredients);
       const newSelectedIngredients = [...selectedIngredients, { ...ingredient, quantity }];
       setSelectedIngredients(newSelectedIngredients);
       setSelectedIngredient("");
@@ -28,29 +29,35 @@ const IngredientSelector = () => {
   };
 
   const handleDeleteIngredient = id => {
-    const newSelectedIngredients = selectedIngredients.filter(ing => ing.id !== id);
+    const newSelectedIngredients = selectedIngredients.filter(ing => ing._id !== id);
     setSelectedIngredients(newSelectedIngredients);
   };
 
   if (isLoading) return <div>Loading...</div>;
   if (isError) return <div>Error fetching ingredients</div>;
   if (!ingredients) return null;
-
+  console.log(selectedIngredient);
   return (
     <>
       {" "}
       <label htmlFor="ingredientSelect">Виберіть інгредієнт:</label>
       <select
         id="ingredientSelect"
-        value={selectedIngredient}
+        defaultValue={"default"}
         onChange={handleIngredientChange}
         style={{ margin: "10px", padding: "5px", fontSize: "16px" }}
       >
-        {<option value=""></option>}
+        <option
+          value="default"
+          disabled
+        >
+          Add the ingredient
+        </option>
+
         {ingredients.result.map(ingredient => (
           <option
-            key={ingredient.id}
-            value={ingredient.id}
+            key={ingredient._id}
+            value={ingredient.name}
           >
             {ingredient.name}
           </option>
@@ -73,7 +80,7 @@ const IngredientSelector = () => {
       <div>
         {selectedIngredients.map(ingredient => (
           <IngredientCard
-            key={ingredient.id}
+            key={ingredient._id}
             ingredient={ingredient}
             onDelete={handleDeleteIngredient}
           />
