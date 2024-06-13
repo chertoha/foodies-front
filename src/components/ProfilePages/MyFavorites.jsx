@@ -32,7 +32,7 @@ const MyFavorites = () => {
   if (errorMyFavorites) return <div>Error loading My Favorites.</div>;
   if (!data) return null;
 
-  console.log("MyFavorites", data.result);
+  // console.log("MyFavorites", data.result);
 
   const totalPages = Math.ceil(data.total / itemsPerPage);
 

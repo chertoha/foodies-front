@@ -14,7 +14,7 @@ const Followers = ({ id }) => {
   if (errorFollowers) return <div>Error loading Followers.</div>;
   if (!data) return null;
 
-  console.log("Followers", data.result);
+  // console.log("Followers", data.result);
 
   return (
     <>

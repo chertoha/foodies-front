@@ -69,8 +69,8 @@ const RecipesComponent = ({ category }) => {
   if (isFetchingRecipes) return <div>Loading...</div>;
   if (recipesError) return <div>Error loading recipes.</div>;
   if (!recipesData) return null;
-  console.log(recipesData);
-  console.log(recipesData.total);
+  // console.log(recipesData);
+  // console.log(recipesData.total);
 
   const totalPages = Math.ceil(recipesData.total / itemsPerPage);
   return (

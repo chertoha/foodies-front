@@ -17,7 +17,7 @@ const Following = () => {
   if (errorFollowing) return <div>Error loading recipes.</div>;
   if (!data) return null;
 
-  console.log("Following", data.result);
+  // console.log("Following", data.result);
   return (
     <>
       {data.result.length > 0 ? (
