@@ -5,7 +5,7 @@ import Category from "components/Category/Category";
 import RecipesComponent from "components/RecipesComponent";
 import { useSearchParams } from "react-router-dom";
 
-import { CategoryTest } from "components/Category/Category";
+// import { CategoryTest } from "components/Category/Category";
 
 const HomePage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -26,8 +26,8 @@ const HomePage = () => {
     <PageWrapper>
       <SectionWrapper>
         <Container>
-          <Category />
-          <CategoryTest onSelectCategory={handleSelectCategory} />
+          {/* <Category /> */}
+          <Category onSelectCategory={handleSelectCategory} />
           {category && (
             <RecipesComponent
               category={category}
