@@ -4,9 +4,12 @@ import { Item, List, StyledLink } from "./ProfileBar.styled";
 import { Modal } from "components/Modal/Modal";
 import LogOut from "components/LogOut";
 import { useModalWindow } from "hooks/useModalWindow";
+import { ROUTES } from "config/router";
+import { useAuth } from "hooks/useAuth";
 
 const DropDown = ({ close: closeDropdown }) => {
   const dropdownRef = useRef(null);
+  const { user } = useAuth();
 
   const { isOpen: isModalOpen, open: openModal, close: closeModal } = useModalWindow();
 
@@ -31,7 +34,7 @@ const DropDown = ({ close: closeDropdown }) => {
         <Item>
           <StyledLink
             onClick={closeDropdown}
-            to="/recipe/123"
+            to={`${ROUTES.USER}/${user._id}`}
           >
             Profile
           </StyledLink>

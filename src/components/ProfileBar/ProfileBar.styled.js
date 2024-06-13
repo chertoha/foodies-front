@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import theme from "styles/theme";
 import { Link } from "react-router-dom";
-import { flexCenter, ml, mr, pr } from "styles/atomic";
+import { flexCenter, ml, mr, numberTextRows, pr } from "styles/atomic";
 
 export const Wrapper = styled("div")`
   text-align: right;
@@ -35,6 +35,7 @@ export const Button = styled("button")`
 `;
 
 export const AvatarWrapper = styled("span")`
+  flex-shrink: 0;
   width: 32px;
   height: 32px;
   overflow: hidden;
@@ -56,6 +57,10 @@ export const Avatar = styled("img")`
 export const Label = styled("span")`
   ${ml("6")};
   ${mr(1)};
+
+  max-width: 100px;
+  overflow: hidden;
+  ${numberTextRows(1)};
 `;
 
 export const List = styled("ul")`
