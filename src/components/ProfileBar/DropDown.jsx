@@ -1,14 +1,19 @@
+import SpriteIcon from "components/UIKit/SpriteIcon";
 import { useEffect, useRef } from "react";
 import { Item, List, StyledLink } from "./ProfileBar.styled";
-import SpriteIcon from "components/UIKit/SpriteIcon";
+import { Modal } from "components/Modal/Modal";
+import LogOut from "components/LogOut";
+import { useModalWindow } from "hooks/useModalWindow";
 
-const DropDown = ({ close }) => {
+const DropDown = ({ close: closeDropdown }) => {
   const dropdownRef = useRef(null);
+
+  const { isOpen: isModalOpen, open: openModal, close: closeModal } = useModalWindow();
 
   useEffect(() => {
     const onOutsideDropdownClick = e => {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
-        close();
+        closeDropdown();
       }
     };
 
@@ -17,33 +22,45 @@ const DropDown = ({ close }) => {
     return () => {
       window.removeEventListener("click", onOutsideDropdownClick);
     };
-  }, [close]);
+  }, [closeDropdown]);
 
+  console.log(isModalOpen);
   return (
-    <List ref={dropdownRef}>
-      <Item>
-        <StyledLink
-          onClick={close}
-          to="/recipe/123"
-        >
-          Profile
-        </StyledLink>
-      </Item>
+    <>
+      <List ref={dropdownRef}>
+        <Item>
+          <StyledLink
+            onClick={closeDropdown}
+            to="/recipe/123"
+          >
+            Profile
+          </StyledLink>
+        </Item>
 
-      <Item>
-        <StyledLink
-          as="button"
-          type="button"
-          onClick={close}
-        >
-          Log out
-          <SpriteIcon
-            id="icon-arrow-up-right"
-            size={[18, 18, 18]}
-          />
-        </StyledLink>
-      </Item>
-    </List>
+        <Item>
+          <StyledLink
+            as="button"
+            type="button"
+            onClick={() => {
+              openModal();
+              // closeDropdown();
+            }}
+          >
+            Log out
+            <SpriteIcon
+              id="icon-arrow-up-right"
+              size={[18, 18, 18]}
+            />
+          </StyledLink>
+        </Item>
+      </List>
+
+      {isModalOpen && (
+        <Modal onClose={closeModal}>
+          <LogOut onClose={closeModal} />
+        </Modal>
+      )}
+    </>
   );
 };
 
