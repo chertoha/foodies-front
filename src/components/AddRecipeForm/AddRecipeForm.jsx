@@ -3,8 +3,6 @@ import { useForm, useFieldArray } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schema } from "./yupValidation";
 import { FieldsInput } from "./InputFields.styled";
-import { useGetCategoriesQuery } from "../../redux/categories/categoriesApi";
-// import { useGetIngredientsQuery } from "../../redux/ingredients/ingredientsApi";
 import { useCreateRecipeMutation } from "../../redux/recipes/recipesApi";
 import { Form } from "./AddRecipeForm.styled";
 import ActiveButton from "components/Buttons/ActiveButton";
@@ -12,32 +10,32 @@ import TrashButton from "components/Buttons/TrashButton";
 import { RecipeIngredientsContainer } from "components/RecipeIngredients/RecipeIngredients.styled";
 import SectionTitle from "components/SectionTitle";
 import IngredientSelector from "./IngredientSelected";
-// Валідаційна схема з Yup
+import ImageDropZone from "components/ImageDropZone";
+import { CategoriesSelector } from "./CategoriesSelector";
+import { Counter } from "components/Counter/Counter";
 
 const AddRecipeForm = () => {
   const {
     register,
     handleSubmit,
     control,
-    setValue,
+    _setValue,
     reset,
     watch,
     formState: { errors },
-  } = useForm({
-    resolver: yupResolver(schema),
-  });
+  } = useForm({ resolver: yupResolver(schema) });
 
-  const { fields, append, _remove } = useFieldArray({
+  const { fields, _append, _remove } = useFieldArray({
     control,
     name: "ingredients",
   });
 
-  const [categories, _setCategories] = useState([]);
+  const [_categories, _setCategories] = useState([]);
   const [ingredients, _setIngredients] = useState([]);
-  const [preview, setPreview] = useState(null);
+  const [_preview, setPreview] = useState(null);
 
-  const { data } = useGetCategoriesQuery({ limit: 1111 });
-  console.log(data);
+  // const { data } = useGetCategoriesQuery({ limit: 1111 });
+
   const [createRecipe] = useCreateRecipeMutation();
   // useEffect(() => {
   //   // Отримання категорій з backend
@@ -81,36 +79,20 @@ const AddRecipeForm = () => {
     setPreview(null);
   };
 
-  const handlePhotoChange = e => {
-    const file = e.target.files[0];
-    if (file) {
-      setPreview(URL.createObjectURL(file));
-      setValue("photo", file);
-    }
-  };
+  // const handlePhotoChange = e => {
+  //   const file = e.target.files[0];
+  //   if (file) {
+  //     setPreview(URL.createObjectURL(file));
+  //     setValue("photo", file);
+  //   }
+  // };
 
   const descriptionLength = watch("description")?.length || 0;
   const instructionsLength = watch("instructions")?.length || 0;
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
-      <div>
-        <label>
-          Фото рецепта:
-          <input
-            type="file"
-            onChange={handlePhotoChange}
-          />
-        </label>
-        {preview && (
-          <img
-            src={preview}
-            alt="Recipe preview"
-            width="100"
-          />
-        )}
-        {errors.photo && <p>{errors.photo.message}</p>}
-      </div>
+      <ImageDropZone name="image" />
 
       <FieldsInput>
         <div>
@@ -136,50 +118,22 @@ const AddRecipeForm = () => {
           {errors.description && <p>{errors.description.message}</p>}
         </div>
 
-        <div>
-          <label>
-            Категорія:
-            <select {...register("category")}>
-              {categories.map(category => (
-                <option
-                  key={category.id}
-                  value={category.name}
-                >
-                  {category.name}
-                </option>
-              ))}
-            </select>
-          </label>
-          {errors.category && <p>{errors.category.message}</p>}
-        </div>
+        <CategoriesSelector
+          register={register}
+          errors={errors}
+        />
 
-        <div>
-          <label>
-            Час приготування (хвилини):
-            <input
-              type="number"
-              {...register("cookTime")}
-            />
-          </label>
-          {errors.cookTime && <p>{errors.cookTime.message}</p>}
-        </div>
+        <Counter
+          register={register}
+          errors={errors}
+        />
 
         <RecipeIngredientsContainer>
           <SectionTitle label={"Ingredients"} />
           <div>
-            <IngredientSelector></IngredientSelector>
-            <input
-              type="number"
-              {...register(`ingredients.`)}
-            />
+            <IngredientSelector />
           </div>
 
-          <button
-            type="button"
-            onClick={() => append({ ingredient: "", amount: 1 })}
-          >
-            Add ingredient+
-          </button>
           {fields.map((field, index) => (
             <div key={field.id}>
               <select {...register(`ingredients.${index}.ingredient`)}>
