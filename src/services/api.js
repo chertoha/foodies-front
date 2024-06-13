@@ -14,7 +14,7 @@ const clearAuthHeader = () => {
   api.defaults.headers.common.Authorization = "";
 };
 
-api.defaults.headers.common.Authorization = `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NmEwMzk2Mjk5MDA5MWY3NTM2ZTdlNiIsImlhdCI6MTcxODIzNTUyNywiZXhwIjoxNzE4MzIxOTI3fQ.Qfje5PMhD0WiAsqAmFHYa4ZwcOFVB8BvXurur6fHzDE`;
+api.defaults.headers.common.Authorization = `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NmEwMzk2Mjk5MDA5MWY3NTM2ZTdlNiIsImlhdCI6MTcxODI5MzI3NCwiZXhwIjoxNzE4Mzc5Njc0fQ.G3rh70HoHONPtOk6nBAhVhiH56NBkNHMi658EPTwnw8`;
 
 const axiosBaseQuery =
   (baseUrl = "") =>

@@ -1,5 +1,5 @@
 import { Outlet, useParams } from "react-router-dom";
-import { useLocation } from "react-router-dom";
+// import { useLocation } from "react-router-dom";
 
 import Container from "components/Container";
 import MainTitle from "components/MainTitle/MainTitle";
@@ -35,14 +35,15 @@ const lessTabs = [
 ];
 
 const UserPage = () => {
-  const location = useLocation();
-  const { userId } = useParams();
+  // const location = useLocation();
+  const { id } = useParams();
+  console.log("id", id);
   const [allActiveTab, setAllActiveTab] = useState("My recipes");
   const [lessActiveTab, setLessActiveTab] = useState("Recipes");
 
   const currentUserId = "666a03962990091f7536e7e6"; // Замініть на фактичний ID поточного користувача
-  const isCurrentUserProfile = location.pathname.includes("/user/666a03962990091f7536e7e6");
-  // const isCurrentUserProfile = userId === currentUserId;
+  // const isCurrentUserProfile = location.pathname.includes("/user/666a03962990091f7536e7e6");
+  const isCurrentUserProfile = id === currentUserId;
 
   const handleTabChange = tab => {
     setAllActiveTab(tab);
@@ -61,13 +62,13 @@ const UserPage = () => {
     data: dataUserInfo,
     error: errorUserInfo,
     isFetching: isFetchingUserInfo,
-  } = useGetUserInfoQuery(isCurrentUserProfile);
+  } = useGetUserInfoQuery(id);
 
   if (isFetchingUserInfo) return <div>Loading...</div>;
-  if (errorUserInfo) return <div>Error loading recipes.</div>;
+  if (errorUserInfo) return <div>Error loading UserPage.</div>;
   if (!dataUserInfo) return null;
-  console.log(dataUserInfo);
-  console.log(dataUserInfo.name);
+  console.log("dataUserInfo", dataUserInfo);
+
   return (
     <SectionWrapper>
       <Container>
@@ -82,13 +83,14 @@ const UserPage = () => {
             "Reveal your culinary art, share your favorite recipe and create gastronomic masterpieces with us."
           }
         />
-
+        {/* {errorUserInfo && ( */}
         <ProfileWrapp>
           <UserInfo
             isCurrentUserProfile={isCurrentUserProfile}
+            userId={id}
             avatar={dataUserInfo.avatar}
             name={dataUserInfo.name}
-            email={isCurrentUserProfile ? dataUserInfo.email : null}
+            email={dataUserInfo.email}
             recipesCount={dataUserInfo.recipesCount}
             favoritesCount={dataUserInfo.favoritesCount}
             followersCount={dataUserInfo.followersCount}
@@ -145,6 +147,7 @@ const UserPage = () => {
             <Outlet />
           </ListWrapp>
         </ProfileWrapp>
+        {/* )} */}
       </Container>
     </SectionWrapper>
   );

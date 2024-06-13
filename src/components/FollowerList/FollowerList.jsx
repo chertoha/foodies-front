@@ -16,7 +16,7 @@ import {
 const FollowersList = ({ followers }) => {
   return (
     <FollowerList>
-      {followers.map(({ _id, avatar, name, recipes, card }) => (
+      {followers.map(({ _id, avatar, name, recipes }) => (
         <FollowerItem key={_id}>
           <FollowerItemWrapp>
             <UserAvatar
@@ -26,17 +26,17 @@ const FollowersList = ({ followers }) => {
 
             <div>
               <FollowerTitle>{name}</FollowerTitle>
-              <FollowerText>Own recipes:{recipes}</FollowerText>
+              <FollowerText>Own recipes:{recipes.length}</FollowerText>
               <FollowerButton>Follow</FollowerButton>
             </div>
           </FollowerItemWrapp>
 
           <CardList>
-            {[].map(card => (
-              <li key={card}>
+            {recipes.map(({ _id, title, thumb }) => (
+              <li key={_id}>
                 <CardListImage
-                  src={"../"}
-                  alt="follow"
+                  src={thumb}
+                  alt={title}
                 />
               </li>
             ))}

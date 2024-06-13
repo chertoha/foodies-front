@@ -46,17 +46,18 @@ export const RecipesWrapper = styled("div")`
   display: flex;
   justify-content: center;
   flex-direction: column;
+  gap: 32px;
   ${mt(8)};
   ${theme.mq.mobileOnly} {
   }
 
   ${theme.mq.tablet} {
     ${mt(10)};
+    gap: 40px;
   }
 
   ${theme.mq.desktop} {
     flex-direction: row;
-    gap: 40px;
   }
 `;
 export const RecipeComponentList = styled.ul`

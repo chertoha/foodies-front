@@ -1,4 +1,9 @@
 import list from "pages/UserPage/list.json";
+
+import { useWindowSize } from "../../hooks/useWindowSize";
+import { useState } from "react";
+import Paginator from "../Paginator/Paginator";
+
 import { useGetOwnRecipesQuery, useDeleteRecipeMutation } from "../../redux/recipes/recipesApi";
 
 import SubTitle from "../SubTitle/SubTitle";
@@ -6,14 +11,23 @@ import UserPageListItems from "../UserPageListItems/UserPageListItems";
 import { SubTitleWrapper } from "./ProfilePages.styled";
 
 const MyRecipes = () => {
+  const { isMobile } = useWindowSize();
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageNumbersToShow = isMobile ? 5 : 8;
+  const itemsPerPage = isMobile ? 8 : 12;
+
+  const onPageChange = pageNumber => {
+    setCurrentPage(pageNumber);
+  };
+
   const {
     data,
     error: errorMyRecipes,
     isFetching: isFetchingMyRecipes,
     refetch: refetchMyRecipes,
   } = useGetOwnRecipesQuery({
-    page: 1,
-    limit: 9,
+    page: currentPage,
+    limit: itemsPerPage,
   });
 
   if (isFetchingMyRecipes) return <div>Loading...</div>;
@@ -21,14 +35,26 @@ const MyRecipes = () => {
   if (!data) return null;
 
   console.log("MyRecipes", data);
+  const totalPages = Math.ceil(data.total / itemsPerPage);
   return (
     <>
       {data.result.length > 0 ? (
-        <UserPageListItems
-          recipes={data.result}
-          type="myRecipes"
-          refetchRecipes={refetchMyRecipes}
-        />
+        <>
+          <UserPageListItems
+            recipes={data.result}
+            type="myRecipes"
+            refetchRecipes={refetchMyRecipes}
+          />
+          {totalPages > 1 && !errorMyRecipes && (
+            <Paginator
+              currentPage={currentPage}
+              itemsPerPage={itemsPerPage}
+              totalItems={data.total}
+              onPageChange={onPageChange}
+              pageNumbersToShow={pageNumbersToShow}
+            />
+          )}
+        </>
       ) : (
         <SubTitleWrapper>
           <SubTitle
