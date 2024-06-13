@@ -9,7 +9,7 @@ import RecipesComponent from "components/RecipesComponent";
 // import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
-import { CategoryTest } from "components/Category/Category";
+// import { CategoryTest } from "components/Category/Category";
 
 const HomePage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
