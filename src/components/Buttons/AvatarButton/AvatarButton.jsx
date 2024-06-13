@@ -1,15 +1,7 @@
 import { ButtonAvatar, ImgAvatar, InitialsAvatar, InitialsSpan } from "./AvatarButton.styled";
-import { Modal } from "../../Modal/Modal";
-import SignIn from "../../SignIn/SignIn";
-import { useNavigate } from "react-router-dom";
-import { useModalWindow } from "../../../hooks/useModalWindow";
-import { useAuth } from "../../../hooks/useAuth";
+import AuthLinkWrapper from "components/AuthLinkWrapper";
 
 const AvatarButton = ({ author, showName = true, to }) => {
-  const navigate = useNavigate();
-  const { isOpen, open, close } = useModalWindow();
-  const { user } = useAuth();
-
   if (!author) {
     return null;
   }
@@ -37,36 +29,25 @@ const AvatarButton = ({ author, showName = true, to }) => {
     return colors[index];
   };
 
-  const handleAvatarClick = e => {
-    e.preventDefault();
-    if (!user) {
-      open(true);
-    } else {
-      navigate(to);
-    }
-  };
-
   return (
-    <>
-      <ButtonAvatar onClick={handleAvatarClick}>
-        {author.avatar ? (
-          <ImgAvatar
-            src={author.avatar}
-            alt={author.name}
-          />
-        ) : (
-          <InitialsAvatar style={{ backgroundColor: getRandomColor(author.name) }}>
-            <InitialsSpan>{getInitials(author.name)}</InitialsSpan>
-          </InitialsAvatar>
-        )}
-        {showName && <>{author.name}</>}
-      </ButtonAvatar>
-      {isOpen && (
-        <Modal onClose={close}>
-          <SignIn />
-        </Modal>
-      )}
-    </>
+    <AuthLinkWrapper
+      to={to}
+      avatar={
+        <ButtonAvatar>
+          {author.avatar ? (
+            <ImgAvatar
+              src={author.avatar}
+              alt={author.name}
+            />
+          ) : (
+            <InitialsAvatar style={{ backgroundColor: getRandomColor(author.name) }}>
+              <InitialsSpan>{getInitials(author.name)}</InitialsSpan>
+            </InitialsAvatar>
+          )}
+          {showName && <>{author.name}</>}
+        </ButtonAvatar>
+      }
+    />
   );
 };
 

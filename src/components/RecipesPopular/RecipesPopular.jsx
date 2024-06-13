@@ -9,12 +9,8 @@ const RecipesPopular = () => {
   const { data, error, isLoading } = useGetPopularRecipesQuery({ page: 1, limit: 4 });
   const { user } = useAuth();
 
-  if (isLoading) {
-    return;
-  }
-
-  if (error) {
-    return;
+  if (isLoading || error || !data || !data.result || data.result.length === 0) {
+    return null;
   }
 
   const handleToggleFavorite = recipeId => {

@@ -60,6 +60,7 @@ const RecipeInfo = ({ author, onSignIn, onProfile, onToggleFavorite }) => {
         <RecipeIngredients ingredients={recipeIngredients} />
         <RecipePreparation
           preparation={recipe.instructions}
+          recipeId={recipe._id}
           isFavorite={recipe.isFavorite}
           onToggleFavorite={onToggleFavorite}
         />

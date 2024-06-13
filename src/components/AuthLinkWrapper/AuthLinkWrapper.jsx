@@ -3,8 +3,8 @@ import SignIn from "../SignIn/SignIn";
 import { useModalWindow } from "../../hooks/useModalWindow";
 import { useAuth } from "../../hooks/useAuth";
 import { Link } from "react-router-dom";
-import { useState } from "react";
 import SignUp from "components/SignUp";
+import { useState } from "react";
 
 const AuthLinkWrapper = ({ to, avatar }) => {
   const { user } = useAuth();

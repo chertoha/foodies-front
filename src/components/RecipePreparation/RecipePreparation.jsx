@@ -1,19 +1,19 @@
 import SubTitle from "components/SubTitle";
 import {
   RecipePreparationContainer,
-  RecipePreparationButton,
   PreparationDescriptionWrapper,
   PreparationTitleWrapper,
   ReadMoreButton,
 } from "./RecipePreparation.styled";
 import SectionTitle from "components/SectionTitle";
 import { useState } from "react";
+import FavoriteButton from "../Buttons/FavoriteButton/FavoriteButton";
+import FavoriteWrapper from "../FavoriteWrapper/FavoriteWrapper";
 
-const RecipePreparation = ({ preparation, isFavorite, onToggleFavorite }) => {
+const RecipePreparation = ({ preparation, recipeId, onToggleFavorite }) => {
+  console.log(recipeId);
   const [showFullText, setShowFullText] = useState(false);
-  const handleFavoriteClick = () => {
-    onToggleFavorite();
-  };
+
   const handleReadMoreClick = () => {
     setShowFullText(!showFullText);
   };
@@ -39,9 +39,11 @@ const RecipePreparation = ({ preparation, isFavorite, onToggleFavorite }) => {
           </ReadMoreButton>
         )}
       </PreparationDescriptionWrapper>
-      <RecipePreparationButton onClick={handleFavoriteClick}>
-        {isFavorite ? "Remove from favorite" : "Add to favorite"}
-      </RecipePreparationButton>
+      <FavoriteWrapper
+        recipeId={recipeId}
+        onToggleFavorite={onToggleFavorite}
+        Button={FavoriteButton}
+      />
     </RecipePreparationContainer>
   );
 };

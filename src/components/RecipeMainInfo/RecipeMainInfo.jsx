@@ -9,7 +9,7 @@ import {
   RecipeMainInfoContainer,
   RecipeTime,
 } from "./RecipeMainInfo.styled";
-import AvatarButton from "components/Buttons/AvatarButton";
+import AvatarButton from "../Buttons/AvatarButton/AvatarButton";
 import SectionTitle from "components/SectionTitle";
 import SubTitle from "components/SubTitle";
 
