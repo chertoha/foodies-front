@@ -1,5 +1,9 @@
 import { Outlet, useParams } from "react-router-dom";
+import { useState } from "react";
 // import { useLocation } from "react-router-dom";
+
+import { useGetUserInfoQuery } from "../../redux/users/usersApi";
+import { useAuth } from "hooks/useAuth";
 
 import Container from "components/Container";
 import MainTitle from "components/MainTitle/MainTitle";
@@ -12,9 +16,6 @@ import MyFavorites from "components/ProfilePages/MyFavorites";
 import Followers from "components/ProfilePages/Followers";
 import Following from "components/ProfilePages/Following";
 
-import { useGetUserInfoQuery } from "../../redux/users/usersApi";
-// import { useAuth } from "hooks/useAuth";
-
 import {
   SectionWrapper,
   TitleWrapp,
@@ -23,7 +24,7 @@ import {
   TabsList,
   TabsButton,
 } from "./UserPage.styled";
-import { useState } from "react";
+
 const allTabs = [
   { id: 1, tab: "My recipes", label: "My recipes" },
   { id: 2, tab: "My favorites", label: "My favorites" },
@@ -39,29 +40,20 @@ const lessTabs = [
 const UserPage = () => {
   // const location = useLocation();
   const { id } = useParams();
-
-  // const { user } = useAuth();
-
-  console.log("id", id);
+  const { user } = useAuth();
   const [allActiveTab, setAllActiveTab] = useState("My recipes");
   const [lessActiveTab, setLessActiveTab] = useState("Recipes");
 
-  const currentUserId = "666a03962990091f7536e7e6"; // Замініть на фактичний ID поточного користувача
-  // const isCurrentUserProfile = location.pathname.includes("/user/666a03962990091f7536e7e6");
+  // console.log("useAuth", user);
+  // console.log("id", id);
+
+  const currentUserId = user._id;
   const isCurrentUserProfile = id === currentUserId;
 
   const handleTabChange = tab => {
     setAllActiveTab(tab);
     setLessActiveTab(tab);
   };
-
-  // const { data } = useGetRecipiesQuery({
-  //   page: 1,
-  //   limit: 5,
-  //   category: "Dessert",
-  //   area: "French",
-  //   ingredient: "Icing Sugar",
-  // });
 
   const {
     data: dataUserInfo,
@@ -72,7 +64,7 @@ const UserPage = () => {
   if (isFetchingUserInfo) return <div>Loading...</div>;
   if (errorUserInfo) return <div>Error loading UserPage.</div>;
   if (!dataUserInfo) return null;
-  console.log("dataUserInfo", dataUserInfo);
+  // console.log("dataUserInfo", dataUserInfo);
 
   return (
     <SectionWrapper>

@@ -54,21 +54,21 @@ export const UserPageListImage = styled("img")`
 `;
 
 export const SpaceWrapp = styled("div")`
-display: flex;
-flex-direction: row;
-justify-content: space-between;
-width: 258px;
-${theme.mq.mobileOnly} {
-  width: 100%;
-  max-width: 258px;
-}
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 258px;
+  ${theme.mq.mobileOnly} {
+    width: 100%;
+    max-width: 258px;
+  }
 
   ${theme.mq.tablet} {
-    width: 588px;   
+    width: 588px;
   }
 
   ${theme.mq.desktop} {
-    width: 730px;   
+    width: 730px;
   }
 `;
 export const UserPageWrappText = styled("div")`

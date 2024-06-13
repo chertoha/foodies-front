@@ -39,31 +39,30 @@ const UserPageListItems = ({ recipes, type, refetchRecipes }) => {
       {recipes.map(({ _id, thumb, title, description }) => (
         <UserPageListItem key={title}>
           <UserPageListImage src={thumb} />
-        <SpaceWrapp>
-          <UserPageWrappText>
-            <UserPageListTitle>{title}</UserPageListTitle>
-            <UserPageListText>{description}</UserPageListText>
-          </UserPageWrappText>
+          <SpaceWrapp>
+            <UserPageWrappText>
+              <UserPageListTitle>{title}</UserPageListTitle>
+              <UserPageListText>{description}</UserPageListText>
+            </UserPageWrappText>
 
-          <ButtonWrapp>
-            <LinkButton to={`/recipes/${_id}`}>
-              <Icon>
-                <use href={sprite + "#icon-arrow-up-right"}></use>
-              </Icon>
-            </LinkButton>
-            {type !== "userRecipes" && (
-              <Button
-                onClick={() => handleDelete(_id)}
-                disabled={isDeletingMyRecipe || isDeletingMyFavorite}
-              >
+            <ButtonWrapp>
+              <LinkButton to={`/recipes/${_id}`}>
                 <Icon>
-                  <use href={sprite + "#icon-trash"}></use>
+                  <use href={sprite + "#icon-arrow-up-right"}></use>
                 </Icon>
-              </Button>
-            )}
-
-          </ButtonWrapp>
-        </SpaceWrapp>
+              </LinkButton>
+              {type !== "userRecipes" && (
+                <Button
+                  onClick={() => handleDelete(_id)}
+                  disabled={isDeletingMyRecipe || isDeletingMyFavorite}
+                >
+                  <Icon>
+                    <use href={sprite + "#icon-trash"}></use>
+                  </Icon>
+                </Button>
+              )}
+            </ButtonWrapp>
+          </SpaceWrapp>
         </UserPageListItem>
       ))}
     </UserPageList>

@@ -89,7 +89,7 @@ export const RecipeComponentItem = styled.li`
 
   ${theme.mq.desktop} {
     max-width: 290px;
-    flex-basis: calc((100% - 60px) / 4);
+    flex-basis: calc((100% - 40px) / 3);
   }
 `;
 export const RecipeSubDiv = styled.div`

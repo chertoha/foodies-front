@@ -1,19 +1,57 @@
+import { useState, useEffect } from "react";
+import { useAuth } from "../../hooks/useAuth";
+import { useFollowUserMutation, useUnfollowUserMutation } from "../../redux/users/usersApi";
 import UserAvatar from "components/UserAvatar/UserAvatar";
+import FollowerButton from "components/Buttons/FollowerButton/FollowerButton";
 import sprite from "assets/images/icons/sprite.svg";
+
 import {
   FollowerList,
   FollowerItem,
   FollowerItemWrapp,
   FollowerTitle,
   FollowerText,
-  FollowerButton,
   CardList,
   CardListImage,
   LinkButton,
   Icon,
 } from "./FollowerList.styled";
 
-const FollowersList = ({ followers }) => {
+const FollowersList = ({ followers, type }) => {
+  const { user } = useAuth();
+  const [followUser] = useFollowUserMutation();
+  const [unfollowUser] = useUnfollowUserMutation();
+
+  const [followingState, setFollowingState] = useState({});
+
+  useEffect(() => {
+    if (user.following) {
+      const followingMap = {};
+      user.following.forEach(id => {
+        followingMap[id] = true;
+      });
+      setFollowingState(followingMap);
+    }
+  }, [user.following]);
+
+  const handleFollowClick = async followerId => {
+    if (followingState[followerId]) {
+      try {
+        await unfollowUser(followerId).unwrap();
+        setFollowingState(prevState => ({ ...prevState, [followerId]: false }));
+      } catch (error) {
+        console.error("Failed to unfollow user:", error);
+      }
+    } else {
+      try {
+        await followUser(followerId).unwrap();
+        setFollowingState(prevState => ({ ...prevState, [followerId]: true }));
+      } catch (error) {
+        console.error("Failed to follow user:", error);
+      }
+    }
+  };
+
   return (
     <FollowerList>
       {followers.map(({ _id, avatar, name, recipes }) => (
@@ -27,7 +65,17 @@ const FollowersList = ({ followers }) => {
             <div>
               <FollowerTitle>{name}</FollowerTitle>
               <FollowerText>Own recipes:{recipes.length}</FollowerText>
-              <FollowerButton>Follow</FollowerButton>
+              {type === "Followers" ? (
+                <FollowerButton
+                  label={followingState[_id] ? "Unfollow" : "Follow"}
+                  onClick={() => handleFollowClick(_id)}
+                />
+              ) : (
+                <FollowerButton
+                  label={followingState[_id] ? "Unfollowing" : "Following"}
+                  onClick={() => handleFollowClick(_id)}
+                />
+              )}
             </div>
           </FollowerItemWrapp>
 

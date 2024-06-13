@@ -1,10 +1,9 @@
-// import { useGetUserInfoQuery } from "../../redux/users/usersApi";
-
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { authLogOutThunk } from "../../redux/auth/thunks";
-import { useFollowUserMutation, useUnfollowUserMutation, useGetUserFollowingQuery } from "../../redux/users/usersApi";
+import { useAuth } from "../../hooks/useAuth";
+import { useFollowUserMutation, useUnfollowUserMutation } from "../../redux/users/usersApi";
 
 import UserAvatar from "../../components/UserAvatar/UserAvatar";
 import sprite from "assets/images/icons/sprite.svg";
@@ -35,25 +34,19 @@ const UserInfo = ({
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const { user } = useAuth();
+
   const [isFollowing, setIsFollowing] = useState(false);
   const [followUser] = useFollowUserMutation();
   const [unfollowUser] = useUnfollowUserMutation();
 
-  const { data: followingData } = useGetUserFollowingQuery();
-
-  console.log("followingData", followingData.result)
-
   useEffect(() => {
-    if (followingData) {
-      const isFollowingUser = followingData.result.some((user) => user.id === userId);
-      console.log(isFollowingUser);
+    if (user.following) {
+      const isFollowingUser = user.following.includes(userId);
       setIsFollowing(isFollowingUser);
     }
-  }, [followingData, userId]);
-[
-  {_id: '6669784b2990091f7536da21', name: 'Anton', email: 'anton-4@aka.com'}
-  {_id: '666a061d2990091f7536e8a7', name: 'Nikol', email: 'nikol-1@mail.com'}
-]
+  }, [user.following, userId]);
+
   const onClickLogOut = async () => {
     try {
       await dispatch(authLogOutThunk()).unwrap();
@@ -68,7 +61,6 @@ const UserInfo = ({
       try {
         await unfollowUser(userId).unwrap();
         setIsFollowing(false);
-        console.log("unfollowUser")
       } catch (error) {
         console.error("Failed to unfollow user:", error);
       }
@@ -76,7 +68,6 @@ const UserInfo = ({
       try {
         await followUser(userId).unwrap();
         setIsFollowing(true);
-        console.log("followUser")
       } catch (error) {
         console.error("Failed to follow user:", error);
       }
@@ -142,7 +133,10 @@ const UserInfo = ({
               </UserCardtext>
             </UserCardInfo>
           </UserCard>
-          <ActiveButton label={isFollowing ? "Unfollow" : "Follow"} onClick={handleFollowClick} />
+          <ActiveButton
+            label={isFollowing ? "Unfollow" : "Follow"}
+            onClick={handleFollowClick}
+          />
         </>
       )}
     </UserInfoWrapp>

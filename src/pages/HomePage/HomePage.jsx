@@ -57,8 +57,7 @@ const HomePage = () => {
               onFiltersChange={handleFiltersChange}
             />
           )} */}
-
-          {/* <Category /> */}
+          <Category />
           <CategoryTest onSelectCategory={handleSelectCategory} />
           {category && (
             <>

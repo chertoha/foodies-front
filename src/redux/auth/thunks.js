@@ -21,21 +21,11 @@ export const authSignInThunk = createAsyncThunk("authSignIn", async (data, thunk
   }
 });
 
-// export const authLogOutThunk = createAsyncThunk("authLogOut", async (token, thunkAPI) => {
-//   try {
-//     const response = await api.post(`/users/logout`);
-//     clearAuthHeader();
-//     return response;
-//   } catch (error) {
-//     return thunkAPI.rejectWithValue(error.message);
-//   }
-// });
-
 export const authLogOutThunk = createAsyncThunk("authLogOut", async (_, thunkAPI) => {
   try {
     const response = await api.post(`/users/logout`);
     clearAuthHeader();
-    return response.data;
+    return response;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
   }

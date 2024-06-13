@@ -1,9 +1,9 @@
 import { useWindowSize } from "../../hooks/useWindowSize";
 import { useState } from "react";
-import Paginator from "../Paginator/Paginator";
 
 import { useGetOwnRecipesQuery, useDeleteRecipeMutation } from "../../redux/recipes/recipesApi";
 
+import Paginator from "../Paginator/Paginator";
 import SubTitle from "../SubTitle/SubTitle";
 import UserPageListItems from "../UserPageListItems/UserPageListItems";
 import { SubTitleWrapper } from "./ProfilePages.styled";

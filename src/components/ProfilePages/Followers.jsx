@@ -19,7 +19,10 @@ const Followers = ({ id }) => {
   return (
     <>
       {data.result.length > 0 ? (
-        <FollowersList followers={data.result} />
+        <FollowersList
+          followers={data.result}
+          type={"Followers"}
+        />
       ) : (
         <SubTitleWrapper>
           <SubTitle
