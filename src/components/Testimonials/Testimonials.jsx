@@ -17,7 +17,7 @@ import { useGetTestimonialsQuery } from "../../redux/testimonials/testimonialsAp
 const Testimonials = () => {
   const { data, isError } = useGetTestimonialsQuery({ page: 1, limit: 5 });
 
-  console.log(data);
+  //console.log(data);
 
   if (!data) return;
 

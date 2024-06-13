@@ -7,7 +7,7 @@ import { MainTitleWrapper, SubTitleWrapper } from "./Category.styled";
 
 const Category = () => {
   const { data, error, isFetching } = useGetCategoriesQuery({ page: 1, limit: 11 });
-  console.log(data);
+  //console.log(data);
 
   if (!data) return null;
   if (isFetching) return <div>Loading...</div>;
