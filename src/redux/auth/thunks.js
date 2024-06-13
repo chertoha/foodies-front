@@ -39,7 +39,7 @@ export const authCurrentUserThunk = createAsyncThunk("authCurrentUser", async (_
   }
   try {
     setAuthHeader(token);
-    const response = await api.post(`users/current`);
+    const response = await api.get(`users/current`);
     return response.data;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
