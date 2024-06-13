@@ -49,19 +49,15 @@ const AvatarButton = ({ author, showName = true, to, isAuthenticated }) => {
       <ButtonAvatar onClick={handleAvatarClick}>
         {author.avatar ? (
           <ImgAvatar
-            to={to}
             src={author.avatar}
             alt={author.name}
           />
         ) : (
-          <InitialsAvatar
-            to={to}
-            style={{ backgroundColor: getRandomColor(author.name) }}
-          >
+          <InitialsAvatar style={{ backgroundColor: getRandomColor(author.name) }}>
             <InitialsSpan>{getInitials(author.name)}</InitialsSpan>
           </InitialsAvatar>
         )}
-        {showName && <span>{author.name}</span>}
+        {showName && <>{author.name}</>}
       </ButtonAvatar>
       {isOpen && (
         <Modal onClose={close}>

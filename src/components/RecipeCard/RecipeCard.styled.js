@@ -43,4 +43,8 @@ export const Text = styled.p`
   ${body1()}
   ${numberTextRows(2)}
   ${my(2)}
+  min-height: 40px;
+  ${theme.mq.tabletOnly} {
+    min-height: 48px;
+  }
 `;

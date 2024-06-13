@@ -12,20 +12,12 @@ import HeartButton from "../Buttons/HeartButton/HeartButton";
 import ArrowButton from "../Buttons/ArrowButton/ArrowButton";
 import SectionTitle from "components/SectionTitle";
 
-const RecipeCard = ({ recipe, author, onSignIn, onProfile, onToggleFavorite }) => {
-  const [isFavorite, setIsFavorite] = useState(false);
+const RecipeCard = ({ recipe, author, onToggleFavorite }) => {
+  const [isFavorite, setIsFavorite] = useState(recipe.isFavorite);
 
   const handleFavoriteClick = () => {
     setIsFavorite(!isFavorite);
     onToggleFavorite(recipe.id);
-  };
-
-  const handleAuthorClick = () => {
-    if (!author.isAuthenticated) {
-      onSignIn();
-    } else {
-      onProfile(author.id);
-    }
   };
 
   return (
@@ -39,10 +31,7 @@ const RecipeCard = ({ recipe, author, onSignIn, onProfile, onToggleFavorite }) =
       </TitleCardWrapper>
       <Text>{recipe.description}</Text>
       <ActionsContainer>
-        <AvatarButton
-          author={author}
-          onClick={handleAuthorClick}
-        />
+        <AvatarButton author={author} />
         <Actions>
           <HeartButton
             isFavorite={isFavorite}
