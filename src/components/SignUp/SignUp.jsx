@@ -5,6 +5,8 @@ import { authSignUpThunk } from "../../redux/auth/thunks";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { object, string } from "yup";
+
+import { toast } from "react-toastify";
 import sprite from "assets/images/icons/sprite.svg";
 import {
   FormWripper,
@@ -19,7 +21,6 @@ import {
   LinkTextStyled,
   ErrorTextStyled,
 } from "./SignUp.styled";
-import { toast } from "react-toastify";
 
 const schema = object({
   name: string().required().min(2),
@@ -48,17 +49,37 @@ const SignUp = ({ switchForm, onClose }) => {
   });
 
   const onSubmit = async data => {
-    const res = await dispatch(authSignUpThunk(data));
-    if (res.type === "authSignUp/fulfilled") {
-      reset();
-      onClose();
-    }
-    if (res.type === "authSignUp/rejected") {
-      toast.error(`${res.error?.message}`, {
-        theme: "light",
+    dispatch(authSignUpThunk(data))
+      .unwrap()
+      .then(() => {
+        reset();
+        onClose();
+      })
+      .catch(error => {
+        toast.error(`${error}`, {
+          theme: "light",
+        });
       });
-    }
   };
+
+  // const onSubmit = async data => {
+  //   try {
+  //     const res = await dispatch(authSignUpThunk(data));
+  //     if (res.type === "authSignUp/fulfilled") {
+  //       reset();
+  //       onClose();
+  //     }
+  //     if (res.type === "authSignUp/rejected") {
+  //       toast.error(`${res.payload}`, {
+  //         theme: "light",
+  //       });
+  //     }
+  //   } catch (error) {
+  //     toast.error(error.message, {
+  //       theme: "light",
+  //     });
+  //   }
+  // };
 
   return (
     <FormWripper>

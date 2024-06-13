@@ -13,7 +13,7 @@ export const RecipePopularList = styled.ul`
   flex-wrap: wrap;
   gap: 20px;
   ${mt(8)};
-  ${({ theme }) => theme.mq.tabletOnly} {
+  ${({ theme }) => theme.mq.tablet} {
     flex-direction: row;
     column-gap: 20px;
     row-gap: 40px;

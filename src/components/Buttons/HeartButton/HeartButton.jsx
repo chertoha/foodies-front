@@ -1,13 +1,13 @@
 import { ButtonHeart } from "./HeartButton.styled";
 import SpriteIcon from "../../UIKit/SpriteIcon/SpriteIcon";
 
-const HeartButton = ({ isFavorite, onClick }) => {
+const HeartButton = ({ isChecked, onClick }) => {
   return (
     <ButtonHeart
       type="button"
       onClick={onClick}
-      aria-pressed={isFavorite}
-      $isFavorite={isFavorite}
+      aria-pressed={isChecked}
+      $isFavorite={isChecked}
     >
       <SpriteIcon
         id="icon-heart"
