@@ -1,17 +1,17 @@
 import Container from "components/Container";
-// import ImageDropZone from "components/ImageDropZone";
-// import { FormProvider, useForm } from "react-hook-form";
+
+import { FormProvider, useForm } from "react-hook-form";
 import MainTitle from "components/MainTitle";
 import SubTitle from "components/SubTitle";
 import Breadcrumbs from "components/UIKit/Breadcrumbs";
 import AddRecipeForm from "components/AddRecipeForm/AddRecipeForm";
 
 const AddRecipePage = () => {
-  // const methods = useForm({
-  //   defaultValues: {
-  //     thumb: null,
-  //   },
-  // });
+  const methods = useForm({
+    defaultValues: {
+      thumb: null,
+    },
+  });
 
   // const onSubmit = data => console.log(data);
 
@@ -28,14 +28,17 @@ const AddRecipePage = () => {
               "Reveal your culinary art, share your favorite recipe and create gastronomic masterpieces with us."
             }
           />
-          <AddRecipeForm>
+          <FormProvider {...methods}>
+            <AddRecipeForm />
+          </FormProvider>
+          <>
             {/* <FormProvider {...methods}>
-              <form onSubmit={methods.handleSubmit(onSubmit)}>
-                <ImageDropZone name="thumb" />
-                <button className="">Submit</button>
-              </form>
-            </FormProvider> */}
-          </AddRecipeForm>
+            <form onSubmit={methods.handleSubmit(onSubmit)}>
+              <ImageDropZone name="thumb" />
+              <button className="">Submit</button>
+            </form>
+          </FormProvider> */}
+          </>
         </Container>
       </div>
     </>
