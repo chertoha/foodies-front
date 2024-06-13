@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import theme from "styles/theme";
 import { Link } from "react-router-dom";
 import { flexCenter, ml, mr, numberTextRows, pr } from "styles/atomic";
@@ -10,12 +10,16 @@ export const Wrapper = styled("div")`
 export const InnerWrapper = styled("div")`
   position: relative;
   display: inline-flex;
+  ${pr(1)};
 `;
 
 export const Button = styled("button")`
-  ${pr("14")};
+  ${pr("6")};
   display: inline-flex;
+  justify-content: space-between;
   align-items: center;
+
+  min-width: 122px;
 
   font-size: 12px;
   font-weight: ${p => p.theme.fontWeights.bold};
@@ -31,6 +35,10 @@ export const Button = styled("button")`
 
   &:hover {
     color: rgba(255, 255, 255, 0.7);
+  }
+
+  ${theme.mq.tablet} {
+    min-width: 148px;
   }
 `;
 
@@ -55,10 +63,10 @@ export const Avatar = styled("img")`
 `;
 
 export const Label = styled("span")`
-  ${ml("6")};
-  ${mr(1)};
+  /* ${ml("6")}; */
+  /* ${mr(1)}; */
 
-  max-width: 100px;
+  max-width: 80px;
   overflow: hidden;
   ${numberTextRows(1)};
 `;

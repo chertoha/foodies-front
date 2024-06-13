@@ -1,4 +1,8 @@
 import Logo from "components/Logo/Logo";
+import Hero from "components/Hero";
+import AuthToggler from "components/AuthToggler";
+import ProfileBar from "components/ProfileBar";
+import HeaderNav from "components/HeaderNav";
 
 import { useLocation } from "react-router-dom";
 import {
@@ -8,11 +12,7 @@ import {
   LogoWrapper,
   StyledHeader,
 } from "./Header.styled";
-import Hero from "components/Hero";
-import AuthToggler from "components/AuthToggler";
-import ProfileBar from "components/ProfileBar";
 import { useAuth } from "hooks/useAuth";
-import HeaderNav from "components/HeaderNav";
 
 const Header = () => {
   const { user } = useAuth();
@@ -35,7 +35,16 @@ const Header = () => {
           </HeroWrapper>
         )}
 
-        <AuthBarWrapper>{user ? <ProfileBar user={user} /> : <AuthToggler />}</AuthBarWrapper>
+        <AuthBarWrapper>
+          {user ? (
+            <ProfileBar
+              user={user}
+              inverse={isHomePage}
+            />
+          ) : (
+            <AuthToggler />
+          )}
+        </AuthBarWrapper>
       </StyledHeader>
     </CommonWrapper>
   );
