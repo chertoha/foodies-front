@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import theme from "styles/theme";
 import { Link } from "react-router-dom";
 import { flexCenter, ml, mr, numberTextRows, pr } from "styles/atomic";
