@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { body1 } from "styles/atomic";
 
@@ -10,17 +9,17 @@ export const ButtonAvatar = styled.div`
   gap: 10px;
   ${body1()}
   color: ${({ theme }) => theme.colors.dark};
-  cursor: pointer;
 `;
 
-export const ImgAvatar = styled(Link)`
+export const ImgAvatar = styled.img`
   width: 32px;
   height: 32px;
   border-radius: ${({ theme }) => theme.radii.lg};
   object-fit: cover;
+  cursor: pointer;
 `;
 
-export const InitialsAvatar = styled(Link)`
+export const InitialsAvatar = styled.button`
   width: 32px;
   height: 32px;
   border-radius: ${({ theme }) => theme.radii.lg};

@@ -1,4 +1,3 @@
-import { useState } from "react";
 import {
   CardWrapper,
   Image,
@@ -8,26 +7,12 @@ import {
   Text,
 } from "./RecipeCard.styled";
 import AvatarButton from "../Buttons/AvatarButton/AvatarButton";
-import HeartButton from "../Buttons/HeartButton/HeartButton";
 import ArrowButton from "../Buttons/ArrowButton/ArrowButton";
 import SectionTitle from "components/SectionTitle";
+import FavoriteWrapper from "../FavoriteWrapper/FavoriteWrapper";
+import HeartButton from "components/Buttons/HeartButton";
 
-const RecipeCard = ({ recipe, author, onSignIn, onProfile, onToggleFavorite }) => {
-  const [isFavorite, setIsFavorite] = useState(false);
-
-  const handleFavoriteClick = () => {
-    setIsFavorite(!isFavorite);
-    onToggleFavorite(recipe.id);
-  };
-
-  const handleAuthorClick = () => {
-    if (!author.isAuthenticated) {
-      onSignIn();
-    } else {
-      onProfile(author.id);
-    }
-  };
-
+const RecipeCard = ({ recipe, author, isAuthenticated, favorites }) => {
   return (
     <CardWrapper>
       <Image
@@ -41,12 +26,14 @@ const RecipeCard = ({ recipe, author, onSignIn, onProfile, onToggleFavorite }) =
       <ActionsContainer>
         <AvatarButton
           author={author}
-          onClick={handleAuthorClick}
+          isAuthenticated={isAuthenticated}
+          to={`/user/${author.id}`}
         />
         <Actions>
-          <HeartButton
-            isFavorite={isFavorite}
-            onClick={handleFavoriteClick}
+          <FavoriteWrapper
+            recipeId={recipe.id}
+            Button={HeartButton}
+            favorites={favorites}
           />
           <ArrowButton to={`/recipe/${recipe.id}`} />
         </Actions>

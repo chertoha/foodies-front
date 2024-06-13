@@ -2,6 +2,8 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 import { authLogOutThunk } from "../../redux/auth/thunks";
+
+import { toast } from "react-toastify";
 import {
   Wripper,
   TitleStyled,
@@ -16,15 +18,17 @@ const LogOut = ({ onClose }) => {
   const width = window.innerWidth;
 
   const handleLogOut = async () => {
-    const token = "";
-    try {
-      await dispatch(authLogOutThunk(token));
-      onClose();
-      navigate("/");
-    } catch (error) {
-      console.log(error);
-      // "notification error"
-    }
+    dispatch(authLogOutThunk())
+      .unwrap()
+      .then(() => {
+        onClose();
+        navigate("/");
+      })
+      .catch(error => {
+        toast.error(`${error}`, {
+          theme: "light",
+        });
+      });
   };
 
   return (

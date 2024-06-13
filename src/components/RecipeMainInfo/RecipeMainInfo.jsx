@@ -9,7 +9,7 @@ import {
   RecipeMainInfoContainer,
   RecipeTime,
 } from "./RecipeMainInfo.styled";
-import AvatarButton from "components/Buttons/AvatarButton";
+import AvatarButton from "../Buttons/AvatarButton/AvatarButton";
 import SectionTitle from "components/SectionTitle";
 import SubTitle from "components/SubTitle";
 
@@ -28,6 +28,7 @@ const RecipeMainInfo = ({ recipe, isAuthenticated }) => {
           author={recipeOwner}
           isAuthenticated={isAuthenticated}
           showName={false}
+          to={`/user/${recipeOwner._id}`}
         />
         <AuthorTextWrapper>
           <CreatedByText>Created by:</CreatedByText>

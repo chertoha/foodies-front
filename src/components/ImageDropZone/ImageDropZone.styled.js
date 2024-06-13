@@ -89,4 +89,22 @@ export const ErrorMessage = styled("p")`
   transform: translateX(-50%);
   color: ${p => p.theme.colors.error};
 `;
+
+export const ImageUploadBox = styled("div")`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+`;
+
+export const ImageUploadBoxText = styled("p")`
+  color: #050505;
+  font-family: Mulish;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px; /* 150% */
+  letter-spacing: -0.32px;
+  text-decoration-line: underline;
+`;
 //
