@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { authLogOutThunk } from "../../redux/auth/thunks";
-import { useFollowUserMutation, useUnfollowUserMutation } from "../../redux/users/usersApi";
+import { useFollowUserMutation, useUnfollowUserMutation, useGetUserFollowingQuery } from "../../redux/users/usersApi";
 
 import UserAvatar from "../../components/UserAvatar/UserAvatar";
 import sprite from "assets/images/icons/sprite.svg";
@@ -30,7 +30,7 @@ const UserInfo = ({
   recipesCount,
   favoritesCount,
   followersCount,
-  followingCount
+  followingCount,
 }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -39,43 +39,36 @@ const UserInfo = ({
   const [followUser] = useFollowUserMutation();
   const [unfollowUser] = useUnfollowUserMutation();
 
+  const { data: followingData } = useGetUserFollowingQuery();
+
+  console.log("followingData", followingData.result)
+
   useEffect(() => {
-    // Тут можна реалізувати логіку перевірки чи є користувач в списку підписок
-    // Наприклад, через API-запит до вашого сервера
-    const checkFollowingStatus = async () => {
-      try {
-        // Отримуємо дані користувача для поточного профілю
-        // Припустимо, що отримуємо з сервера інформацію про підписки
-        const response = await fetch(`/api/users/${userId}/following`);
-        const data = await response.json();
-        const currentUserId = "666a03962990091f7536e7e6"; // Замініть на фактичний ID поточного користувача
-        const isFollowingUser = data.following.includes(currentUserId);
-        setIsFollowing(isFollowingUser);
-      } catch (error) {
-        console.error("Error checking following status:", error);
-      }
-    };
-
-    checkFollowingStatus();
-  }, [userId]);
-
+    if (followingData) {
+      const isFollowingUser = followingData.result.some((user) => user.id === userId);
+      console.log(isFollowingUser);
+      setIsFollowing(isFollowingUser);
+    }
+  }, [followingData, userId]);
+[
+  {_id: '6669784b2990091f7536da21', name: 'Anton', email: 'anton-4@aka.com'}
+  {_id: '666a061d2990091f7536e8a7', name: 'Nikol', email: 'nikol-1@mail.com'}
+]
   const onClickLogOut = async () => {
     try {
       await dispatch(authLogOutThunk()).unwrap();
       navigate("/");
-      // Можливо додати навігацію або інші дії після успішного логаута
     } catch (error) {
       console.error("Failed to log out:", error);
-      // Обробка помилки (наприклад, показ повідомлення користувачу)
     }
   };
-
 
   const handleFollowClick = async () => {
     if (isFollowing) {
       try {
         await unfollowUser(userId).unwrap();
         setIsFollowing(false);
+        console.log("unfollowUser")
       } catch (error) {
         console.error("Failed to unfollow user:", error);
       }
@@ -83,6 +76,7 @@ const UserInfo = ({
       try {
         await followUser(userId).unwrap();
         setIsFollowing(true);
+        console.log("followUser")
       } catch (error) {
         console.error("Failed to follow user:", error);
       }
@@ -148,10 +142,7 @@ const UserInfo = ({
               </UserCardtext>
             </UserCardInfo>
           </UserCard>
-          <ActiveButton
-            label={isFollowing ? "Unfollow" : "Follow"}
-            onClick={handleFollowClick}
-          />
+          <ActiveButton label={isFollowing ? "Unfollow" : "Follow"} onClick={handleFollowClick} />
         </>
       )}
     </UserInfoWrapp>

@@ -7,11 +7,13 @@ import SubTitle from "components/SubTitle";
 import UserInfo from "components/UserInfo";
 
 import MyRecipes from "components/ProfilePages/MyRecipes";
+import UserRecipes from "components/ProfilePages/UserRecipes";
 import MyFavorites from "components/ProfilePages/MyFavorites";
 import Followers from "components/ProfilePages/Followers";
 import Following from "components/ProfilePages/Following";
 
 import { useGetUserInfoQuery } from "../../redux/users/usersApi";
+// import { useAuth } from "hooks/useAuth";
 
 import {
   SectionWrapper,
@@ -37,6 +39,9 @@ const lessTabs = [
 const UserPage = () => {
   // const location = useLocation();
   const { id } = useParams();
+
+  // const { user } = useAuth();
+
   console.log("id", id);
   const [allActiveTab, setAllActiveTab] = useState("My recipes");
   const [lessActiveTab, setLessActiveTab] = useState("Recipes");
@@ -134,13 +139,13 @@ const UserPage = () => {
               <>
                 {allActiveTab === "My recipes" && <MyRecipes />}
                 {allActiveTab === "My favorites" && <MyFavorites />}
-                {allActiveTab === "Followers" && <Followers />}
+                {allActiveTab === "Followers" && <Followers id={id} />}
                 {allActiveTab === "Following" && <Following />}
               </>
             ) : (
               <>
-                {lessActiveTab === "Recipes" && <MyRecipes />}
-                {lessActiveTab === "Followers" && <Followers />}
+                {lessActiveTab === "Recipes" && <UserRecipes id={id} />}
+                {lessActiveTab === "Followers" && <Followers id={id} />}
               </>
             )}
 

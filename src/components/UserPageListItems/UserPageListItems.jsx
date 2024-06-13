@@ -8,6 +8,7 @@ import {
   UserPageList,
   UserPageListItem,
   UserPageListImage,
+  SpaceWrapp,
   UserPageWrappText,
   UserPageListTitle,
   UserPageListText,
@@ -28,7 +29,7 @@ const UserPageListItems = ({ recipes, type, refetchRecipes }) => {
       } else if (type === "myFavorites") {
         await deleteMyFavoritesRecipe(id).unwrap();
       }
-      refetchRecipes(); // Оновлення списку рецептів після видалення
+      refetchRecipes();
     } catch (error) {
       console.error("Failed to delete the recipe:", error);
     }
@@ -38,6 +39,7 @@ const UserPageListItems = ({ recipes, type, refetchRecipes }) => {
       {recipes.map(({ _id, thumb, title, description }) => (
         <UserPageListItem key={title}>
           <UserPageListImage src={thumb} />
+        <SpaceWrapp>
           <UserPageWrappText>
             <UserPageListTitle>{title}</UserPageListTitle>
             <UserPageListText>{description}</UserPageListText>
@@ -49,15 +51,19 @@ const UserPageListItems = ({ recipes, type, refetchRecipes }) => {
                 <use href={sprite + "#icon-arrow-up-right"}></use>
               </Icon>
             </LinkButton>
-            <Button
-              onClick={() => handleDelete(_id)}
-              disabled={isDeletingMyRecipe || isDeletingMyFavorite}
-            >
-              <Icon>
-                <use href={sprite + "#icon-trash"}></use>
-              </Icon>
-            </Button>
+            {type !== "userRecipes" && (
+              <Button
+                onClick={() => handleDelete(_id)}
+                disabled={isDeletingMyRecipe || isDeletingMyFavorite}
+              >
+                <Icon>
+                  <use href={sprite + "#icon-trash"}></use>
+                </Icon>
+              </Button>
+            )}
+
           </ButtonWrapp>
+        </SpaceWrapp>
         </UserPageListItem>
       ))}
     </UserPageList>

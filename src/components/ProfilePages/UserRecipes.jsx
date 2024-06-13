@@ -2,13 +2,13 @@ import { useWindowSize } from "../../hooks/useWindowSize";
 import { useState } from "react";
 import Paginator from "../Paginator/Paginator";
 
-import { useGetOwnRecipesQuery, useDeleteRecipeMutation } from "../../redux/recipes/recipesApi";
+import { useGetUserRecipesQuery } from "../../redux/users/usersApi";
 
 import SubTitle from "../SubTitle/SubTitle";
 import UserPageListItems from "../UserPageListItems/UserPageListItems";
 import { SubTitleWrapper } from "./ProfilePages.styled";
 
-const MyRecipes = () => {
+const UserRecipes = ({ id }) => {
   const { isMobile } = useWindowSize();
   const [currentPage, setCurrentPage] = useState(1);
   const pageNumbersToShow = isMobile ? 5 : 8;
@@ -20,19 +20,16 @@ const MyRecipes = () => {
 
   const {
     data,
-    error: errorMyRecipes,
-    isFetching: isFetchingMyRecipes,
+    error: errorUserRecipes,
+    isFetching: isFetchingUserRecipes,
     refetch: refetchMyRecipes,
-  } = useGetOwnRecipesQuery({
-    page: currentPage,
-    limit: itemsPerPage,
-  });
+  } = useGetUserRecipesQuery(id);
 
-  if (isFetchingMyRecipes) return <div>Loading...</div>;
-  if (errorMyRecipes) return <div>Error loading recipes.</div>;
+  if (isFetchingUserRecipes) return <div>Loading...</div>;
+  if (errorUserRecipes) return <div>Error loading recipes.</div>;
   if (!data) return null;
 
-  console.log("MyRecipes", data);
+  console.log("UserRecipes", data);
   const totalPages = Math.ceil(data.total / itemsPerPage);
   return (
     <>
@@ -40,10 +37,10 @@ const MyRecipes = () => {
         <>
           <UserPageListItems
             recipes={data.result}
-            type="myRecipes"
+            type="userRecipes"
             refetchRecipes={refetchMyRecipes}
           />
-          {totalPages > 1 && !errorMyRecipes && (
+          {totalPages > 1 && !errorUserRecipes && (
             <Paginator
               currentPage={currentPage}
               itemsPerPage={itemsPerPage}
@@ -66,4 +63,4 @@ const MyRecipes = () => {
   );
 };
 
-export default MyRecipes;
+export default UserRecipes;
