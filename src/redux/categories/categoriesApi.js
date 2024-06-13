@@ -17,5 +17,5 @@ const categoriesApi = createApi({
   }),
 });
 
-export const { useGetCategoriesQuery } = categoriesApi;
+export const { useGetCategoriesQuery, useLazyGetCategoriesQuery } = categoriesApi;
 export default categoriesApi;

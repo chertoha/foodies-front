@@ -10,8 +10,6 @@ import TempAuthButton from "components/TempComponents/TempAuthButton";
 
 import { useSearchParams } from "react-router-dom";
 
-import { CategoryTest } from "components/Category/Category";
-
 const HomePage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const category = searchParams.get("category") || "";
@@ -33,7 +31,7 @@ const HomePage = () => {
 
       <SectionWrapper>
         <Container>
-          {/* {category === "" ? (
+          {category === "" ? (
             <Category onSelectCategory={handleSelectCategory} />
           ) : (
             <RecipesComponent
@@ -42,18 +40,6 @@ const HomePage = () => {
               ingredient={ingredient}
               onFiltersChange={handleFiltersChange}
             />
-          )} */}
-          <Category />
-          <CategoryTest onSelectCategory={handleSelectCategory} />
-          {category && (
-            <>
-              <RecipesComponent
-                category={category}
-                area={area}
-                ingredient={ingredient}
-                onFiltersChange={handleFiltersChange}
-              />
-            </>
           )}
         </Container>
       </SectionWrapper>
