@@ -3,6 +3,7 @@ import { useGetIngredientsQuery } from "../../redux/ingredients/ingredientsApi";
 import IngredientCard from "./IngredientSelectedCard";
 import SpriteIcon from "components/UIKit/SpriteIcon";
 import { IngredientsList } from "components/RecipeIngredients/RecipeIngredients.styled";
+import { IngredienQuantity, IngredientDescription } from "./IngredientSelected.styled";
 
 const IngredientSelector = ({ selectedIngredients, setSelectedIngredients }) => {
   const { data: ingredients, isLoading, isError } = useGetIngredientsQuery(); // Використовуємо RTK Query для отримання інгредієнтів
@@ -45,37 +46,38 @@ const IngredientSelector = ({ selectedIngredients, setSelectedIngredients }) => 
   return (
     <>
       {" "}
-      <label htmlFor="ingredientSelect">Виберіть інгредієнт:</label>
-      <select
-        id="ingredientSelect"
-        defaultValue={"default"}
-        onChange={handleIngredientChange}
-        style={{ margin: "10px", padding: "5px", fontSize: "16px" }}
-      >
-        <option
-          value="default"
-          disabled
+      <IngredientDescription>
+        <select
+          id="ingredientSelect"
+          defaultValue={"default"}
+          onChange={handleIngredientChange}
+          style={{ margin: "10px", padding: "5px", fontSize: "16px" }}
         >
-          Add the ingredient
-        </option>
-
-        {ingredients.result.map(ingredient => (
           <option
-            key={ingredient._id}
-            value={ingredient.name}
+            value="default"
+            disabled
           >
-            {ingredient.name}
+            Add the ingredient
           </option>
-        ))}
-      </select>
-      <label htmlFor="quantityInput">Quantity:</label>
-      <input
-        type="text"
-        id="quantityInput"
-        value={quantity}
-        onChange={handleQuantityChange}
-        style={{ margin: "10px", padding: "5px", fontSize: "16px", width: "80px" }}
-      />
+
+          {ingredients.result.map(ingredient => (
+            <option
+              key={ingredient._id}
+              value={ingredient.name}
+            >
+              {ingredient.name}
+            </option>
+          ))}
+        </select>
+        <IngredienQuantity
+          type="text"
+          id="quantityInput"
+          placeholder="Enter Quantity"
+          value={quantity}
+          onChange={handleQuantityChange}
+          style={{ margin: "10px", padding: "5px", fontSize: "16px", width: "80px" }}
+        />
+      </IngredientDescription>
       <button
         type="button"
         onClick={handleAddIngredient}
