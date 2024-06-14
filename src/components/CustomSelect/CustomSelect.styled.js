@@ -130,6 +130,8 @@ export const StyledSelect = styled(ReactSelect)`
     border-radius: ${theme.radii.sm};
     background-color: ${theme.colors.light};
     overflow: hidden;
+    scrollbar-width: 1px;
+    scrollbar-height: 5px;
   }
 
   & .Select__menu-list {
@@ -141,6 +143,8 @@ export const StyledSelect = styled(ReactSelect)`
     flex-direction: column;
     row-gap: 6px;
     max-height: 326px;
+    scrollbar-width: 1px;
+    scrollbar-height: 5px;
   }
 
   & .Select__option {

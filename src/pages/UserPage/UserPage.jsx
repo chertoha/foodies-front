@@ -17,6 +17,8 @@ import MyFavorites from "components/ProfilePages/MyFavorites";
 import Followers from "components/ProfilePages/Followers";
 import Following from "components/ProfilePages/Following";
 
+// import { toast } from "react-toastify";
+
 import {
   SectionWrapper,
   BreadcrumbsWrapp,

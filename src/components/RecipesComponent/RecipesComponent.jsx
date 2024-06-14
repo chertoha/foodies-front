@@ -1,15 +1,18 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useLocation, useSearchParams } from "react-router-dom";
+// import { useGetRecipesQuery } from "../../redux/recipes/recipesApi";
 import { useLazyGetRecipesQuery } from "../../redux/recipes/recipesApi";
 
 import { useWindowSize } from "../../hooks/useWindowSize";
-import { useState } from "react";
+
 import Paginator from "../Paginator/Paginator";
 
 import SearchRecipes from "../SearchRecipes";
 import RecipeCard from "../RecipeCard/RecipeCard";
 import MainTitle from "../MainTitle/MainTitle";
 import SubTitle from "../SubTitle/SubTitle";
+
+// import { toast } from "react-toastify";
 
 import sprite from "assets/images/icons/sprite.svg";
 import {
@@ -56,21 +59,14 @@ const RecipesComponent = ({ category }) => {
   }, [trigger, currentPage, itemsPerPage, category, searchArea, searchIngredient]);
 
   const handleFiltersChange = (name, value) => {
-    if (name === "ingredient") {
-      // setIngredient(value);
-      setSearchParams({ category, area: searchArea, ingredient: value });
-      // setArea("");
-    } else if (name === "area") {
-      // setArea(value);
-      setSearchParams({ category, area: value, ingredient: searchIngredient });
-    }
+    const newParams = { category, area: searchArea, ingredient: searchIngredient };
+    newParams[name] = value;
+    setSearchParams(newParams);
   };
 
   if (isFetchingRecipes) return <div>Loading...</div>;
   if (recipesError) return <div>Error loading recipes.</div>;
   if (!recipesData) return null;
-  // console.log(recipesData);
-  // console.log(recipesData.total);
 
   const totalPages = Math.ceil(recipesData.total / itemsPerPage);
   return (
@@ -95,7 +91,11 @@ const RecipesComponent = ({ category }) => {
         />
       </SubTitleWrapp>
       <RecipesWrapper>
-        <SearchRecipes onChange={handleFiltersChange} />
+        <SearchRecipes
+          onChange={handleFiltersChange}
+          selectedArea={searchArea}
+          selectedIngredient={searchIngredient}
+        />
         <div>
           {recipesData.total > 0 ? (
             <RecipeComponentList>
