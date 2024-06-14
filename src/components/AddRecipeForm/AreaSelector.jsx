@@ -1,17 +1,17 @@
-import CustomSelect from "components/CustomSelect";
-import React, { useState } from "react";
+// import CustomSelect from "components/CustomSelect";
+// import React, { useState } from "react";
 import { useGetAreasQuery } from "../../redux/areas/areasApi";
 import SectionTitle from "components/SectionTitle";
 
 const AreaSelector = ({ register, errors }) => {
-  const { data, isError, isLoading } = useGetAreasQuery();
+  const { data, _isError, _isLoading } = useGetAreasQuery();
 
-  const [selectedArea, setSelectedArea] = useState("");
+  //   const [selectedArea, setSelectedArea] = useState("");
 
-  const handleAreaChange = (_, value) => {
-    setSelectedArea(value);
-  };
-  console.log(errors);
+  //   const handleAreaChange = (_, value) => {
+  //     setSelectedArea(value);
+  //   };
+  //   console.log(errors);
   return (
     // <div>areas</div>
     <>
@@ -22,7 +22,10 @@ const AreaSelector = ({ register, errors }) => {
         onChange={handleAreaChange}
         placeholder="Select an area"
       /> */}
-      <select defaultValue="Maroccan">
+      <select
+        defaultValue="Maroccan"
+        {...register("area")}
+      >
         <option
           value="default"
           disabled

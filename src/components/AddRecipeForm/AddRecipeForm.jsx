@@ -41,7 +41,7 @@ const AddRecipeForm = () => {
     formState: { errors },
   } = methods;
 
-  const { fields, append, remove } = useFieldArray({
+  const { fields, append, _remove } = useFieldArray({
     control,
     name: "ingredients",
   });
@@ -155,7 +155,7 @@ const AddRecipeForm = () => {
           </CookingCategory>
           <AreaSelector
             errors={errors}
-            {...register("area")}
+            register={register}
           />
 
           <RecipeIngredientsContainer>
