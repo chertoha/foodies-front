@@ -6,6 +6,12 @@ export const Form = styled.form`
   display: flex;
   align-items: flex-start;
   gap: 80px;
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+    gap: 40px;
+    justify-content: center;
+    align-items: center;
+  }
 `;
 export const ImageField = styled.div`
   display: flex;
@@ -170,6 +176,8 @@ export const FieldsInput = styled.div`
 `;
 
 export const BtnDelete = styled.button`
+  align-self: flex-end;
+
   background: none;
   border: none;
   cursor: pointer;

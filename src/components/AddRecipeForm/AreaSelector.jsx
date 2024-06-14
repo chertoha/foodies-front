@@ -23,7 +23,7 @@ const AreaSelector = ({ register, errors }) => {
         placeholder="Select an area"
       /> */}
       <select
-        defaultValue="Maroccan"
+        defaultValue="default"
         {...register("area")}
       >
         <option
