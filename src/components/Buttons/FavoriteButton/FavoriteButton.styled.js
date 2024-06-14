@@ -21,14 +21,15 @@ export const RecipePreparationButton = styled.button`
     ${py(4)};
     ${px(8)};
   }
+  ${({ theme }) => theme.mq.desktop} {
+    &:hover {
+      color: ${({ theme }) => theme.colors.light};
+      background-color: ${({ theme }) => theme.colors.dark};
+    }
 
-  &:hover {
-    color: ${({ theme }) => theme.colors.light};
-    background-color: ${({ theme }) => theme.colors.dark};
-  }
-
-  &:focus {
-    outline: none;
-    box-shadow: 0 0 0 1px rgba(5, 5, 5, 0.1);
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0 1px rgba(5, 5, 5, 0.1);
+    }
   }
 `;

@@ -19,13 +19,14 @@ export const ButtonArrow = styled(Link)`
     ${py(3)};
     ${px(3)};
   }
-
-  &:hover {
-    background-color: ${theme.colors.dark};
-    color: ${p => p.theme.colors.light};
-  }
-  &:focus {
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(5, 5, 5, 0.2);
+  ${({ theme }) => theme.mq.desktop} {
+    &:hover {
+      background-color: ${theme.colors.dark};
+      color: ${p => p.theme.colors.light};
+    }
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(5, 5, 5, 0.2);
+    }
   }
 `;
