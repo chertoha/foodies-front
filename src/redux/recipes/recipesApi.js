@@ -6,9 +6,17 @@ const recipesApi = createApi({
 
   baseQuery: axiosBaseQuery(BASE_URL),
 
-  tagTypes: ["Recipe", "Own", "Favorite"],
+  tagTypes: ["Recipe", "Own", "Favorite", "Current"],
 
   endpoints: builder => ({
+    getCurrentUserData: builder.query({
+      query: () => ({
+        url: `/users/current`,
+        method: "GET",
+      }),
+      providesTags: ["Current"],
+    }),
+
     getRecipes: builder.query({
       query: ({ category = "", ingredient = "", area = "", page = 1, limit = 10 }) => ({
         url: "/recipes",
@@ -91,7 +99,7 @@ const recipesApi = createApi({
         url: `/recipes/${id}/favorite`,
         method: "POST",
       }),
-      invalidatesTags: ["Favorite", "Recipe", "Own"],
+      invalidatesTags: ["Favorite", "Recipe", "Own", "Current"],
     }),
 
     removeRecipeFromFavorites: builder.mutation({
@@ -99,7 +107,7 @@ const recipesApi = createApi({
         url: `/recipes/${id}/favorite`,
         method: "DELETE",
       }),
-      invalidatesTags: ["Favorite", "Recipe", "Own"],
+      invalidatesTags: ["Favorite", "Recipe", "Own", "Current"],
     }),
   }),
 });
@@ -111,6 +119,8 @@ export const {
   useGetPopularRecipesQuery,
   useGetFavoriteRecipesQuery,
   useGetOwnRecipesQuery,
+  useGetCurrentUserDataQuery,
+  useLazyGetCurrentUserDataQuery,
 
   useCreateRecipeMutation,
   useDeleteRecipeMutation,

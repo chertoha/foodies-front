@@ -3,7 +3,7 @@ import reportWebVitals from "./reportWebVitals";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import GlobalStyle from "styles/globalStyles";
-import App from "components/App";
+import App from "components/App/App";
 import theme from "styles/theme";
 
 import { ThemeProvider } from "styled-components";

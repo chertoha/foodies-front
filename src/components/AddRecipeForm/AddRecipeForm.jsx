@@ -19,7 +19,7 @@ import TrashButton from "components/Buttons/TrashButton";
 import { RecipeIngredientsContainer } from "components/RecipeIngredients/RecipeIngredients.styled";
 import SectionTitle from "components/SectionTitle";
 import IngredientSelector from "./IngredientSelected";
-import ImageDropZone from "components/ImageDropZone";
+import ImageDropZone from "components/ImageDropZone/ImageDropZone";
 import { CategoriesSelector } from "./CategoriesSelector";
 import { Counter } from "components/Counter/Counter";
 
