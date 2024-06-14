@@ -1,4 +1,3 @@
-import { BtnClose } from "components/Modal/Modal.styled";
 import {
   ImageWrapper,
   IngredientItem,
