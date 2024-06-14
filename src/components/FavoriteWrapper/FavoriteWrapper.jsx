@@ -1,13 +1,16 @@
+import { useFavoritesContext } from "components/App/App";
 import {
   useAddRecipeToFavoritesMutation,
   useRemoveRecipeFromFavoritesMutation,
 } from "../../redux/recipes/recipesApi";
 
-const FavoriteWrapper = ({ recipeId, Button, favorites }) => {
+const FavoriteWrapper = ({ recipeId, Button }) => {
   const [addToFavorite] = useAddRecipeToFavoritesMutation();
   const [removeFromFavorite] = useRemoveRecipeFromFavoritesMutation();
 
-  const isChecked = favorites?.some(({ _id }) => recipeId === _id);
+  const { favorites } = useFavoritesContext();
+
+  const isChecked = favorites?.includes(recipeId);
 
   const onClick = async () => {
     try {
