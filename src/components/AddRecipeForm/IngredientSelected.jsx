@@ -1,9 +1,17 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { useGetIngredientsQuery } from "../../redux/ingredients/ingredientsApi";
 import IngredientCard from "./IngredientSelectedCard";
 import SpriteIcon from "components/UIKit/SpriteIcon";
 import { IngredientsList } from "components/RecipeIngredients/RecipeIngredients.styled";
-import { IngredienQuantity, IngredientDescription } from "./IngredientSelected.styled";
+import {
+  AddIngredientButton,
+  IngredienQuantity,
+  IngredientDescription,
+  SelectorIngredientsContainer,
+} from "./IngredientSelected.styled";
+import ActiveButton from "components/Buttons/ActiveButton";
+import ArrowButton from "components/Buttons/ArrowButton";
+import CustomSelect from "components/CustomSelect";
 
 const IngredientSelector = ({ selectedIngredients, setSelectedIngredients }) => {
   const { data: ingredients, isLoading, isError } = useGetIngredientsQuery(); // Використовуємо RTK Query для отримання інгредієнтів
@@ -11,8 +19,8 @@ const IngredientSelector = ({ selectedIngredients, setSelectedIngredients }) => 
   const [selectedIngredient, setSelectedIngredient] = useState("");
   const [quantity, setQuantity] = useState("");
 
-  const handleIngredientChange = event => {
-    setSelectedIngredient(event.target.value);
+  const handleIngredientChange = (_, value) => {
+    setSelectedIngredient(value);
   };
 
   const handleQuantityChange = event => {
@@ -47,48 +55,33 @@ const IngredientSelector = ({ selectedIngredients, setSelectedIngredients }) => 
     <>
       {" "}
       <IngredientDescription>
-        <select
-          id="ingredientSelect"
-          defaultValue={"default"}
-          onChange={handleIngredientChange}
-          style={{ margin: "10px", padding: "5px", fontSize: "16px" }}
-        >
-          <option
-            value="default"
-            disabled
-          >
-            Add the ingredient
-          </option>
+        <SelectorIngredientsContainer>
+          <CustomSelect
+            options={ingredients.result.map(({ name }) => ({ value: name, label: name }))}
+            value={selectedIngredient}
+            onChange={handleIngredientChange}
+            placeholder="Add the ingredient"
+          />
+        </SelectorIngredientsContainer>
 
-          {ingredients.result.map(ingredient => (
-            <option
-              key={ingredient._id}
-              value={ingredient.name}
-            >
-              {ingredient.name}
-            </option>
-          ))}
-        </select>
         <IngredienQuantity
           type="text"
           id="quantityInput"
           placeholder="Enter Quantity"
           value={quantity}
           onChange={handleQuantityChange}
-          style={{ margin: "10px", padding: "5px", fontSize: "16px", width: "80px" }}
         />
       </IngredientDescription>
-      <button
+      <AddIngredientButton
         type="button"
         onClick={handleAddIngredient}
-        style={{ marginLeft: "10px", padding: "5px", fontSize: "16px" }}
       >
         Add ingredient
         <SpriteIcon
           id="icon-plus"
           size={[20, 22, 22]}
         />
-      </button>
+      </AddIngredientButton>
       <IngredientsList>
         {selectedIngredients.map(ingredient => (
           <IngredientCard

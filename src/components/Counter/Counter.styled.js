@@ -17,6 +17,13 @@ export const StyledButtonWrapper = styled.div`
 `;
 
 export const StyledCounterValue = styled.input`
-  width: 16%;
+  width: ${p => p.width}px;
   border: none;
+  text-align: right;
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  outline: none;
 `;

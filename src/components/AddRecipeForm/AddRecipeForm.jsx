@@ -15,6 +15,7 @@ import {
   InstrucationWrapper,
   InstructionContainer,
   InstructionCounterWrapper,
+  InstructionWrapper,
   RecipeNameContainer,
   RecipeNameInput,
 } from "./AddRecipeForm.styled";
@@ -44,7 +45,6 @@ const AddRecipeForm = () => {
     control,
     name: "ingredients",
   });
-
   const [_categories, _setCategories] = useState([]);
   const [ingredients, _setIngredients] = useState([]);
 
@@ -112,7 +112,7 @@ const AddRecipeForm = () => {
             preview={preview}
             setPreview={setPreview}
             name="thumb"
-            validation={{ ...register("photo") }}
+            validation={{ ...register("thumb") }}
           />
         </ImageField>
         <FieldsInput>
@@ -157,41 +157,21 @@ const AddRecipeForm = () => {
 
           <RecipeIngredientsContainer>
             <SectionTitle label={"Ingredients"} />
-            <div>
-              <IngredientSelector
-                selectedIngredients={selectedIngredients}
-                setSelectedIngredients={setSelectedIngredients}
-              />
-            </div>
 
-            {fields.map((field, index) => (
-              <div key={field.id}>
-                <select {...register(`ingredients.${index}.ingredient`)}>
-                  {ingredients.map(ingredient => (
-                    <option
-                      key={ingredient.id}
-                      value={ingredient.name}
-                    >
-                      {ingredient.name}
-                    </option>
-                  ))}
-                </select>
-                <input
-                  type="number"
-                  {...register(`ingredients.${index}.amount`)}
-                />
-              </div>
-            ))}
+            <IngredientSelector
+              selectedIngredients={selectedIngredients}
+              setSelectedIngredients={setSelectedIngredients}
+            />
           </RecipeIngredientsContainer>
 
-          <InstrucationWrapper>
+          <InstructionWrapper>
             <SectionTitle label={"Recipe Preparation"} />
             <InstructionCounterWrapper>
               <InstructionContainer {...register("instructions")}></InstructionContainer>
               <p>{`${instructionsLength}/200`}</p>
             </InstructionCounterWrapper>
             {errors.instructions && <p>{errors.instructions.message}</p>}
-          </InstrucationWrapper>
+          </InstructionWrapper>
 
           <ButtonsWrapper>
             <TrashButton

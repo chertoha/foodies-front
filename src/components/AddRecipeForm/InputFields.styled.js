@@ -5,7 +5,7 @@ export const FieldsInput = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
-  width: 100%;
+  /* width: 100%; */
   ${({ theme }) => theme.mq.tabletOnly} {
     gap: 10px;
   }

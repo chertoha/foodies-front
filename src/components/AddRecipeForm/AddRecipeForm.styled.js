@@ -76,6 +76,8 @@ export const CookingCategory = styled.div`
 
 export const InstructionContainer = styled.textarea`
   width: 100%;
+  height: auto;
+  resize: none;
 
   border: none;
   border-bottom: 1px solid rgba(5, 5, 5, 0.12);
@@ -90,7 +92,7 @@ export const InstructionContainer = styled.textarea`
   border-bottom-color: ${({ $iserror }) => ($iserror ? "red" : "rgba(5, 5, 5, 0.12)")};
 `;
 
-export const InstrucationWrapper = styled.div`
+export const InstructionWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;

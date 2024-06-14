@@ -27,13 +27,16 @@ export const Counter = ({ register, errors, count, setCount }) => {
           />
         </ButtonTrash>
 
-        <StyledCounterValue
-          value={count}
-          type="number"
-          readOnly={true}
-          {...register("cookTime")}
-        />
-        <p>min</p>
+        <div>
+          <StyledCounterValue
+            width={count.toString().length * 10}
+            value={count}
+            type="number"
+            readOnly={true}
+            {...register("cookTime")}
+          />
+          <span> min</span>
+        </div>
 
         {errors.cookTime && <p>{errors.cookTime.message}</p>}
         <ButtonTrash
