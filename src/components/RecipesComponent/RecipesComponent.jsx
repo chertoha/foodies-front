@@ -2,6 +2,10 @@ import { useEffect } from "react";
 import { useLocation, useSearchParams } from "react-router-dom";
 import { useLazyGetRecipesQuery } from "../../redux/recipes/recipesApi";
 
+import { useWindowSize } from "../../hooks/useWindowSize";
+import { useState } from "react";
+import Paginator from "../Paginator/Paginator";
+
 import SearchRecipes from "../SearchRecipes";
 import RecipeCard from "../RecipeCard/RecipeCard";
 import MainTitle from "../MainTitle/MainTitle";
@@ -29,18 +33,27 @@ const RecipesComponent = ({ category }) => {
   // const [ingredient, setIngredient] = useState("");
   // const [area, setArea] = useState("");
 
+  const { isMobile } = useWindowSize();
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageNumbersToShow = isMobile ? 5 : 8;
+  const itemsPerPage = isMobile ? 8 : 12;
+
+  const onPageChange = pageNumber => {
+    setCurrentPage(pageNumber);
+  };
+
   const [trigger, { data: recipesData, error: recipesError, isFetching: isFetchingRecipes }] =
     useLazyGetRecipesQuery();
 
   useEffect(() => {
     trigger({
-      page: 1,
-      limit: 12,
+      page: currentPage,
+      limit: itemsPerPage,
       category: category,
       area: searchArea,
       ingredient: searchIngredient,
     });
-  }, [trigger, category, searchArea, searchIngredient]);
+  }, [trigger, currentPage, itemsPerPage, category, searchArea, searchIngredient]);
 
   const handleFiltersChange = (name, value) => {
     if (name === "ingredient") {
@@ -53,13 +66,15 @@ const RecipesComponent = ({ category }) => {
     }
   };
 
-  console.log(recipesData);
   if (isFetchingRecipes) return <div>Loading...</div>;
   if (recipesError) return <div>Error loading recipes.</div>;
   if (!recipesData) return null;
+  // console.log(recipesData);
+  // console.log(recipesData.total);
 
+  const totalPages = Math.ceil(recipesData.total / itemsPerPage);
   return (
-    <>
+    <div>
       <SubTitleWrapp>
         <BackLink to={location.state?.from || "/"}>
           <Icon>
@@ -114,7 +129,16 @@ const RecipesComponent = ({ category }) => {
           )}
         </div>
       </RecipesWrapper>
-    </>
+      {totalPages > 1 && !recipesError && (
+        <Paginator
+          currentPage={currentPage}
+          itemsPerPage={itemsPerPage}
+          totalItems={recipesData.total}
+          onPageChange={onPageChange}
+          pageNumbersToShow={pageNumbersToShow}
+        />
+      )}
+    </div>
   );
 };
 

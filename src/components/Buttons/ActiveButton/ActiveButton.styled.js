@@ -16,6 +16,7 @@ export const StyledButton = styled("button")`
   font-weight: ${theme.fontWeights.bold};
   text-transform: uppercase;
   cursor: pointer;
+  transition: ${theme.transitions.default};
   ${theme.mq.mobileOnly} {
     width: 100%;
     max-width: 343px;
@@ -29,5 +30,12 @@ export const StyledButton = styled("button")`
   }
 
   ${theme.mq.desktop} {
+  }
+  &:hover {
+    background-color: #6a6868;
+  }
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(5, 5, 5, 0.2);
   }
 `;

@@ -3,9 +3,11 @@ import { PageWrapper, SectionWrapper } from "./HomePage.styled";
 import Container from "components/Container";
 import Category from "components/Category/Category";
 import RecipesComponent from "components/RecipesComponent";
-import { useSearchParams } from "react-router-dom";
 
-// import { CategoryTest } from "components/Category/Category";
+// import { useGetRecipesQuery } from "../../redux/recipes/recipesApi";
+// import { useState } from "react";
+
+import { useSearchParams } from "react-router-dom";
 
 const HomePage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -26,9 +28,9 @@ const HomePage = () => {
     <PageWrapper>
       <SectionWrapper>
         <Container>
-          {/* <Category /> */}
-          <Category onSelectCategory={handleSelectCategory} />
-          {category && (
+          {category === "" ? (
+            <Category onSelectCategory={handleSelectCategory} />
+          ) : (
             <RecipesComponent
               category={category}
               area={area}

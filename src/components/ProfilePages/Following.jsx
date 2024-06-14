@@ -1,19 +1,30 @@
-// import followers from "pages/UserPage/follower.json";
-// import UserAvatar from "components/UserAvatar/UserAvatar";
-
 import { useGetUserFollowingQuery } from "../../redux/users/usersApi";
 import SubTitle from "../SubTitle/SubTitle";
 import FollowersList from "../FollowerList/FollowerList";
 import { SubTitleWrapper } from "./ProfilePages.styled";
-const Following = () => {
-  const array = [];
 
-  const { data } = useGetUserFollowingQuery();
-  console.log(data);
+const Following = () => {
+  const {
+    data,
+    error: errorFollowing,
+    isFetching: isFetchingFollowing,
+  } = useGetUserFollowingQuery({
+    page: 1,
+    limit: 9,
+  });
+
+  if (isFetchingFollowing) return <div>Loading...</div>;
+  if (errorFollowing) return <div>Error loading recipes.</div>;
+  if (!data) return null;
+
+  // console.log("Following", data.result);
   return (
     <>
-      {array.length > 0 ? (
-        <FollowersList followers={array} />
+      {data.result.length > 0 ? (
+        <FollowersList
+          followers={data.result}
+          type={"Following"}
+        />
       ) : (
         <SubTitleWrapper>
           <SubTitle

@@ -1,14 +1,28 @@
-import followers from "pages/UserPage/follower.json";
-// import UserAvatar from "components/UserAvatar/UserAvatar";
+import { useGetUserFollowersQuery } from "../../redux/users/usersApi";
+
 import SubTitle from "../SubTitle/SubTitle";
 import FollowersList from "../FollowerList/FollowerList";
 import { SubTitleWrapper } from "./ProfilePages.styled";
-const Followers = () => {
-  // const array = [];
+const Followers = ({ id }) => {
+  const {
+    data,
+    error: errorFollowers,
+    isFetching: isFetchingFollowers,
+  } = useGetUserFollowersQuery(id);
+
+  if (isFetchingFollowers) return <div>Loading...</div>;
+  if (errorFollowers) return <div>Error loading Followers.</div>;
+  if (!data) return null;
+
+  // console.log("Followers", data.result);
+
   return (
     <>
-      {followers.length > 0 ? (
-        <FollowersList followers={followers} />
+      {data.result.length > 0 ? (
+        <FollowersList
+          followers={data.result}
+          type={"Followers"}
+        />
       ) : (
         <SubTitleWrapper>
           <SubTitle
