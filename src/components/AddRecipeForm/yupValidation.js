@@ -11,14 +11,14 @@ export const schema = yup.object({
     .number()
     .min(1, "Час приготування повинен бути не менше 1 хвилини")
     .required("Час приготування є обов'язковим"),
-  // instructions: yup
-  //   .string()
-  //   .max(200, "Інструкція не може перевищувати 200 символів")
-  //   .required("Інструкція є обов'язковою"),
-  // ingredients: yup.array().of(
-  //   yup.object().shape({
-  //     ingredient: yup.string().required("Інгредієнт є обов'язковим"),
-  //     amount: yup.number().required("Кількість є обов'язковою"),
-  // })
-  // ),
+  instructions: yup
+    .string()
+    .max(200, "Інструкція не може перевищувати 200 символів")
+    .required("Інструкція є обов'язковою"),
+  ingredients: yup.array().of(
+    yup.object().shape({
+      ingredient: yup.string().required("Інгредієнт є обов'язковим"),
+      amount: yup.number().required("Кількість є обов'язковою"),
+    })
+  ),
 });

@@ -52,7 +52,7 @@ const AddRecipeForm = () => {
   // const { data } = useGetCategoriesQuery({ limit: 1111 });
 
   // const [createRecipe] = useCreateRecipeMutation();
-
+  console.log(errors);
   const onSubmit = data => {
     console.log({ ...data, cookTime: counter, ingredients: selectedIngredients, photo: preview });
     console.log(data.photo[0]);
@@ -188,16 +188,14 @@ const AddRecipeForm = () => {
           {errors.instructions && <p>{errors.instructions.message}</p>}
         </InstrucationWrapper>
 
-        <ButtonsWrapper>
-          <TrashButton
-            type="button"
-            onClick={handleReset}
-          ></TrashButton>
-          <ActiveButton
-            label="Publish"
-            type="submit"
-          ></ActiveButton>
-        </ButtonsWrapper>
+        <TrashButton
+          type="button"
+          onClick={handleReset}
+        ></TrashButton>
+        <ActiveButton
+          label="Publish"
+          type="submit"
+        ></ActiveButton>
       </FieldsInput>
     </Form>
   );
