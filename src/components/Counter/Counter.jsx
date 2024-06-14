@@ -1,3 +1,5 @@
+import { StyledButton } from "components/Buttons/ActiveButton/ActiveButton.styled";
+import { ButtonTrash } from "components/Buttons/TrashButton/TrashButton.styled";
 import SpriteIcon from "components/UIKit/SpriteIcon";
 import { useRef, useState } from "react";
 
@@ -12,7 +14,7 @@ export const Counter = ({ register, errors, count, setCount }) => {
 
   return (
     <>
-      <button
+      <ButtonTrash
         type="button"
         id="addButton"
         onClick={() => handleClick(1)}
@@ -21,7 +23,7 @@ export const Counter = ({ register, errors, count, setCount }) => {
           id="icon-plus"
           size={[20, 22, 22]}
         />
-      </button>
+      </ButtonTrash>
       <label htmlFor="cookTime">
         Cooking time:
         <input
@@ -31,7 +33,7 @@ export const Counter = ({ register, errors, count, setCount }) => {
         />
       </label>
       {errors.cookTime && <p>{errors.cookTime.message}</p>}
-      <button
+      <ButtonTrash
         type="button"
         id="deductButton"
         onClick={() => handleClick(-1)}
@@ -40,7 +42,7 @@ export const Counter = ({ register, errors, count, setCount }) => {
           id="icon-minus"
           size={[20, 22, 22]}
         />
-      </button>
+      </ButtonTrash>
     </>
   );
 };

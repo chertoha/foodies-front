@@ -14,9 +14,8 @@ import {
   Preview,
 } from "./ImageDropZone.styled";
 
-const ImageDropZone = ({ name, validation }) => {
+const ImageDropZone = ({ name, validation, preview, setPreview }) => {
   const [dragIsOver, setDragIsOver] = useState(false);
-  const [preview, setPreview] = useState(null);
 
   const {
     control,

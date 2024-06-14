@@ -1,14 +1,18 @@
 import { useState } from "react";
-import { useForm, useFieldArray } from "react-hook-form";
+import { useForm, useFieldArray, set } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schema } from "./yupValidation";
 import { FieldsInput } from "./InputFields.styled";
 import { useCreateRecipeMutation } from "../../redux/recipes/recipesApi";
 import {
+  CookingCategory,
   DescriptionContainer,
   FieldsInputStyled,
   Form,
+  FormTitles,
+  ImageField,
   RecipeNameContainer,
+  RecipeNameInput,
 } from "./AddRecipeForm.styled";
 import ActiveButton from "components/Buttons/ActiveButton";
 import TrashButton from "components/Buttons/TrashButton";
@@ -36,26 +40,19 @@ const AddRecipeForm = () => {
   });
 
   const [_categories, _setCategories] = useState([]);
-  const [ingredients, _setIngredients] = useState([]);
-  const [_preview, setPreview] = useState(null);
+  const [ingredients, setIngredients] = useState([]);
+
   const [counter, setCounter] = useState(1);
+  const [selectedIngredients, setSelectedIngredients] = useState([]);
+  const [preview, setPreview] = useState(null);
   // const { data } = useGetCategoriesQuery({ limit: 1111 });
 
   const [createRecipe] = useCreateRecipeMutation();
-  // useEffect(() => {
-  //   // Отримання категорій з backend
-  //   axiosBaseQuery("/api/categories").then(response => {
-  //     setCategories(response.data);
-  //   });
-
-  //   // Отримання інгредієнтів з backend
-  //   axiosBaseQuery("/api/ingredients").then(response => {
-  //     setIngredients(response.data);
-  //   });
-  // }, []);
 
   const onSubmit = data => {
-    console.log({ ...data, cookTime: counter });
+    console.log({ ...data, cookTime: counter, ingredients: selectedIngredients, photo: preview });
+    console.log(data.photo[0]);
+
     try {
       const formData = new FormData();
       Object.keys(data).forEach(key => {
@@ -84,6 +81,8 @@ const AddRecipeForm = () => {
   const handleReset = () => {
     reset();
     setPreview(null);
+    setSelectedIngredients([]);
+    setCounter(1);
   };
 
   // const handlePhotoChange = e => {
@@ -98,52 +97,62 @@ const AddRecipeForm = () => {
   const instructionsLength = watch("instructions")?.length || 0;
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <ImageDropZone
-        name="photo"
-        validation={{ ...register("photo") }}
-      />
+    <Form onSubmit={handleSubmit(onSubmit)}>
+      <ImageField>
+        <ImageDropZone
+          preview={preview}
+          setPreview={setPreview}
+          name="photo"
+          validation={{ ...register("photo") }}
+        />
+      </ImageField>
       <FieldsInput>
-        <RecipeNameContainer>
-          <FieldsInputStyled
-            iserror={errors.title}
-            placeholder={!errors.title ? "The name of the recipe" : "The title is required"}
-            type="text"
-            {...register("title")}
+        <FormTitles>
+          <RecipeNameContainer>
+            <RecipeNameInput
+              $iserror={errors.title}
+              placeholder={!errors.title ? "The name of the recipe" : "The title is required"}
+              type="text"
+              {...register("title")}
+            />
+          </RecipeNameContainer>
+          <DescriptionContainer>
+            <FieldsInputStyled
+              $iserror={errors.description}
+              placeholder={
+                !errors.description
+                  ? "Enter a description of the dish"
+                  : "The description is required"
+              }
+              type="text"
+              {...register("description")}
+            />
+
+            <p>{`${descriptionLength}/200`}</p>
+          </DescriptionContainer>
+        </FormTitles>
+
+        <CookingCategory>
+          <CategoriesSelector
+            register={register}
+            errors={errors}
           />
-        </RecipeNameContainer>
 
-        <DescriptionContainer>
-          <FieldsInputStyled
-            iserror={errors.description}
-            placeholder={
-              !errors.description
-                ? "Enter a description of the dish"
-                : "The description is required"
-            }
-            type="text"
-            {...register("description")}
+          <Counter
+            register={register}
+            errors={errors}
+            count={counter}
+            setCount={setCounter}
           />
+        </CookingCategory>
 
-          <p>{`${descriptionLength}/200`}</p>
-        </DescriptionContainer>
-
-        <CategoriesSelector
-          register={register}
-          errors={errors}
-        />
-
-        <Counter
-          register={register}
-          errors={errors}
-          count={counter}
-          setCount={setCounter}
-        />
-
-        {/* <RecipeIngredientsContainer>
+        <RecipeIngredientsContainer>
           <SectionTitle label={"Ingredients"} />
           <div>
-            <IngredientSelector />
+            <IngredientSelector
+              selectedIngredients={selectedIngredients}
+              setSelectedIngredients={setSelectedIngredients}
+            />
           </div>
 
           {fields.map((field, index) => (
@@ -164,30 +173,29 @@ const AddRecipeForm = () => {
               />
             </div>
           ))}
-        </RecipeIngredientsContainer> */}
+        </RecipeIngredientsContainer>
 
-        {/* <div>
+        <DescriptionContainer>
           <label>
             Інструкція:
             <textarea {...register("instructions")}></textarea>
             <p>{`Символів: ${instructionsLength}/200`}</p>
           </label>
           {errors.instructions && <p>{errors.instructions.message}</p>}
-        </div> */}
+        </DescriptionContainer>
 
         <div>
-          {/* <TrashButton
+          <TrashButton
             type="button"
             onClick={handleReset}
-          ></TrashButton> */}
-          {/* <ActiveButton
+          ></TrashButton>
+          <ActiveButton
             label="Publish"
             type="submit"
-          ></ActiveButton> */}
+          ></ActiveButton>
         </div>
       </FieldsInput>
-      <button type="submit">Submit</button>
-    </form>
+    </Form>
   );
 };
 
