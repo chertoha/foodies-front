@@ -15,7 +15,7 @@ export const StyledButton = styled("button")`
 
   ${body1()}
   ${py(2)}
-  ${px(4)}
+  ${px("10")}
   ${theme.mq.mobileOnly} {
   }
 
@@ -23,7 +23,7 @@ export const StyledButton = styled("button")`
     width: 116px;
     height: 44px;
     ${py("10")}
-    ${px("24")}
+    ${px("10")}
   }
 
   ${theme.mq.desktop} {

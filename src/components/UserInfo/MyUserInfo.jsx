@@ -150,15 +150,18 @@
 
 // export default MyUserInfo;
 
+import { useState } from "react";
 import { Modal } from "components/Modal/Modal";
 import LogOut from "components/LogOut";
 import { useModalWindow } from "hooks/useModalWindow";
 import UserAvatar from "../../components/UserAvatar/UserAvatar";
 import sprite from "assets/images/icons/sprite.svg";
 import ActiveButton from "components/Buttons/ActiveButton/ActiveButton";
+import { allowedImageMIMETypes } from "utils/allowedImageMimeTypes";
 import {
   UserInfoWrapp,
   UserCard,
+  DropZone,
   UserCardTitle,
   UserCardInfo,
   UserCardtext,
@@ -178,24 +181,97 @@ const MyUserInfo = ({
   followingCount,
 }) => {
   const { isOpen: isModalOpen, open: openModal, close: closeModal } = useModalWindow();
-  // const [isOpen, setIsOpen] = useState(false);
+  const [dragIsOver, setDragIsOver] = useState(false);
+  const [preview, setPreview] = useState(null);
 
-  // const close = () => setIsOpen(false);
+  const handleDragOver = e => {
+    e.preventDefault();
+    setDragIsOver(true);
+  };
 
+  const handleDragLeave = e => {
+    e.preventDefault();
+    setDragIsOver(false);
+  };
+
+  const handleDrop = e => {
+    e.preventDefault();
+    setDragIsOver(false);
+
+    // if (preview) return;
+
+    // const file = Array.from(e.dataTransfer.files)[0];
+    // file && handleFile(file);
+  };
+
+  // try {
+  //   const formData = new FormData();
+  //   Object.keys(data).forEach(key => {
+  //     if (key === "ingredients") {
+  //       data[key].forEach((ingredient, index) => {
+  //         formData.append(`ingredients[${index}][ingredient]`, ingredient.ingredient);
+  //         formData.append(`ingredients[${index}][amount]`, ingredient.amount);
+  //       });
+  //     } else {
+  //       formData.append(key, data[key]);
+  //     }
+  //   });
+
+  // const handleFile = file => {
+  //   if (!allowedImageMIMETypes.includes(file.type)) {
+  //     setError(name, {
+  //       type: "custom",
+  //       message: `Wrong file type!. Allowed types: ${allowedImageMIMETypes.join(", ")}`,
+  //     });
+  //     return;
+  //   }
+
+  //   clearErrors(name);
+
+  //   setPreview(URL.createObjectURL(file));
+  //   setValue(name, file);
+  // };
+
+  const onIputFile = e => {
+    const file = e.target.files[0];
+    // file && handleFile(file);
+    setPreview(URL.createObjectURL(file));
+    // setValue(name, file);
+  };
   return (
     <UserInfoWrapp>
       <div>
         <UserCard>
           <IconWrapp>
-            <UserAvatar
+            {/* <UserAvatar
               size={[80, 120, 120]}
               src={avatar}
-            />
-            <Button>
+            /> */}
+            {/* <Button>
               <Icon>
                 <use href={sprite + "#icon-plus"}></use>
               </Icon>
-            </Button>
+            </Button> */}
+            {!preview ? (
+              <DropZone
+                onDragOver={handleDragOver}
+                onDragLeave={handleDragLeave}
+                onDrop={handleDrop}
+              >
+                <input
+                  type="file"
+                  accept={allowedImageMIMETypes.join(",")}
+                  onChange={onIputFile}
+                  hidden
+                  disabled={preview}
+                />
+              </DropZone>
+            ) : (
+              <UserAvatar
+                size={[80, 120, 120]}
+                src={avatar}
+              />
+            )}
           </IconWrapp>
           <UserCardTitle>{name}</UserCardTitle>
           <UserCardInfo>

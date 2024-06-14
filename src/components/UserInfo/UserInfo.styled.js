@@ -75,6 +75,19 @@ export const Button = styled("button")`
   ${theme.mq.desktop} {
   }
 `;
+export const DropZone = styled("label")`
+  height: 100%;
+
+  ${flexCenter()};
+
+  color: rgba(5, 5, 5, 0.3);
+
+  border: 1px dashed rgba(5, 5, 5, 0.2);
+  border-radius: ${p => p.theme.radii.lg};
+  border-style: dashed;
+
+  transition: ${p => p.theme.transitions.default};
+`;
 export const Icon = styled("svg")`
   fill: ${theme.colors.light};
   display: block;

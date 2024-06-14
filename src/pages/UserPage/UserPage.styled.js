@@ -13,6 +13,16 @@ export const SectionWrapper = styled("div")`
     ${my(20)}
   }
 `;
+export const BreadcrumbsWrapp = styled("div")`
+  ${mb(8)}
+
+  ${theme.mq.tablet} {
+    ${mb(10)}
+  }
+
+  ${theme.mq.desktop} {
+  }
+`;
 
 export const TitleWrapp = styled("div")`
   ${mb(4)};
