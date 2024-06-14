@@ -4,8 +4,8 @@ import { useGetAreasQuery } from "../../redux/areas/areasApi";
 import SectionTitle from "components/SectionTitle";
 
 const AreaSelector = ({ register, errors }) => {
-  const { data } = useGetAreasQuery();
-
+  const { data: area, isError, isLoading } = useGetAreasQuery();
+  console.log(area);
   const [selectedArea, setSelectedArea] = useState("");
 
   const handleAreaChange = (_, value) => {
@@ -16,13 +16,12 @@ const AreaSelector = ({ register, errors }) => {
     // <div>areas</div>
     <>
       <SectionTitle label="Areas" />
-      {/* <CustomSelect
-        options={data?.map(({ name }) => ({ value: name, label: name }))}
+      <CustomSelect
+        options={area.map(name => ({ value: name, label: name }))}
         value={selectedArea}
         onChange={handleAreaChange}
         placeholder="Select an area"
-        {...register("area")}
-      /> */}
+      />
       {/* <select
         defaultValue="default"
         {...register("area")}

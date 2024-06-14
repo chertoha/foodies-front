@@ -153,8 +153,8 @@ const AddRecipeForm = () => {
             />
           </CookingCategory>
           <AreaSelector
-            register={register}
             errors={errors}
+            {...register("area")}
           />
 
           <RecipeIngredientsContainer>
