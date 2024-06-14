@@ -10,9 +10,12 @@ export const CardWrapper = styled.div`
 
 export const Image = styled.img`
   width: 100%;
-  height: auto;
+  height: 230px;
   border-radius: ${({ theme }) => theme.radii.lg};
   ${mb(4)};
+  ${theme.mq.tablet} {
+    height: 275px;
+  }
 `;
 
 export const TitleCardWrapper = styled.div`
