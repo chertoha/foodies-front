@@ -1,6 +1,6 @@
 import * as yup from "yup";
 export const schema = yup.object({
-  photo: yup.mixed().required("Фото є обов'язковим"),
+  thumb: yup.mixed().required("Фото є обов'язковим"),
   title: yup.string().required("Назва є обов'язковою"),
   description: yup
     .string()
