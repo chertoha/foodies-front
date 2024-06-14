@@ -18,6 +18,7 @@ export const AllCategoriesCardContainer = styled.li`
   color: white;
   text-align: center;
   text-decoration: none;
+  transition: background 0.3s ease;
 
   ${theme.mq.tablet} {
     height: 369px;
