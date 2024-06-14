@@ -4,7 +4,6 @@ import Container from "components/Container";
 import Category from "components/Category/Category";
 import RecipesComponent from "components/RecipesComponent";
 
-import TempAuthButton from "components/TempComponents/TempAuthButton";
 // import { useGetRecipesQuery } from "../../redux/recipes/recipesApi";
 // import { useState } from "react";
 
@@ -27,8 +26,6 @@ const HomePage = () => {
 
   return (
     <PageWrapper>
-      <TempAuthButton />
-
       <SectionWrapper>
         <Container>
           {category === "" ? (
