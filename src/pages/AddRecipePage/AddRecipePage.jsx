@@ -7,11 +7,11 @@ import Breadcrumbs from "components/UIKit/Breadcrumbs";
 import AddRecipeForm from "components/AddRecipeForm/AddRecipeForm";
 
 const AddRecipePage = () => {
-  const methods = useForm({
-    defaultValues: {
-      thumb: null,
-    },
-  });
+  // const methods = useForm({
+  //   defaultValues: {
+  //     thumb: null,
+  //   },
+  // });
 
   // const onSubmit = data => console.log(data);
 
@@ -28,9 +28,9 @@ const AddRecipePage = () => {
               "Reveal your culinary art, share your favorite recipe and create gastronomic masterpieces with us."
             }
           />
-          <FormProvider {...methods}>
-            <AddRecipeForm />
-          </FormProvider>
+          {/* <FormProvider {...methods}> */}
+          <AddRecipeForm />
+          {/* </FormProvider> */}
           <>
             {/* <FormProvider {...methods}>
             <form onSubmit={methods.handleSubmit(onSubmit)}>
