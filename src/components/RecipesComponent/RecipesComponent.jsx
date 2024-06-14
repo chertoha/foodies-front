@@ -86,7 +86,7 @@ const RecipesComponent = ({ category }) => {
         </TitleWrapp>
         <SubTitle
           label={
-            "Go on a taste journey, where every sip is a sophisticated creative chord, and every dessert is an expression of the most refined gastronomic desires."
+            "Go on a taste journey, where every sip is a sophisticated creative chord, and every dish is an expression of the most refined gastronomic desires."
           }
         />
       </SubTitleWrapp>
