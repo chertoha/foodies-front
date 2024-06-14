@@ -1,9 +1,7 @@
 import { useState, useEffect } from "react";
-import { useAuth } from "../../hooks/useAuth";
 import {
   useFollowUserMutation,
   useGetCurrentUserQuery,
-  useLazyGetCurrentUserQuery,
   useUnfollowUserMutation,
 } from "../../redux/users/usersApi";
 import UserAvatar from "components/UserAvatar/UserAvatar";
@@ -23,8 +21,6 @@ import {
 } from "./FollowerList.styled";
 
 const FollowersList = ({ followers, type }) => {
-  // const { user } = useAuth();
-
   const { data: user } = useGetCurrentUserQuery();
   // const [getUserData] = useLazyGetCurrentUserQuery();
 
