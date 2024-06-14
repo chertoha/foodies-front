@@ -40,7 +40,8 @@ export const UserPageListImage = styled("img")`
   width: 75px;
   height: 75px;
   border-radius: 15px;
-
+  object-fit: cover;
+  object-position: center;
   ${theme.mq.mobileOnly} {
   }
 

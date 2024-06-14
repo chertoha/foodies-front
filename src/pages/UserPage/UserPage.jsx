@@ -9,6 +9,7 @@ import Container from "components/Container";
 import MainTitle from "components/MainTitle/MainTitle";
 import SubTitle from "components/SubTitle";
 import UserInfo from "components/UserInfo";
+import MyUserInfo from "../../components/UserInfo/MyUserInfo";
 
 import MyRecipes from "components/ProfilePages/MyRecipes";
 import UserRecipes from "components/ProfilePages/UserRecipes";
@@ -47,7 +48,7 @@ const UserPage = () => {
   // console.log("useAuth", user);
   // console.log("id", id);
 
-  const currentUserId = user._id;
+  const currentUserId = user ? user._id : null;
   const isCurrentUserProfile = id === currentUserId;
 
   const handleTabChange = tab => {
@@ -64,6 +65,7 @@ const UserPage = () => {
   if (isFetchingUserInfo) return <div>Loading...</div>;
   if (errorUserInfo) return <div>Error loading UserPage.</div>;
   if (!dataUserInfo) return null;
+
   // console.log("dataUserInfo", dataUserInfo);
 
   return (
@@ -80,20 +82,33 @@ const UserPage = () => {
             "Reveal your culinary art, share your favorite recipe and create gastronomic masterpieces with us."
           }
         />
-        {/* {errorUserInfo && ( */}
-        <ProfileWrapp>
-          <UserInfo
-            isCurrentUserProfile={isCurrentUserProfile}
-            userId={id}
-            avatar={dataUserInfo.avatar}
-            name={dataUserInfo.name}
-            email={dataUserInfo.email}
-            recipesCount={dataUserInfo.recipesCount}
-            favoritesCount={dataUserInfo.favoritesCount}
-            followersCount={dataUserInfo.followersCount}
-            followingCount={dataUserInfo.followingCount}
-          />
 
+        <ProfileWrapp>
+          {isCurrentUserProfile ? (
+            <>
+              <MyUserInfo
+                isCurrentUserProfile={isCurrentUserProfile}
+                userId={user._id}
+                avatar={dataUserInfo.avatar}
+                name={dataUserInfo.name}
+                email={dataUserInfo.email}
+                recipesCount={dataUserInfo.recipesCount}
+                favoritesCount={dataUserInfo.favoritesCount}
+                followersCount={dataUserInfo.followersCount}
+                followingCount={dataUserInfo.followingCount}
+              />
+            </>
+          ) : (
+            <>
+              <UserInfo
+                userId={id}
+                avatar={dataUserInfo.avatar}
+                name={dataUserInfo.name}
+                recipesCount={dataUserInfo.recipesCount}
+                followersCount={dataUserInfo.followersCount}
+              />
+            </>
+          )}
           <ListWrapp>
             {isCurrentUserProfile ? (
               <>
@@ -101,7 +116,7 @@ const UserPage = () => {
                   {allTabs.map(({ id, label, tab }) => (
                     <li key={id}>
                       <TabsButton
-                        variant={allActiveTab === label ? "active" : "inactive"}
+                        $variant={allActiveTab === label ? "active" : "inactive"}
                         onClick={() => handleTabChange(tab)}
                       >
                         {label}
@@ -116,7 +131,7 @@ const UserPage = () => {
                   {lessTabs.map(({ id, label, tab }) => (
                     <li key={id}>
                       <TabsButton
-                        variant={lessActiveTab === label ? "active" : "inactive"}
+                        $variant={lessActiveTab === label ? "active" : "inactive"}
                         onClick={() => handleTabChange(tab)}
                       >
                         {label}

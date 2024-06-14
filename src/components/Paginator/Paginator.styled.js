@@ -24,11 +24,9 @@ export const Button = styled.button`
 
   border-radius: 50%;
   color: ${theme.colors.accent};
-  transition:
-    background-color ${theme.transitions.default},
-    color ${theme.transitions.default};
+  transition: ${theme.transitions.default};
   padding: 0;
-  background-color: ${theme.transitions.default};
+  // background-color: ${theme.transitions.default};
   border: 1px solid ${theme.colors.accent};
 
   font-size: 14px;

@@ -1,12 +1,8 @@
 import { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { authLogOutThunk } from "../../redux/auth/thunks";
 import { useAuth } from "../../hooks/useAuth";
 import { useFollowUserMutation, useUnfollowUserMutation } from "../../redux/users/usersApi";
 
 import UserAvatar from "../../components/UserAvatar/UserAvatar";
-import sprite from "assets/images/icons/sprite.svg";
 import ActiveButton from "components/Buttons/ActiveButton/ActiveButton";
 import {
   UserInfoWrapp,
@@ -16,24 +12,9 @@ import {
   UserCardtext,
   UserCardspan,
   IconWrapp,
-  Button,
-  Icon,
 } from "./UserInfo.styled";
 
-const UserInfo = ({
-  isCurrentUserProfile,
-  userId,
-  avatar,
-  name,
-  email,
-  recipesCount,
-  favoritesCount,
-  followersCount,
-  followingCount,
-}) => {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-
+const UserInfo = ({ userId, avatar, name, recipesCount, followersCount }) => {
   const { user } = useAuth();
 
   const [isFollowing, setIsFollowing] = useState(false);
@@ -41,20 +22,11 @@ const UserInfo = ({
   const [unfollowUser] = useUnfollowUserMutation();
 
   useEffect(() => {
-    if (user.following) {
+    if (user && user.following) {
       const isFollowingUser = user.following.includes(userId);
       setIsFollowing(isFollowingUser);
     }
-  }, [user.following, userId]);
-
-  const onClickLogOut = async () => {
-    try {
-      await dispatch(authLogOutThunk()).unwrap();
-      navigate("/");
-    } catch (error) {
-      console.error("Failed to log out:", error);
-    }
-  };
+  }, [user, userId]);
 
   const handleFollowClick = async () => {
     if (isFollowing) {
@@ -75,70 +47,28 @@ const UserInfo = ({
   };
   return (
     <UserInfoWrapp>
-      {isCurrentUserProfile ? (
-        <>
-          <UserCard>
-            <IconWrapp>
-              <UserAvatar
-                size={[80, 120, 120]}
-                src={avatar}
-              />
-              <Button>
-                <Icon>
-                  <use href={sprite + "#icon-plus"}></use>
-                </Icon>
-              </Button>
-            </IconWrapp>
-            <UserCardTitle>{name}</UserCardTitle>
-            <UserCardInfo>
-              <UserCardtext>
-                <UserCardspan>Email: {email}</UserCardspan>
-              </UserCardtext>
-              <UserCardtext>
-                <UserCardspan>Added recipes: {recipesCount}</UserCardspan>
-              </UserCardtext>
-              <UserCardtext>
-                <UserCardspan>Favorites: {favoritesCount}</UserCardspan>
-              </UserCardtext>
-              <UserCardtext>
-                <UserCardspan>Followers: {followersCount}</UserCardspan>
-              </UserCardtext>
-              <UserCardtext>
-                <UserCardspan>Following: {followingCount}</UserCardspan>
-              </UserCardtext>
-            </UserCardInfo>
-          </UserCard>
-          <ActiveButton
-            label={"log out"}
-            onClick={onClickLogOut}
+      <UserCard>
+        <IconWrapp>
+          <UserAvatar
+            size={[80, 120, 120]}
+            src={avatar}
           />
-        </>
-      ) : (
-        <>
-          <UserCard>
-            <IconWrapp>
-              <UserAvatar
-                size={[80, 120, 120]}
-                src={avatar}
-              />
-            </IconWrapp>
-            <UserCardTitle>{name}</UserCardTitle>
-            <UserCardInfo>
-              <UserCardtext>
-                <UserCardspan>Added recipes: {recipesCount}</UserCardspan>
-              </UserCardtext>
+        </IconWrapp>
+        <UserCardTitle>{name}</UserCardTitle>
+        <UserCardInfo>
+          <UserCardtext>
+            <UserCardspan>Added recipes: {recipesCount}</UserCardspan>
+          </UserCardtext>
 
-              <UserCardtext>
-                <UserCardspan>Followers: {followersCount}</UserCardspan>
-              </UserCardtext>
-            </UserCardInfo>
-          </UserCard>
-          <ActiveButton
-            label={isFollowing ? "Unfollow" : "Follow"}
-            onClick={handleFollowClick}
-          />
-        </>
-      )}
+          <UserCardtext>
+            <UserCardspan>Followers: {followersCount}</UserCardspan>
+          </UserCardtext>
+        </UserCardInfo>
+      </UserCard>
+      <ActiveButton
+        label={isFollowing ? "Unfollow" : "Follow"}
+        onClick={handleFollowClick}
+      />
     </UserInfoWrapp>
   );
 };
