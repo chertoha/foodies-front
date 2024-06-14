@@ -1,7 +1,5 @@
-import { StyledButton } from "components/Buttons/ActiveButton/ActiveButton.styled";
 import { ButtonTrash } from "components/Buttons/TrashButton/TrashButton.styled";
 import SpriteIcon from "components/UIKit/SpriteIcon";
-import { useRef, useState } from "react";
 
 export const Counter = ({ register, errors, count, setCount }) => {
   const handleClick = value => {

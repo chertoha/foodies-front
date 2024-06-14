@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { useForm, useFieldArray, set } from "react-hook-form";
+import { useForm, useFieldArray, _set } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schema } from "./yupValidation";
 import { FieldsInput } from "./InputFields.styled";
-import { useCreateRecipeMutation } from "../../redux/recipes/recipesApi";
+// import { useCreateRecipeMutation } from "../../redux/recipes/recipesApi";
 import {
   CookingCategory,
   DescriptionContainer,
@@ -40,14 +40,14 @@ const AddRecipeForm = () => {
   });
 
   const [_categories, _setCategories] = useState([]);
-  const [ingredients, setIngredients] = useState([]);
+  const [ingredients, _setIngredients] = useState([]);
 
   const [counter, setCounter] = useState(1);
   const [selectedIngredients, setSelectedIngredients] = useState([]);
   const [preview, setPreview] = useState(null);
   // const { data } = useGetCategoriesQuery({ limit: 1111 });
 
-  const [createRecipe] = useCreateRecipeMutation();
+  // const [createRecipe] = useCreateRecipeMutation();
 
   const onSubmit = data => {
     console.log({ ...data, cookTime: counter, ingredients: selectedIngredients, photo: preview });
