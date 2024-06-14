@@ -1,12 +1,18 @@
-import { Outlet } from "react-router-dom";
-import { useLocation } from "react-router-dom";
+import { Outlet, useParams } from "react-router-dom";
+import { useState } from "react";
+// import { useLocation } from "react-router-dom";
+
+import { useGetUserInfoQuery } from "../../redux/users/usersApi";
+import { useAuth } from "hooks/useAuth";
 
 import Container from "components/Container";
 import MainTitle from "components/MainTitle/MainTitle";
 import SubTitle from "components/SubTitle";
 import UserInfo from "components/UserInfo";
+import MyUserInfo from "../../components/UserInfo/MyUserInfo";
 
 import MyRecipes from "components/ProfilePages/MyRecipes";
+import UserRecipes from "components/ProfilePages/UserRecipes";
 import MyFavorites from "components/ProfilePages/MyFavorites";
 import Followers from "components/ProfilePages/Followers";
 import Following from "components/ProfilePages/Following";
@@ -19,7 +25,7 @@ import {
   TabsList,
   TabsButton,
 } from "./UserPage.styled";
-import { useState } from "react";
+
 const allTabs = [
   { id: 1, tab: "My recipes", label: "My recipes" },
   { id: 2, tab: "My favorites", label: "My favorites" },
@@ -33,16 +39,34 @@ const lessTabs = [
 ];
 
 const UserPage = () => {
-  const location = useLocation();
+  // const location = useLocation();
+  const { id } = useParams();
+  const { user } = useAuth();
   const [allActiveTab, setAllActiveTab] = useState("My recipes");
   const [lessActiveTab, setLessActiveTab] = useState("Recipes");
 
-  const isCurrentUserProfile = location.pathname.includes("/user/1");
+  // console.log("useAuth", user);
+  // console.log("id", id);
+
+  const currentUserId = user ? user._id : null;
+  const isCurrentUserProfile = id === currentUserId;
 
   const handleTabChange = tab => {
     setAllActiveTab(tab);
     setLessActiveTab(tab);
   };
+
+  const {
+    data: dataUserInfo,
+    error: errorUserInfo,
+    isFetching: isFetchingUserInfo,
+  } = useGetUserInfoQuery(id);
+
+  if (isFetchingUserInfo) return <div>Loading...</div>;
+  if (errorUserInfo) return <div>Error loading UserPage.</div>;
+  if (!dataUserInfo) return null;
+
+  // console.log("dataUserInfo", dataUserInfo);
 
   return (
     <SectionWrapper>
@@ -60,8 +84,31 @@ const UserPage = () => {
         />
 
         <ProfileWrapp>
-          <UserInfo />
-
+          {isCurrentUserProfile ? (
+            <>
+              <MyUserInfo
+                isCurrentUserProfile={isCurrentUserProfile}
+                userId={user._id}
+                avatar={dataUserInfo.avatar}
+                name={dataUserInfo.name}
+                email={dataUserInfo.email}
+                recipesCount={dataUserInfo.recipesCount}
+                favoritesCount={dataUserInfo.favoritesCount}
+                followersCount={dataUserInfo.followersCount}
+                followingCount={dataUserInfo.followingCount}
+              />
+            </>
+          ) : (
+            <>
+              <UserInfo
+                userId={id}
+                avatar={dataUserInfo.avatar}
+                name={dataUserInfo.name}
+                recipesCount={dataUserInfo.recipesCount}
+                followersCount={dataUserInfo.followersCount}
+              />
+            </>
+          )}
           <ListWrapp>
             {isCurrentUserProfile ? (
               <>
@@ -69,7 +116,7 @@ const UserPage = () => {
                   {allTabs.map(({ id, label, tab }) => (
                     <li key={id}>
                       <TabsButton
-                        variant={allActiveTab === label ? "active" : "inactive"}
+                        $variant={allActiveTab === label ? "active" : "inactive"}
                         onClick={() => handleTabChange(tab)}
                       >
                         {label}
@@ -84,7 +131,7 @@ const UserPage = () => {
                   {lessTabs.map(({ id, label, tab }) => (
                     <li key={id}>
                       <TabsButton
-                        variant={lessActiveTab === label ? "active" : "inactive"}
+                        $variant={lessActiveTab === label ? "active" : "inactive"}
                         onClick={() => handleTabChange(tab)}
                       >
                         {label}
@@ -99,19 +146,20 @@ const UserPage = () => {
               <>
                 {allActiveTab === "My recipes" && <MyRecipes />}
                 {allActiveTab === "My favorites" && <MyFavorites />}
-                {allActiveTab === "Followers" && <Followers />}
+                {allActiveTab === "Followers" && <Followers id={id} />}
                 {allActiveTab === "Following" && <Following />}
               </>
             ) : (
               <>
-                {lessActiveTab === "Recipes" && <MyRecipes />}
-                {lessActiveTab === "Followers" && <Followers />}
+                {lessActiveTab === "Recipes" && <UserRecipes id={id} />}
+                {lessActiveTab === "Followers" && <Followers id={id} />}
               </>
             )}
 
             <Outlet />
           </ListWrapp>
         </ProfileWrapp>
+        {/* )} */}
       </Container>
     </SectionWrapper>
   );

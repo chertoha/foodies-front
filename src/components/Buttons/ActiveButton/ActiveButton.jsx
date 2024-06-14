@@ -1,10 +1,10 @@
 import { StyledButton } from "./ActiveButton.styled";
 
-const ActiveButton = ({ label }) => {
+const ActiveButton = ({ label, onClick }) => {
   return (
     <StyledButton
-      type="submit"
-      // onClick={onClick}
+      type="button"
+      onClick={onClick}
     >
       {label}
     </StyledButton>

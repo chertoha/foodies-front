@@ -40,7 +40,8 @@ export const UserPageListImage = styled("img")`
   width: 75px;
   height: 75px;
   border-radius: 15px;
-
+  object-fit: cover;
+  object-position: center;
   ${theme.mq.mobileOnly} {
   }
 
@@ -50,6 +51,41 @@ export const UserPageListImage = styled("img")`
   }
 
   ${theme.mq.desktop} {
+  }
+`;
+
+export const SpaceWrapp = styled("div")`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 258px;
+  ${theme.mq.mobileOnly} {
+    width: 100%;
+    max-width: 258px;
+  }
+
+  ${theme.mq.tablet} {
+    width: 588px;
+  }
+
+  ${theme.mq.desktop} {
+    width: 730px;
+  }
+`;
+export const UserPageWrappText = styled("div")`
+  width: 166px;
+
+  ${theme.mq.mobileOnly} {
+    width: 100%;
+    max-width: 166px;
+  }
+
+  ${theme.mq.tablet} {
+    width: 468px;
+  }
+
+  ${theme.mq.desktop} {
+    width: 610px;
   }
 `;
 export const UserPageListTitle = styled("h4")`

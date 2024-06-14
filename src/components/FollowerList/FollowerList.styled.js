@@ -147,6 +147,9 @@ export const CardList = styled("ul")`
   }
 `;
 export const CardListImage = styled("img")`
+  object-fit: cover;
+
+  object-position: center;
   ${theme.mq.mobileOnly} {
   }
 
