@@ -80,7 +80,7 @@ const FollowersList = ({ followers, type }) => {
                 />
               ) : (
                 <FollowerButton
-                  label={followingState[_id] ? "Unfollowing" : "Following"}
+                  label={followingState[_id] ? "Unfollow" : "Following"}
                   onClick={() => handleFollowClick(_id)}
                 />
               )}
