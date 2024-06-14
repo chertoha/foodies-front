@@ -9,8 +9,6 @@ const RecipePage = lazy(() => import("../pages/RecipePage/RecipePage"));
 const AddRecipePage = lazy(() => import("../pages/AddRecipePage/AddRecipePage"));
 const UserPage = lazy(() => import("../pages/UserPage/UserPage"));
 
-// const RecipesComponent = lazy(() => import("../components/RecipesComponent/RecipesComponent"));
-
 export const ROUTES = {
   HOME: "/",
   RECIPE: "/recipe",
@@ -33,11 +31,6 @@ const routes = [
         path: `${ROUTES.RECIPE}/:id`,
         element: <RecipePage />,
       },
-
-      // {
-      //   path: ROUTES.RECIPES,
-      //   element: <RecipesComponent />,
-      // },
 
       {
         path: ROUTES.RECIPE_ADD,
