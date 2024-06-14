@@ -1,6 +1,6 @@
 import SectionTitle from "components/SectionTitle";
 import { useGetCategoriesQuery } from "../../redux/categories/categoriesApi";
-import { SelectorCategories } from "./CategoriesSelector.styled";
+import { SelectorCategories } from "./AddRecipeForm.styled";
 export const CategoriesSelector = ({ register, errors }) => {
   const { data } = useGetCategoriesQuery({ limit: 1111 });
 

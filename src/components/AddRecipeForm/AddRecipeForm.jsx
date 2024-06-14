@@ -2,9 +2,9 @@ import { useState } from "react";
 import { useForm, useFieldArray, _set, FormProvider } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schema } from "./yupValidation";
-import { FieldsInput } from "./InputFields.styled";
 import { useCreateRecipeMutation } from "../../redux/recipes/recipesApi";
 import {
+  FieldsInput,
   ButtonsWrapper,
   CookingCategory,
   DescriptionContainer,

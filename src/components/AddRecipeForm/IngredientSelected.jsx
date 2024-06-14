@@ -8,7 +8,7 @@ import {
   IngredienQuantity,
   IngredientDescription,
   SelectorIngredientsContainer,
-} from "./IngredientSelected.styled";
+} from "./AddRecipeForm.styled";
 
 import CustomSelect from "components/CustomSelect";
 
