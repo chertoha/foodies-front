@@ -1,6 +1,11 @@
 import { useState, useEffect } from "react";
 import { useAuth } from "../../hooks/useAuth";
-import { useFollowUserMutation, useUnfollowUserMutation } from "../../redux/users/usersApi";
+import {
+  useFollowUserMutation,
+  useGetCurrentUserQuery,
+  useLazyGetCurrentUserQuery,
+  useUnfollowUserMutation,
+} from "../../redux/users/usersApi";
 import UserAvatar from "components/UserAvatar/UserAvatar";
 import FollowerButton from "components/Buttons/FollowerButton/FollowerButton";
 import sprite from "assets/images/icons/sprite.svg";
@@ -18,13 +23,20 @@ import {
 } from "./FollowerList.styled";
 
 const FollowersList = ({ followers, type }) => {
-  const { user } = useAuth();
+  // const { user } = useAuth();
+
+  const { data: user } = useGetCurrentUserQuery();
+  // const [getUserData] = useLazyGetCurrentUserQuery();
+
   const [followUser] = useFollowUserMutation();
   const [unfollowUser] = useUnfollowUserMutation();
 
   const [followingState, setFollowingState] = useState({});
 
   useEffect(() => {
+    if (!user) return;
+
+    // console.log(user);
     if (user.following) {
       const followingMap = {};
       user.following.forEach(id => {
@@ -32,7 +44,7 @@ const FollowersList = ({ followers, type }) => {
       });
       setFollowingState(followingMap);
     }
-  }, [user.following]);
+  }, [user]);
 
   const handleFollowClick = async followerId => {
     if (followingState[followerId]) {
