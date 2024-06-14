@@ -22,7 +22,6 @@ export const TitleCardWrapper = styled.div`
   max-width: 290px;
   ${numberTextRows(1)}
   overflow: hidden;
-  white-space: nowrap;
   text-overflow: ellipsis;
 
   ${theme.mq.tabletOnly} {

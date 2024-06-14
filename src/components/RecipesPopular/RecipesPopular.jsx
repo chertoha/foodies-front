@@ -32,7 +32,6 @@ const RecipesPopular = () => {
                 name: recipe.owner.name,
                 avatar: recipe.owner.avatar,
               }}
-              // favorites={favorites}
               isAuthenticated={!!user}
             />
           </RecipeListItem>

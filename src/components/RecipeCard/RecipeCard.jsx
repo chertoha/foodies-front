@@ -33,7 +33,6 @@ const RecipeCard = ({ recipe, author, isAuthenticated }) => {
           <FavoriteWrapper
             recipeId={recipe.id}
             Button={HeartButton}
-            // favorites={favorites}
           />
           <ArrowButton to={`/recipe/${recipe.id}`} />
         </Actions>

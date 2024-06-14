@@ -41,7 +41,6 @@ const RecipePreparation = ({ preparation, recipeId }) => {
       <FavoriteWrapper
         recipeId={recipeId}
         Button={FavoriteButton}
-        // favorites={favorites}
       />
     </RecipePreparationContainer>
   );

@@ -60,7 +60,6 @@ const RecipeInfo = ({ author, onSignIn }) => {
         <RecipePreparation
           preparation={recipe.instructions}
           recipeId={recipe._id}
-          // favorites={favorites}
         />
       </RecipeContentWrapper>
     </RecipeInfoContainer>
