@@ -4,11 +4,9 @@ import Container from "../../components/Container/Container";
 import { RecipePageContainer } from "./RecipePage.styled";
 import RecipeInfo from "../../components/RecipeInfo/RecipeInfo";
 import { useParams } from "react-router-dom";
-import { useGetFavoriteRecipesQuery, useGetRecipeQuery } from "../../redux/recipes/recipesApi";
+import { useGetRecipeQuery } from "../../redux/recipes/recipesApi";
 
 const RecipePage = () => {
-  const { data: favorites = [] } = useGetFavoriteRecipesQuery({ page: 1, limit: 10000 });
-
   const { id } = useParams();
   const { data: recipe, isLoading, error } = useGetRecipeQuery(id);
 
@@ -18,18 +16,13 @@ const RecipePage = () => {
   if (error) {
     return null;
   }
+
   return (
     <Container>
       <RecipePageContainer>
         <Breadcrumbs current={recipe.title} />
-        <RecipeInfo
-          recipe={recipe}
-          favorites={favorites.result}
-        />
-        <RecipesPopular
-          recipe={recipe}
-          favorites={favorites.result}
-        />
+        <RecipeInfo recipe={recipe} />
+        <RecipesPopular recipe={recipe} />
       </RecipePageContainer>
     </Container>
   );

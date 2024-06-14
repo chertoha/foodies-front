@@ -5,7 +5,7 @@ import RecipeCard from "../RecipeCard/RecipeCard";
 import { useGetPopularRecipesQuery } from "../../redux/recipes/recipesApi";
 import { useAuth } from "hooks/useAuth";
 
-const RecipesPopular = ({ favorites }) => {
+const RecipesPopular = () => {
   const { data, error, isLoading } = useGetPopularRecipesQuery({ page: 1, limit: 4 });
   const { user } = useAuth();
 
@@ -32,7 +32,6 @@ const RecipesPopular = ({ favorites }) => {
                 name: recipe.owner.name,
                 avatar: recipe.owner.avatar,
               }}
-              favorites={favorites}
               isAuthenticated={!!user}
             />
           </RecipeListItem>
