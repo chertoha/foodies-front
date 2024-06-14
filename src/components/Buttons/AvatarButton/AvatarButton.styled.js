@@ -14,7 +14,7 @@ export const ButtonAvatar = styled.div`
 export const ImgAvatar = styled.img`
   width: 32px;
   height: 32px;
-  border-radius: ${({ theme }) => theme.radii.lg};
+  border-radius: ${({ theme }) => theme.radii.round};
   object-fit: cover;
   cursor: pointer;
 `;
@@ -22,7 +22,7 @@ export const ImgAvatar = styled.img`
 export const InitialsAvatar = styled.button`
   width: 32px;
   height: 32px;
-  border-radius: ${({ theme }) => theme.radii.lg};
+  border-radius: ${({ theme }) => theme.radii.round};
   display: flex;
   align-items: center;
   justify-content: center;
