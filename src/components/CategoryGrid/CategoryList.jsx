@@ -1,17 +1,24 @@
 import React, { useState, useEffect } from "react";
-import { CategoryCard } from "../CategoryCard/CategoryCard";
+import CategoryCard from "../CategoryCard/CategoryCard";
+import AllCategoriesCard from "../AllCategoriesCard/AllCategoriesCard";
 import { List, Row } from "./CategoryList.styled";
 import { useWindowSize } from "@uidotdev/usehooks";
-import AllCategoriesCard from "components/AllCategoriesCard/AllCategoriesCard";
 import { breakpoints } from "styles/theme";
 
 const gridTemplates = ["1fr 1fr 2fr", "1fr 2fr 1fr", "2fr 1fr 1fr"];
 const gridTemplatesTablet = ["1fr 1fr", "1fr"];
 
-const CategoryList = ({ categories: backendCategories }) => {
+const CategoryList = ({
+  categories: backendCategories,
+  onAllCategoriesClick,
+  showAllCategoriesCard,
+  onSelectCategory,
+}) => {
   const size = useWindowSize();
   const [templateIndexes, setTemplateIndexes] = useState([]);
-  const categories = [...backendCategories, { all: true }];
+  const categories = showAllCategoriesCard
+    ? [...backendCategories, { all: true }]
+    : backendCategories;
 
   useEffect(() => {
     const cardsPerRow = size.width >= breakpoints.desktop ? 3 : 2;
@@ -48,18 +55,22 @@ const CategoryList = ({ categories: backendCategories }) => {
         >
           {row.map((category, index) =>
             category.all ? (
-              <AllCategoriesCard
-                key="all-categories"
-                large={
-                  size.width >= breakpoints.desktop
-                    ? row.length === 1 || index === 2
-                    : row.length === 1
-                }
-              />
+              showAllCategoriesCard && (
+                <AllCategoriesCard
+                  key="all-categories"
+                  large={
+                    size.width >= breakpoints.desktop
+                      ? row.length === 1 || index === 2
+                      : row.length === 1
+                  }
+                  onClick={onAllCategoriesClick}
+                />
+              )
             ) : (
               <CategoryCard
                 key={category._id}
                 category={category}
+                onSelectCategory={onSelectCategory}
               />
             )
           )}

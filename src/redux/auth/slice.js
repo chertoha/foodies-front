@@ -40,7 +40,8 @@ const rejectedAuthSignIn = (state, { payload }) => {
 
 const fulfildAuthLogOut = (state, _) => {
   state.error = null;
-  state.token = "";
+  state.token = null;
+  state.user = null;
   state.isLoading = false;
 };
 const pandingAuthLogOut = (state, _) => {
@@ -52,7 +53,7 @@ const rejectedAuthLogOut = (state, { payload }) => {
 };
 
 const fulfildAuthCurrentUser = (state, { payload }) => {
-  state.user = payload.user;
+  state.user = payload;
   state.isLoading = false;
 };
 const pandingAuthCurrentUser = (state, _) => {

@@ -13,9 +13,9 @@ const UserPage = lazy(() => import("../pages/UserPage/UserPage"));
 
 export const ROUTES = {
   HOME: "/",
-  RECIPE: "/recipe/:id",
+  RECIPE: "/recipe",
   RECIPE_ADD: "/recipe/add",
-  USER: "/user/:id",
+  USER: "/user",
 
   RECIPES: "/recipes",
 };
@@ -30,7 +30,7 @@ const routes = [
         element: <HomePage />,
       },
       {
-        path: ROUTES.RECIPE,
+        path: `${ROUTES.RECIPE}/:id`,
         element: <RecipePage />,
       },
 
@@ -49,7 +49,7 @@ const routes = [
         ),
       },
       {
-        path: ROUTES.USER,
+        path: `${ROUTES.USER}/:id`,
         element: (
           <PrivateRoute
             redirectTo={ROUTES.USER}
