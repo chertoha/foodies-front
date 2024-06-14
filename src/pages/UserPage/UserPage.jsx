@@ -101,7 +101,7 @@ const UserPage = () => {
                   {allTabs.map(({ id, label, tab }) => (
                     <li key={id}>
                       <TabsButton
-                        variant={allActiveTab === label ? "active" : "inactive"}
+                        $variant={allActiveTab === label ? "active" : "inactive"}
                         onClick={() => handleTabChange(tab)}
                       >
                         {label}
@@ -116,7 +116,7 @@ const UserPage = () => {
                   {lessTabs.map(({ id, label, tab }) => (
                     <li key={id}>
                       <TabsButton
-                        variant={lessActiveTab === label ? "active" : "inactive"}
+                        $variant={lessActiveTab === label ? "active" : "inactive"}
                         onClick={() => handleTabChange(tab)}
                       >
                         {label}

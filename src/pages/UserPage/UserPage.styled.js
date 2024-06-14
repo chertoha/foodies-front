@@ -104,5 +104,5 @@ export const TabsButton = styled("button")`
 
   ${theme.mq.desktop} {
   }
-  ${props => props.variant === "active" && `border-bottom: 3px solid #050505; color: #050505;`}
+  ${props => props.$variant === "active" && `border-bottom: 3px solid #050505; color: #050505;`}
 `;

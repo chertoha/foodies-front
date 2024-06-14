@@ -6,9 +6,17 @@ const usersApi = createApi({
 
   baseQuery: axiosBaseQuery(BASE_URL),
 
-  tagTypes: ["Following"],
+  tagTypes: ["Following", "Current"],
 
   endpoints: builder => ({
+    getCurrentUser: builder.query({
+      query: () => ({
+        url: `/users/current`,
+        method: "GET",
+      }),
+      providesTags: ["Current"],
+    }),
+
     getUserInfo: builder.query({
       query: id => ({
         url: `/users/${id}`,
@@ -47,7 +55,7 @@ const usersApi = createApi({
         url: `/users/following/${id}`,
         method: "POST",
       }),
-      invalidatesTags: ["Following"],
+      invalidatesTags: ["Following", "Current"],
     }),
 
     unfollowUser: builder.mutation({
@@ -55,7 +63,7 @@ const usersApi = createApi({
         url: `/users/following/${id}`,
         method: "DELETE",
       }),
-      invalidatesTags: ["Following"],
+      invalidatesTags: ["Following", "Current"],
     }),
 
     getUserRecipes: builder.query({
@@ -72,6 +80,8 @@ export const {
   useGetUserFollowersQuery,
   useGetUserFollowingQuery,
   useGetUserRecipesQuery,
+  useGetCurrentUserQuery,
+  useLazyGetCurrentUserQuery,
 
   useUpdateUserAvatarMutation,
   useFollowUserMutation,
