@@ -1,13 +1,14 @@
 import { useState } from "react";
 import { useGetIngredientsQuery } from "../../redux/ingredients/ingredientsApi";
 import IngredientCard from "./IngredientSelectedCard";
+import SpriteIcon from "components/UIKit/SpriteIcon";
+import { IngredientsList } from "components/RecipeIngredients/RecipeIngredients.styled";
 
-const IngredientSelector = () => {
+const IngredientSelector = ({ selectedIngredients, setSelectedIngredients }) => {
   const { data: ingredients, isLoading, isError } = useGetIngredientsQuery(); // Використовуємо RTK Query для отримання інгредієнтів
 
   const [selectedIngredient, setSelectedIngredient] = useState("");
   const [quantity, setQuantity] = useState("");
-  const [selectedIngredients, setSelectedIngredients] = useState([]);
 
   const handleIngredientChange = event => {
     setSelectedIngredient(event.target.value);
@@ -18,13 +19,17 @@ const IngredientSelector = () => {
   };
 
   const handleAddIngredient = () => {
+    const isExist = selectedIngredients.some(ing => ing.name === selectedIngredient);
+    if (isExist) {
+      alert("This ingredient is already added");
+      return;
+    }
     const ingredient = ingredients.result.find(ing => ing.name === selectedIngredient);
     if (ingredient) {
-      console.log(ingredient, selectedIngredients);
       const newSelectedIngredients = [...selectedIngredients, { ...ingredient, quantity }];
       setSelectedIngredients(newSelectedIngredients);
-      setSelectedIngredient("");
-      setQuantity("");
+      // setSelectedIngredient("");
+      // setQuantity("");
     }
   };
 
@@ -36,7 +41,7 @@ const IngredientSelector = () => {
   if (isLoading) return <div>Loading...</div>;
   if (isError) return <div>Error fetching ingredients</div>;
   if (!ingredients) return null;
-  console.log(selectedIngredient);
+
   return (
     <>
       {" "}
@@ -63,21 +68,26 @@ const IngredientSelector = () => {
           </option>
         ))}
       </select>
-      <label htmlFor="quantityInput">Кількість:</label>
+      <label htmlFor="quantityInput">Quantity:</label>
       <input
-        type="number"
+        type="text"
         id="quantityInput"
         value={quantity}
         onChange={handleQuantityChange}
         style={{ margin: "10px", padding: "5px", fontSize: "16px", width: "80px" }}
       />
       <button
+        type="button"
         onClick={handleAddIngredient}
         style={{ marginLeft: "10px", padding: "5px", fontSize: "16px" }}
       >
-        Додати інгредієнт
+        Add ingredient
+        <SpriteIcon
+          id="icon-plus"
+          size={[20, 22, 22]}
+        />
       </button>
-      <div>
+      <IngredientsList>
         {selectedIngredients.map(ingredient => (
           <IngredientCard
             key={ingredient._id}
@@ -85,7 +95,7 @@ const IngredientSelector = () => {
             onDelete={handleDeleteIngredient}
           />
         ))}
-      </div>
+      </IngredientsList>
     </>
   );
 };

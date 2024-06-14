@@ -1,10 +1,19 @@
 import { useState } from "react";
-import { useForm, useFieldArray } from "react-hook-form";
+import { useForm, useFieldArray, _set } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schema } from "./yupValidation";
 import { FieldsInput } from "./InputFields.styled";
-import { useCreateRecipeMutation } from "../../redux/recipes/recipesApi";
-import { Form } from "./AddRecipeForm.styled";
+// import { useCreateRecipeMutation } from "../../redux/recipes/recipesApi";
+import {
+  CookingCategory,
+  DescriptionContainer,
+  FieldsInputStyled,
+  Form,
+  FormTitles,
+  ImageField,
+  RecipeNameContainer,
+  RecipeNameInput,
+} from "./AddRecipeForm.styled";
 import ActiveButton from "components/Buttons/ActiveButton";
 import TrashButton from "components/Buttons/TrashButton";
 import { RecipeIngredientsContainer } from "components/RecipeIngredients/RecipeIngredients.styled";
@@ -32,24 +41,18 @@ const AddRecipeForm = () => {
 
   const [_categories, _setCategories] = useState([]);
   const [ingredients, _setIngredients] = useState([]);
-  const [_preview, setPreview] = useState(null);
 
+  const [counter, setCounter] = useState(1);
+  const [selectedIngredients, setSelectedIngredients] = useState([]);
+  const [preview, setPreview] = useState(null);
   // const { data } = useGetCategoriesQuery({ limit: 1111 });
 
-  const [createRecipe] = useCreateRecipeMutation();
-  // useEffect(() => {
-  //   // Отримання категорій з backend
-  //   axiosBaseQuery("/api/categories").then(response => {
-  //     setCategories(response.data);
-  //   });
+  // const [createRecipe] = useCreateRecipeMutation();
 
-  //   // Отримання інгредієнтів з backend
-  //   axiosBaseQuery("/api/ingredients").then(response => {
-  //     setIngredients(response.data);
-  //   });
-  // }, []);
+  const onSubmit = data => {
+    console.log({ ...data, cookTime: counter, ingredients: selectedIngredients, photo: preview });
+    console.log(data.photo[0]);
 
-  const onSubmit = async data => {
     try {
       const formData = new FormData();
       Object.keys(data).forEach(key => {
@@ -62,7 +65,8 @@ const AddRecipeForm = () => {
           formData.append(key, data[key]);
         }
       });
-      createRecipe(formData);
+      // console.log(formData);
+      // createRecipe(formData);
 
       // const response = await axiosBaseQuery("/api/recipes", formData);
       // if (response.status === 200) {
@@ -77,6 +81,8 @@ const AddRecipeForm = () => {
   const handleReset = () => {
     reset();
     setPreview(null);
+    setSelectedIngredients([]);
+    setCounter(1);
   };
 
   // const handlePhotoChange = e => {
@@ -92,46 +98,61 @@ const AddRecipeForm = () => {
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
-      <ImageDropZone name="image" />
-
+      <ImageField>
+        <ImageDropZone
+          preview={preview}
+          setPreview={setPreview}
+          name="photo"
+          validation={{ ...register("photo") }}
+        />
+      </ImageField>
       <FieldsInput>
-        <div>
-          <label>
-            Назва рецепта:
-            <input
+        <FormTitles>
+          <RecipeNameContainer>
+            <RecipeNameInput
+              $iserror={errors.title}
+              placeholder={!errors.title ? "The name of the recipe" : "The title is required"}
               type="text"
               {...register("title")}
             />
-          </label>
-          {errors.title && <p>{errors.title.message}</p>}
-        </div>
-
-        <div>
-          <label>
-            Короткий опис:
-            <input
+          </RecipeNameContainer>
+          <DescriptionContainer>
+            <FieldsInputStyled
+              $iserror={errors.description}
+              placeholder={
+                !errors.description
+                  ? "Enter a description of the dish"
+                  : "The description is required"
+              }
               type="text"
               {...register("description")}
             />
-            <p>{`Символів: ${descriptionLength}/200`}</p>
-          </label>
-          {errors.description && <p>{errors.description.message}</p>}
-        </div>
 
-        <CategoriesSelector
-          register={register}
-          errors={errors}
-        />
+            <p>{`${descriptionLength}/200`}</p>
+          </DescriptionContainer>
+        </FormTitles>
 
-        <Counter
-          register={register}
-          errors={errors}
-        />
+        <CookingCategory>
+          <CategoriesSelector
+            register={register}
+            errors={errors}
+          />
+
+          <Counter
+            register={register}
+            errors={errors}
+            count={counter}
+            setCount={setCounter}
+          />
+        </CookingCategory>
 
         <RecipeIngredientsContainer>
           <SectionTitle label={"Ingredients"} />
           <div>
-            <IngredientSelector />
+            <IngredientSelector
+              selectedIngredients={selectedIngredients}
+              setSelectedIngredients={setSelectedIngredients}
+            />
           </div>
 
           {fields.map((field, index) => (
@@ -154,14 +175,14 @@ const AddRecipeForm = () => {
           ))}
         </RecipeIngredientsContainer>
 
-        <div>
+        <DescriptionContainer>
           <label>
             Інструкція:
             <textarea {...register("instructions")}></textarea>
             <p>{`Символів: ${instructionsLength}/200`}</p>
           </label>
           {errors.instructions && <p>{errors.instructions.message}</p>}
-        </div>
+        </DescriptionContainer>
 
         <div>
           <TrashButton

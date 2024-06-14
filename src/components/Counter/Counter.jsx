@@ -1,38 +1,46 @@
-import { useState } from "react";
+import { ButtonTrash } from "components/Buttons/TrashButton/TrashButton.styled";
+import SpriteIcon from "components/UIKit/SpriteIcon";
 
-export const Counter = ({ register, errors }) => {
-  const [count, setCount] = useState(1);
+export const Counter = ({ register, errors, count, setCount }) => {
   const handleClick = value => {
     if (count === 1 && value === -1) {
       alert("Cooking time cannot be less than 1 minute!");
       return;
     }
-    setCount(count + value);
+    setCount(prevState => prevState + value);
   };
 
   return (
     <>
-      <button
+      <ButtonTrash
+        type="button"
         id="addButton"
         onClick={() => handleClick(1)}
       >
-        +
-      </button>
-      <label>
-        Cooking time (min):
+        <SpriteIcon
+          id="icon-plus"
+          size={[20, 22, 22]}
+        />
+      </ButtonTrash>
+      <label htmlFor="cookTime">
+        Cooking time:
         <input
-          type="number"
           value={count}
+          type="number"
           {...register("cookTime")}
         />
       </label>
       {errors.cookTime && <p>{errors.cookTime.message}</p>}
-      <button
+      <ButtonTrash
+        type="button"
         id="deductButton"
         onClick={() => handleClick(-1)}
       >
-        -
-      </button>
+        <SpriteIcon
+          id="icon-minus"
+          size={[20, 22, 22]}
+        />
+      </ButtonTrash>
     </>
   );
 };

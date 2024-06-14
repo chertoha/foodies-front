@@ -16,6 +16,7 @@ export const MainWrapper = styled("div")`
 
   ${theme.mq.tablet} {
     height: 400px;
+    width: 100%;
   }
 `;
 

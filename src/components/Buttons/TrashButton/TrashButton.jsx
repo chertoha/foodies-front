@@ -1,7 +1,7 @@
 import { ButtonTrash } from "./TrashButton.styled";
 import SpriteIcon from "../../UIKit/SpriteIcon/SpriteIcon";
 
-const HeartButton = ({ isFavorite, onClick }) => {
+const TrashButton = ({ isFavorite, onClick }) => {
   return (
     <ButtonTrash
       type="button"
@@ -17,4 +17,4 @@ const HeartButton = ({ isFavorite, onClick }) => {
   );
 };
 
-export default HeartButton;
+export default TrashButton;

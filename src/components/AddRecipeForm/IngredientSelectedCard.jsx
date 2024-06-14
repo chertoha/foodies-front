@@ -2,36 +2,36 @@ import { BtnClose } from "components/Modal/Modal.styled";
 import SpriteIcon from "components/UIKit/SpriteIcon";
 // import { useEffect } from "react";
 
-const IngredientCard = ({ ingredient, _onDelete }) => {
-  // useEffect(() => {
-  //   const deleteIngregient = () => {
-  //     onDelete(ingredient.id);
-  //   };
-  const { name, quantity, image } = ingredient;
+const IngredientCard = ({ ingredient, onDelete }) => {
+  const { _id, name, quantity, img } = ingredient;
 
   return (
-    <div
+    <li
       style={{
         border: "1px solid #ccc",
         borderRadius: "5px",
         padding: "10px",
-        marginBottom: "10px",
+
+        position: "relative",
       }}
     >
       <img
-        src={image}
+        src={img}
         alt={name}
         style={{ width: "100px", height: "100px", objectFit: "cover", marginBottom: "5px" }}
       />
       <h3>{name}</h3>
-      <p>Кількість: {quantity}</p>
-      <BtnClose type="button">
+      <p>{quantity}</p>
+      <BtnClose
+        onClick={() => onDelete(_id)}
+        type="button"
+      >
         <SpriteIcon
           id="icon-close"
           size={[24, 24, 24]}
         />
       </BtnClose>
-    </div>
+    </li>
   );
 };
 
