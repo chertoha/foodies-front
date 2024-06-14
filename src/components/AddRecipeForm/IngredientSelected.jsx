@@ -12,7 +12,13 @@ import {
 
 import CustomSelect from "components/CustomSelect";
 
-const IngredientSelector = ({ selectedIngredients, setSelectedIngredients }) => {
+const IngredientSelector = ({
+  selectedIngredients,
+  setSelectedIngredients,
+  // fields,
+  // append,
+  // remove,
+}) => {
   const { data: ingredients, isLoading, isError } = useGetIngredientsQuery(); // Використовуємо RTK Query для отримання інгредієнтів
 
   const [selectedIngredient, setSelectedIngredient] = useState("");
@@ -36,6 +42,7 @@ const IngredientSelector = ({ selectedIngredients, setSelectedIngredients }) => 
     if (ingredient) {
       const newSelectedIngredients = [...selectedIngredients, { ...ingredient, quantity }];
       setSelectedIngredients(newSelectedIngredients);
+      // append({ ...ingredient, quantity });
       // setSelectedIngredient("");
       // setQuantity("");
     }
@@ -56,7 +63,10 @@ const IngredientSelector = ({ selectedIngredients, setSelectedIngredients }) => 
       <IngredientDescription>
         <SelectorIngredientsContainer>
           <CustomSelect
-            options={ingredients.result.map(({ name }) => ({ value: name, label: name }))}
+            options={ingredients.result.map(({ name }) => ({
+              value: name,
+              label: name,
+            }))}
             value={selectedIngredient}
             onChange={handleIngredientChange}
             placeholder="Add the ingredient"

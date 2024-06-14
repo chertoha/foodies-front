@@ -55,15 +55,16 @@ const AddRecipeForm = () => {
 
   const onSubmit = data => {
     // console.log({ ...data, cookTime: counter, ingredients: selectedIngredients, photo: preview });
-    console.log({ ...data });
-    // console.log(data.photo[0]);
 
+    // console.log(data.photo[0]);
+    data.ingredients = selectedIngredients;
+    console.log(data);
     try {
       const formData = new FormData();
       Object.keys(data).forEach(key => {
         if (key === "ingredients") {
           data[key].forEach((ingredient, index) => {
-            formData.append(`ingredients[${index}][id]`, ingredient._id);
+            formData.append(`ingredients[${index}][name]`, ingredient.name);
             formData.append(`ingredients[${index}][measure]`, ingredient.quantity);
           });
         } else {
@@ -163,7 +164,6 @@ const AddRecipeForm = () => {
             <IngredientSelector
               fields={fields}
               append={append}
-              remove={remove}
               selectedIngredients={selectedIngredients}
               setSelectedIngredients={setSelectedIngredients}
               {...register("ingredients")}

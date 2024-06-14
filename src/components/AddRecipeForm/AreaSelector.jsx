@@ -4,8 +4,8 @@ import { useGetAreasQuery } from "../../redux/areas/areasApi";
 import SectionTitle from "components/SectionTitle";
 
 const AreaSelector = ({ register, errors }) => {
-  const { data: area, isError, isLoading } = useGetAreasQuery();
-  console.log(area);
+  const { data, isError, isLoading } = useGetAreasQuery();
+
   const [selectedArea, setSelectedArea] = useState("");
 
   const handleAreaChange = (_, value) => {
@@ -15,17 +15,14 @@ const AreaSelector = ({ register, errors }) => {
   return (
     // <div>areas</div>
     <>
-      <SectionTitle label="Areas" />
-      <CustomSelect
+      <SectionTitle label="Area" />
+      {/* <CustomSelect
         options={area.map(name => ({ value: name, label: name }))}
         value={selectedArea}
         onChange={handleAreaChange}
         placeholder="Select an area"
-      />
-      {/* <select
-        defaultValue="default"
-        {...register("area")}
-      >
+      /> */}
+      <select defaultValue="Maroccan">
         <option
           value="default"
           disabled
@@ -41,7 +38,7 @@ const AreaSelector = ({ register, errors }) => {
           </option>
         ))}
       </select>
-      {errors.category && <p>{errors.category.message}</p>} */}
+      {errors.category && <p>{errors.category.message}</p>}
     </>
   );
 };
