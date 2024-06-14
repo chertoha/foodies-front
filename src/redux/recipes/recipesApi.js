@@ -120,6 +120,7 @@ export const {
   useGetFavoriteRecipesQuery,
   useGetOwnRecipesQuery,
   useGetCurrentUserDataQuery,
+  useLazyGetCurrentUserDataQuery,
 
   useCreateRecipeMutation,
   useDeleteRecipeMutation,

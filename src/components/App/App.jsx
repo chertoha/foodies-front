@@ -6,22 +6,31 @@ import { authCurrentUserThunk } from "../../redux/auth/thunks";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useGetCurrentUserDataQuery } from "../../redux/recipes/recipesApi";
+import { useLazyGetCurrentUserDataQuery } from "../../redux/recipes/recipesApi";
+import { useAuth } from "hooks/useAuth";
 
 const FavoritesContext = createContext({ favorites: [] });
 export const useFavoritesContext = () => useContext(FavoritesContext);
 
 const App = () => {
-  const { data: user } = useGetCurrentUserDataQuery();
+  const { user } = useAuth();
+
+  const [getUserData, { data: userData }] = useLazyGetCurrentUserDataQuery();
 
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(authCurrentUserThunk());
   }, [dispatch]);
 
+  useEffect(() => {
+    if (user) {
+      getUserData();
+    }
+  }, [getUserData, user]);
+
   return (
     <>
-      <FavoritesContext.Provider value={{ favorites: user ? user.favorites : [] }}>
+      <FavoritesContext.Provider value={{ favorites: userData ? userData.favorites : [] }}>
         <RouterProvider router={router} />
         <ToastContainer autoClose={5000} />
       </FavoritesContext.Provider>
