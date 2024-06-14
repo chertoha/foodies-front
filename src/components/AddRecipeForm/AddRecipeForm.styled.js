@@ -26,3 +26,9 @@ export const DescriptionContainer = styled.div`
   justify-content: space-between;
   width: 649px;
 `;
+
+export const RecipeNameContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 649px;
+`;

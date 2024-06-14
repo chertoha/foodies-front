@@ -4,7 +4,12 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { schema } from "./yupValidation";
 import { FieldsInput } from "./InputFields.styled";
 import { useCreateRecipeMutation } from "../../redux/recipes/recipesApi";
-import { DescriptionContainer, FieldsInputStyled, Form } from "./AddRecipeForm.styled";
+import {
+  DescriptionContainer,
+  FieldsInputStyled,
+  Form,
+  RecipeNameContainer,
+} from "./AddRecipeForm.styled";
 import ActiveButton from "components/Buttons/ActiveButton";
 import TrashButton from "components/Buttons/TrashButton";
 import { RecipeIngredientsContainer } from "components/RecipeIngredients/RecipeIngredients.styled";
@@ -33,7 +38,7 @@ const AddRecipeForm = () => {
   const [_categories, _setCategories] = useState([]);
   const [ingredients, _setIngredients] = useState([]);
   const [_preview, setPreview] = useState(null);
-
+  const [counter, setCounter] = useState(1);
   // const { data } = useGetCategoriesQuery({ limit: 1111 });
 
   const [createRecipe] = useCreateRecipeMutation();
@@ -50,7 +55,7 @@ const AddRecipeForm = () => {
   // }, []);
 
   const onSubmit = data => {
-    console.log(data);
+    console.log({ ...data, cookTime: counter });
     try {
       const formData = new FormData();
       Object.keys(data).forEach(key => {
@@ -99,16 +104,14 @@ const AddRecipeForm = () => {
         validation={{ ...register("photo") }}
       />
       <FieldsInput>
-        <div>
-          <label>
-            Назва рецепта:
-            <input
-              type="text"
-              {...register("title")}
-            />
-          </label>
-          {errors.title && <p>{errors.title.message}</p>}
-        </div>
+        <RecipeNameContainer>
+          <FieldsInputStyled
+            iserror={errors.title}
+            placeholder={!errors.title ? "The name of the recipe" : "The title is required"}
+            type="text"
+            {...register("title")}
+          />
+        </RecipeNameContainer>
 
         <DescriptionContainer>
           <FieldsInputStyled
@@ -133,6 +136,8 @@ const AddRecipeForm = () => {
         <Counter
           register={register}
           errors={errors}
+          count={counter}
+          setCount={setCounter}
         />
 
         {/* <RecipeIngredientsContainer>
