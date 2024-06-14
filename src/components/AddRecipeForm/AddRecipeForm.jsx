@@ -4,7 +4,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { schema } from "./yupValidation";
 import { FieldsInput } from "./InputFields.styled";
 import { useCreateRecipeMutation } from "../../redux/recipes/recipesApi";
-import { Form } from "./AddRecipeForm.styled";
+import { DescriptionContainer, FieldsInputStyled, Form } from "./AddRecipeForm.styled";
 import ActiveButton from "components/Buttons/ActiveButton";
 import TrashButton from "components/Buttons/TrashButton";
 import { RecipeIngredientsContainer } from "components/RecipeIngredients/RecipeIngredients.styled";
@@ -49,7 +49,8 @@ const AddRecipeForm = () => {
   //   });
   // }, []);
 
-  const onSubmit = async data => {
+  const onSubmit = data => {
+    console.log(data);
     try {
       const formData = new FormData();
       Object.keys(data).forEach(key => {
@@ -62,7 +63,8 @@ const AddRecipeForm = () => {
           formData.append(key, data[key]);
         }
       });
-      createRecipe(formData);
+      // console.log(formData);
+      // createRecipe(formData);
 
       // const response = await axiosBaseQuery("/api/recipes", formData);
       // if (response.status === 200) {
@@ -91,9 +93,11 @@ const AddRecipeForm = () => {
   const instructionsLength = watch("instructions")?.length || 0;
 
   return (
-    <Form onSubmit={handleSubmit(onSubmit)}>
-      <ImageDropZone name="image" />
-
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <ImageDropZone
+        name="photo"
+        validation={{ ...register("photo") }}
+      />
       <FieldsInput>
         <div>
           <label>
@@ -106,17 +110,20 @@ const AddRecipeForm = () => {
           {errors.title && <p>{errors.title.message}</p>}
         </div>
 
-        <div>
-          <label>
-            Короткий опис:
-            <input
-              type="text"
-              {...register("description")}
-            />
-            <p>{`Символів: ${descriptionLength}/200`}</p>
-          </label>
-          {errors.description && <p>{errors.description.message}</p>}
-        </div>
+        <DescriptionContainer>
+          <FieldsInputStyled
+            iserror={errors.description}
+            placeholder={
+              !errors.description
+                ? "Enter a description of the dish"
+                : "The description is required"
+            }
+            type="text"
+            {...register("description")}
+          />
+
+          <p>{`${descriptionLength}/200`}</p>
+        </DescriptionContainer>
 
         <CategoriesSelector
           register={register}
@@ -128,7 +135,7 @@ const AddRecipeForm = () => {
           errors={errors}
         />
 
-        <RecipeIngredientsContainer>
+        {/* <RecipeIngredientsContainer>
           <SectionTitle label={"Ingredients"} />
           <div>
             <IngredientSelector />
@@ -152,29 +159,30 @@ const AddRecipeForm = () => {
               />
             </div>
           ))}
-        </RecipeIngredientsContainer>
+        </RecipeIngredientsContainer> */}
 
-        <div>
+        {/* <div>
           <label>
             Інструкція:
             <textarea {...register("instructions")}></textarea>
             <p>{`Символів: ${instructionsLength}/200`}</p>
           </label>
           {errors.instructions && <p>{errors.instructions.message}</p>}
-        </div>
+        </div> */}
 
         <div>
-          <TrashButton
+          {/* <TrashButton
             type="button"
             onClick={handleReset}
-          ></TrashButton>
-          <ActiveButton
+          ></TrashButton> */}
+          {/* <ActiveButton
             label="Publish"
             type="submit"
-          ></ActiveButton>
+          ></ActiveButton> */}
         </div>
       </FieldsInput>
-    </Form>
+      <button type="submit">Submit</button>
+    </form>
   );
 };
 

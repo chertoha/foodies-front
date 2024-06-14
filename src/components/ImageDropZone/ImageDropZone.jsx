@@ -14,7 +14,7 @@ import {
   Preview,
 } from "./ImageDropZone.styled";
 
-const ImageDropZone = ({ name }) => {
+const ImageDropZone = ({ name, validation }) => {
   const [dragIsOver, setDragIsOver] = useState(false);
   const [preview, setPreview] = useState(null);
 
@@ -84,6 +84,7 @@ const ImageDropZone = ({ name }) => {
               onDrop={handleDrop}
               $isdrag={dragIsOver}
               $disabled={preview}
+              {...validation}
             >
               <ImageUploadBox>
                 <SpriteIcon

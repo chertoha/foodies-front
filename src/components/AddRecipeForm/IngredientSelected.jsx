@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useGetIngredientsQuery } from "../../redux/ingredients/ingredientsApi";
 import IngredientCard from "./IngredientSelectedCard";
+import SpriteIcon from "components/UIKit/SpriteIcon";
 
 const IngredientSelector = () => {
   const { data: ingredients, isLoading, isError } = useGetIngredientsQuery(); // Використовуємо RTK Query для отримання інгредієнтів
@@ -20,7 +21,6 @@ const IngredientSelector = () => {
   const handleAddIngredient = () => {
     const ingredient = ingredients.result.find(ing => ing.name === selectedIngredient);
     if (ingredient) {
-      console.log(ingredient, selectedIngredients);
       const newSelectedIngredients = [...selectedIngredients, { ...ingredient, quantity }];
       setSelectedIngredients(newSelectedIngredients);
       setSelectedIngredient("");
@@ -36,7 +36,7 @@ const IngredientSelector = () => {
   if (isLoading) return <div>Loading...</div>;
   if (isError) return <div>Error fetching ingredients</div>;
   if (!ingredients) return null;
-  console.log(selectedIngredient);
+
   return (
     <>
       {" "}
@@ -63,9 +63,9 @@ const IngredientSelector = () => {
           </option>
         ))}
       </select>
-      <label htmlFor="quantityInput">Кількість:</label>
+      <label htmlFor="quantityInput">Quantity:</label>
       <input
-        type="number"
+        type="text"
         id="quantityInput"
         value={quantity}
         onChange={handleQuantityChange}
@@ -75,7 +75,11 @@ const IngredientSelector = () => {
         onClick={handleAddIngredient}
         style={{ marginLeft: "10px", padding: "5px", fontSize: "16px" }}
       >
-        Додати інгредієнт
+        Add ingredient
+        <SpriteIcon
+          id="icon-plus"
+          size={[20, 22, 22]}
+        />
       </button>
       <div>
         {selectedIngredients.map(ingredient => (

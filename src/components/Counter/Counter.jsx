@@ -9,10 +9,11 @@ export const Counter = ({ register, errors }) => {
     }
     setCount(count + value);
   };
-
+  console.log(count);
   return (
     <>
       <button
+        type="button"
         id="addButton"
         onClick={() => handleClick(1)}
       >
@@ -21,13 +22,14 @@ export const Counter = ({ register, errors }) => {
       <label>
         Cooking time (min):
         <input
-          type="number"
+          type="text"
           value={count}
           {...register("cookTime")}
         />
       </label>
       {errors.cookTime && <p>{errors.cookTime.message}</p>}
       <button
+        type="button"
         id="deductButton"
         onClick={() => handleClick(-1)}
       >

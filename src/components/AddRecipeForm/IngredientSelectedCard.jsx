@@ -7,7 +7,7 @@ const IngredientCard = ({ ingredient, _onDelete }) => {
   //   const deleteIngregient = () => {
   //     onDelete(ingredient.id);
   //   };
-  const { name, quantity, image } = ingredient;
+  const { name, quantity, img } = ingredient;
 
   return (
     <div
@@ -19,12 +19,12 @@ const IngredientCard = ({ ingredient, _onDelete }) => {
       }}
     >
       <img
-        src={image}
+        src={img}
         alt={name}
         style={{ width: "100px", height: "100px", objectFit: "cover", marginBottom: "5px" }}
       />
       <h3>{name}</h3>
-      <p>Кількість: {quantity}</p>
+      <p>{quantity}</p>
       <BtnClose type="button">
         <SpriteIcon
           id="icon-close"
