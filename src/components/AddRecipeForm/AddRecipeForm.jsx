@@ -32,7 +32,7 @@ const AddRecipeForm = () => {
     register,
     handleSubmit,
     control,
-    _setValue,
+    setValue,
     reset,
     watch,
     formState: { errors },
@@ -52,7 +52,7 @@ const AddRecipeForm = () => {
   // const { data } = useGetCategoriesQuery({ limit: 1111 });
 
   // const [createRecipe] = useCreateRecipeMutation();
-  console.log(errors);
+
   const onSubmit = data => {
     console.log({ ...data, cookTime: counter, ingredients: selectedIngredients, photo: preview });
     console.log(data.photo[0]);
@@ -179,23 +179,24 @@ const AddRecipeForm = () => {
           ))}
         </RecipeIngredientsContainer>
 
-        <InstrucationWrapper>
-          <SectionTitle label={"Recipe Preparation"} />
-          <InstructionCounterWrapper>
-            <InstructionContainer {...register("instructions")}></InstructionContainer>
-            <p>{`${instructionsLength}/200`}</p>
-          </InstructionCounterWrapper>
-          {errors.instructions && <p>{errors.instructions.message}</p>}
-        </InstrucationWrapper>
+        <DescriptionContainer>
+          <label>
+            Інструкція:
+            <textarea {...register("instructions")}></textarea>
+            <p>{`Символів: ${instructionsLength}/200`}</p>
+          </label>
+        </DescriptionContainer>
 
-        <TrashButton
-          type="button"
-          onClick={handleReset}
-        ></TrashButton>
-        <ActiveButton
-          label="Publish"
-          type="submit"
-        ></ActiveButton>
+        <div>
+          <TrashButton
+            type="button"
+            onClick={handleReset}
+          ></TrashButton>
+          <ActiveButton
+            label="Publish"
+            type="submit"
+          ></ActiveButton>
+        </div>
       </FieldsInput>
     </Form>
   );
