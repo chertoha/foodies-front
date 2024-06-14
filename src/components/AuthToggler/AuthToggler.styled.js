@@ -11,6 +11,7 @@ export const Wrapper = styled("div")`
   height: 38px;
   border-radius: 30px;
   background-color: #ffffff;
+  border: 1px solid ${p => p.theme.colors.dark};
 
   ${theme.mq.tablet} {
     width: 208px;
