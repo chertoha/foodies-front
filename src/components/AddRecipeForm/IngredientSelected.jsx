@@ -9,8 +9,7 @@ import {
   IngredientDescription,
   SelectorIngredientsContainer,
 } from "./IngredientSelected.styled";
-import ActiveButton from "components/Buttons/ActiveButton";
-import ArrowButton from "components/Buttons/ArrowButton";
+
 import CustomSelect from "components/CustomSelect";
 
 const IngredientSelector = ({ selectedIngredients, setSelectedIngredients }) => {

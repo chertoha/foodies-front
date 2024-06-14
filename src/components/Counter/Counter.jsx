@@ -14,7 +14,7 @@ export const Counter = ({ register, errors, count, setCount }) => {
 
   return (
     <StyledCounter>
-      <SectionTitle label={"Cooking Time"} />
+      <SectionTitle label={"Cooking time"} />
       <StyledButtonWrapper>
         <ButtonTrash
           type="button"
@@ -33,7 +33,7 @@ export const Counter = ({ register, errors, count, setCount }) => {
             value={count}
             type="number"
             readOnly={true}
-            {...register("cookTime")}
+            {...register("time")}
           />
           <span> min</span>
         </div>

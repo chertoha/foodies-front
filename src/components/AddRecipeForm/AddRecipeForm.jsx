@@ -3,7 +3,7 @@ import { useForm, useFieldArray, _set, FormProvider } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schema } from "./yupValidation";
 import { FieldsInput } from "./InputFields.styled";
-// import { useCreateRecipeMutation } from "../../redux/recipes/recipesApi";
+import { useCreateRecipeMutation } from "../../redux/recipes/recipesApi";
 import {
   ButtonsWrapper,
   CookingCategory,
@@ -12,7 +12,6 @@ import {
   Form,
   FormTitles,
   ImageField,
-  InstrucationWrapper,
   InstructionContainer,
   InstructionCounterWrapper,
   InstructionWrapper,
@@ -27,6 +26,7 @@ import IngredientSelector from "./IngredientSelected";
 import ImageDropZone from "components/ImageDropZone/ImageDropZone";
 import { CategoriesSelector } from "./CategoriesSelector";
 import { Counter } from "components/Counter/Counter";
+import AreaSelector from "./AreaSelector";
 
 const AddRecipeForm = () => {
   const methods = useForm({ resolver: yupResolver(schema) });
@@ -41,23 +41,21 @@ const AddRecipeForm = () => {
     formState: { errors },
   } = methods;
 
-  const { fields, _append, _remove } = useFieldArray({
+  const { fields, append, remove } = useFieldArray({
     control,
     name: "ingredients",
   });
-  const [_categories, _setCategories] = useState([]);
-  const [ingredients, _setIngredients] = useState([]);
 
   const [counter, setCounter] = useState(1);
   const [selectedIngredients, setSelectedIngredients] = useState([]);
   const [preview, setPreview] = useState(null);
   // const { data } = useGetCategoriesQuery({ limit: 1111 });
 
-  // const [createRecipe] = useCreateRecipeMutation();
+  const [createRecipe] = useCreateRecipeMutation();
 
   const onSubmit = data => {
     // console.log({ ...data, cookTime: counter, ingredients: selectedIngredients, photo: preview });
-    console.log({ ...data, cookTime: counter, ingredients: selectedIngredients });
+    console.log({ ...data });
     // console.log(data.photo[0]);
 
     try {
@@ -65,16 +63,16 @@ const AddRecipeForm = () => {
       Object.keys(data).forEach(key => {
         if (key === "ingredients") {
           data[key].forEach((ingredient, index) => {
-            formData.append(`ingredients[${index}][ingredient]`, ingredient.ingredient);
-            formData.append(`ingredients[${index}][amount]`, ingredient.amount);
+            formData.append(`ingredients[${index}][id]`, ingredient._id);
+            formData.append(`ingredients[${index}][measure]`, ingredient.quantity);
           });
         } else {
           formData.append(key, data[key]);
         }
       });
 
-      // console.log(formData);
-      // createRecipe(formData);
+      console.log(formData);
+      createRecipe(formData);
 
       // const response = await axiosBaseQuery("/api/recipes", formData);
       // if (response.status === 200) {
@@ -154,13 +152,21 @@ const AddRecipeForm = () => {
               setCount={setCounter}
             />
           </CookingCategory>
+          <AreaSelector
+            register={register}
+            errors={errors}
+          />
 
           <RecipeIngredientsContainer>
             <SectionTitle label={"Ingredients"} />
 
             <IngredientSelector
+              fields={fields}
+              append={append}
+              remove={remove}
               selectedIngredients={selectedIngredients}
               setSelectedIngredients={setSelectedIngredients}
+              {...register("ingredients")}
             />
           </RecipeIngredientsContainer>
 
