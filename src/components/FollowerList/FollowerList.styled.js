@@ -174,7 +174,7 @@ export const LinkButton = styled(Link)`
   border-radius: 100px;
   cursor: pointer;
 
-  transition: border-color ${theme.transitions.default};
+  transition: ${theme.transitions.default};
   &:focus,
   &:hover {
     background-color: ${theme.colors.accent};
