@@ -1,5 +1,5 @@
 import { ButtonAvatar, ImgAvatar, InitialsAvatar, InitialsSpan } from "./AvatarButton.styled";
-import AuthLinkWrapper from "components/AuthLinkWrapper";
+import AuthLinkWrapper from "components/AuthLinkWrapper/AuthLinkWrapper";
 
 const AvatarButton = ({ author, showName = true, to }) => {
   if (!author) {
