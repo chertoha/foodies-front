@@ -2,6 +2,7 @@ import styled from "styled-components";
 // import theme from "styles/theme";
 
 export const Form = styled.form`
+  margin-top: 40px;
   display: flex;
   align-items: flex-start;
   gap: 80px;
@@ -69,5 +70,37 @@ export const FormTitles = styled.div`
 export const CookingCategory = styled.div`
   display: flex;
   flex-direction: row;
+  gap: 20px;
+`;
+
+export const InstructionContainer = styled.textarea`
+  width: 100%;
+
+  border: none;
+  border-bottom: 1px solid rgba(5, 5, 5, 0.12);
+  outline: none;
+  &:focus,
+  &:hover {
+    border-bottom-color: #050505;
+  }
+  &::placeholder {
+    color: ${({ $iserror }) => ($iserror ? "red" : "rgba(5, 5, 5, 0.5)")};
+  }
+  border-bottom-color: ${({ $iserror }) => ($iserror ? "red" : "rgba(5, 5, 5, 0.12)")};
+`;
+
+export const InstrucationWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+`;
+export const InstructionCounterWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+`;
+
+export const ButtonsWrapper = styled.div`
+  display: flex;
   gap: 20px;
 `;

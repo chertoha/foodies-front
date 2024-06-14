@@ -5,12 +5,16 @@ import { schema } from "./yupValidation";
 import { FieldsInput } from "./InputFields.styled";
 // import { useCreateRecipeMutation } from "../../redux/recipes/recipesApi";
 import {
+  ButtonsWrapper,
   CookingCategory,
   DescriptionContainer,
   FieldsInputStyled,
   Form,
   FormTitles,
   ImageField,
+  InstrucationWrapper,
+  InstructionContainer,
+  InstructionCounterWrapper,
   RecipeNameContainer,
   RecipeNameInput,
 } from "./AddRecipeForm.styled";
@@ -175,16 +179,16 @@ const AddRecipeForm = () => {
           ))}
         </RecipeIngredientsContainer>
 
-        <DescriptionContainer>
-          <label>
-            Інструкція:
-            <textarea {...register("instructions")}></textarea>
-            <p>{`Символів: ${instructionsLength}/200`}</p>
-          </label>
+        <InstrucationWrapper>
+          <SectionTitle label={"Recipe Preparation"} />
+          <InstructionCounterWrapper>
+            <InstructionContainer {...register("instructions")}></InstructionContainer>
+            <p>{`${instructionsLength}/200`}</p>
+          </InstructionCounterWrapper>
           {errors.instructions && <p>{errors.instructions.message}</p>}
-        </DescriptionContainer>
+        </InstrucationWrapper>
 
-        <div>
+        <ButtonsWrapper>
           <TrashButton
             type="button"
             onClick={handleReset}
@@ -193,7 +197,7 @@ const AddRecipeForm = () => {
             label="Publish"
             type="submit"
           ></ActiveButton>
-        </div>
+        </ButtonsWrapper>
       </FieldsInput>
     </Form>
   );
