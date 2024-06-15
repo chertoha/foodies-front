@@ -12,58 +12,109 @@ import {
 } from "./AddRecipeForm.styled";
 
 import CustomSelect from "components/CustomSelect";
+import { useFieldArray, useFormContext } from "react-hook-form";
+import { MEASURE_VALIDATION_RULE, NAME_VALIDATION_RULE } from "./yupValidation";
+import { toast } from "react-toastify";
+import CommonSelect from "components/UIKit/CommonSelect";
+import { ErrorMessage } from "components/ImageDropZone/ImageDropZone.styled";
 
-const IngredientSelector = ({
-  selectedIngredients,
-  setSelectedIngredients,
+// const IngredientSelector = ({ selectedIngredients, setSelectedIngredients }) => {
+const IngredientSelector = () => {
+  // const { data: ingredients, isLoading, isError } = useGetIngredientsQuery(); // Використовуємо RTK Query для отримання інгредієнтів
 
-  // fields,
-  // append,
-  // remove,
-}) => {
-  const { data: ingredients, isLoading, isError } = useGetIngredientsQuery(); // Використовуємо RTK Query для отримання інгредієнтів
+  // const [selectedIngredient, setSelectedIngredient] = useState("");
+  // const [quantity, setQuantity] = useState("");
 
-  const [selectedIngredient, setSelectedIngredient] = useState("");
-  const [quantity, setQuantity] = useState("");
+  // const handleIngredientChange = (_, value) => {
+  //   setSelectedIngredient(value);
+  // };
 
-  const handleIngredientChange = (_, value) => {
-    setSelectedIngredient(value);
-  };
+  // const handleQuantityChange = event => {
+  //   setQuantity(event.target.value);
+  // };
 
-  const handleQuantityChange = event => {
-    setQuantity(event.target.value);
-  };
+  // const handleAddIngredient = () => {
+  //   const isExist = selectedIngredients.some(ing => ing.name === selectedIngredient);
+  //   if (isExist) {
+  //     alert("This ingredient is already added");
+  //     return;
+  //   }
+  //   const ingredient = ingredients.result.find(ing => ing.name === selectedIngredient);
+  //   if (ingredient) {
+  //     const newSelectedIngredients = [...selectedIngredients, { ...ingredient, quantity }];
+  //     setSelectedIngredients(newSelectedIngredients);
+  //     // append({ ...ingredient, quantity });
+  //     // setSelectedIngredient("");
+  //     // setQuantity("");
+  //   }
+  // };
 
-  const handleAddIngredient = () => {
-    const isExist = selectedIngredients.some(ing => ing.name === selectedIngredient);
-    if (isExist) {
-      alert("This ingredient is already added");
-      return;
+  // const handleDeleteIngredient = id => {
+  //   const newSelectedIngredients = selectedIngredients.filter(ing => ing._id !== id);
+  //   setSelectedIngredients(newSelectedIngredients);
+  // };
+
+  // if (isLoading) return <div>Loading...</div>;
+  // if (isError) return <div>Error fetching ingredients</div>;
+  // if (!ingredients) return null;
+
+  const { data: ingredients } = useGetIngredientsQuery();
+  const [ingredient, setIngredient] = useState("");
+  const [measure, setMeasure] = useState("");
+
+  const {
+    formState: { errors },
+    setError,
+  } = useFormContext();
+
+  const { fields, append, remove } = useFieldArray({
+    name: "ingredients",
+  });
+
+  const add = async () => {
+    try {
+      await NAME_VALIDATION_RULE.validate(ingredient);
+      await MEASURE_VALIDATION_RULE.validate(measure);
+
+      if (fields.some(({ name }) => name === ingredient)) {
+        toast.error(`Ingredient already in list`);
+        return;
+      }
+
+      append({ name: ingredient, measure });
+      setIngredient("");
+      setMeasure("");
+
+      setError("ingredients", {});
+    } catch (err) {
+      setError("ingredients", { type: "custom", message: err.errors[0] });
     }
-    const ingredient = ingredients.result.find(ing => ing.name === selectedIngredient);
-    if (ingredient) {
-      const newSelectedIngredients = [...selectedIngredients, { ...ingredient, quantity }];
-      setSelectedIngredients(newSelectedIngredients);
-      // append({ ...ingredient, quantity });
-      // setSelectedIngredient("");
-      // setQuantity("");
-    }
   };
 
-  const handleDeleteIngredient = id => {
-    const newSelectedIngredients = selectedIngredients.filter(ing => ing._id !== id);
-    setSelectedIngredients(newSelectedIngredients);
-  };
-
-  if (isLoading) return <div>Loading...</div>;
-  if (isError) return <div>Error fetching ingredients</div>;
   if (!ingredients) return null;
+
+  const options = [...ingredients.result.map(({ name }) => ({ value: name, label: name }))];
+
+  const getIngredientImage = ingredientName => {
+    const ingredient = ingredients.result.find(({ name }) => name === ingredientName);
+    return ingredient.img;
+  };
+
+  console.log(errors);
 
   return (
     <IngredientsSelectorWrapper>
       <IngredientDescription>
         <SelectorIngredientsContainer>
-          <CustomSelect
+          <CommonSelect
+            name="ingredientSelect"
+            currentValue={ingredient}
+            options={options}
+            onChange={setIngredient}
+            placeholder="Add the ingredient"
+          />
+
+          {/* <CustomSelect
             options={ingredients.result.map(({ name }) => ({
               value: name,
               label: name,
@@ -71,20 +122,28 @@ const IngredientSelector = ({
             value={selectedIngredient}
             onChange={handleIngredientChange}
             placeholder="Add the ingredient"
-          />
+          /> */}
         </SelectorIngredientsContainer>
 
         <IngredienQuantity
           type="text"
-          id="quantityInput"
-          placeholder="Enter Quantity"
-          value={quantity}
-          onChange={handleQuantityChange}
+          // id="quantityInput"
+          placeholder="Enter quantity"
+          // value={quantity}
+          // onChange={handleQuantityChange}
+          value={measure}
+          onChange={e => {
+            setMeasure(e.target.value);
+          }}
         />
       </IngredientDescription>
+
+      {errors.ingredients && <span style={{ color: "red" }}>{errors.ingredients.message}</span>}
+
       <AddIngredientButton
         type="button"
-        onClick={handleAddIngredient}
+        // onClick={handleAddIngredient}
+        onClick={add}
       >
         Add ingredient
         <SpriteIcon
@@ -93,12 +152,34 @@ const IngredientSelector = ({
         />
       </AddIngredientButton>
       <IngredientsList>
-        {selectedIngredients.map(ingredient => (
+        {/* {selectedIngredients.map(ingredient => (
           <IngredientCard
             key={ingredient._id}
             ingredient={ingredient}
             onDelete={handleDeleteIngredient}
           />
+        ))} */}
+
+        {fields.map((ingredient, index) => (
+          <IngredientCard
+            key={ingredient.name}
+            ingredient={{ ...ingredient, img: getIngredientImage(ingredient.name) }}
+            onDelete={() => remove(index)}
+          />
+          // <li key={name}>
+          //   {name}: {measure}
+          //   <img
+          //     src={getIngredientImage(name)}
+          //     alt=""
+          //   />
+          //   <button
+          //     type="button"
+          //     style={{ marginLeft: "20px" }}
+          //     onClick={() => remove(index)}
+          //   >
+          //     del
+          //   </button>
+          // </li>
         ))}
       </IngredientsList>
     </IngredientsSelectorWrapper>

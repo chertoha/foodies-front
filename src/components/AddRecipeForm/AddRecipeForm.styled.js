@@ -202,6 +202,7 @@ export const ButtonsWrapper = styled.div`
   gap: 20px;
 `;
 export const SelectorCategories = styled.div`
+  flex-shrink: 0;
   display: flex;
   flex-direction: column;
   gap: 16px;

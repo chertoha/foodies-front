@@ -8,8 +8,9 @@ import { BtnDelete } from "./AddRecipeForm.styled";
 // import { useEffect } from "react";
 
 const IngredientCard = ({ ingredient, onDelete }) => {
-  const { _id, name, quantity, img } = ingredient;
-  console.log(img);
+  // const { _id, name, quantity, img } = ingredient;
+  const { name, measure, img } = ingredient;
+  // console.log(img);
 
   return (
     <>
@@ -23,7 +24,8 @@ const IngredientCard = ({ ingredient, onDelete }) => {
 
         <IngredientsWrapper>
           <BtnDelete
-            onClick={() => onDelete(_id)}
+            // onClick={() => onDelete(_id)}
+            onClick={onDelete}
             type="button"
           >
             <SpriteIcon
@@ -32,7 +34,8 @@ const IngredientCard = ({ ingredient, onDelete }) => {
             />
           </BtnDelete>
           <span>{name}</span>
-          <p>{quantity}</p>
+          {/* <p>{quantity}</p> */}
+          <p>{measure}</p>
         </IngredientsWrapper>
       </IngredientItem>
     </>

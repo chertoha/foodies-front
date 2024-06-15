@@ -1,10 +1,22 @@
 // import CustomSelect from "components/CustomSelect";
 // import React, { useState } from "react";
+import { Controller, useFormContext } from "react-hook-form";
 import { useGetAreasQuery } from "../../redux/areas/areasApi";
 import SectionTitle from "components/SectionTitle";
+import CommonSelect from "components/UIKit/CommonSelect";
 
-const AreaSelector = ({ register, errors }) => {
-  const { data, _isError, _isLoading } = useGetAreasQuery();
+// const AreaSelector = ({ register, errors }) => {
+const AreaSelector = () => {
+  const { data: areas } = useGetAreasQuery();
+
+  const {
+    control,
+    formState: { errors },
+  } = useFormContext();
+
+  if (!areas) return null;
+
+  const options = [...areas.map(({ name }) => ({ value: name, label: name }))];
 
   //   const [selectedArea, setSelectedArea] = useState("");
 
@@ -16,13 +28,26 @@ const AreaSelector = ({ register, errors }) => {
     // <div>areas</div>
     <>
       <SectionTitle label="Area" />
+
+      <Controller
+        name="area"
+        control={control}
+        render={({ field: { value, onChange } }) => (
+          <CommonSelect
+            currentValue={value}
+            options={options}
+            onChange={onChange}
+            placeholder="Select an area"
+          />
+        )}
+      />
       {/* <CustomSelect
         options={area.map(name => ({ value: name, label: name }))}
         value={selectedArea}
         onChange={handleAreaChange}
         placeholder="Select an area"
       /> */}
-      <select
+      {/* <select
         defaultValue="default"
         {...register("area")}
       >
@@ -40,8 +65,8 @@ const AreaSelector = ({ register, errors }) => {
             {category.name}
           </option>
         ))}
-      </select>
-      {errors.category && <p>{errors.category.message}</p>}
+      </select> */}
+      {errors.area && <p>{errors.area.message}</p>}
     </>
   );
 };

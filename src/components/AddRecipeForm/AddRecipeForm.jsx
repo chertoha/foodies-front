@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useForm, useFieldArray, _set, FormProvider } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { schema } from "./yupValidation";
+import { addRecipeSchema, schema } from "./yupValidation";
 import { useCreateRecipeMutation } from "../../redux/recipes/recipesApi";
 import {
   FieldsInput,
@@ -30,8 +30,20 @@ import { CategoriesSelector } from "./CategoriesSelector";
 import { Counter } from "components/Counter/Counter";
 import AreaSelector from "./AreaSelector";
 
+const initialValues = {
+  // ingredients: [{ name: "Olive Oil", measure: "400gr" }],
+  category: "",
+  area: "",
+  ingredients: [],
+  // area: "Irish",
+  thumb: null,
+};
+
 const AddRecipeForm = () => {
-  const methods = useForm({ resolver: yupResolver(schema) });
+  const methods = useForm({
+    // resolver: yupResolver(addRecipeSchema),
+    defaultValues: initialValues,
+  });
 
   const {
     register,
@@ -43,14 +55,14 @@ const AddRecipeForm = () => {
     formState: { errors },
   } = methods;
 
-  const { fields, append, _remove } = useFieldArray({
-    control,
-    name: "ingredients",
-  });
+  // const { fields, append, _remove } = useFieldArray({
+  //   control,
+  //   name: "ingredients",
+  // });
 
   const [counter, setCounter] = useState(1);
-  const [selectedIngredients, setSelectedIngredients] = useState([]);
-  const [preview, setPreview] = useState(null);
+  // const [selectedIngredients, setSelectedIngredients] = useState([]);
+  // const [preview, setPreview] = useState(null);
   // const { data } = useGetCategoriesQuery({ limit: 1111 });
 
   const [createRecipe] = useCreateRecipeMutation();
@@ -59,38 +71,38 @@ const AddRecipeForm = () => {
     // console.log({ ...data, cookTime: counter, ingredients: selectedIngredients, photo: preview });
 
     // console.log(data.photo[0]);
-    data.ingredients = selectedIngredients;
+    // data.ingredients = selectedIngredients;
     console.log(data);
-    try {
-      const formData = new FormData();
-      Object.keys(data).forEach(key => {
-        if (key === "ingredients") {
-          data[key].forEach((ingredient, index) => {
-            formData.append(`ingredients[${index}][name]`, ingredient.name);
-            formData.append(`ingredients[${index}][measure]`, ingredient.quantity);
-          });
-        } else {
-          formData.append(key, data[key]);
-        }
-      });
+    // try {
+    //   const formData = new FormData();
+    //   Object.keys(data).forEach(key => {
+    //     if (key === "ingredients") {
+    //       data[key].forEach((ingredient, index) => {
+    //         formData.append(`ingredients[${index}][name]`, ingredient.name);
+    //         formData.append(`ingredients[${index}][measure]`, ingredient.quantity);
+    //       });
+    //     } else {
+    //       formData.append(key, data[key]);
+    //     }
+    //   });
 
-      console.log(formData);
-      createRecipe(formData);
+    //   console.log(formData);
+    //   createRecipe(formData);
 
-      // const response = await axiosBaseQuery("/api/recipes", formData);
-      // if (response.status === 200) {
-      //   // Перенаправлення на сторінку користувача
-      //   window.location.href = "/user";
-      // }
-    } catch (error) {
-      alert("Помилка: " + error.message);
-    }
+    //   // const response = await axiosBaseQuery("/api/recipes", formData);
+    //   // if (response.status === 200) {
+    //   //   // Перенаправлення на сторінку користувача
+    //   //   window.location.href = "/user";
+    //   // }
+    // } catch (error) {
+    //   alert("Помилка: " + error.message);
+    // }
   };
 
   const handleReset = () => {
     reset();
-    setPreview(null);
-    setSelectedIngredients([]);
+    // setPreview(null);
+    // setSelectedIngredients([]);
     setCounter(1);
   };
 
@@ -110,12 +122,13 @@ const AddRecipeForm = () => {
       <Form onSubmit={handleSubmit(onSubmit)}>
         <ImageField>
           <ImageDropZone
-            preview={preview}
-            setPreview={setPreview}
+            // preview={preview}
+            // setPreview={setPreview}
             name="thumb"
-            validation={{ ...register("thumb") }}
+            // validation={{ ...register("thumb") }}
           />
         </ImageField>
+
         <FieldsInput>
           <FormTitles>
             <RecipeNameContainer>
@@ -127,8 +140,8 @@ const AddRecipeForm = () => {
               />
             </RecipeNameContainer>
           </FormTitles>
+
           <FormFields>
-            {" "}
             <DescriptionContainer>
               <FieldsInputStyled
                 $iserror={errors.description}
@@ -143,10 +156,11 @@ const AddRecipeForm = () => {
 
               <InputSymbolsCounter>{`${descriptionLength}/200`}</InputSymbolsCounter>
             </DescriptionContainer>
+
             <CookingCategory>
               <CategoriesSelector
-                register={register}
-                errors={errors}
+              // register={register}
+              // errors={errors}
               />
 
               <Counter
@@ -156,34 +170,40 @@ const AddRecipeForm = () => {
                 setCount={setCounter}
               />
             </CookingCategory>
-            <AreaSelector
-              errors={errors}
-              register={register}
-            />
+
+            <div>
+              <AreaSelector />
+            </div>
+
             <RecipeIngredientsContainer>
               <SectionTitle label={"Ingredients"} />
 
               <IngredientSelector
-                fields={fields}
-                append={append}
-                selectedIngredients={selectedIngredients}
-                setSelectedIngredients={setSelectedIngredients}
-                {...register("ingredients")}
+              // fields={fields}
+              // append={append}
+              // selectedIngredients={selectedIngredients}
+              // setSelectedIngredients={setSelectedIngredients}
+              // {...register("ingredients")}
               />
             </RecipeIngredientsContainer>
+
             <InstructionWrapper>
               <SectionTitle label={"Recipe Preparation"} />
+
               <InstructionCounterWrapper>
                 <InstructionContainer {...register("instructions")}></InstructionContainer>
                 <InputSymbolsCounter>{`${instructionsLength}/200`}</InputSymbolsCounter>
               </InstructionCounterWrapper>
+
               {errors.instructions && <p>{errors.instructions.message}</p>}
             </InstructionWrapper>
+
             <ButtonsWrapper>
               <TrashButton
                 type="button"
                 onClick={handleReset}
               ></TrashButton>
+
               <ActiveButton
                 label="Publish"
                 type="submit"

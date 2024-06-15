@@ -27,7 +27,6 @@ const DropDown = ({ close: closeDropdown }) => {
     };
   }, [closeDropdown]);
 
-  console.log(isModalOpen);
   return (
     <>
       <List ref={dropdownRef}>
@@ -46,7 +45,6 @@ const DropDown = ({ close: closeDropdown }) => {
             type="button"
             onClick={() => {
               openModal();
-              // closeDropdown();
             }}
           >
             Log out
