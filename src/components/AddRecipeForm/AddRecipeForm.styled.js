@@ -234,6 +234,8 @@ export const FieldsInput = styled.div`
 
 export const BtnDelete = styled.button`
   align-self: flex-end;
+  width: 16px;
+  height: 16px;
 
   background: none;
   border: none;

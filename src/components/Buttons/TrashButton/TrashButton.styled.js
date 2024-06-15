@@ -11,8 +11,7 @@ export const ButtonTrash = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  ${py("10")};
-  ${px("10")};
+  padding: 0;
   transition: ${p => p.theme.transitions.default};
   ${({ theme }) => theme.mq.tabletOnly} {
     ${py(3)};

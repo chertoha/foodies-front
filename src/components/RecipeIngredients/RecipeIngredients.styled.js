@@ -32,16 +32,16 @@ export const IngredientItem = styled.li`
 
 export const ImageWrapper = styled.div`
   display: flex;
-  width: 55px;
-  height: 55px;
+  width: 75px;
+  height: 75px;
   border-radius: 15px;
   ${py("10")};
   ${px("10")};
 
   border: 1px solid rgba(5, 5, 5, 0.1);
   ${({ theme }) => theme.mq.tablet} {
-    width: 60px;
-    height: 60px;
+    width: 90px;
+    height: 90px;
     ${py("15")};
     ${px("15")};
   }

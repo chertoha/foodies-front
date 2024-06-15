@@ -13,12 +13,14 @@ const IngredientCard = ({ ingredient, onDelete }) => {
 
   return (
     <>
-      <IngredientItem src={img}>
-        <ImageWrapper
-          src={img}
-          alt={name}
-          style={{ width: "100px", height: "100px", objectFit: "cover", marginBottom: "5px" }}
-        />
+      <IngredientItem>
+        <ImageWrapper>
+          <img
+            src={img}
+            alt={name}
+          />
+        </ImageWrapper>
+
         <IngredientsWrapper>
           <BtnDelete
             onClick={() => onDelete(_id)}
