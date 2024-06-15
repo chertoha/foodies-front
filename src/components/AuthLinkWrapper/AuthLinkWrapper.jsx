@@ -16,14 +16,20 @@ const AuthLinkWrapper = ({ to, avatar }) => {
 
   return (
     <>
-      {user ? <Link to={to}>{avatar}</Link> : <button onClick={open}>{avatar}</button>}
+      {user ? <Link to={to}>{avatar}</Link> : <div onClick={open}>{avatar}</div>}
 
       {isOpen && (
         <Modal onClose={close}>
           {isLogin ? (
-            <SignIn switchForm={switchToSignUp} />
+            <SignIn
+              switchForm={switchToSignUp}
+              onClose={close}
+            />
           ) : (
-            <SignUp switchForm={switchToSignIn} />
+            <SignUp
+              switchForm={switchToSignIn}
+              onClose={close}
+            />
           )}
         </Modal>
       )}
