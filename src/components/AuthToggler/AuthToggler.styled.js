@@ -25,44 +25,46 @@ export const Button = styled("button")`
   width: 50%;
   ${flexCenter()};
   text-transform: uppercase;
-  color: #ffffff;
+  color: ${props => props.$color};
+  background-color: ${props => props.$backgroundColor};
   font-size: ${p => p.theme.fontSizes.xs};
   font-weight: ${p => p.theme.fontWeights.bold};
   line-height: ${p => p.theme.lineHeights.normal};
   border-radius: ${p => p.theme.radii.lg};
   transition: ${p => p.theme.transitions.prop("color")};
+  border: 1px solid white;
 
-  &:first-child {
-    color: ${p => p.theme.colors.dark};
-  }
+  // &:first-child {
+  //   color: ${p => p.theme.colors.dark};
+  // }
 
-  &:first-child:hover {
-    color: #ffffff;
-  }
+  // &:first-child:hover {
+  //   color: #ffffff;
+  // }
 
-  &:first-child ~ button > span {
-    transition: ${p => p.theme.transitions.prop("color")};
-  }
+  // &:first-child ~ button > span {
+  //   transition: ${p => p.theme.transitions.prop("color")};
+  // }
 
-  &:first-child:hover ~ button > span {
-    color: ${p => p.theme.colors.dark};
-  }
+  // &:first-child:hover ~ button > span {
+  //   color: ${p => p.theme.colors.dark};
+  // }
 
-  &:first-child::before {
-    position: absolute;
-    content: "";
-    width: 100%;
-    height: 100%;
-    border-radius: ${p => p.theme.radii.lg};
-    border: 1px solid ${p => p.theme.colors.grey};
-    background-color: ${p => p.theme.colors.dark};
-    transform: translateX(100%);
-    transition: ${p => p.theme.transitions.prop("transform")};
-  }
+  // &:first-child::before {
+  //   position: absolute;
+  //   content: "";
+  //   width: 100%;
+  //   height: 100%;
+  //   border-radius: ${p => p.theme.radii.lg};
+  //   border: 1px solid ${p => p.theme.colors.grey};
+  //   background-color: ${p => p.theme.colors.dark};
+  //   transform: translateX(100%);
+  //   transition: ${p => p.theme.transitions.prop("transform")};
+  // }
 
-  &:first-child:hover::before {
-    transform: translateX(0);
-  }
+  // &:first-child:hover::before {
+  //   transform: translateX(0);
+  // }
 `;
 
 export const Label = styled("span")`
