@@ -10,6 +10,7 @@ import MainTitle from "components/MainTitle/MainTitle";
 import SubTitle from "components/SubTitle";
 import UserInfo from "components/UserInfo";
 import MyUserInfo from "../../components/UserInfo/MyUserInfo";
+import Loader from "components/Loader/Loader";
 
 import MyRecipes from "components/ProfilePages/MyRecipes";
 import UserRecipes from "components/ProfilePages/UserRecipes";
@@ -47,9 +48,6 @@ const UserPage = () => {
   const [allActiveTab, setAllActiveTab] = useState("My recipes");
   const [lessActiveTab, setLessActiveTab] = useState("Recipes");
 
-  // console.log("useAuth", user);
-  // console.log("id", id);
-
   const currentUserId = user ? user._id : null;
   const isCurrentUserProfile = id === currentUserId;
 
@@ -64,15 +62,15 @@ const UserPage = () => {
     isFetching: isFetchingUserInfo,
   } = useGetUserInfoQuery(id);
 
-  if (isFetchingUserInfo) return <div>Loading...</div>;
+  // if (isFetchingUserInfo) return <div>Loading...</div>;
   if (errorUserInfo) return <div>Error loading UserPage.</div>;
   if (!dataUserInfo) return null;
 
-  // console.log("dataUserInfo", dataUserInfo);
 
   return (
     <SectionWrapper>
       <Container>
+        {isFetchingUserInfo && <Loader />}
         <BreadcrumbsWrapp>
           <Breadcrumbs current={"Profile"} />
         </BreadcrumbsWrapp>
@@ -164,7 +162,6 @@ const UserPage = () => {
             <Outlet />
           </ListWrapp>
         </ProfileWrapp>
-        {/* )} */}
       </Container>
     </SectionWrapper>
   );

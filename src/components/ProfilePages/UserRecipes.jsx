@@ -4,6 +4,7 @@ import Paginator from "../Paginator/Paginator";
 
 import { useGetUserRecipesQuery } from "../../redux/users/usersApi";
 
+import Loader from "../Loader/Loader";
 import SubTitle from "../SubTitle/SubTitle";
 import UserPageListItems from "../UserPageListItems/UserPageListItems";
 import { SubTitleWrapper } from "./ProfilePages.styled";
@@ -25,14 +26,15 @@ const UserRecipes = ({ id }) => {
     refetch: refetchMyRecipes,
   } = useGetUserRecipesQuery(id);
 
-  if (isFetchingUserRecipes) return <div>Loading...</div>;
+  // if (isFetchingUserRecipes) return <div>Loading...</div>;
   if (errorUserRecipes) return <div>Error loading recipes.</div>;
   if (!data) return null;
 
-  // console.log("UserRecipes", data);
   const totalPages = Math.ceil(data.total / itemsPerPage);
+  
   return (
     <>
+      {isFetchingUserRecipes && <Loader />}
       {data.result.length > 0 ? (
         <>
           <UserPageListItems

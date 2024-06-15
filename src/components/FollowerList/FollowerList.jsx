@@ -22,7 +22,6 @@ import {
 
 const FollowersList = ({ followers, type }) => {
   const { data: user } = useGetCurrentUserQuery();
-  // const [getUserData] = useLazyGetCurrentUserQuery();
 
   const [followUser] = useFollowUserMutation();
   const [unfollowUser] = useUnfollowUserMutation();
@@ -31,8 +30,6 @@ const FollowersList = ({ followers, type }) => {
 
   useEffect(() => {
     if (!user) return;
-
-    // console.log(user);
     if (user.following) {
       const followingMap = {};
       user.following.forEach(id => {
