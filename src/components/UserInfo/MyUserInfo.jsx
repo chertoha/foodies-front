@@ -1,4 +1,3 @@
-import { useState, useRef } from "react";
 import { Modal } from "components/Modal/Modal";
 import LogOut from "components/LogOut";
 import { useModalWindow } from "hooks/useModalWindow";
@@ -8,6 +7,7 @@ import ActiveButton from "components/Buttons/ActiveButton/ActiveButton";
 import { allowedImageMIMETypes } from "utils/allowedImageMimeTypes";
 import { useUpdateUserAvatarMutation } from "../../redux/users/usersApi";
 import { toast } from "react-toastify";
+
 import {
   UserInfoWrapp,
   UserCard,
@@ -54,6 +54,7 @@ const MyUserInfo = ({
             <UserAvatar
               size={[80, 120, 120]}
               src={avatar}
+              name={name}
             />
             <label>
               <Button>

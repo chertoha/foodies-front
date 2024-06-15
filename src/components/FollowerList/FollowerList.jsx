@@ -7,6 +7,7 @@ import {
 import UserAvatar from "components/UserAvatar/UserAvatar";
 import FollowerButton from "components/Buttons/FollowerButton/FollowerButton";
 import sprite from "assets/images/icons/sprite.svg";
+import ErrorLoading from "../ErrorLoading/ErrorLoading";
 
 import {
   FollowerList,
@@ -21,8 +22,7 @@ import {
 } from "./FollowerList.styled";
 
 const FollowersList = ({ followers, type }) => {
-  const { data: user } = useGetCurrentUserQuery();
-
+  const { data: user, error } = useGetCurrentUserQuery();
   const [followUser] = useFollowUserMutation();
   const [unfollowUser] = useUnfollowUserMutation();
 
@@ -56,7 +56,8 @@ const FollowersList = ({ followers, type }) => {
       }
     }
   };
-
+  if (error) return <ErrorLoading />;
+  if (!user) return null;
   return (
     <FollowerList>
       {followers.map(({ _id, avatar, name, recipes }) => (
@@ -70,16 +71,20 @@ const FollowersList = ({ followers, type }) => {
             <div>
               <FollowerTitle>{name}</FollowerTitle>
               <FollowerText>Own recipes: {recipes.length}</FollowerText>
-              {type === "Followers" ? (
-                <FollowerButton
-                  label={followingState[_id] ? "Unfollow" : "Follow"}
-                  onClick={() => handleFollowClick(_id)}
-                />
-              ) : (
-                <FollowerButton
-                  label={followingState[_id] ? "Unfollow" : "Following"}
-                  onClick={() => handleFollowClick(_id)}
-                />
+              {user._id !== _id && (
+                <>
+                  {type === "Followers" ? (
+                    <FollowerButton
+                      label={followingState[_id] ? "Unfollow" : "Follow"}
+                      onClick={() => handleFollowClick(_id)}
+                    />
+                  ) : (
+                    <FollowerButton
+                      label={followingState[_id] ? "Unfollow" : "Following"}
+                      onClick={() => handleFollowClick(_id)}
+                    />
+                  )}
+                </>
               )}
             </div>
           </FollowerItemWrapp>

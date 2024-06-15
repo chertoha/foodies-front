@@ -110,47 +110,49 @@ const RecipesComponent = ({ category }) => {
             selectedIngredient={searchIngredient}
           />
           <div>
-            {recipesData.total > 0 ? (
-              <RecipeComponentList>
-                {recipesData.result.map(recipe => (
-                  <RecipeComponentItem key={recipe._id}>
-                    <RecipeCard
-                      recipe={{
-                        id: recipe._id,
-                        title: recipe.title,
-                        description: recipe.description,
-                        thumb: recipe.thumb,
-                        instructions: recipe.instructions,
-                        time: recipe.time,
-                        ingredients: recipe.ingredients,
-                        isFavorite: recipe.isFavorite || false,
-                      }}
-                      author={{ name: recipe.owner.name }}
-                      onSignIn={() => console.log("Sign in clicked")}
-                      onProfile={authorId => console.log(`Profile of author ${authorId} clicked`)}
-                      onToggleFavorite={recipeId =>
-                        console.log(`Favorite toggled for recipe ${recipeId}`)
-                      }
-                    />
-                  </RecipeComponentItem>
-                ))}
-              </RecipeComponentList>
-            ) : (
-              <RecipeSubDiv>
-                <SubTitle label={"Sorry. There are no Recipes ... 😭Please try again."} />
-              </RecipeSubDiv>
+            <div>
+              {recipesData.total > 0 ? (
+                <RecipeComponentList>
+                  {recipesData.result.map(recipe => (
+                    <RecipeComponentItem key={recipe._id}>
+                      <RecipeCard
+                        recipe={{
+                          id: recipe._id,
+                          title: recipe.title,
+                          description: recipe.description,
+                          thumb: recipe.thumb,
+                          instructions: recipe.instructions,
+                          time: recipe.time,
+                          ingredients: recipe.ingredients,
+                          isFavorite: recipe.isFavorite || false,
+                        }}
+                        author={{ name: recipe.owner.name }}
+                        onSignIn={() => console.log("Sign in clicked")}
+                        onProfile={authorId => console.log(`Profile of author ${authorId} clicked`)}
+                        onToggleFavorite={recipeId =>
+                          console.log(`Favorite toggled for recipe ${recipeId}`)
+                        }
+                      />
+                    </RecipeComponentItem>
+                  ))}
+                </RecipeComponentList>
+              ) : (
+                <RecipeSubDiv>
+                  <SubTitle label={"Sorry. There are no Recipes ... 😭Please try again."} />
+                </RecipeSubDiv>
+              )}
+            </div>
+            {totalPages > 1 && !recipesError && (
+              <Paginator
+                currentPage={currentPage}
+                itemsPerPage={itemsPerPage}
+                totalItems={recipesData.total}
+                onPageChange={onPageChange}
+                pageNumbersToShow={pageNumbersToShow}
+              />
             )}
           </div>
         </RecipesWrapper>
-        {totalPages > 1 && !recipesError && (
-          <Paginator
-            currentPage={currentPage}
-            itemsPerPage={itemsPerPage}
-            totalItems={recipesData.total}
-            onPageChange={onPageChange}
-            pageNumbersToShow={pageNumbersToShow}
-          />
-        )}
       </div>
     </div>
   );

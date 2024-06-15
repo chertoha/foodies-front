@@ -2,7 +2,7 @@ import styled from "styled-components";
 import theme from "styles/theme";
 import Container from "components/Container";
 import MainTitle from "components/MainTitle";
-import NotFound from "components/NotFound";
+import SomethingNotFound from "components/NotFound";
 
 import { ROUTES } from "config/router";
 import { Link } from "react-router-dom";
@@ -52,7 +52,7 @@ const ErrorLoading = () => {
   return (
     <>
       <Container>
-        {/* <NotFound /> */}
+        <SomethingNotFound />
 
         <TitleWrapper>
           <MainTitle label="Something get wrong. Please try again" />
