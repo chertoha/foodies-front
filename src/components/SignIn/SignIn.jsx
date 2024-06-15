@@ -26,7 +26,7 @@ const schema = object({
   email: string().email("email must be a valid").required(),
   password: string()
     .required("no password provided")
-    .min(8, "password should be minimum 8 characters"),
+    .min(3, "password should be minimum 8 characters"),
 }).required();
 
 const SignIn = ({ switchForm, onClose }) => {

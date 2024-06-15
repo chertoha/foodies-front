@@ -144,7 +144,7 @@ export const LinkButton = styled(NavLink)`
   border-radius: 100px;
   cursor: pointer;
 
-  transition: border-color ${theme.transitions.default};
+  transition: ${theme.transitions.default};
   &:focus,
   &:hover {
     background-color: ${theme.colors.accent};
@@ -170,10 +170,11 @@ export const Button = styled("button")`
   border-radius: 100px;
   cursor: pointer;
 
-  transition: border-color ${theme.transitions.default};
+  transition: ${theme.transitions.default};
   &:focus,
   &:hover {
     background-color: ${theme.colors.accent};
+    color: ${theme.colors.light};
   }
 
   ${theme.mq.tablet} {

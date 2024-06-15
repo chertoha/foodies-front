@@ -1,11 +1,11 @@
 import { Outlet, useParams } from "react-router-dom";
 import { useState } from "react";
-// import { useLocation } from "react-router-dom";
 
 import { useGetUserInfoQuery } from "../../redux/users/usersApi";
 import { useAuth } from "hooks/useAuth";
 
 import Container from "components/Container";
+import Breadcrumbs from "components/UIKit/Breadcrumbs";
 import MainTitle from "components/MainTitle/MainTitle";
 import SubTitle from "components/SubTitle";
 import UserInfo from "components/UserInfo";
@@ -17,8 +17,11 @@ import MyFavorites from "components/ProfilePages/MyFavorites";
 import Followers from "components/ProfilePages/Followers";
 import Following from "components/ProfilePages/Following";
 
+// import { toast } from "react-toastify";
+
 import {
   SectionWrapper,
+  BreadcrumbsWrapp,
   TitleWrapp,
   ProfileWrapp,
   ListWrapp,
@@ -39,7 +42,6 @@ const lessTabs = [
 ];
 
 const UserPage = () => {
-  // const location = useLocation();
   const { id } = useParams();
   const { user } = useAuth();
   const [allActiveTab, setAllActiveTab] = useState("My recipes");
@@ -71,6 +73,9 @@ const UserPage = () => {
   return (
     <SectionWrapper>
       <Container>
+        <BreadcrumbsWrapp>
+          <Breadcrumbs current={"Profile"} />
+        </BreadcrumbsWrapp>
         <TitleWrapp>
           <MainTitle
             as={"h1"}

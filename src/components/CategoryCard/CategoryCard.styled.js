@@ -71,6 +71,7 @@ export const CardButton = styled.button`
   color: rgba(255, 255, 255, 1);
   cursor: pointer;
   font-size: 16px;
+  transition: background 0.3s ease;
 
   &:hover {
     background: rgba(255, 255, 255, 0.3);

@@ -46,7 +46,7 @@ const UserPageListItems = ({ recipes, type, refetchRecipes }) => {
             </UserPageWrappText>
 
             <ButtonWrapp>
-              <LinkButton to={`/recipes/${_id}`}>
+              <LinkButton to={`/recipe/${_id}`}>
                 <Icon>
                   <use href={sprite + "#icon-arrow-up-right"}></use>
                 </Icon>
