@@ -1,3 +1,5 @@
+import { Main } from "./NotFound.styled";
+
 const SomethingNotFound = () => {
   return (
     <Main>

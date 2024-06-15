@@ -1,6 +1,5 @@
 import React from "react";
 import { Avatar, InitialsAvatar, InitialsSpan } from "./UserAvatar.styled";
-import DefaultImg from "assets/images/hero/hero-image1-mobile.png";
 
 const UserAvatar = ({ size, src, alt = "avatar", name }) => {
   const getInitials = name => {
