@@ -31,54 +31,71 @@ const MyUserInfo = ({
 }) => {
   const { isOpen: isModalOpen, open: openModal, close: closeModal } = useModalWindow();
   // const [dragIsOver, setDragIsOver] = useState(false);
-  const [initialAvatar, setInitialAvatar] = useState(avatar);
+  // const [initialAvatar, setInitialAvatar] = useState(avatar);
   const [updateUserAvatar] = useUpdateUserAvatarMutation();
-  const fileInputRef = useRef(null);
+  // const fileInputRef = useRef(null);
 
-  const handleDragOver = e => {
-    e.preventDefault();
-    // setDragIsOver(true);
-  };
+  // const handleDragOver = e => {
+  //   e.preventDefault();
+  //   // setDragIsOver(true);
+  // };
 
-  const handleDragLeave = e => {
-    e.preventDefault();
-    // setDragIsOver(false);
-  };
+  // const handleDragLeave = e => {
+  //   e.preventDefault();
+  //   // setDragIsOver(false);
+  // };
 
-  const handleDrop = e => {
-    e.preventPreventDefault();
-    // setDragIsOver(false);
+  // const handleDrop = e => {
+  //   e.preventPreventDefault();
+  //   // setDragIsOver(false);
 
-    const file = Array.from(e.dataTransfer.files)[0];
-    file && handleFile(file);
-  };
+  //   const file = Array.from(e.dataTransfer.files)[0];
+  //   file && handleFile(file);
+  // };
 
-  const handleFile = async file => {
-    if (!allowedImageMIMETypes.includes(file.type)) {
-      alert(`Wrong file type!. Allowed types: ${allowedImageMIMETypes.join(", ")}`);
-      return;
-    }
+  // const handleFile = async file => {
+  //   if (!allowedImageMIMETypes.includes(file.type)) {
+  //     alert(`Wrong file type!. Allowed types: ${allowedImageMIMETypes.join(", ")}`);
+  //     return;
+  //   }
+
+  //   const formData = new FormData();
+  //   formData.append("avatar", file);
+
+  //   try {
+  //     const updatedUser = await updateUserAvatar(formData).unwrap();
+  //     // setInitialAvatar(updatedUser.avatar); // Оновити стан аватара з новим значенням
+  //     toast.success("Avatar updated successfully");
+  //   } catch (error) {
+  //     toast.error(`${error}, Failed to update avatar`);
+  //   }
+  // };
+
+  const onInputFile = async e => {
+    const file = e.target.files[0];
+    // file && handleFile(file);
+
+    // if (!allowedImageMIMETypes.includes(file.type)) {
+    //   alert(`Wrong file type!. Allowed types: ${allowedImageMIMETypes.join(", ")}`);
+    //   return;
+    // }
 
     const formData = new FormData();
     formData.append("avatar", file);
 
     try {
-      const updatedUser = await updateUserAvatar(formData).unwrap();
-      setInitialAvatar(updatedUser.avatar); // Оновити стан аватара з новим значенням
+      // const updatedUser = await updateUserAvatar(formData).unwrap();
+      await updateUserAvatar(formData).unwrap();
+      // setInitialAvatar(updatedUser.avatar); // Оновити стан аватара з новим значенням
       toast.success("Avatar updated successfully");
     } catch (error) {
       toast.error(`${error}, Failed to update avatar`);
     }
   };
 
-  const onInputFile = e => {
-    const file = e.target.files[0];
-    file && handleFile(file);
-  };
-
-  const handleButtonClick = () => {
-    fileInputRef.current.click();
-  };
+  // const handleButtonClick = () => {
+  //   fileInputRef.current.click();
+  // };
 
   return (
     <UserInfoWrapp>
@@ -87,15 +104,16 @@ const MyUserInfo = ({
           <IconWrapp>
             <UserAvatar
               size={[80, 120, 120]}
-              src={initialAvatar}
+              // src={initialAvatar}
+              src={avatar}
             />
             <label
-              onDragOver={handleDragOver}
-              onDragLeave={handleDragLeave}
-              onDrop={handleDrop}
-              onClick={handleButtonClick}
+            // onDragOver={handleDragOver}
+            // onDragLeave={handleDragLeave}
+            // onDrop={handleDrop}
+            // onClick={handleButtonClick}
             >
-              <Button onClick={handleButtonClick}>
+              <Button>
                 <Icon>
                   <use href={sprite + "#icon-plus"}></use>
                 </Icon>
@@ -104,7 +122,7 @@ const MyUserInfo = ({
                 type="file"
                 accept={allowedImageMIMETypes.join(",")}
                 onChange={onInputFile}
-                ref={fileInputRef}
+                // ref={fileInputRef}
                 hidden
               />
             </label>

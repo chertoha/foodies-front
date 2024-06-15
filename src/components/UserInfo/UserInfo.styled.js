@@ -52,7 +52,7 @@ export const IconWrapp = styled("div")`
   position: relative;
 `;
 
-export const Button = styled("button")`
+export const Button = styled("span")`
   display: flex;
   justify-content: center;
   align-items: center;
