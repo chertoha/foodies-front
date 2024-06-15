@@ -7,7 +7,7 @@ export const authSignUpThunk = createAsyncThunk("authSignUp", async (data, thunk
     setAuthHeader(response.data.token);
     return response.data;
   } catch (error) {
-    return thunkAPI.rejectWithValue(error.message);
+    return thunkAPI.rejectWithValue(error);
   }
 });
 
@@ -17,18 +17,16 @@ export const authSignInThunk = createAsyncThunk("authSignIn", async (data, thunk
     setAuthHeader(response.data.token);
     return response.data;
   } catch (error) {
-    return thunkAPI.rejectWithValue(error.message);
+    return thunkAPI.rejectWithValue(error);
   }
 });
 
 export const authLogOutThunk = createAsyncThunk("authLogOut", async (_, thunkAPI) => {
   try {
-    // const response = await api.post(`/users/logout`);
     await api.post(`/users/logout`);
     clearAuthHeader();
-    // return response;
   } catch (error) {
-    return thunkAPI.rejectWithValue(error.message);
+    return thunkAPI.rejectWithValue(error);
   }
 });
 
@@ -43,6 +41,6 @@ export const authCurrentUserThunk = createAsyncThunk("authCurrentUser", async (_
     const response = await api.get(`users/current`);
     return response.data;
   } catch (error) {
-    return thunkAPI.rejectWithValue(error.message);
+    return thunkAPI.rejectWithValue(error);
   }
 });

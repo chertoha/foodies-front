@@ -1,19 +1,29 @@
-import { CircleLoader } from "react-spinners";
-// import { RingLoader } from "react-spinners";
-import { LoaderWrapper } from "./Loader.styled";
+import React from "react";
+import { useAuth } from "hooks/useAuth";
+
+import FadeLoader from "react-spinners/FadeLoader";
+import { LoaderWripper } from "./Loader.styled";
 
 const Loader = () => {
+  const { isLoading } = useAuth();
+
+  document.body.classList.add("no-scroll");
+  if (!isLoading) {
+    document.body.classList.remove("no-scroll");
+  }
+
   return (
-    <LoaderWrapper>
-      {/* <RingLoader
-        color="#2eb7e9"
-        size={50}
-      /> */}
-      <CircleLoader
-        color="#2eb7e9"
-        size={50}
+    <LoaderWripper>
+      <FadeLoader
+        color={"black"}
+        heght={10}
+        loading={true}
+        cssOverride={true}
+        size={250}
+        aria-label="Loading Spinner"
+        data-testid="loader"
       />
-    </LoaderWrapper>
+    </LoaderWripper>
   );
 };
 

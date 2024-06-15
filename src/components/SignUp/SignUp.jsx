@@ -56,7 +56,7 @@ const SignUp = ({ switchForm, onClose }) => {
         onClose();
       })
       .catch(error => {
-        toast.error(`${error}`, {
+        toast.error(`${error.response.data.message}`, {
           theme: "light",
         });
       });
