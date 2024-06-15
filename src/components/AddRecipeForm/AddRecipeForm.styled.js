@@ -14,7 +14,10 @@ export const Form = styled.form`
   }
 `;
 export const ImageField = styled.div`
-  display: flex;
+  @media screen and (max-width: 768px) {
+    width: 100%;
+  }
+  /* display: flex; */
   width: 550px;
 `;
 
@@ -34,6 +37,9 @@ export const FieldsInputStyled = styled.input`
 `;
 
 export const DescriptionContainer = styled.div`
+  @media screen and (max-width: 768px) {
+    width: 100%;
+  }
   display: flex;
   justify-content: space-between;
   width: 649px;
@@ -78,6 +84,9 @@ export const CookingCategory = styled.div`
   display: flex;
   flex-direction: row;
   gap: 20px;
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+  }
 `;
 
 export const InstructionContainer = styled.textarea`
@@ -169,7 +178,7 @@ export const FieldsInput = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
-  /* width: 100%; */
+  width: 100%;
   ${({ theme }) => theme.mq.tabletOnly} {
     gap: 10px;
   }

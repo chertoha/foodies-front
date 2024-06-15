@@ -1,7 +1,12 @@
 import { ButtonTrash } from "components/Buttons/TrashButton/TrashButton.styled";
 import SectionTitle from "components/SectionTitle";
 import SpriteIcon from "components/UIKit/SpriteIcon";
-import { StyledButtonWrapper, StyledCounter, StyledCounterValue } from "./Counter.styled";
+import {
+  StyledButtonWrapper,
+  StyledCounter,
+  StyledCounterFields,
+  StyledCounterValue,
+} from "./Counter.styled";
 
 export const Counter = ({ register, errors, count, setCount }) => {
   const handleClick = value => {
@@ -27,7 +32,7 @@ export const Counter = ({ register, errors, count, setCount }) => {
           />
         </ButtonTrash>
 
-        <div>
+        <StyledCounterFields>
           <StyledCounterValue
             width={count.toString().length * 10}
             value={count}
@@ -36,7 +41,7 @@ export const Counter = ({ register, errors, count, setCount }) => {
             {...register("time")}
           />
           <span> min</span>
-        </div>
+        </StyledCounterFields>
 
         {errors.cookTime && <p>{errors.cookTime.message}</p>}
         <ButtonTrash
