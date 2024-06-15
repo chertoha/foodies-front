@@ -1,16 +1,20 @@
 import { useState } from "react";
-import { useForm, useFieldArray, _set } from "react-hook-form";
+import { useForm, useFieldArray, _set, FormProvider } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schema } from "./yupValidation";
-import { FieldsInput } from "./InputFields.styled";
-// import { useCreateRecipeMutation } from "../../redux/recipes/recipesApi";
+import { useCreateRecipeMutation } from "../../redux/recipes/recipesApi";
 import {
+  FieldsInput,
+  ButtonsWrapper,
   CookingCategory,
   DescriptionContainer,
   FieldsInputStyled,
   Form,
   FormTitles,
   ImageField,
+  InstructionContainer,
+  InstructionCounterWrapper,
+  InstructionWrapper,
   RecipeNameContainer,
   RecipeNameInput,
 } from "./AddRecipeForm.styled";
@@ -22,8 +26,11 @@ import IngredientSelector from "./IngredientSelected";
 import ImageDropZone from "components/ImageDropZone/ImageDropZone";
 import { CategoriesSelector } from "./CategoriesSelector";
 import { Counter } from "components/Counter/Counter";
+import AreaSelector from "./AreaSelector";
 
 const AddRecipeForm = () => {
+  const methods = useForm({ resolver: yupResolver(schema) });
+
   const {
     register,
     handleSubmit,
@@ -32,41 +39,41 @@ const AddRecipeForm = () => {
     reset,
     watch,
     formState: { errors },
-  } = useForm({ resolver: yupResolver(schema) });
+  } = methods;
 
-  const { fields, _append, _remove } = useFieldArray({
+  const { fields, append, _remove } = useFieldArray({
     control,
     name: "ingredients",
   });
-
-  const [_categories, _setCategories] = useState([]);
-  const [ingredients, _setIngredients] = useState([]);
 
   const [counter, setCounter] = useState(1);
   const [selectedIngredients, setSelectedIngredients] = useState([]);
   const [preview, setPreview] = useState(null);
   // const { data } = useGetCategoriesQuery({ limit: 1111 });
 
-  // const [createRecipe] = useCreateRecipeMutation();
+  const [createRecipe] = useCreateRecipeMutation();
 
   const onSubmit = data => {
-    console.log({ ...data, cookTime: counter, ingredients: selectedIngredients, photo: preview });
-    console.log(data.photo[0]);
+    // console.log({ ...data, cookTime: counter, ingredients: selectedIngredients, photo: preview });
 
+    // console.log(data.photo[0]);
+    data.ingredients = selectedIngredients;
+    console.log(data);
     try {
       const formData = new FormData();
       Object.keys(data).forEach(key => {
         if (key === "ingredients") {
           data[key].forEach((ingredient, index) => {
-            formData.append(`ingredients[${index}][ingredient]`, ingredient.ingredient);
-            formData.append(`ingredients[${index}][amount]`, ingredient.amount);
+            formData.append(`ingredients[${index}][name]`, ingredient.name);
+            formData.append(`ingredients[${index}][measure]`, ingredient.quantity);
           });
         } else {
           formData.append(key, data[key]);
         }
       });
-      // console.log(formData);
-      // createRecipe(formData);
+
+      console.log(formData);
+      createRecipe(formData);
 
       // const response = await axiosBaseQuery("/api/recipes", formData);
       // if (response.status === 200) {
@@ -97,105 +104,94 @@ const AddRecipeForm = () => {
   const instructionsLength = watch("instructions")?.length || 0;
 
   return (
-    <Form onSubmit={handleSubmit(onSubmit)}>
-      <ImageField>
-        <ImageDropZone
-          preview={preview}
-          setPreview={setPreview}
-          name="photo"
-          validation={{ ...register("photo") }}
-        />
-      </ImageField>
-      <FieldsInput>
-        <FormTitles>
-          <RecipeNameContainer>
-            <RecipeNameInput
-              $iserror={errors.title}
-              placeholder={!errors.title ? "The name of the recipe" : "The title is required"}
-              type="text"
-              {...register("title")}
-            />
-          </RecipeNameContainer>
-          <DescriptionContainer>
-            <FieldsInputStyled
-              $iserror={errors.description}
-              placeholder={
-                !errors.description
-                  ? "Enter a description of the dish"
-                  : "The description is required"
-              }
-              type="text"
-              {...register("description")}
+    <FormProvider {...methods}>
+      <Form onSubmit={handleSubmit(onSubmit)}>
+        <ImageField>
+          <ImageDropZone
+            preview={preview}
+            setPreview={setPreview}
+            name="thumb"
+            validation={{ ...register("thumb") }}
+          />
+        </ImageField>
+        <FieldsInput>
+          <FormTitles>
+            <RecipeNameContainer>
+              <RecipeNameInput
+                $iserror={errors.title}
+                placeholder={!errors.title ? "The name of the recipe" : "The title is required"}
+                type="text"
+                {...register("title")}
+              />
+            </RecipeNameContainer>
+            <DescriptionContainer>
+              <FieldsInputStyled
+                $iserror={errors.description}
+                placeholder={
+                  !errors.description
+                    ? "Enter a description of the dish"
+                    : "The description is required"
+                }
+                type="text"
+                {...register("description")}
+              />
+
+              <p>{`${descriptionLength}/200`}</p>
+            </DescriptionContainer>
+          </FormTitles>
+
+          <CookingCategory>
+            <CategoriesSelector
+              register={register}
+              errors={errors}
             />
 
-            <p>{`${descriptionLength}/200`}</p>
-          </DescriptionContainer>
-        </FormTitles>
-
-        <CookingCategory>
-          <CategoriesSelector
-            register={register}
+            <Counter
+              register={register}
+              errors={errors}
+              count={counter}
+              setCount={setCounter}
+            />
+          </CookingCategory>
+          <AreaSelector
             errors={errors}
+            register={register}
           />
 
-          <Counter
-            register={register}
-            errors={errors}
-            count={counter}
-            setCount={setCounter}
-          />
-        </CookingCategory>
+          <RecipeIngredientsContainer>
+            <SectionTitle label={"Ingredients"} />
 
-        <RecipeIngredientsContainer>
-          <SectionTitle label={"Ingredients"} />
-          <div>
             <IngredientSelector
+              fields={fields}
+              append={append}
               selectedIngredients={selectedIngredients}
               setSelectedIngredients={setSelectedIngredients}
+              {...register("ingredients")}
             />
-          </div>
+          </RecipeIngredientsContainer>
 
-          {fields.map((field, index) => (
-            <div key={field.id}>
-              <select {...register(`ingredients.${index}.ingredient`)}>
-                {ingredients.map(ingredient => (
-                  <option
-                    key={ingredient.id}
-                    value={ingredient.name}
-                  >
-                    {ingredient.name}
-                  </option>
-                ))}
-              </select>
-              <input
-                type="number"
-                {...register(`ingredients.${index}.amount`)}
-              />
-            </div>
-          ))}
-        </RecipeIngredientsContainer>
+          <InstructionWrapper>
+            <SectionTitle label={"Recipe Preparation"} />
+            <InstructionCounterWrapper>
+              <InstructionContainer {...register("instructions")}></InstructionContainer>
+              <p>{`${instructionsLength}/200`}</p>
+            </InstructionCounterWrapper>
+            {errors.instructions && <p>{errors.instructions.message}</p>}
+          </InstructionWrapper>
 
-        <DescriptionContainer>
-          <label>
-            Інструкція:
-            <textarea {...register("instructions")}></textarea>
-            <p>{`Символів: ${instructionsLength}/200`}</p>
-          </label>
-          {errors.instructions && <p>{errors.instructions.message}</p>}
-        </DescriptionContainer>
-
-        <div>
-          <TrashButton
-            type="button"
-            onClick={handleReset}
-          ></TrashButton>
-          <ActiveButton
-            label="Publish"
-            type="submit"
-          ></ActiveButton>
-        </div>
-      </FieldsInput>
-    </Form>
+          <ButtonsWrapper>
+            <TrashButton
+              type="button"
+              onClick={handleReset}
+            ></TrashButton>
+            <ActiveButton
+              label="Publish"
+              type="submit"
+            ></ActiveButton>
+          </ButtonsWrapper>
+        </FieldsInput>
+      </Form>
+    </FormProvider>
   );
 };
 

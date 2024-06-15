@@ -18,6 +18,12 @@ export const ButtonTrash = styled.button`
     ${py(3)};
     ${px(3)};
   }
+  height: 48px;
+  width: 48px;
+  @media screen and (min-width: 1440px) {
+    height: 56px;
+    width: 56px;
+  }
 
   &:hover {
     background-color: ${p => p.theme.colors.dark};

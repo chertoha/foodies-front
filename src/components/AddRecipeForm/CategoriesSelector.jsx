@@ -1,10 +1,11 @@
 import SectionTitle from "components/SectionTitle";
 import { useGetCategoriesQuery } from "../../redux/categories/categoriesApi";
+import { SelectorCategories } from "./AddRecipeForm.styled";
 export const CategoriesSelector = ({ register, errors }) => {
   const { data } = useGetCategoriesQuery({ limit: 1111 });
 
   return (
-    <>
+    <SelectorCategories>
       <SectionTitle label="Category" />
 
       <select
@@ -27,6 +28,6 @@ export const CategoriesSelector = ({ register, errors }) => {
         ))}
       </select>
       {errors.category && <p>{errors.category.message}</p>}
-    </>
+    </SelectorCategories>
   );
 };

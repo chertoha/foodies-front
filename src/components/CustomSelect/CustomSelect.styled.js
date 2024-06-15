@@ -34,9 +34,9 @@ export const StyledSelect = styled(ReactSelect)`
     }
 
     ${theme.mq.tablet} {
-        ${py(4)};
-        ${px("18")};
-        ${pr(0)};
+      ${py(4)};
+      ${px("18")};
+      ${pr(0)};
     }
 
     ${theme.mq.desktop} {
@@ -59,16 +59,16 @@ export const StyledSelect = styled(ReactSelect)`
     cursor: pointer;
 
     &:hover {
-    color: ${theme.colors.accent};
+      color: ${theme.colors.accent};
     }
 
     ${theme.mq.mobileOnly} {
     }
 
     ${theme.mq.tablet} {
-        ${py(4)};
-        ${px("18")};
-        ${pl(2)};
+      ${py(4)};
+      ${px("18")};
+      ${pl(2)};
     }
 
     ${theme.mq.desktop} {
@@ -88,7 +88,7 @@ export const StyledSelect = styled(ReactSelect)`
     }
 
     ${theme.mq.tablet} {
-    font-size: ${theme.fontSizes.base};
+      font-size: ${theme.fontSizes.base};
     }
 
     ${theme.mq.desktop} {
@@ -100,7 +100,6 @@ export const StyledSelect = styled(ReactSelect)`
     }
 
     ${theme.mq.tablet} {
-
     }
 
     ${theme.mq.desktop} {
@@ -154,8 +153,8 @@ export const StyledSelect = styled(ReactSelect)`
     color: ${theme.colors.accent};
     background-color: transparent;
     transition:
-      color ${theme.transitions.default};,
-      background-color ${theme.transitions.default};;
+      color ${theme.transitions.default},
+      background-color ${theme.transitions.default};
 
     cursor: pointer;
     ${body1()};
