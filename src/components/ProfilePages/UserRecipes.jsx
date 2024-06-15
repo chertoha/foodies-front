@@ -31,7 +31,7 @@ const UserRecipes = ({ id }) => {
   if (!data) return null;
 
   const totalPages = Math.ceil(data.total / itemsPerPage);
-  
+
   return (
     <>
       {isFetchingUserRecipes && <Loader />}

@@ -31,7 +31,7 @@ const MyUserInfo = ({
 }) => {
   const { isOpen: isModalOpen, open: openModal, close: closeModal } = useModalWindow();
   const [updateUserAvatar] = useUpdateUserAvatarMutation();
-  
+
   const onInputFile = async e => {
     const file = e.target.files[0];
 
@@ -45,7 +45,6 @@ const MyUserInfo = ({
       toast.error(`${error}, Failed to update avatar`);
     }
   };
-
 
   return (
     <UserInfoWrapp>

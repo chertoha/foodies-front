@@ -11,6 +11,7 @@ import SubTitle from "components/SubTitle";
 import UserInfo from "components/UserInfo";
 import MyUserInfo from "../../components/UserInfo/MyUserInfo";
 import Loader from "components/Loader/Loader";
+import ErrorLoading from "components/ErrorLoading/ErrorLoading";
 
 import MyRecipes from "components/ProfilePages/MyRecipes";
 import UserRecipes from "components/ProfilePages/UserRecipes";
@@ -63,9 +64,9 @@ const UserPage = () => {
   } = useGetUserInfoQuery(id);
 
   // if (isFetchingUserInfo) return <div>Loading...</div>;
-  if (errorUserInfo) return <div>Error loading UserPage.</div>;
+  // if (errorUserInfo) return <div>Error loading UserPage.</div>;
+  if (errorUserInfo) return <ErrorLoading />;
   if (!dataUserInfo) return null;
-
 
   return (
     <SectionWrapper>
