@@ -8,6 +8,7 @@ const HomePage = lazy(() => import("../pages/HomePage/HomePage"));
 const RecipePage = lazy(() => import("../pages/RecipePage/RecipePage"));
 const AddRecipePage = lazy(() => import("../pages/AddRecipePage/AddRecipePage"));
 const UserPage = lazy(() => import("../pages/UserPage/UserPage"));
+const NotFoundPage = lazy(() => import("../pages/NotFoundPage/NotFoundPage"));
 
 export const ROUTES = {
   HOME: "/",
@@ -49,6 +50,10 @@ const routes = [
             component={UserPage}
           />
         ),
+      },
+      {
+        path: "*",
+        element: <NotFoundPage />,
       },
     ],
   },
