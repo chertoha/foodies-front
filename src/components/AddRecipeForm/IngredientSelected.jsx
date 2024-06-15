@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useGetIngredientsQuery } from "../../redux/ingredients/ingredientsApi";
 import IngredientCard from "./IngredientSelectedCard";
 import SpriteIcon from "components/UIKit/SpriteIcon";
@@ -7,6 +7,7 @@ import {
   AddIngredientButton,
   IngredienQuantity,
   IngredientDescription,
+  IngredientsSelectorWrapper,
   SelectorIngredientsContainer,
 } from "./AddRecipeForm.styled";
 
@@ -15,6 +16,7 @@ import CustomSelect from "components/CustomSelect";
 const IngredientSelector = ({
   selectedIngredients,
   setSelectedIngredients,
+
   // fields,
   // append,
   // remove,
@@ -58,8 +60,7 @@ const IngredientSelector = ({
   if (!ingredients) return null;
 
   return (
-    <>
-      {" "}
+    <IngredientsSelectorWrapper>
       <IngredientDescription>
         <SelectorIngredientsContainer>
           <CustomSelect
@@ -100,7 +101,7 @@ const IngredientSelector = ({
           />
         ))}
       </IngredientsList>
-    </>
+    </IngredientsSelectorWrapper>
   );
 };
 

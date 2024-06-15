@@ -17,6 +17,8 @@ import {
   InstructionWrapper,
   RecipeNameContainer,
   RecipeNameInput,
+  FormFields,
+  InputSymbolsCounter,
 } from "./AddRecipeForm.styled";
 import ActiveButton from "components/Buttons/ActiveButton";
 import TrashButton from "components/Buttons/TrashButton";
@@ -124,6 +126,9 @@ const AddRecipeForm = () => {
                 {...register("title")}
               />
             </RecipeNameContainer>
+          </FormTitles>
+          <FormFields>
+            {" "}
             <DescriptionContainer>
               <FieldsInputStyled
                 $iserror={errors.description}
@@ -136,59 +141,55 @@ const AddRecipeForm = () => {
                 {...register("description")}
               />
 
-              <p>{`${descriptionLength}/200`}</p>
+              <InputSymbolsCounter>{`${descriptionLength}/200`}</InputSymbolsCounter>
             </DescriptionContainer>
-          </FormTitles>
+            <CookingCategory>
+              <CategoriesSelector
+                register={register}
+                errors={errors}
+              />
 
-          <CookingCategory>
-            <CategoriesSelector
-              register={register}
+              <Counter
+                register={register}
+                errors={errors}
+                count={counter}
+                setCount={setCounter}
+              />
+            </CookingCategory>
+            <AreaSelector
               errors={errors}
-            />
-
-            <Counter
               register={register}
-              errors={errors}
-              count={counter}
-              setCount={setCounter}
             />
-          </CookingCategory>
-          <AreaSelector
-            errors={errors}
-            register={register}
-          />
+            <RecipeIngredientsContainer>
+              <SectionTitle label={"Ingredients"} />
 
-          <RecipeIngredientsContainer>
-            <SectionTitle label={"Ingredients"} />
-
-            <IngredientSelector
-              fields={fields}
-              append={append}
-              selectedIngredients={selectedIngredients}
-              setSelectedIngredients={setSelectedIngredients}
-              {...register("ingredients")}
-            />
-          </RecipeIngredientsContainer>
-
-          <InstructionWrapper>
-            <SectionTitle label={"Recipe Preparation"} />
-            <InstructionCounterWrapper>
-              <InstructionContainer {...register("instructions")}></InstructionContainer>
-              <p>{`${instructionsLength}/200`}</p>
-            </InstructionCounterWrapper>
-            {errors.instructions && <p>{errors.instructions.message}</p>}
-          </InstructionWrapper>
-
-          <ButtonsWrapper>
-            <TrashButton
-              type="button"
-              onClick={handleReset}
-            ></TrashButton>
-            <ActiveButton
-              label="Publish"
-              type="submit"
-            ></ActiveButton>
-          </ButtonsWrapper>
+              <IngredientSelector
+                fields={fields}
+                append={append}
+                selectedIngredients={selectedIngredients}
+                setSelectedIngredients={setSelectedIngredients}
+                {...register("ingredients")}
+              />
+            </RecipeIngredientsContainer>
+            <InstructionWrapper>
+              <SectionTitle label={"Recipe Preparation"} />
+              <InstructionCounterWrapper>
+                <InstructionContainer {...register("instructions")}></InstructionContainer>
+                <InputSymbolsCounter>{`${instructionsLength}/200`}</InputSymbolsCounter>
+              </InstructionCounterWrapper>
+              {errors.instructions && <p>{errors.instructions.message}</p>}
+            </InstructionWrapper>
+            <ButtonsWrapper>
+              <TrashButton
+                type="button"
+                onClick={handleReset}
+              ></TrashButton>
+              <ActiveButton
+                label="Publish"
+                type="submit"
+              ></ActiveButton>
+            </ButtonsWrapper>
+          </FormFields>
         </FieldsInput>
       </Form>
     </FormProvider>

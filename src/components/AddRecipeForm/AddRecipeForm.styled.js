@@ -1,21 +1,109 @@
 import styled from "styled-components";
+import { py } from "styles/atomic";
 // import theme from "styles/theme";
 
+export const FormFields = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+`;
+
+export const DescriptionContainer = styled.div`
+  @media screen and (max-width: 767px) {
+    width: 100%;
+  }
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  width: 649px;
+`;
+export const IngredientDescription = styled.div`
+  @media screen and (max-width: 767px) {
+    width: 100%;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 8px;
+  }
+  display: flex;
+  justify-content: space-between;
+  width: 649px;
+`;
+
+export const AddIngredientButton = styled.button`
+  @media screen and (max-width: 767px) {
+    width: 100%;
+  }
+  @media screen and (min-width: 768px) and (max-width: 1439px) {
+    max-width: 279px;
+  }
+
+  font-family: Mulish;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 24px; /* 150% */
+  letter-spacing: -0.32px;
+  text-transform: uppercase;
+  margin-top: 40px;
+  display: flex;
+  padding: 16px 32px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border-radius: 30px;
+  border: 1px solid rgba(5, 5, 5, 0.9);
+  &:hover,
+  &:focus {
+    border-radius: 30px;
+    background-color: ${p => p.theme.colors.dark};
+    color: ${p => p.theme.colors.light};
+  }
+`;
+
+export const InputSymbolsCounter = styled.p`
+  color: rgba(5, 5, 5, 0.6);
+
+  /* Mobile/Main text */
+  font-family: Mulish;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px; /* 142.857% */
+  letter-spacing: -0.28px;
+`;
 export const Form = styled.form`
   margin-top: 40px;
   display: flex;
   align-items: flex-start;
   gap: 80px;
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 767px) {
     flex-direction: column;
     gap: 40px;
     justify-content: center;
     align-items: center;
+    margin-top: 32px;
+  }
+  @media screen and (min-width: 768px) and (max-width: 1439px) {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 40px;
   }
 `;
+export const IngredientsSelectorWrapper = styled.div`
+  @media screen and (max-width: 767px) {
+    padding-top: 8px;
+  }
+  @media screen and (min-width: 768px) {
+    padding-top: 16px;
+  }
+`;
+
 export const ImageField = styled.div`
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 1439px) {
     width: 100%;
+  }
+  @media screen {
   }
   /* display: flex; */
   width: 550px;
@@ -34,15 +122,6 @@ export const FieldsInputStyled = styled.input`
     color: ${({ $iserror }) => ($iserror ? "red" : "rgba(5, 5, 5, 0.5)")};
   }
   border-bottom-color: ${({ $iserror }) => ($iserror ? "red" : "rgba(5, 5, 5, 0.12)")};
-`;
-
-export const DescriptionContainer = styled.div`
-  @media screen and (max-width: 768px) {
-    width: 100%;
-  }
-  display: flex;
-  justify-content: space-between;
-  width: 649px;
 `;
 
 export const RecipeNameContainer = styled.div`
@@ -127,12 +206,6 @@ export const SelectorCategories = styled.div`
   flex-direction: column;
   gap: 16px;
 `;
-export const IngredientDescription = styled.div`
-  display: flex;
-
-  justify-content: space-between;
-  width: 649px;
-`;
 
 export const SelectorIngredientsContainer = styled.div`
   width: 279px;
@@ -149,31 +222,6 @@ export const IngredienQuantity = styled.input`
   }
 `;
 
-export const AddIngredientButton = styled.button`
-  color: #050505;
-
-  font-family: Mulish;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 24px; /* 150% */
-  letter-spacing: -0.32px;
-  text-transform: uppercase;
-  margin-top: 40px;
-  display: flex;
-  padding: 16px 32px;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-  border-radius: 30px;
-  border: 1px solid rgba(5, 5, 5, 0.9);
-  &:hover,
-  &:focus {
-    border-radius: 30px;
-    background-color: ${p => p.theme.colors.dark};
-    color: ${p => p.theme.colors.light};
-  }
-`;
 export const FieldsInput = styled.div`
   display: flex;
   flex-direction: column;
