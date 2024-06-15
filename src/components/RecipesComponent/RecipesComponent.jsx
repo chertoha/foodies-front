@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLocation, useSearchParams } from "react-router-dom";
 // import { useGetRecipesQuery } from "../../redux/recipes/recipesApi";
-import { useLazyGetRecipesQuery } from "../../redux/recipes/recipesApi";
+import { useGetRecipesQuery, useLazyGetRecipesQuery } from "../../redux/recipes/recipesApi";
 
 import { useWindowSize } from "../../hooks/useWindowSize";
 
@@ -28,7 +28,7 @@ import {
 
 const RecipesComponent = ({ category }) => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const location = useLocation();
+  // const location = useLocation();
 
   const searchArea = searchParams.get("area") || "";
   const searchIngredient = searchParams.get("ingredient") || "";
@@ -45,18 +45,30 @@ const RecipesComponent = ({ category }) => {
     setCurrentPage(pageNumber);
   };
 
-  const [trigger, { data: recipesData, error: recipesError, isFetching: isFetchingRecipes }] =
-    useLazyGetRecipesQuery();
+  // const [trigger, { data: recipesData, error: recipesError, isFetching: isFetchingRecipes }] =
+  //   useLazyGetRecipesQuery();
 
-  useEffect(() => {
-    trigger({
-      page: currentPage,
-      limit: itemsPerPage,
-      category: category,
-      area: searchArea,
-      ingredient: searchIngredient,
-    });
-  }, [trigger, currentPage, itemsPerPage, category, searchArea, searchIngredient]);
+  const {
+    data: recipesData,
+    error: recipesError,
+    isFetching: isFetchingRecipes,
+  } = useGetRecipesQuery({
+    page: currentPage,
+    limit: itemsPerPage,
+    category: category,
+    area: searchArea,
+    ingredient: searchIngredient,
+  });
+
+  // useEffect(() => {
+  //   trigger({
+  //     page: currentPage,
+  //     limit: itemsPerPage,
+  //     category: category,
+  //     area: searchArea,
+  //     ingredient: searchIngredient,
+  //   });
+  // }, [trigger, currentPage, itemsPerPage, category, searchArea, searchIngredient]);
 
   const handleFiltersChange = (name, value) => {
     const newParams = { category, area: searchArea, ingredient: searchIngredient };
@@ -64,7 +76,7 @@ const RecipesComponent = ({ category }) => {
     setSearchParams(newParams);
   };
 
-  if (isFetchingRecipes) return <div>Loading...</div>;
+  // if (isFetchingRecipes) return <div>Loading...</div>;
   if (recipesError) return <div>Error loading recipes.</div>;
   if (!recipesData) return null;
 
@@ -72,7 +84,11 @@ const RecipesComponent = ({ category }) => {
   return (
     <div>
       <SubTitleWrapp>
-        <BackLink to={location.state?.from || "/"}>
+        <BackLink
+          as="button"
+          // to={location.state?.from || "/"}
+          onClick={() => setSearchParams({})}
+        >
           <Icon>
             <use href={sprite + "#icon-arrow-left"}></use>
           </Icon>
