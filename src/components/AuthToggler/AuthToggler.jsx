@@ -34,8 +34,16 @@ const AuthToggler = () => {
     open();
   };
 
-  const switchToSignIn = () => setIslogin(true);
-  const switchToSignUp = () => setIslogin(false);
+  const switchToSignIn = () => {
+    setIslogin(true);
+    setIsSignInBtnActive(true);
+    setIsSignUpBtnActive(false);
+  };
+  const switchToSignUp = () => {
+    setIslogin(false);
+    setIsSignInBtnActive(false);
+    setIsSignUpBtnActive(true);
+  };
 
   return (
     <>
