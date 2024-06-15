@@ -13,7 +13,7 @@ export const CategoriesSelector = ({ register, errors }) => {
     setSelectedCategory(value);
   };
   if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>Error fetching categories</div>;
+  if (error) return console.log(error);
 
   const options = data?.result?.map(({ name }) => ({
     value: name,
@@ -24,6 +24,7 @@ export const CategoriesSelector = ({ register, errors }) => {
     <SelectorCategories>
       <SectionTitle label="Category" />
       <CustomSelect
+        name="categorySelect"
         options={options}
         value={selectedCategory}
         onChange={handleCategoryChange}
