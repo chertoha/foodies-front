@@ -72,7 +72,7 @@ const FollowersList = ({ followers, type }) => {
 
             <div>
               <FollowerTitle>{name}</FollowerTitle>
-              <FollowerText>Own recipes:{recipes.length}</FollowerText>
+              <FollowerText>Own recipes: {recipes.length}</FollowerText>
               {type === "Followers" ? (
                 <FollowerButton
                   label={followingState[_id] ? "Unfollow" : "Follow"}
