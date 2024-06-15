@@ -199,6 +199,11 @@ const IngredientList = () => {
 
   const options = [...ingredients.result.map(({ name }) => ({ value: name, label: name }))];
 
+  const getIngredientImage = ingredientName => {
+    const ingredient = ingredients.result.find(({ name }) => name === ingredientName);
+    return ingredient.img;
+  };
+
   return (
     <>
       <div style={{ display: "flex", columnGap: "30px", width: "100%" }}>
@@ -238,6 +243,10 @@ const IngredientList = () => {
         {fields.map(({ name, measure }, index) => (
           <li key={name}>
             {name}: {measure}
+            <img
+              src={getIngredientImage(name)}
+              alt=""
+            />
             <button
               type="button"
               style={{ marginLeft: "20px" }}
