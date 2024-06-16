@@ -76,10 +76,10 @@ export const Form = styled.form`
   margin-top: 40px;
   display: flex;
   align-items: flex-start;
-  gap: 80px;
+  gap: 32px;
   @media screen and (max-width: 767px) {
     flex-direction: column;
-    gap: 40px;
+    /* gap: 80px; */
     justify-content: center;
     align-items: center;
     margin-top: 32px;
@@ -88,7 +88,7 @@ export const Form = styled.form`
     display: inline-flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 40px;
+    gap: 80px;
   }
 `;
 export const IngredientsSelectorWrapper = styled.div`
@@ -107,7 +107,7 @@ export const ImageField = styled.div`
   @media screen {
   }
   /* display: flex; */
-  width: 550px;
+  width: 100%;
 `;
 
 export const FieldsInputStyled = styled.input`

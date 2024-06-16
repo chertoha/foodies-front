@@ -13,4 +13,11 @@ export const Text = styled("p")`
 
   ${theme.mq.desktop} {
   }
+
+  @media screen and (min-width: 768px) {
+    width: 443px;
+    font-size: 16px;
+    line-height: 1.5;
+    letter-spacing: -0.32px;
+  }
 `;
