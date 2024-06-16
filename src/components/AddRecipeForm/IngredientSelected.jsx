@@ -102,7 +102,7 @@ const IngredientSelector = () => {
     return ingredient.img;
   };
 
-  console.log(errors);
+  // console.log(errors);
 
   return (
     <IngredientsSelectorWrapper>

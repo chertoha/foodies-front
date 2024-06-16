@@ -87,7 +87,7 @@ const AddRecipeForm = () => {
 
     // console.log(data.photo[0]);
     // data.ingredients = selectedIngredients;
-    console.log(data);
+    // console.log(data);
     try {
       const formData = new FormData();
       Object.keys(data).forEach(key => {
@@ -162,6 +162,7 @@ const AddRecipeForm = () => {
           <FormFields>
             <DescriptionContainer>
               <FieldsInputStyled
+                maxLength={200}
                 $iserror={errors.description}
                 placeholder={
                   !errors.description
@@ -209,7 +210,10 @@ const AddRecipeForm = () => {
               <SectionTitle label={"Recipe Preparation"} />
 
               <InstructionCounterWrapper>
-                <InstructionContainer {...register("instructions")}></InstructionContainer>
+                <InstructionContainer
+                  maxLength={200}
+                  {...register("instructions")}
+                ></InstructionContainer>
                 <InputSymbolsCounter>{`${instructionsLength}/200`}</InputSymbolsCounter>
               </InstructionCounterWrapper>
 
