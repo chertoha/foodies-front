@@ -71,6 +71,7 @@ const FollowersList = ({ followers, type }) => {
             <UserAvatar
               size={[60, 85, 85]}
               src={avatar}
+              name={name}
             />
 
             <div>

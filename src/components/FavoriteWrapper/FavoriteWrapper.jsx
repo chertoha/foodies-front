@@ -1,4 +1,4 @@
-import { useFavoritesContext } from "components/App/App";
+// import { useFavoritesContext } from "components/App/App";
 import {
   useAddRecipeToFavoritesMutation,
   useRemoveRecipeFromFavoritesMutation,

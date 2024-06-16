@@ -27,7 +27,7 @@ const UserAvatar = ({ size, src, alt = "avatar", name }) => {
 
   return (
     <>
-      {src !== "" ? (
+      {src ? (
         <Avatar
           size={size}
           src={src}
