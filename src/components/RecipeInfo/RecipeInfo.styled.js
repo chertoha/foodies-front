@@ -24,7 +24,6 @@ export const RecipeImageWrapper = styled.div`
     min-width: 551px;
     padding-top: 0px;
     padding-bottom: 0px;
-    flex: 1;
   }
 `;
 

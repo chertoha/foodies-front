@@ -19,13 +19,16 @@ export const Image = styled.img`
 `;
 
 export const TitleCardWrapper = styled.div`
-  max-width: 290px;
+  max-width: 343px;
   ${numberTextRows(1)}
   overflow: hidden;
   text-overflow: ellipsis;
 
   ${theme.mq.tabletOnly} {
     max-width: 340px;
+  }
+  @media (max-width: 320px) {
+    max-width: 290px;
   }
 `;
 
