@@ -106,3 +106,26 @@ const Hero = () => {
 };
 
 export default Hero;
+
+//  <ImageSmallStyled
+//           srcSet={`
+//           /hero/hero-image1-mobile.png 70w,
+//           /hero/hero-image1-mobile@2x.png 140w,
+//           /hero/hero-image1-tablet.png 128w,
+//           /hero/hero-image1-tablet@2x.png 256w
+//            `}
+//           src="/hero/hero-image1-mobile.png"
+//           sizes="(min-width: 1440px) 128px,(min-width: 768px) 128px,(max-width: 767px) 70px"
+//           alt="hero recipe"
+//         />
+//         <ImageBigStyled
+//           srcSet={`
+//           /hero/hero-image2-mobile.png 190w,
+//           /hero-image2-mobile@2x.png 380w,
+//           /hero/hero-image2-tablet.png 302w,
+//           /hero/hero-image2-tablet@2x.png 604w
+//           `}
+//           src="/hero/hero-image2-mobile.png"
+//           sizes="(min-width: 1440px) 302px,(min-width: 768px) 302px,(max-width: 767px) 190px"
+//           alt="hero recipe"
+//         />
