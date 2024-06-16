@@ -18,6 +18,9 @@ import {
   RecipeNameInput,
   FormFields,
   InputSymbolsCounter,
+  InstructionsError,
+  YulpErrorMessage,
+  IngredientsWrapper,
 } from "./AddRecipeForm.styled";
 import ActiveButton from "components/Buttons/ActiveButton";
 import TrashButton from "components/Buttons/TrashButton";
@@ -171,6 +174,7 @@ const AddRecipeForm = () => {
                 {...register("title")}
               />
             </RecipeNameContainer>
+            {errors.description && <YulpErrorMessage>{errors.title.message}</YulpErrorMessage>}
           </FormTitles>
 
           <FormFields>
@@ -186,8 +190,10 @@ const AddRecipeForm = () => {
                 type="text"
                 {...register("description")}
               />
-
               <InputSymbolsCounter>{`${descriptionLength}/200`}</InputSymbolsCounter>
+              {errors.description && (
+                <YulpErrorMessage>{errors.description.message}</YulpErrorMessage>
+              )}
             </DescriptionContainer>
 
             <CookingCategory>
@@ -208,7 +214,7 @@ const AddRecipeForm = () => {
               <AreaSelector />
             </div>
 
-            <RecipeIngredientsContainer>
+            <IngredientsWrapper>
               <SectionTitle label={"Ingredients"} />
 
               <IngredientSelector
@@ -218,20 +224,23 @@ const AddRecipeForm = () => {
               // setSelectedIngredients={setSelectedIngredients}
               // {...register("ingredients")}
               />
-            </RecipeIngredientsContainer>
+            </IngredientsWrapper>
 
             <InstructionWrapper>
               <SectionTitle label={"Recipe Preparation"} />
 
               <InstructionCounterWrapper>
                 <InstructionContainer
+                  placeholder="Enter recipe"
                   maxLength={200}
                   {...register("instructions")}
                 ></InstructionContainer>
                 <InputSymbolsCounter>{`${instructionsLength}/200`}</InputSymbolsCounter>
               </InstructionCounterWrapper>
 
-              {errors.instructions && <p>{errors.instructions.message}</p>}
+              {errors.instructions && (
+                <YulpErrorMessage>{errors.instructions.message}</YulpErrorMessage>
+              )}
             </InstructionWrapper>
 
             <ButtonsWrapper>

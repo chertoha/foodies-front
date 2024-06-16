@@ -7,8 +7,10 @@ import {
   AddIngredientButton,
   IngredienQuantity,
   IngredientDescription,
+  IngredientQuantity,
   IngredientsSelectorWrapper,
   SelectorIngredientsContainer,
+  YulpErrorMessage,
 } from "./AddRecipeForm.styled";
 
 // import CustomSelect from "components/CustomSelect";
@@ -115,24 +117,11 @@ const IngredientSelector = () => {
             onChange={setIngredient}
             placeholder="Add the ingredient"
           />
-
-          {/* <CustomSelect
-            options={ingredients.result.map(({ name }) => ({
-              value: name,
-              label: name,
-            }))}
-            value={selectedIngredient}
-            onChange={handleIngredientChange}
-            placeholder="Add the ingredient"
-          /> */}
         </SelectorIngredientsContainer>
 
-        <IngredienQuantity
+        <IngredientQuantity
           type="text"
-          // id="quantityInput"
           placeholder="Enter quantity"
-          // value={quantity}
-          // onChange={handleQuantityChange}
           value={measure}
           onChange={e => {
             setMeasure(e.target.value);
@@ -140,11 +129,10 @@ const IngredientSelector = () => {
         />
       </IngredientDescription>
 
-      {errors.ingredients && <span style={{ color: "red" }}>{errors.ingredients.message}</span>}
+      {errors.ingredients && <YulpErrorMessage>{errors.ingredients.message}</YulpErrorMessage>}
 
       <AddIngredientButton
         type="button"
-        // onClick={handleAddIngredient}
         onClick={add}
       >
         Add ingredient
@@ -154,34 +142,12 @@ const IngredientSelector = () => {
         />
       </AddIngredientButton>
       <IngredientsList>
-        {/* {selectedIngredients.map(ingredient => (
-          <IngredientCard
-            key={ingredient._id}
-            ingredient={ingredient}
-            onDelete={handleDeleteIngredient}
-          />
-        ))} */}
-
         {fields.map((ingredient, index) => (
           <IngredientCard
             key={ingredient.name}
             ingredient={{ ...ingredient, img: getIngredientImage(ingredient.name) }}
             onDelete={() => remove(index)}
           />
-          // <li key={name}>
-          //   {name}: {measure}
-          //   <img
-          //     src={getIngredientImage(name)}
-          //     alt=""
-          //   />
-          //   <button
-          //     type="button"
-          //     style={{ marginLeft: "20px" }}
-          //     onClick={() => remove(index)}
-          //   >
-          //     del
-          //   </button>
-          // </li>
         ))}
       </IngredientsList>
     </IngredientsSelectorWrapper>
