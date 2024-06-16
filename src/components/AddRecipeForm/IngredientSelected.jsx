@@ -65,6 +65,7 @@ const IngredientSelector = () => {
   const {
     formState: { errors },
     setError,
+    clearErrors,
   } = useFormContext();
 
   const { fields, append, remove } = useFieldArray({
@@ -85,7 +86,8 @@ const IngredientSelector = () => {
       setIngredient("");
       setMeasure("");
 
-      setError("ingredients", {});
+      // setError("ingredients", {});
+      clearErrors("ingredients");
     } catch (err) {
       setError("ingredients", { type: "custom", message: err.errors[0] });
     }
