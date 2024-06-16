@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+
 import { useAuth } from "../../hooks/useAuth";
 import { useFollowUserMutation, useUnfollowUserMutation } from "../../redux/users/usersApi";
 
@@ -15,8 +17,8 @@ import {
 } from "./UserInfo.styled";
 
 const UserInfo = ({ userId, avatar, name, recipesCount, followersCount }) => {
+  const { id } = useParams();
   const { user } = useAuth();
-
   const [isFollowing, setIsFollowing] = useState(false);
   const [followUser] = useFollowUserMutation();
   const [unfollowUser] = useUnfollowUserMutation();
@@ -28,17 +30,17 @@ const UserInfo = ({ userId, avatar, name, recipesCount, followersCount }) => {
     }
   }, [user, userId]);
 
-  const handleFollowClick = async () => {
+  const handleFollowClick = async followerId => {
     if (isFollowing) {
       try {
-        await unfollowUser(userId).unwrap();
+        await unfollowUser(followerId).unwrap();
         setIsFollowing(false);
       } catch (error) {
         console.error("Failed to unfollow user:", error);
       }
     } else {
       try {
-        await followUser(userId).unwrap();
+        await followUser(followerId).unwrap();
         setIsFollowing(true);
       } catch (error) {
         console.error("Failed to follow user:", error);
@@ -67,7 +69,7 @@ const UserInfo = ({ userId, avatar, name, recipesCount, followersCount }) => {
       </UserCard>
       <ActiveButton
         label={isFollowing ? "Unfollow" : "Follow"}
-        onClick={handleFollowClick}
+        onClick={() => handleFollowClick(id)}
       />
     </UserInfoWrapp>
   );

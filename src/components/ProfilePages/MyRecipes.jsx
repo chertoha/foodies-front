@@ -3,6 +3,7 @@ import { useState } from "react";
 
 import { useGetOwnRecipesQuery } from "../../redux/recipes/recipesApi";
 
+import Loader from "../Loader/Loader";
 import Paginator from "../Paginator/Paginator";
 import SubTitle from "../SubTitle/SubTitle";
 import UserPageListItems from "../UserPageListItems/UserPageListItems";
@@ -28,14 +29,15 @@ const MyRecipes = () => {
     limit: itemsPerPage,
   });
 
-  if (isFetchingMyRecipes) return <div>Loading...</div>;
+  // if (isFetchingMyRecipes) return <div>Loading...</div>;
   if (errorMyRecipes) return <div>Error loading recipes.</div>;
   if (!data) return null;
 
-  // console.log("MyRecipes", data);
   const totalPages = Math.ceil(data.total / itemsPerPage);
+
   return (
     <>
+      {isFetchingMyRecipes && <Loader />}
       {data.result.length > 0 ? (
         <>
           <UserPageListItems
