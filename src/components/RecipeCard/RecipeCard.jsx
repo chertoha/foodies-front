@@ -5,6 +5,7 @@ import {
   Actions,
   TitleCardWrapper,
   Text,
+  ImageWrapper,
 } from "./RecipeCard.styled";
 import AvatarButton from "../Buttons/AvatarButton/AvatarButton";
 import ArrowButton from "../Buttons/ArrowButton/ArrowButton";
@@ -15,11 +16,13 @@ import HeartButton from "components/Buttons/HeartButton";
 const RecipeCard = ({ recipe, author, isAuthenticated }) => {
   return (
     <CardWrapper>
-      <Image
-        loading="lazy"
-        src={recipe.thumb}
-        alt={recipe.title}
-      />
+      <ImageWrapper>
+        <Image
+          loading="lazy"
+          src={recipe.thumb}
+          alt={recipe.title}
+        />
+      </ImageWrapper>
       <TitleCardWrapper>
         <SectionTitle label={recipe.title} />
       </TitleCardWrapper>
