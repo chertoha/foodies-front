@@ -18,14 +18,23 @@ import {
   ImageBigStyled,
 } from "./Hero.styled";
 
-import heroImageSmallMobile from "../../assets/images/hero/hero-image1-mobile.png";
-import heroImageSmallMobile2x from "../../assets/images/hero/hero-image1-mobile@2x.png";
-import heroImageSmallTablet from "../../assets/images/hero/hero-image1-tablet.png";
-import heroImageSmallTablet2x from "../../assets/images/hero/hero-image1-tablet@2x.png";
-import heroImageBigMobile from "../../assets/images/hero/hero-image2-mobile.png";
-import heroImageBigMobile2x from "../../assets/images/hero/hero-image2-mobile@2x.png";
-import heroImageBigTablet from "../../assets/images/hero/hero-image2-tablet.png";
-import heroImageBigTablet2x from "../../assets/images/hero/hero-image2-tablet@2x.png";
+// import heroImageSmallMobile from "../../assets/images/hero/hero-image1-mobile.png";
+// import heroImageSmallMobile2x from "../../assets/images/hero/hero-image1-mobile@2x.png";
+// import heroImageSmallTablet from "../../assets/images/hero/hero-image1-tablet.png";
+// import heroImageSmallTablet2x from "../../assets/images/hero/hero-image1-tablet@2x.png";
+// import heroImageBigMobile from "../../assets/images/hero/hero-image2-mobile.png";
+// import heroImageBigMobile2x from "../../assets/images/hero/hero-image2-mobile@2x.png";
+// import heroImageBigTablet from "../../assets/images/hero/hero-image2-tablet.png";
+// import heroImageBigTablet2x from "../../assets/images/hero/hero-image2-tablet@2x.png";
+
+import heroImageSmallMobile from "../../assets/images/hero/hero-image1-mobile.jpg";
+import heroImageSmallMobile2x from "../../assets/images/hero/hero-image1-mobile@2x.jpg";
+import heroImageSmallTablet from "../../assets/images/hero/hero-image1-tablet.jpg";
+import heroImageSmallTablet2x from "../../assets/images/hero/hero-image1-tablet@2x.jpg";
+import heroImageBigMobile from "../../assets/images/hero/hero-image2-mobile.jpg";
+import heroImageBigMobile2x from "../../assets/images/hero/hero-image2-mobile@2x.jpg";
+import heroImageBigTablet from "../../assets/images/hero/hero-image2-tablet.jpg";
+import heroImageBigTablet2x from "../../assets/images/hero/hero-image2-tablet@2x.jpg";
 
 const Hero = () => {
   const navagata = useNavigate();
@@ -52,7 +61,7 @@ const Hero = () => {
   return (
     <HeroStyled>
       <TitleStyled>Improve Your Culinary Talents</TitleStyled>
-      <SubtitleStyled as="p">
+      <SubtitleStyled>
         Amazing recipes for beginners in the world of cooking, enveloping you in the aromas and
         tastes of various cuisines.
       </SubtitleStyled>
