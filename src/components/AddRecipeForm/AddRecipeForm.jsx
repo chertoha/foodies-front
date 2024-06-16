@@ -249,10 +249,12 @@ const AddRecipeForm = () => {
                 onClick={() => reset(initialValues)}
               ></TrashButton>
 
-              <ActiveButton
-                label="Publish"
-                type="submit"
-              ></ActiveButton>
+              <div>
+                <ActiveButton
+                  label="Publish"
+                  type="submit"
+                ></ActiveButton>
+              </div>
             </ButtonsWrapper>
           </FormFields>
         </FieldsInput>
