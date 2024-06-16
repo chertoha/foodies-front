@@ -1,4 +1,5 @@
-import "normalize.css";
+// import "normalize.css";
+import "./styles/index.css";
 import "react-toastify/dist/ReactToastify.css";
 import reportWebVitals from "./reportWebVitals";
 import React from "react";

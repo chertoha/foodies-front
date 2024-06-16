@@ -10,7 +10,6 @@ import MainTitle from "components/MainTitle/MainTitle";
 import SubTitle from "components/SubTitle";
 import UserInfo from "components/UserInfo";
 import MyUserInfo from "../../components/UserInfo/MyUserInfo";
-import Loader from "components/Loader/Loader";
 import ErrorLoading from "components/ErrorLoading/ErrorLoading";
 
 import MyRecipes from "components/ProfilePages/MyRecipes";

@@ -67,8 +67,8 @@ const AddRecipeForm = () => {
 
   const methods = useForm({
     resolver: yupResolver(addRecipeSchema),
-    // defaultValues: initialValues,
-    defaultValues: _testInitialValues,
+    defaultValues: initialValues,
+    // defaultValues: _testInitialValues,
     // defaultValues: async () => storage.get() || initialValues,
   });
 

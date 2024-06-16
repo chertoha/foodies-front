@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 import {
   useFollowUserMutation,
-  useGetCurrentUserQuery,
+  // useGetCurrentUserQuery,
   useUnfollowUserMutation,
 } from "../../redux/users/usersApi";
 import UserAvatar from "components/UserAvatar/UserAvatar";
 import FollowerButton from "components/Buttons/FollowerButton/FollowerButton";
 import sprite from "assets/images/icons/sprite.svg";
-import ErrorLoading from "../ErrorLoading/ErrorLoading";
+// import ErrorLoading from "../ErrorLoading/ErrorLoading";
 
 import {
   FollowerList,
