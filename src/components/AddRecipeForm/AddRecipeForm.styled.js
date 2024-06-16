@@ -115,10 +115,12 @@ export const IngredientsWrapper = styled.div`
     display: flex;
     flex-direction: column;
     gap: 8px;
+    margin-top: 20px;
   }
   display: flex;
   flex-direction: column;
   gap: 16px;
+  margin-top: 60px;
 `;
 
 export const ImageField = styled.div`
@@ -262,8 +264,12 @@ export const YulpErrorMessage = styled.p`
 `;
 
 export const ButtonsWrapper = styled.div`
+  @media screen and (max-width: 767px) {
+    margin-top: 32px;
+  }
   display: flex;
   gap: 8px;
+  margin-top: 80px;
   /* width: 100%; */
 `;
 export const SelectorCategories = styled.div`
@@ -343,7 +349,9 @@ export const SelectorAreas = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
+  margin-top: 20px;
   @media screen and (min-width: 768px) {
     max-width: 315px;
+    margin-top: 60px;
   }
 `;
