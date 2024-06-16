@@ -52,14 +52,14 @@ const routes = [
           />
         ),
       },
-      {
-        path: `/test`,
-        element: (
-          <div style={{ padding: "200px 100px" }}>
-            <TempAddForm />
-          </div>
-        ),
-      },
+      // {
+      //   path: `/test`,
+      //   element: (
+      //     <div style={{ padding: "200px 100px" }}>
+      //       <TempAddForm />
+      //     </div>
+      //   ),
+      // },
       {
         path: "*",
         element: <NotFoundPage />,
