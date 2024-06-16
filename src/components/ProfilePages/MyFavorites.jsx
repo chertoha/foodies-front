@@ -1,10 +1,10 @@
-// import list from "pages/UserPage/list.json";
 import { useGetFavoriteRecipesQuery } from "../../redux/recipes/recipesApi";
 
 import { useWindowSize } from "../../hooks/useWindowSize";
 import { useState } from "react";
 import Paginator from "../Paginator/Paginator";
 
+import Loader from "../Loader/Loader";
 import SubTitle from "../SubTitle/SubTitle";
 import UserPageListItems from "../UserPageListItems/UserPageListItems";
 import { SubTitleWrapper } from "./ProfilePages.styled";
@@ -28,16 +28,15 @@ const MyFavorites = () => {
     limit: itemsPerPage,
   });
 
-  if (isFetchingMyFavorites) return <div>Loading...</div>;
+  // if (isFetchingMyFavorites) return <div>Loading...</div>;
   if (errorMyFavorites) return <div>Error loading My Favorites.</div>;
   if (!data) return null;
-
-  // console.log("MyFavorites", data.result);
 
   const totalPages = Math.ceil(data.total / itemsPerPage);
 
   return (
     <>
+      {isFetchingMyFavorites && <Loader />}
       {data.result.length > 0 ? (
         <>
           <UserPageListItems
