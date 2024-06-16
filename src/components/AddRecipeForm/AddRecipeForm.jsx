@@ -1,7 +1,6 @@
-import { useState } from "react";
-import { useForm, useFieldArray, _set, FormProvider } from "react-hook-form";
+import { useForm, FormProvider } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { addRecipeSchema, schema } from "./yupValidation";
+import { addRecipeSchema } from "./yupValidation";
 import { useCreateRecipeMutation } from "../../redux/recipes/recipesApi";
 import {
   FieldsInput,
@@ -31,6 +30,12 @@ import { Counter } from "components/Counter/Counter";
 import AreaSelector from "./AreaSelector";
 import { toast } from "react-toastify";
 import Loader from "components/Loader";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "hooks/useAuth";
+import { ROUTES } from "config/router";
+// import { LocalStorage } from "services/storage";
+
+// const storage = new LocalStorage("recipe_form_data");
 
 const initialValues = {
   title: "",
@@ -43,7 +48,7 @@ const initialValues = {
   time: 1,
 };
 
-const testInitialValues = {
+const _testInitialValues = {
   thumb: null,
   title: "Recipe-Anatolii-1",
   description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
@@ -56,10 +61,15 @@ const testInitialValues = {
 };
 
 const AddRecipeForm = () => {
+  const { user } = useAuth();
+  const navigate = useNavigate();
+  const [createRecipe, { isLoading }] = useCreateRecipeMutation();
+
   const methods = useForm({
     resolver: yupResolver(addRecipeSchema),
-    // defaultValues: initialValues,
-    defaultValues: testInitialValues,
+    defaultValues: initialValues,
+    // defaultValues: _testInitialValues,
+    // defaultValues: async () => storage.get() || initialValues,
   });
 
   const {
@@ -70,6 +80,12 @@ const AddRecipeForm = () => {
     formState: { errors },
   } = methods;
 
+  // const watchFields = watch();
+
+  // useEffect(() => {
+  //   storage.set(watchFields);
+  // }, [watchFields]);
+
   // const { fields, append, _remove } = useFieldArray({
   //   control,
   //   name: "ingredients",
@@ -79,8 +95,6 @@ const AddRecipeForm = () => {
   // const [selectedIngredients, setSelectedIngredients] = useState([]);
   // const [preview, setPreview] = useState(null);
   // const { data } = useGetCategoriesQuery({ limit: 1111 });
-
-  const [createRecipe, { isLoading }] = useCreateRecipeMutation();
 
   const onSubmit = async data => {
     // console.log({ ...data, cookTime: counter, ingredients: selectedIngredients, photo: preview });
@@ -103,7 +117,7 @@ const AddRecipeForm = () => {
 
       await createRecipe(formData).unwrap();
       reset();
-
+      navigate(`${ROUTES.USER}/${user._id}`);
       // const response = await axiosBaseQuery("/api/recipes", formData);
       // if (response.status === 200) {
       //   // Перенаправлення на сторінку користувача

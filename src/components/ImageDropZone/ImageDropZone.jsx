@@ -28,7 +28,7 @@ const ImageDropZone = ({ name }) => {
   } = useFormContext();
 
   const watchImage = watch(name);
-  console.log(watchImage);
+
   useEffect(() => {
     if (!watchImage) setPreview(null);
   }, [name, setValue, watchImage]);
