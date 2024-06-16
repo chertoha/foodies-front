@@ -14,7 +14,7 @@ const FavoriteWrapper = ({ recipeId, Button }) => {
   const { user } = useAuth();
   const { revalidateUserData } = useRevalidateUser();
 
-  const isChecked = user.favorites?.includes(recipeId);
+  const isChecked = user?.favorites?.includes(recipeId);
 
   const onClick = async () => {
     try {

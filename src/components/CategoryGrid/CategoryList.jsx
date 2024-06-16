@@ -47,7 +47,7 @@ const CategoryList = ({
   }
 
   return (
-    <List>
+    <List role="list">
       {rows.map((row, i) => (
         <Row
           $template={templateIndexes[i]}

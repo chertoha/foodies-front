@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useGetIngredientsQuery } from "../../redux/ingredients/ingredientsApi";
 import IngredientCard from "./IngredientSelectedCard";
 import SpriteIcon from "components/UIKit/SpriteIcon";
@@ -67,7 +67,17 @@ const IngredientSelector = () => {
     formState: { errors },
     setError,
     clearErrors,
+    watch,
   } = useFormContext();
+
+  const ingredientsWatch = watch("ingredients");
+
+  useEffect(() => {
+    if (ingredientsWatch.length === 0) {
+      setIngredient("");
+      setMeasure("");
+    }
+  }, [ingredientsWatch]);
 
   const { fields, append, remove } = useFieldArray({
     name: "ingredients",
