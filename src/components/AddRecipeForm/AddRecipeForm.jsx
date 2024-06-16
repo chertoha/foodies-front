@@ -54,7 +54,7 @@ const initialValues = {
 
 const _testInitialValues = {
   thumb: null,
-  title: "Recipe-Anatolii-1",
+  title: "Recipe-Anton-1",
   description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
   time: 13,
   category: "Seafood",
@@ -112,7 +112,7 @@ const AddRecipeForm = () => {
         if (key === "ingredients") {
           data[key].forEach((ingredient, index) => {
             formData.append(`ingredients[${index}][name]`, ingredient.name);
-            formData.append(`ingredients[${index}][measure]`, ingredient.quantity);
+            formData.append(`ingredients[${index}][measure]`, ingredient.measure);
           });
         } else {
           formData.append(key, data[key]);

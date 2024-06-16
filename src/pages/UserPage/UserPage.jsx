@@ -10,7 +10,6 @@ import MainTitle from "components/MainTitle/MainTitle";
 import SubTitle from "components/SubTitle";
 import UserInfo from "components/UserInfo";
 import MyUserInfo from "../../components/UserInfo/MyUserInfo";
-import Loader from "components/Loader/Loader";
 import ErrorLoading from "components/ErrorLoading/ErrorLoading";
 
 import MyRecipes from "components/ProfilePages/MyRecipes";
@@ -60,18 +59,20 @@ const UserPage = () => {
   const {
     data: dataUserInfo,
     error: errorUserInfo,
-    isFetching: isFetchingUserInfo,
+    // isFetching: isFetchingUserInfo,
   } = useGetUserInfoQuery(id);
 
-  // if (isFetchingUserInfo) return <div>Loading...</div>;
+  // if (isFetchingUserInfo) return <Loader />;
   // if (errorUserInfo) return <div>Error loading UserPage.</div>;
   if (errorUserInfo) return <ErrorLoading />;
   if (!dataUserInfo) return null;
 
+  // const dataUserInfo = user;
+  // console.log(dataUserInfo);
   return (
     <SectionWrapper>
       <Container>
-        {isFetchingUserInfo && <Loader />}
+        {/* {isFetchingUserInfo && <Loader />} */}
         <BreadcrumbsWrapp>
           <Breadcrumbs current={"Profile"} />
         </BreadcrumbsWrapp>
@@ -93,13 +94,20 @@ const UserPage = () => {
               <MyUserInfo
                 isCurrentUserProfile={isCurrentUserProfile}
                 userId={user._id}
-                avatar={dataUserInfo.avatar}
-                name={dataUserInfo.name}
-                email={dataUserInfo.email}
-                recipesCount={dataUserInfo.recipesCount}
-                favoritesCount={dataUserInfo.favoritesCount}
-                followersCount={dataUserInfo.followersCount}
-                followingCount={dataUserInfo.followingCount}
+                // avatar={dataUserInfo.avatar}
+                // name={dataUserInfo.name}
+                // email={dataUserInfo.email}
+                // recipesCount={dataUserInfo.recipesCount}
+                // favoritesCount={dataUserInfo.favoritesCount}
+                // followersCount={dataUserInfo.followersCount}
+                // followingCount={dataUserInfo.followingCount}
+                avatar={user.avatar}
+                name={user.name}
+                email={user.email}
+                recipesCount={user.recipesCount}
+                favoritesCount={user.favoritesCount}
+                followersCount={user.followersCount}
+                followingCount={user.followingCount}
               />
             </>
           ) : (

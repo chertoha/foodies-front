@@ -77,6 +77,8 @@ const RecipesComponent = ({ category }) => {
   if (!recipesData) return null;
 
   const totalPages = Math.ceil(recipesData.total / itemsPerPage);
+
+  // console.log(recipesData);
   return (
     <div>
       <div>
@@ -126,7 +128,13 @@ const RecipesComponent = ({ category }) => {
                           ingredients: recipe.ingredients,
                           isFavorite: recipe.isFavorite || false,
                         }}
-                        author={{ name: recipe.owner.name }}
+                        // author={{ name: recipe.owner.name }}
+                        // author={{ name: recipe.owner }}
+                        author={{
+                          id: recipe.owner._id,
+                          name: recipe.owner.name,
+                          avatar: recipe.owner.avatar,
+                        }}
                         onSignIn={() => console.log("Sign in clicked")}
                         onProfile={authorId => console.log(`Profile of author ${authorId} clicked`)}
                         onToggleFavorite={recipeId =>
