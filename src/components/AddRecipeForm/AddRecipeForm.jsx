@@ -116,7 +116,7 @@ const AddRecipeForm = () => {
       });
 
       await createRecipe(formData).unwrap();
-      reset();
+      reset(initialValues);
       navigate(`${ROUTES.USER}/${user._id}`);
       // const response = await axiosBaseQuery("/api/recipes", formData);
       // if (response.status === 200) {
@@ -238,7 +238,7 @@ const AddRecipeForm = () => {
               <TrashButton
                 type="button"
                 // onClick={handleReset}
-                onClick={reset}
+                onClick={() => reset(initialValues)}
               ></TrashButton>
 
               <ActiveButton

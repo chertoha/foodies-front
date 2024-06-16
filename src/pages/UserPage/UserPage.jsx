@@ -1,5 +1,5 @@
 import { Outlet, useParams } from "react-router-dom";
-import { useState } from "react";
+import { Suspense, lazy, useState } from "react";
 
 import { useGetUserInfoQuery } from "../../redux/users/usersApi";
 import { useAuth } from "hooks/useAuth";
@@ -12,14 +12,6 @@ import UserInfo from "components/UserInfo";
 import MyUserInfo from "../../components/UserInfo/MyUserInfo";
 import ErrorLoading from "components/ErrorLoading/ErrorLoading";
 
-import MyRecipes from "components/ProfilePages/MyRecipes";
-import UserRecipes from "components/ProfilePages/UserRecipes";
-import MyFavorites from "components/ProfilePages/MyFavorites";
-import Followers from "components/ProfilePages/Followers";
-import Following from "components/ProfilePages/Following";
-
-// import { toast } from "react-toastify";
-
 import {
   SectionWrapper,
   BreadcrumbsWrapp,
@@ -29,6 +21,36 @@ import {
   TabsList,
   TabsButton,
 } from "./UserPage.styled";
+
+// import MyRecipes from "components/ProfilePages/MyRecipes";
+// import UserRecipes from "components/ProfilePages/UserRecipes";
+// import MyFavorites from "components/ProfilePages/MyFavorites";
+// import Followers from "components/ProfilePages/Followers";
+// import Following from "components/ProfilePages/Following";
+
+// import { toast } from "react-toastify";
+
+//  {
+//    isCurrentUserProfile ? (
+//      <>
+//        {allActiveTab === "My recipes" && <MyRecipes />}
+//        {allActiveTab === "My favorites" && <MyFavorites />}
+//        {allActiveTab === "Followers" && <Followers id={id} />}
+//        {allActiveTab === "Following" && <Following />}
+//      </>
+//    ) : (
+//      <>
+//        {lessActiveTab === "Recipes" && <UserRecipes id={id} />}
+//        {lessActiveTab === "Followers" && <Followers id={id} />}
+//      </>
+//    );
+//  }
+
+const MyRecipes = lazy(() => import("../../components/ProfilePages/MyRecipes"));
+const MyFavorites = lazy(() => import("../../components/ProfilePages/MyFavorites"));
+const Followers = lazy(() => import("../../components/ProfilePages/Followers"));
+const Following = lazy(() => import("../../components/ProfilePages/Following"));
+const UserRecipes = lazy(() => import("../../components/ProfilePages/UserRecipes"));
 
 const allTabs = [
   { id: 1, tab: "My recipes", label: "My recipes" },
@@ -154,21 +176,22 @@ const UserPage = () => {
               </>
             )}
 
-            {isCurrentUserProfile ? (
-              <>
-                {allActiveTab === "My recipes" && <MyRecipes />}
-                {allActiveTab === "My favorites" && <MyFavorites />}
-                {allActiveTab === "Followers" && <Followers id={id} />}
-                {allActiveTab === "Following" && <Following />}
-              </>
-            ) : (
-              <>
-                {lessActiveTab === "Recipes" && <UserRecipes id={id} />}
-                {lessActiveTab === "Followers" && <Followers id={id} />}
-              </>
-            )}
-
-            <Outlet />
+            <Suspense>
+              {isCurrentUserProfile ? (
+                <>
+                  {allActiveTab === "My recipes" && <MyRecipes />}
+                  {allActiveTab === "My favorites" && <MyFavorites />}
+                  {allActiveTab === "Followers" && <Followers id={id} />}
+                  {allActiveTab === "Following" && <Following />}
+                </>
+              ) : (
+                <>
+                  {lessActiveTab === "Recipes" && <UserRecipes id={id} />}
+                  {lessActiveTab === "Followers" && <Followers id={id} />}
+                </>
+              )}
+            </Suspense>
+            {/* <Outlet /> */}
           </ListWrapp>
         </ProfileWrapp>
       </Container>
