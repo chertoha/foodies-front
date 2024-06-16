@@ -100,7 +100,7 @@ export const ImageUploadBox = styled("div")`
 
 export const ImageUploadBoxText = styled("p")`
   color: #050505;
-  font-family: Mulish;
+  /* font-family: Mulish; */
   font-size: 16px;
   font-style: normal;
   font-weight: 500;

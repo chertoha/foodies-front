@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { body1 } from "styles/atomic";
 
 export const StyledCounter = styled.div`
   display: flex;
@@ -27,6 +28,8 @@ export const StyledButtonWrapper = styled.div`
 `;
 
 export const StyledCounterValue = styled.input`
+  ${body1()};
+
   width: ${p => p.width}px;
   border: none;
   text-align: right;

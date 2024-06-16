@@ -1,6 +1,6 @@
 import theme from "styles/theme";
 import styled, { css } from "styled-components";
-import { pt, px } from "styles/atomic";
+import { pb, pt, px } from "styles/atomic";
 
 export const StyledHeader = styled("header")`
   position: relative;
@@ -129,6 +129,8 @@ export const AuthBarWrapper = styled("div")`
 
 export const HeroWrapper = styled("div")`
   position: absolute;
+  overflow: hidden;
+  ${pb("20")}
 
   z-index: 10;
   top: 194px;
