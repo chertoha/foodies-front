@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import { pb, pt } from "styles/atomic";
+import { pb, pt, body1 } from "styles/atomic";
+import theme from "styles/theme";
 
 export const AddRecipePageContainer = styled.div`
   ${pt(16)};
@@ -24,5 +25,23 @@ export const AddRecipePageTitleContainer = styled.div`
   @media screen and (min-width: 768px) {
     gap: 20px;
     margin-top: 40px;
+  }
+`;
+export const AddRecipePageSubtitleContainer = styled.p`
+  ${body1()};
+  color: #050505cc;
+  ${theme.mq.mobileOnly} {
+  }
+
+  ${theme.mq.tablet} {
+  }
+
+  ${theme.mq.desktop} {
+  }
+  @media screen and (min-width: 768px) {
+    width: 443px;
+    font-size: 16px;
+    line-height: 1.5;
+    letter-spacing: -0.32px;
   }
 `;

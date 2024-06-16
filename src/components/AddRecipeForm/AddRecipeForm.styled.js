@@ -92,7 +92,7 @@ export const Form = styled.form`
   @media screen and (min-width: 768px) {
     gap: 80px;
   }
-  @media screen and (min-width: 768px) and (max-width: 1440px) {
+  @media screen and (min-width: 768px) and (max-width: 1439px) {
     display: inline-flex;
     flex-direction: column;
     align-items: flex-start;
@@ -277,7 +277,7 @@ export const SelectorCategories = styled.div`
   display: flex;
   flex-direction: column;
   gap: 8px;
-  @media screen and (min-width: 769px) {
+  @media screen and (min-width: 768px) {
     gap: 16px;
     width: 315px;
   }

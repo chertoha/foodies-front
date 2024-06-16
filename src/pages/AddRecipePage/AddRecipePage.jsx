@@ -5,7 +5,11 @@ import MainTitle from "components/MainTitle";
 import SubTitle from "components/SubTitle";
 import Breadcrumbs from "components/UIKit/Breadcrumbs";
 import AddRecipeForm from "components/AddRecipeForm/AddRecipeForm";
-import { AddRecipePageContainer, AddRecipePageTitleContainer } from "./AddRecipePage.styled";
+import {
+  AddRecipePageContainer,
+  AddRecipePageSubtitleContainer,
+  AddRecipePageTitleContainer,
+} from "./AddRecipePage.styled";
 
 const AddRecipePage = () => {
   // const methods = useForm({
@@ -22,11 +26,10 @@ const AddRecipePage = () => {
         <Breadcrumbs current={"Add Recipe"} />
         <AddRecipePageTitleContainer>
           <MainTitle label={"Add Recipe"} />
-          <SubTitle
-            label={
-              "Reveal your culinary art, share your favorite recipe and create gastronomic masterpieces with us."
-            }
-          />
+          <AddRecipePageSubtitleContainer>
+            Reveal your culinary art, share your favorite recipe and create gastronomic masterpieces
+            with us.
+          </AddRecipePageSubtitleContainer>
         </AddRecipePageTitleContainer>
         <AddRecipeForm />
       </AddRecipePageContainer>
