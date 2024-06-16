@@ -52,7 +52,7 @@ const Hero = () => {
   return (
     <HeroStyled>
       <TitleStyled>Improve Your Culinary Talents</TitleStyled>
-      <SubtitleStyled>
+      <SubtitleStyled as="p">
         Amazing recipes for beginners in the world of cooking, enveloping you in the aromas and
         tastes of various cuisines.
       </SubtitleStyled>

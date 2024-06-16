@@ -54,19 +54,19 @@ const Category = ({ onSelectCategory }) => {
 
 export default Category;
 
-export const CategoryTest = ({ onSelectCategory }) => {
-  const categories = ["Seafood", "Dessert", "Breakfast"];
+// export const CategoryTest = ({ onSelectCategory }) => {
+//   const categories = ["Seafood", "Dessert", "Breakfast"];
 
-  return (
-    <div>
-      {categories.map(category => (
-        <button
-          key={category}
-          onClick={() => onSelectCategory(category)}
-        >
-          {category}
-        </button>
-      ))}
-    </div>
-  );
-};
+//   return (
+//     <div>
+//       {categories.map(category => (
+//         <button
+//           key={category}
+//           onClick={() => onSelectCategory(category)}
+//         >
+//           {category}
+//         </button>
+//       ))}
+//     </div>
+//   );
+// };

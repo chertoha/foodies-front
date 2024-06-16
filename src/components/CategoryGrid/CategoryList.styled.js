@@ -7,8 +7,8 @@ export const GridContainer = styled.ul`
   gap: 20px;
 `;
 
-// const gridTemplates = ["1fr 1fr 2fr", "1fr 2fr 1fr", "2fr 1fr 1fr"];
-const gridTemplates = ["26% 26% 48%", "26% 48% 26%", "48% 26% 26%"];
+const gridTemplates = ["1fr 1fr 2fr", "1fr 2fr 1fr", "2fr 1fr 1fr"];
+// const gridTemplates = ["26% 26% 48%", "26% 48% 26%", "48% 26% 26%"];
 const gridTemplatesTablet = ["1fr 1fr", "1fr"];
 
 export const List = styled("div")`
