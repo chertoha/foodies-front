@@ -37,7 +37,8 @@ const UserPageListItems = ({ recipes, type, refetchRecipes }) => {
   return (
     <UserPageList>
       {recipes.map(({ _id, thumb, title, description }) => (
-        <UserPageListItem key={title}>
+        // <UserPageListItem key={title}>
+        <UserPageListItem key={_id}>
           <UserPageListImage src={thumb} />
           <SpaceWrapp>
             <UserPageWrappText>

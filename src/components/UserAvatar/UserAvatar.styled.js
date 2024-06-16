@@ -39,7 +39,7 @@ export const InitialsAvatar = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 16px;
+  font-size: 32px;
   color: white;
   font-weight: bold;
   background-color: ${({ color }) => color || "#000"};

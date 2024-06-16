@@ -31,10 +31,14 @@ const RecipeInfo = ({ author, onSignIn }) => {
   }
   const ingredientsData = ingredients.result;
 
+  // console.log("ingredientsData", ingredientsData);
+  console.log("recipe", recipe);
   const recipeIngredients = recipe.ingredients.map(recipeIngredient => {
     const fullIngredient = ingredientsData.find(
-      ingredient => ingredient._id === recipeIngredient.id
+      ingredient =>
+        ingredient._id === recipeIngredient.id || ingredient._id === recipeIngredient._id
     );
+
     return {
       ...recipeIngredient,
       img: fullIngredient ? fullIngredient.img : "",
