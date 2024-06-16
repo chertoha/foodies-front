@@ -22,5 +22,5 @@ export const StyledContainer = styled("div")`
     width: ${theme.breakpoints.desktop};
 
     ${px(20)}
-  } 
+  }
 `;
