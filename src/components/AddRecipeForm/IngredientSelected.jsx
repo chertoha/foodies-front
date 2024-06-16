@@ -5,7 +5,6 @@ import SpriteIcon from "components/UIKit/SpriteIcon";
 import { IngredientsList } from "components/RecipeIngredients/RecipeIngredients.styled";
 import {
   AddIngredientButton,
-  IngredienQuantity,
   IngredientDescription,
   IngredientQuantity,
   IngredientsSelectorWrapper,

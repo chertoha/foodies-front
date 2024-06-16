@@ -2,7 +2,7 @@ import { Controller, useFormContext } from "react-hook-form";
 import { useGetAreasQuery } from "../../redux/areas/areasApi";
 import SectionTitle from "components/SectionTitle";
 import CommonSelect from "components/UIKit/CommonSelect";
-import { SelectorAreas, YulpErrorMessage } from "./AddRecipeForm.styled";
+import { YulpErrorMessage } from "./AddRecipeForm.styled";
 
 const AreaSelector = () => {
   const { data: areas } = useGetAreasQuery();
@@ -17,7 +17,7 @@ const AreaSelector = () => {
   const options = [...areas.map(({ name }) => ({ value: name, label: name }))];
 
   return (
-    <SelectorAreas>
+    <>
       <SectionTitle label="Area" />
 
       <Controller
@@ -33,7 +33,7 @@ const AreaSelector = () => {
         )}
       />
       {errors.area && <YulpErrorMessage>{errors.area.message}</YulpErrorMessage>}
-    </SelectorAreas>
+    </>
   );
 };
 export default AreaSelector;

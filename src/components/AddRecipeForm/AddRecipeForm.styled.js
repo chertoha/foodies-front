@@ -25,8 +25,10 @@ export const IngredientDescription = styled.div`
     gap: 20px;
   }
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
   width: 649px;
+  gap: 20px;
 `;
 
 export const AddIngredientButton = styled.button`
@@ -34,7 +36,7 @@ export const AddIngredientButton = styled.button`
     width: 100%;
     margin-top: 24px;
   }
-  @media screen and (min-width: 768px) and (max-width: 1439px) {
+  @media screen and (min-width: 768px) {
     max-width: 279px;
   }
 
@@ -97,6 +99,9 @@ export const IngredientsSelectorWrapper = styled.div`
     flex-direction: column;
     gap: 20px;
   }
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
 `;
 
 export const IngredientsWrapper = styled.div`
@@ -105,6 +110,9 @@ export const IngredientsWrapper = styled.div`
     flex-direction: column;
     gap: 8px;
   }
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 `;
 
 export const ImageField = styled.div`
@@ -219,7 +227,7 @@ export const InstructionWrapper = styled.div`
   }
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 40px;
 `;
 export const InstructionCounterWrapper = styled.div`
   display: flex;
