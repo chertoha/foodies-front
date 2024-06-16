@@ -18,14 +18,12 @@ import {
   RecipeNameInput,
   FormFields,
   InputSymbolsCounter,
-  InstructionsError,
   YulpErrorMessage,
   IngredientsWrapper,
   SelectorAreas,
 } from "./AddRecipeForm.styled";
 import ActiveButton from "components/Buttons/ActiveButton";
 import TrashButton from "components/Buttons/TrashButton";
-import { RecipeIngredientsContainer } from "components/RecipeIngredients/RecipeIngredients.styled";
 import SectionTitle from "components/SectionTitle";
 import IngredientSelector from "./IngredientSelected";
 import ImageDropZone from "components/ImageDropZone/ImageDropZone";
