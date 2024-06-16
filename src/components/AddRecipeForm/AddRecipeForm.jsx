@@ -1,7 +1,6 @@
-import { useState } from "react";
-import { useForm, useFieldArray, _set, FormProvider } from "react-hook-form";
+import { useForm, FormProvider } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { schema } from "./yupValidation";
+import { addRecipeSchema } from "./yupValidation";
 import { useCreateRecipeMutation } from "../../redux/recipes/recipesApi";
 import {
   FieldsInput,
@@ -17,6 +16,8 @@ import {
   InstructionWrapper,
   RecipeNameContainer,
   RecipeNameInput,
+  FormFields,
+  InputSymbolsCounter,
 } from "./AddRecipeForm.styled";
 import ActiveButton from "components/Buttons/ActiveButton";
 import TrashButton from "components/Buttons/TrashButton";
@@ -27,38 +28,80 @@ import ImageDropZone from "components/ImageDropZone/ImageDropZone";
 import { CategoriesSelector } from "./CategoriesSelector";
 import { Counter } from "components/Counter/Counter";
 import AreaSelector from "./AreaSelector";
+import { toast } from "react-toastify";
+import Loader from "components/Loader";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "hooks/useAuth";
+import { ROUTES } from "config/router";
+// import { LocalStorage } from "services/storage";
+
+// const storage = new LocalStorage("recipe_form_data");
+
+const initialValues = {
+  title: "",
+  description: "",
+  instructions: "",
+  category: "",
+  area: "",
+  ingredients: [],
+  thumb: null,
+  time: 1,
+};
+
+const _testInitialValues = {
+  thumb: null,
+  title: "Recipe-Anatolii-1",
+  description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+  time: 13,
+  category: "Seafood",
+  area: "Irish",
+  ingredients: [{ name: "Olive Oil", measure: "400gr" }],
+  instructions:
+    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt, aliquam rerum corporis quia, ea hic quas recusandae facilis mollitia, rem earum! Adipisci repudiandae enim delenitihil.",
+};
 
 const AddRecipeForm = () => {
-  const methods = useForm({ resolver: yupResolver(schema) });
+  const { user } = useAuth();
+  const navigate = useNavigate();
+  const [createRecipe, { isLoading }] = useCreateRecipeMutation();
+
+  const methods = useForm({
+    resolver: yupResolver(addRecipeSchema),
+    defaultValues: initialValues,
+    // defaultValues: _testInitialValues,
+    // defaultValues: async () => storage.get() || initialValues,
+  });
 
   const {
     register,
     handleSubmit,
-    control,
-    _setValue,
     reset,
     watch,
     formState: { errors },
   } = methods;
 
-  const { fields, append, _remove } = useFieldArray({
-    control,
-    name: "ingredients",
-  });
+  // const watchFields = watch();
 
-  const [counter, setCounter] = useState(1);
-  const [selectedIngredients, setSelectedIngredients] = useState([]);
-  const [preview, setPreview] = useState(null);
+  // useEffect(() => {
+  //   storage.set(watchFields);
+  // }, [watchFields]);
+
+  // const { fields, append, _remove } = useFieldArray({
+  //   control,
+  //   name: "ingredients",
+  // });
+
+  // const [counter, setCounter] = useState(1);
+  // const [selectedIngredients, setSelectedIngredients] = useState([]);
+  // const [preview, setPreview] = useState(null);
   // const { data } = useGetCategoriesQuery({ limit: 1111 });
 
-  const [createRecipe] = useCreateRecipeMutation();
-
-  const onSubmit = data => {
+  const onSubmit = async data => {
     // console.log({ ...data, cookTime: counter, ingredients: selectedIngredients, photo: preview });
 
     // console.log(data.photo[0]);
-    data.ingredients = selectedIngredients;
-    console.log(data);
+    // data.ingredients = selectedIngredients;
+    // console.log(data);
     try {
       const formData = new FormData();
       Object.keys(data).forEach(key => {
@@ -72,25 +115,27 @@ const AddRecipeForm = () => {
         }
       });
 
-      console.log(formData);
-      createRecipe(formData);
-
+      await createRecipe(formData).unwrap();
+      reset();
+      navigate(`${ROUTES.USER}/${user._id}`);
       // const response = await axiosBaseQuery("/api/recipes", formData);
       // if (response.status === 200) {
       //   // Перенаправлення на сторінку користувача
       //   window.location.href = "/user";
       // }
     } catch (error) {
-      alert("Помилка: " + error.message);
+      // alert("Помилка: " + error.message);
+      toast.error(`Error: ${error.message}`);
     }
   };
 
-  const handleReset = () => {
-    reset();
-    setPreview(null);
-    setSelectedIngredients([]);
-    setCounter(1);
-  };
+  // const handleReset = () => {
+  //   reset();
+  //   // setPreview(null);
+  //   // setSelectedIngredients([]);
+  //   // setCounter(1);
+  //   setValue("time", 1);
+  // };
 
   // const handlePhotoChange = e => {
   //   const file = e.target.files[0];
@@ -106,14 +151,16 @@ const AddRecipeForm = () => {
   return (
     <FormProvider {...methods}>
       <Form onSubmit={handleSubmit(onSubmit)}>
+        {isLoading && <Loader />}
         <ImageField>
           <ImageDropZone
-            preview={preview}
-            setPreview={setPreview}
+            // preview={preview}
+            // setPreview={setPreview}
             name="thumb"
-            validation={{ ...register("thumb") }}
+            // validation={{ ...register("thumb") }}
           />
         </ImageField>
+
         <FieldsInput>
           <FormTitles>
             <RecipeNameContainer>
@@ -124,8 +171,12 @@ const AddRecipeForm = () => {
                 {...register("title")}
               />
             </RecipeNameContainer>
+          </FormTitles>
+
+          <FormFields>
             <DescriptionContainer>
               <FieldsInputStyled
+                maxLength={200}
                 $iserror={errors.description}
                 placeholder={
                   !errors.description
@@ -136,59 +187,66 @@ const AddRecipeForm = () => {
                 {...register("description")}
               />
 
-              <p>{`${descriptionLength}/200`}</p>
+              <InputSymbolsCounter>{`${descriptionLength}/200`}</InputSymbolsCounter>
             </DescriptionContainer>
-          </FormTitles>
 
-          <CookingCategory>
-            <CategoriesSelector
-              register={register}
-              errors={errors}
-            />
+            <CookingCategory>
+              <CategoriesSelector
+              // register={register}
+              // errors={errors}
+              />
 
-            <Counter
-              register={register}
-              errors={errors}
-              count={counter}
-              setCount={setCounter}
-            />
-          </CookingCategory>
-          <AreaSelector
-            errors={errors}
-            register={register}
-          />
+              <Counter
+              // register={register}
+              // errors={errors}
+              // count={counter}
+              // setCount={setCounter}
+              />
+            </CookingCategory>
 
-          <RecipeIngredientsContainer>
-            <SectionTitle label={"Ingredients"} />
+            <div>
+              <AreaSelector />
+            </div>
 
-            <IngredientSelector
-              fields={fields}
-              append={append}
-              selectedIngredients={selectedIngredients}
-              setSelectedIngredients={setSelectedIngredients}
-              {...register("ingredients")}
-            />
-          </RecipeIngredientsContainer>
+            <RecipeIngredientsContainer>
+              <SectionTitle label={"Ingredients"} />
 
-          <InstructionWrapper>
-            <SectionTitle label={"Recipe Preparation"} />
-            <InstructionCounterWrapper>
-              <InstructionContainer {...register("instructions")}></InstructionContainer>
-              <p>{`${instructionsLength}/200`}</p>
-            </InstructionCounterWrapper>
-            {errors.instructions && <p>{errors.instructions.message}</p>}
-          </InstructionWrapper>
+              <IngredientSelector
+              // fields={fields}
+              // append={append}
+              // selectedIngredients={selectedIngredients}
+              // setSelectedIngredients={setSelectedIngredients}
+              // {...register("ingredients")}
+              />
+            </RecipeIngredientsContainer>
 
-          <ButtonsWrapper>
-            <TrashButton
-              type="button"
-              onClick={handleReset}
-            ></TrashButton>
-            <ActiveButton
-              label="Publish"
-              type="submit"
-            ></ActiveButton>
-          </ButtonsWrapper>
+            <InstructionWrapper>
+              <SectionTitle label={"Recipe Preparation"} />
+
+              <InstructionCounterWrapper>
+                <InstructionContainer
+                  maxLength={200}
+                  {...register("instructions")}
+                ></InstructionContainer>
+                <InputSymbolsCounter>{`${instructionsLength}/200`}</InputSymbolsCounter>
+              </InstructionCounterWrapper>
+
+              {errors.instructions && <p>{errors.instructions.message}</p>}
+            </InstructionWrapper>
+
+            <ButtonsWrapper>
+              <TrashButton
+                type="button"
+                // onClick={handleReset}
+                onClick={reset}
+              ></TrashButton>
+
+              <ActiveButton
+                label="Publish"
+                type="submit"
+              ></ActiveButton>
+            </ButtonsWrapper>
+          </FormFields>
         </FieldsInput>
       </Form>
     </FormProvider>

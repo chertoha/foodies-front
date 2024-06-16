@@ -1,6 +1,9 @@
 import styled from "styled-components";
 
 export const StyledCounter = styled.div`
+  @media screen and (max-width: 768px) {
+    align-items: flex-start;
+  }
   display: flex;
   justify-content: center;
   align-items: center;
@@ -26,4 +29,11 @@ export const StyledCounterValue = styled.input`
     margin: 0;
   }
   outline: none;
+`;
+
+export const StyledCounterFields = styled.div`
+  display: flex;
+
+  align-items: center;
+  gap: 8px;
 `;

@@ -1,6 +1,6 @@
 import SpriteIcon from "components/UIKit/SpriteIcon";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Controller, useFormContext } from "react-hook-form";
 import { allowedImageMIMETypes } from "utils/allowedImageMimeTypes";
 import {
@@ -14,16 +14,24 @@ import {
   Preview,
 } from "./ImageDropZone.styled";
 
-const ImageDropZone = ({ name, validation, preview, setPreview }) => {
+const ImageDropZone = ({ name }) => {
   const [dragIsOver, setDragIsOver] = useState(false);
+  const [preview, setPreview] = useState(null);
 
   const {
     control,
     setValue,
     setError,
     clearErrors,
+    watch,
     formState: { errors },
   } = useFormContext();
+
+  const watchImage = watch(name);
+
+  useEffect(() => {
+    if (!watchImage) setPreview(null);
+  }, [name, setValue, watchImage]);
 
   const handleFile = file => {
     if (!allowedImageMIMETypes.includes(file.type)) {
@@ -83,7 +91,6 @@ const ImageDropZone = ({ name, validation, preview, setPreview }) => {
               onDrop={handleDrop}
               $isdrag={dragIsOver}
               $disabled={preview}
-              {...validation}
             >
               <ImageUploadBox>
                 <SpriteIcon

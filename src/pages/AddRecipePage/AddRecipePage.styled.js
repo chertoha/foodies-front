@@ -9,3 +9,16 @@ export const AddRecipePageContainer = styled.div`
     ${pb(30)};
   }
 `;
+export const AddRecipePageTitleContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  @media screen and (max-width: 767px) {
+    gap: 16px;
+    margin-top: 32px;
+  }
+  @media screen and (min-width: 768px) {
+    gap: 20px;
+    margin-top: 40px;
+  }
+`;
