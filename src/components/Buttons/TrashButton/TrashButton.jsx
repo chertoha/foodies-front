@@ -1,5 +1,6 @@
 import { ButtonTrash } from "./TrashButton.styled";
 import SpriteIcon from "../../UIKit/SpriteIcon/SpriteIcon";
+import { useFormContext } from "react-hook-form";
 
 const TrashButton = ({ isFavorite, onClick }) => {
   return (

@@ -11,12 +11,12 @@ import {
   SelectorIngredientsContainer,
 } from "./AddRecipeForm.styled";
 
-import CustomSelect from "components/CustomSelect";
+// import CustomSelect from "components/CustomSelect";
 import { useFieldArray, useFormContext } from "react-hook-form";
 import { MEASURE_VALIDATION_RULE, NAME_VALIDATION_RULE } from "./yupValidation";
 import { toast } from "react-toastify";
 import CommonSelect from "components/UIKit/CommonSelect";
-import { ErrorMessage } from "components/ImageDropZone/ImageDropZone.styled";
+// import { ErrorMessage } from "components/ImageDropZone/ImageDropZone.styled";
 
 // const IngredientSelector = ({ selectedIngredients, setSelectedIngredients }) => {
 const IngredientSelector = () => {
@@ -102,7 +102,7 @@ const IngredientSelector = () => {
     return ingredient.img;
   };
 
-  console.log(errors);
+  // console.log(errors);
 
   return (
     <IngredientsSelectorWrapper>

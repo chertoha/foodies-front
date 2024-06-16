@@ -29,27 +29,41 @@ import ImageDropZone from "components/ImageDropZone/ImageDropZone";
 import { CategoriesSelector } from "./CategoriesSelector";
 import { Counter } from "components/Counter/Counter";
 import AreaSelector from "./AreaSelector";
+import { toast } from "react-toastify";
 
 const initialValues = {
-  // ingredients: [{ name: "Olive Oil", measure: "400gr" }],
+  title: "",
+  description: "",
+  instructions: "",
   category: "",
   area: "",
   ingredients: [],
-  // area: "Irish",
   thumb: null,
+  time: 1,
+};
+
+const testInitialValues = {
+  thumb: null,
+  title: "Recipe-Anatolii-1",
+  description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+  time: 13,
+  category: "Seafood",
+  area: "Irish",
+  ingredients: [{ name: "Olive Oil", measure: "400gr" }],
+  instructions:
+    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt, aliquam rerum corporis quia, ea hic quas recusandae facilis mollitia, rem earum! Adipisci repudiandae enim delenitihil.",
 };
 
 const AddRecipeForm = () => {
   const methods = useForm({
     // resolver: yupResolver(addRecipeSchema),
-    defaultValues: initialValues,
+    // defaultValues: initialValues,
+    defaultValues: testInitialValues,
   });
 
   const {
     register,
     handleSubmit,
-    control,
-    _setValue,
     reset,
     watch,
     formState: { errors },
@@ -60,12 +74,12 @@ const AddRecipeForm = () => {
   //   name: "ingredients",
   // });
 
-  const [counter, setCounter] = useState(1);
+  // const [counter, setCounter] = useState(1);
   // const [selectedIngredients, setSelectedIngredients] = useState([]);
   // const [preview, setPreview] = useState(null);
   // const { data } = useGetCategoriesQuery({ limit: 1111 });
 
-  const [createRecipe] = useCreateRecipeMutation();
+  const [createRecipe, { isLoading }] = useCreateRecipeMutation();
 
   const onSubmit = data => {
     // console.log({ ...data, cookTime: counter, ingredients: selectedIngredients, photo: preview });
@@ -73,38 +87,39 @@ const AddRecipeForm = () => {
     // console.log(data.photo[0]);
     // data.ingredients = selectedIngredients;
     console.log(data);
-    // try {
-    //   const formData = new FormData();
-    //   Object.keys(data).forEach(key => {
-    //     if (key === "ingredients") {
-    //       data[key].forEach((ingredient, index) => {
-    //         formData.append(`ingredients[${index}][name]`, ingredient.name);
-    //         formData.append(`ingredients[${index}][measure]`, ingredient.quantity);
-    //       });
-    //     } else {
-    //       formData.append(key, data[key]);
-    //     }
-    //   });
+    try {
+      const formData = new FormData();
+      Object.keys(data).forEach(key => {
+        if (key === "ingredients") {
+          data[key].forEach((ingredient, index) => {
+            formData.append(`ingredients[${index}][name]`, ingredient.name);
+            formData.append(`ingredients[${index}][measure]`, ingredient.quantity);
+          });
+        } else {
+          formData.append(key, data[key]);
+        }
+      });
 
-    //   console.log(formData);
-    //   createRecipe(formData);
+      createRecipe(formData);
 
-    //   // const response = await axiosBaseQuery("/api/recipes", formData);
-    //   // if (response.status === 200) {
-    //   //   // Перенаправлення на сторінку користувача
-    //   //   window.location.href = "/user";
-    //   // }
-    // } catch (error) {
-    //   alert("Помилка: " + error.message);
-    // }
+      // const response = await axiosBaseQuery("/api/recipes", formData);
+      // if (response.status === 200) {
+      //   // Перенаправлення на сторінку користувача
+      //   window.location.href = "/user";
+      // }
+    } catch (error) {
+      // alert("Помилка: " + error.message);
+      toast.error(`Error: ${error.message}`);
+    }
   };
 
-  const handleReset = () => {
-    reset();
-    // setPreview(null);
-    // setSelectedIngredients([]);
-    setCounter(1);
-  };
+  // const handleReset = () => {
+  //   reset();
+  //   // setPreview(null);
+  //   // setSelectedIngredients([]);
+  //   // setCounter(1);
+  //   setValue("time", 1);
+  // };
 
   // const handlePhotoChange = e => {
   //   const file = e.target.files[0];
@@ -164,10 +179,10 @@ const AddRecipeForm = () => {
               />
 
               <Counter
-                register={register}
-                errors={errors}
-                count={counter}
-                setCount={setCounter}
+              // register={register}
+              // errors={errors}
+              // count={counter}
+              // setCount={setCounter}
               />
             </CookingCategory>
 
@@ -201,7 +216,8 @@ const AddRecipeForm = () => {
             <ButtonsWrapper>
               <TrashButton
                 type="button"
-                onClick={handleReset}
+                // onClick={handleReset}
+                onClick={reset}
               ></TrashButton>
 
               <ActiveButton
