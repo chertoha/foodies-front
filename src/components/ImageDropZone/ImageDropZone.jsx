@@ -1,6 +1,6 @@
 import SpriteIcon from "components/UIKit/SpriteIcon";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Controller, useFormContext } from "react-hook-form";
 import { allowedImageMIMETypes } from "utils/allowedImageMimeTypes";
 import {
@@ -23,8 +23,15 @@ const ImageDropZone = ({ name }) => {
     setValue,
     setError,
     clearErrors,
+    watch,
     formState: { errors },
   } = useFormContext();
+
+  const watchImage = watch(name);
+  console.log(watchImage);
+  useEffect(() => {
+    if (!watchImage) setPreview(null);
+  }, [name, setValue, watchImage]);
 
   const handleFile = file => {
     if (!allowedImageMIMETypes.includes(file.type)) {

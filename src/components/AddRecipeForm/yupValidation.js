@@ -1,7 +1,7 @@
 import * as yup from "yup";
 
-export const NAME_VALIDATION_RULE = yup.string().required("Ingredient field required");
-export const MEASURE_VALIDATION_RULE = yup.string().required("Measure field required");
+export const NAME_VALIDATION_RULE = yup.string().required("Ingredient field is required");
+export const MEASURE_VALIDATION_RULE = yup.string().required("Measure field is required");
 
 export const addRecipeSchema = yup.object({
   thumb: yup.mixed().required("Photo is required"),
@@ -26,7 +26,7 @@ export const addRecipeSchema = yup.object({
     .array()
     .of(
       yup.object().shape({
-        ingredient: NAME_VALIDATION_RULE,
+        name: NAME_VALIDATION_RULE,
         measure: MEASURE_VALIDATION_RULE,
       })
     )

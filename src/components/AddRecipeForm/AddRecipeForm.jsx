@@ -30,6 +30,7 @@ import { CategoriesSelector } from "./CategoriesSelector";
 import { Counter } from "components/Counter/Counter";
 import AreaSelector from "./AreaSelector";
 import { toast } from "react-toastify";
+import Loader from "components/Loader";
 
 const initialValues = {
   title: "",
@@ -56,7 +57,7 @@ const testInitialValues = {
 
 const AddRecipeForm = () => {
   const methods = useForm({
-    // resolver: yupResolver(addRecipeSchema),
+    resolver: yupResolver(addRecipeSchema),
     // defaultValues: initialValues,
     defaultValues: testInitialValues,
   });
@@ -81,7 +82,7 @@ const AddRecipeForm = () => {
 
   const [createRecipe, { isLoading }] = useCreateRecipeMutation();
 
-  const onSubmit = data => {
+  const onSubmit = async data => {
     // console.log({ ...data, cookTime: counter, ingredients: selectedIngredients, photo: preview });
 
     // console.log(data.photo[0]);
@@ -100,7 +101,8 @@ const AddRecipeForm = () => {
         }
       });
 
-      createRecipe(formData);
+      await createRecipe(formData).unwrap();
+      reset();
 
       // const response = await axiosBaseQuery("/api/recipes", formData);
       // if (response.status === 200) {
@@ -135,6 +137,7 @@ const AddRecipeForm = () => {
   return (
     <FormProvider {...methods}>
       <Form onSubmit={handleSubmit(onSubmit)}>
+        {isLoading && <Loader />}
         <ImageField>
           <ImageDropZone
             // preview={preview}
