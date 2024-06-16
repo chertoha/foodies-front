@@ -327,4 +327,7 @@ export const SelectorAreas = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
+  @media screen and (min-width: 768px) {
+    max-width: 315px;
+  }
 `;
