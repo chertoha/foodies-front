@@ -63,15 +63,16 @@ const UserPage = () => {
     isFetching: isFetchingUserInfo,
   } = useGetUserInfoQuery(id);
 
-  // if (isFetchingUserInfo) return <div>Loading...</div>;
+  if (isFetchingUserInfo) return <div>Loading...</div>;
   // if (errorUserInfo) return <div>Error loading UserPage.</div>;
   if (errorUserInfo) return <ErrorLoading />;
   if (!dataUserInfo) return null;
 
+  // const dataUserInfo = user;
   return (
     <SectionWrapper>
       <Container>
-        {isFetchingUserInfo && <Loader />}
+        {/* {isFetchingUserInfo && <Loader />} */}
         <BreadcrumbsWrapp>
           <Breadcrumbs current={"Profile"} />
         </BreadcrumbsWrapp>

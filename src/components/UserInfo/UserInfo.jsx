@@ -53,7 +53,7 @@ const UserInfo = ({ userId, avatar, name, recipesCount, followersCount }) => {
         <IconWrapp>
           <UserAvatar
             size={[80, 120, 120]}
-            src={avatar}
+            src={"avatar"}
           />
         </IconWrapp>
         <UserCardTitle>{name}</UserCardTitle>

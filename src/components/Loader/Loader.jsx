@@ -1,16 +1,16 @@
 import React from "react";
-import { useAuth } from "hooks/useAuth";
+// import { useAuth } from "hooks/useAuth";
 
 import FadeLoader from "react-spinners/FadeLoader";
 import { LoaderWripper } from "./Loader.styled";
 
 const Loader = () => {
-  const { isLoading } = useAuth();
+  // const { isLoading } = useAuth();
 
-  document.body.classList.add("no-scroll");
-  if (!isLoading) {
-    document.body.classList.remove("no-scroll");
-  }
+  // document.body.classList.add("no-scroll");
+  // if (!isLoading) {
+  //   document.body.classList.remove("no-scroll");
+  // }
 
   return (
     <LoaderWripper>

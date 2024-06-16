@@ -13,6 +13,7 @@ import FavoriteWrapper from "../FavoriteWrapper/FavoriteWrapper";
 import HeartButton from "components/Buttons/HeartButton";
 
 const RecipeCard = ({ recipe, author, isAuthenticated }) => {
+  console.log("author", author);
   return (
     <CardWrapper>
       <Image
