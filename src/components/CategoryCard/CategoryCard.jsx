@@ -10,7 +10,10 @@ import SpriteIcon from "components/UIKit/SpriteIcon";
 
 const CategoryCard = ({ category, large, onSelectCategory }) => {
   return (
-    <CardContainer $large={large}>
+    <CardContainer
+      $large={large}
+      role="listitem"
+    >
       <CardImage
         loading="lazy"
         src={category.img}
@@ -19,6 +22,7 @@ const CategoryCard = ({ category, large, onSelectCategory }) => {
       <ButtonsContainer>
         <CardBadge>{category.name}</CardBadge>
         <CardButton
+          aria-label={`Open category ${category.name}`}
           type="button"
           onClick={() => onSelectCategory(category.name)}
         >
