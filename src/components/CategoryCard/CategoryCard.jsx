@@ -12,6 +12,7 @@ const CategoryCard = ({ category, large, onSelectCategory }) => {
   return (
     <CardContainer $large={large}>
       <CardImage
+        loading="lazy"
         src={category.img}
         alt={category.name}
       />

@@ -19,6 +19,7 @@ import {
   Button,
   Icon,
 } from "./UserInfo.styled";
+import { useRevalidateUser } from "hooks/useRevalidateUser";
 
 const MyUserInfo = ({
   avatar,
@@ -31,6 +32,7 @@ const MyUserInfo = ({
 }) => {
   const { isOpen: isModalOpen, open: openModal, close: closeModal } = useModalWindow();
   const [updateUserAvatar] = useUpdateUserAvatarMutation();
+  const { revalidateUserData } = useRevalidateUser();
 
   const onInputFile = async e => {
     const file = e.target.files[0];
@@ -40,6 +42,7 @@ const MyUserInfo = ({
 
     try {
       await updateUserAvatar(formData).unwrap();
+      revalidateUserData();
       toast.success("Avatar updated successfully");
     } catch (error) {
       toast.error(`${error}, Failed to update avatar`);

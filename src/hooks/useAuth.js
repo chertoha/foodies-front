@@ -6,5 +6,6 @@ export const useAuth = () => {
   const user = useSelector(getUser);
   const isLoading = useSelector(getLoading);
   const error = useSelector(getError);
+
   return { token, user, isLoading, error };
 };

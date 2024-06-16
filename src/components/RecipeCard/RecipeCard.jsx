@@ -16,6 +16,7 @@ const RecipeCard = ({ recipe, author, isAuthenticated }) => {
   return (
     <CardWrapper>
       <Image
+        loading="lazy"
         src={recipe.thumb}
         alt={recipe.title}
       />

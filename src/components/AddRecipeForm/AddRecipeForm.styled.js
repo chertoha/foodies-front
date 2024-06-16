@@ -1,5 +1,4 @@
 import styled from "styled-components";
-// import theme from "styles/theme";
 
 export const FormFields = styled.div`
   display: flex;
@@ -27,18 +26,20 @@ export const IngredientDescription = styled.div`
     width: 100%;
     flex-direction: column;
     gap: 20px;
-    margin-top: 8px;
   }
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
   width: 649px;
+  gap: 20px;
 `;
 
 export const AddIngredientButton = styled.button`
   @media screen and (max-width: 767px) {
     width: 100%;
+    margin-top: 24px;
   }
-  @media screen and (min-width: 768px) and (max-width: 1439px) {
+  @media screen and (min-width: 768px) {
     max-width: 279px;
   }
 
@@ -49,7 +50,7 @@ export const AddIngredientButton = styled.button`
   line-height: 24px; /* 150% */
   letter-spacing: -0.32px;
   text-transform: uppercase;
-  margin-top: 40px;
+
   display: flex;
   padding: 16px 32px;
   justify-content: center;
@@ -100,11 +101,24 @@ export const Form = styled.form`
 `;
 export const IngredientsSelectorWrapper = styled.div`
   @media screen and (max-width: 767px) {
-    padding-top: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
   }
-  @media screen and (min-width: 768px) {
-    padding-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+`;
+
+export const IngredientsWrapper = styled.div`
+  @media screen and (max-width: 767px) {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
   }
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 `;
 
 export const ImageField = styled.div`
@@ -190,6 +204,18 @@ export const CookingCategory = styled.div`
 `;
 
 export const InstructionContainer = styled.textarea`
+  @media screen and (max-width: 767px) {
+    color: rgba(5, 5, 5, 0.8);
+    font-family: Mulish;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px; /* 142.857% */
+    letter-spacing: -0.28px;
+  }
+  font-size: 16px;
+  line-height: 24px; /* 150% */
+  letter-spacing: -0.32px;
   width: 100%;
   height: auto;
   resize: none;
@@ -208,14 +234,31 @@ export const InstructionContainer = styled.textarea`
 `;
 
 export const InstructionWrapper = styled.div`
+  @media screen and (max-width: 767px) {
+    gap: 16px;
+  }
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 40px;
 `;
 export const InstructionCounterWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
+`;
+export const YulpErrorMessage = styled.p`
+  @media screen and (max-width: 767px) {
+    font-family: Mulish;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px; /* 142.857% */
+    letter-spacing: -0.28px;
+  }
+  font-size: 16px;
+  line-height: 24px; /* 150% */
+  letter-spacing: -0.32px;
+  color: ${({ theme }) => theme.colors.error};
 `;
 
 export const ButtonsWrapper = styled.div`
@@ -238,8 +281,24 @@ export const SelectorIngredientsContainer = styled.div`
   width: 100%;
 `;
 
-export const IngredienQuantity = styled.input`
+export const IngredientQuantity = styled.input`
+  @media screen and (max-width: 767px) {
+    color: rgba(5, 5, 5, 0.8);
+    font-family: Mulish;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px; /* 142.857% */
+    letter-spacing: -0.28px;
+  }
+  padding-bottom: 16px;
+  font-size: 16px;
+  line-height: 24px; /* 150% */
+  letter-spacing: -0.32px;
   width: 100%;
+  height: auto;
+  resize: none;
+
   border: none;
   border-bottom: 1px solid rgba(5, 5, 5, 0.12);
   outline: none;
@@ -247,6 +306,10 @@ export const IngredienQuantity = styled.input`
   &:hover {
     border-bottom-color: #050505;
   }
+  &::placeholder {
+    color: ${({ $iserror }) => ($iserror ? "red" : "rgba(5, 5, 5, 0.5)")};
+  }
+  border-bottom-color: ${({ $iserror }) => ($iserror ? "red" : "rgba(5, 5, 5, 0.12)")};
 `;
 
 export const FieldsInput = styled.div`
@@ -273,4 +336,14 @@ export const BtnDelete = styled.button`
   position: relative;
   right: 0;
   top: 0;
+`;
+
+export const SelectorAreas = styled.div`
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  @media screen and (min-width: 768px) {
+    max-width: 315px;
+  }
 `;

@@ -18,10 +18,12 @@ import {
   RecipeNameInput,
   FormFields,
   InputSymbolsCounter,
+  YulpErrorMessage,
+  IngredientsWrapper,
+  SelectorAreas,
 } from "./AddRecipeForm.styled";
 import ActiveButton from "components/Buttons/ActiveButton";
 import TrashButton from "components/Buttons/TrashButton";
-import { RecipeIngredientsContainer } from "components/RecipeIngredients/RecipeIngredients.styled";
 import SectionTitle from "components/SectionTitle";
 import IngredientSelector from "./IngredientSelected";
 import ImageDropZone from "components/ImageDropZone/ImageDropZone";
@@ -50,7 +52,7 @@ const initialValues = {
 
 const _testInitialValues = {
   thumb: null,
-  title: "Recipe-Anatolii-1",
+  title: "Recipe-Anton-1",
   description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
   time: 13,
   category: "Seafood",
@@ -108,7 +110,7 @@ const AddRecipeForm = () => {
         if (key === "ingredients") {
           data[key].forEach((ingredient, index) => {
             formData.append(`ingredients[${index}][name]`, ingredient.name);
-            formData.append(`ingredients[${index}][measure]`, ingredient.quantity);
+            formData.append(`ingredients[${index}][measure]`, ingredient.measure);
           });
         } else {
           formData.append(key, data[key]);
@@ -171,6 +173,7 @@ const AddRecipeForm = () => {
                 {...register("title")}
               />
             </RecipeNameContainer>
+            {errors.description && <YulpErrorMessage>{errors.title.message}</YulpErrorMessage>}
           </FormTitles>
 
           <FormFields>
@@ -186,8 +189,10 @@ const AddRecipeForm = () => {
                 type="text"
                 {...register("description")}
               />
-
               <InputSymbolsCounter>{`${descriptionLength}/200`}</InputSymbolsCounter>
+              {errors.description && (
+                <YulpErrorMessage>{errors.description.message}</YulpErrorMessage>
+              )}
             </DescriptionContainer>
 
             <CookingCategory>
@@ -204,11 +209,11 @@ const AddRecipeForm = () => {
               />
             </CookingCategory>
 
-            <div>
+            <SelectorAreas>
               <AreaSelector />
-            </div>
+            </SelectorAreas>
 
-            <RecipeIngredientsContainer>
+            <IngredientsWrapper>
               <SectionTitle label={"Ingredients"} />
 
               <IngredientSelector
@@ -218,20 +223,23 @@ const AddRecipeForm = () => {
               // setSelectedIngredients={setSelectedIngredients}
               // {...register("ingredients")}
               />
-            </RecipeIngredientsContainer>
+            </IngredientsWrapper>
 
             <InstructionWrapper>
               <SectionTitle label={"Recipe Preparation"} />
 
               <InstructionCounterWrapper>
                 <InstructionContainer
+                  placeholder="Enter recipe"
                   maxLength={200}
                   {...register("instructions")}
                 ></InstructionContainer>
                 <InputSymbolsCounter>{`${instructionsLength}/200`}</InputSymbolsCounter>
               </InstructionCounterWrapper>
 
-              {errors.instructions && <p>{errors.instructions.message}</p>}
+              {errors.instructions && (
+                <YulpErrorMessage>{errors.instructions.message}</YulpErrorMessage>
+              )}
             </InstructionWrapper>
 
             <ButtonsWrapper>

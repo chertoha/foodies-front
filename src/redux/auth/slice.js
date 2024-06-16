@@ -8,6 +8,7 @@ const initialState = {
   token: null,
   isLoading: false,
   error: null,
+  shouldRefreshUserData: false,
 };
 
 const fulfildAuthSignUp = (state, { payload }) => {
@@ -55,6 +56,7 @@ const rejectedAuthLogOut = (state, { payload }) => {
 const fulfildAuthCurrentUser = (state, { payload }) => {
   state.user = payload;
   state.isLoading = false;
+  state.shouldRefreshUserData = false;
 };
 const pandingAuthCurrentUser = (state, _) => {
   state.isLoading = true;
@@ -68,6 +70,17 @@ const rejectedAuthCurrentUser = (state, { payload }) => {
 const authUserSlice = createSlice({
   name: "auth",
   initialState,
+
+  reducers: {
+    triggerUserDataRefresh: state => {
+      state.shouldRefreshUserData = true;
+    },
+
+    resetUserDataRefresh: state => {
+      state.shouldRefreshUserData = false;
+    },
+  },
+
   extraReducers: bilder => {
     bilder
       .addCase(authSignUpThunk.fulfilled, fulfildAuthSignUp)
@@ -92,5 +105,6 @@ const authPersistConfig = {
 };
 
 // export const authUserReduser = authUserSlice.reducer;
+export const { triggerUserDataRefresh, resetUserDataRefresh } = authUserSlice.actions;
 export const persistedAuthReducer = persistReducer(authPersistConfig, authUserSlice.reducer);
 export default authUserSlice;

@@ -19,7 +19,11 @@ export const ButtonTrash = styled.button`
   }
   height: 48px;
   width: 48px;
-  @media screen and (min-width: 769px) {
+<<<<<<< HEAD
+  @media screen and (min-width: 767px) {
+=======
+  @media screen and (min-width: 767px) {
+>>>>>>> cb3906bb024b43bc9ee3a0be2cf644751ece2b65
     height: 56px;
     width: 56px;
   }
