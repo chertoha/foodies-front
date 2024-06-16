@@ -1,22 +1,29 @@
 import styled from "styled-components";
 
 export const StyledCounter = styled.div`
-  @media screen and (max-width: 768px) {
-    align-items: flex-start;
-  }
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 16px;
+  gap: 8px;
   flex-direction: column;
   width: 100%;
+  @media screen and (max-width: 768px) {
+    align-items: flex-start;
+  }
+  @media screen and (min-width: 769px) {
+    gap: 16px;
+    width: 194px;
+  }
 `;
 
 export const StyledButtonWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 16px;
+  gap: 8px;
+  @media screen and (min-width: 769px) {
+    gap: 16px;
+  }
 `;
 
 export const StyledCounterValue = styled.input`
@@ -36,4 +43,5 @@ export const StyledCounterFields = styled.div`
 
   align-items: center;
   gap: 8px;
+  width: 50px;
 `;

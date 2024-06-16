@@ -4,19 +4,23 @@ import styled from "styled-components";
 export const FormFields = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  /* gap: 20px; */
 `;
 
 export const DescriptionContainer = styled.div`
-  @media screen and (max-width: 767px) {
+  /* @media screen and (max-width: 767px) {
     width: 100%;
     border-bottom: 1px rgba(5, 5, 5, 0.12) solid;
     padding-bottom: 16px;
-  }
-  position: relative;
+  } */
+  width: 100%;
+  border-bottom: 1px rgba(5, 5, 5, 0.12) solid;
+  padding-bottom: 16px;
+
+  /* position: relative; */
   display: flex;
   justify-content: space-between;
-  width: 649px;
+  /* width: 649px; */
 `;
 export const IngredientDescription = styled.div`
   @media screen and (max-width: 767px) {
@@ -84,7 +88,10 @@ export const Form = styled.form`
     align-items: center;
     margin-top: 32px;
   }
-  @media screen and (min-width: 768px) and (max-width: 1439px) {
+  @media screen and (min-width: 768px) {
+    gap: 80px;
+  }
+  @media screen and (min-width: 768px) and (max-width: 1440px) {
     display: inline-flex;
     flex-direction: column;
     align-items: flex-start;
@@ -108,6 +115,9 @@ export const ImageField = styled.div`
   }
   /* display: flex; */
   width: 100%;
+  /* @media screen and (min-width: 1440px) {
+    width: 600px;
+  } */
 `;
 
 export const FieldsInputStyled = styled.input`
@@ -167,12 +177,15 @@ export const FormTitles = styled.div`
 `;
 
 export const CookingCategory = styled.div`
-  margin-top: 60px;
+  margin-top: 32px;
   display: flex;
   flex-direction: row;
   gap: 20px;
   @media screen and (max-width: 768px) {
     flex-direction: column;
+  }
+  @media screen and (min-width: 769px) {
+    margin-top: 60px;
   }
 `;
 
@@ -214,7 +227,11 @@ export const SelectorCategories = styled.div`
   flex-shrink: 0;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 8px;
+  @media screen and (min-width: 769px) {
+    gap: 16px;
+    width: 315px;
+  }
 `;
 
 export const SelectorIngredientsContainer = styled.div`
@@ -235,10 +252,10 @@ export const IngredienQuantity = styled.input`
 export const FieldsInput = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 32px;
   width: 100%;
   ${({ theme }) => theme.mq.tabletOnly} {
-    gap: 10px;
+    /* gap: 10px; */
   }
 `;
 
