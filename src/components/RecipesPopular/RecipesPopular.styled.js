@@ -9,6 +9,7 @@ export const RecipePopularContainer = styled.div`
 `;
 
 export const RecipePopularList = styled.ul`
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
@@ -26,6 +27,7 @@ export const RecipePopularList = styled.ul`
 `;
 
 export const RecipeListItem = styled.li`
+  width: 100%;
   ${theme.mq.tablet} {
     flex-basis: calc((100% - 20px) / 2);
   }

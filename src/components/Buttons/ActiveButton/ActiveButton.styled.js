@@ -3,11 +3,11 @@ import { px, py, body1 } from "styles/atomic";
 import theme from "styles/theme";
 
 export const StyledButton = styled("button")`
-  width: 343px;
+  /* max-width: 250px; */
   height: 48px;
 
   ${py("14")};
-  ${px("113")};
+  ${px("32")};
   border-radius: 30px;
   border: none;
   background-color: #050505d9;
@@ -18,8 +18,8 @@ export const StyledButton = styled("button")`
   cursor: pointer;
   transition: ${theme.transitions.default};
   ${theme.mq.mobileOnly} {
-    width: 100%;
-    max-width: 343px;
+    /* width: 100%; */
+    /* max-width: 343px; */
   }
 
   ${theme.mq.tablet} {

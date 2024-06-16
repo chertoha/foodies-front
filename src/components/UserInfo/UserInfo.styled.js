@@ -90,8 +90,8 @@ export const Icon = styled("svg")`
   }
 `;
 export const UserCardTitle = styled("h3")`
-  color: ${theme.colors.accent}
-  font-family: Mulish;
+  color: ${theme.colors.accent};
+  /* font-family: Mulish; */
   font-size: ${theme.fontSizes.lg};
   font-weight: ${theme.fontWeights.extraBold};
   line-height: 24px;
