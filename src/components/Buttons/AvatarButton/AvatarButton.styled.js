@@ -19,7 +19,7 @@ export const ImgAvatar = styled.img`
   cursor: pointer;
 `;
 
-export const InitialsAvatar = styled.button`
+export const InitialsAvatar = styled.span`
   width: 32px;
   height: 32px;
   border-radius: ${({ theme }) => theme.radii.round};
