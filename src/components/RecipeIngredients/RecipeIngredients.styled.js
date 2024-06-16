@@ -18,6 +18,10 @@ export const IngredientsList = styled.ul`
     grid-template-columns: repeat(3, calc(33.33% - 20px));
     gap: 20px;
   }
+
+  @media (max-width: 374.98px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 export const IngredientItem = styled.li`

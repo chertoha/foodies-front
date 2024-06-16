@@ -94,7 +94,7 @@ export const TabsList = styled("ul")`
 export const TabsButton = styled("button")`
   width: 130px;
   height: 24px;
-
+  font-family: "Mulish", sans-serif;
   color: #05050599;
   ${heading4()}
   // ${pb(4)}
