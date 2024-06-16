@@ -10,6 +10,8 @@ export const FormFields = styled.div`
 export const DescriptionContainer = styled.div`
   @media screen and (max-width: 767px) {
     width: 100%;
+    border-bottom: 1px rgba(5, 5, 5, 0.12) solid;
+    padding-bottom: 16px;
   }
   position: relative;
   display: flex;
@@ -109,9 +111,9 @@ export const ImageField = styled.div`
 `;
 
 export const FieldsInputStyled = styled.input`
-  width: 551px;
+  width: 100%;
   border: none;
-  border-bottom: 1px solid rgba(5, 5, 5, 0.12);
+  /* border-bottom: 1px solid rgba(5, 5, 5, 0.12); */
   outline: none;
   &:focus,
   &:hover {
@@ -126,7 +128,7 @@ export const FieldsInputStyled = styled.input`
 export const RecipeNameContainer = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 649px;
+  width: 100%;
 `;
 
 export const RecipeNameInput = styled.input`
@@ -134,7 +136,7 @@ export const RecipeNameInput = styled.input`
   border: none;
 
   font-family: Mulish;
-  font-size: 24px;
+  font-size: 18px;
   font-style: normal;
   font-weight: 800;
   line-height: 28px; /* 116.667% */
@@ -149,6 +151,13 @@ export const RecipeNameInput = styled.input`
     color: ${({ $iserror }) => ($iserror ? "red" : "rgba(5, 5, 5, 0.5)")};
   }
   border-bottom-color: ${({ $iserror }) => ($iserror ? "red" : "rgba(5, 5, 5, 0.12)")};
+
+  @media screen and (min-width: 376px) {
+    font-size: 24px;
+  }
+  /* @media screen and (min-width: 768px) {
+    
+  } */
 `;
 
 export const FormTitles = styled.div`
@@ -198,7 +207,8 @@ export const InstructionCounterWrapper = styled.div`
 
 export const ButtonsWrapper = styled.div`
   display: flex;
-  gap: 20px;
+  gap: 8px;
+  /* width: 100%; */
 `;
 export const SelectorCategories = styled.div`
   flex-shrink: 0;
@@ -208,11 +218,11 @@ export const SelectorCategories = styled.div`
 `;
 
 export const SelectorIngredientsContainer = styled.div`
-  width: 279px;
+  width: 100%;
 `;
 
 export const IngredienQuantity = styled.input`
-  width: 314px;
+  width: 100%;
   border: none;
   border-bottom: 1px solid rgba(5, 5, 5, 0.12);
   outline: none;

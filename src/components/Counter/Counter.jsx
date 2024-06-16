@@ -53,7 +53,7 @@ export const Counter = () => {
         control={control}
         render={({ field }) => (
           <StyledButtonWrapper>
-            <ButtonTrash
+            {/* <ButtonTrash
               type="button"
               // id="addButton"
               // onClick={() => handleClick(1)}
@@ -75,7 +75,7 @@ export const Counter = () => {
                 // {...register("time")}
               />
               <span>min</span>
-            </StyledCounterFields>
+            </StyledCounterFields> */}
 
             {errors.cookTime && <p>{errors.cookTime.message}</p>}
             <ButtonTrash
@@ -86,6 +86,30 @@ export const Counter = () => {
             >
               <SpriteIcon
                 id="icon-minus"
+                size={[20, 22, 22]}
+              />
+            </ButtonTrash>
+
+            <StyledCounterFields>
+              <StyledCounterValue
+                width={field.value.toString().length * 10}
+                // value={count}
+                readOnly={true}
+                type="number"
+                {...field}
+                // {...register("time")}
+              />
+              <span>min</span>
+            </StyledCounterFields>
+
+            <ButtonTrash
+              type="button"
+              // id="addButton"
+              // onClick={() => handleClick(1)}
+              onClick={increment}
+            >
+              <SpriteIcon
+                id="icon-plus"
                 size={[20, 22, 22]}
               />
             </ButtonTrash>
