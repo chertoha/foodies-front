@@ -14,6 +14,10 @@ const DropDown = ({ close: closeDropdown }) => {
   const { isOpen: isModalOpen, open: openModal, close: closeModal } = useModalWindow();
 
   useEffect(() => {
+    if (isModalOpen) {
+      return;
+    }
+
     const onOutsideDropdownClick = e => {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
         closeDropdown();
@@ -25,7 +29,7 @@ const DropDown = ({ close: closeDropdown }) => {
     return () => {
       window.removeEventListener("click", onOutsideDropdownClick);
     };
-  }, [closeDropdown]);
+  }, [closeDropdown, isModalOpen]);
 
   return (
     <>
