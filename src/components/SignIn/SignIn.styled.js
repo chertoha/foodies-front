@@ -141,10 +141,14 @@ export const ButtonStyled = styled("button")`
 
   border-radius: 30px;
   border: none;
-  color: rgba(255, 255, 255, 0.4);
-  background-color: rgba(5, 5, 5, 0.2);
-  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  color: ${p => p.theme.colors.white};
+  background-color: ${p => p.theme.colors.accent};
+  /* color: rgba(255, 255, 255, 0.4); */
+  /* background-color: rgba(5, 5, 5, 0.2); */
+  /* transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1); */
+  transition: ${p => p.theme.transitions.prop("background-color")};
 
   ${theme.mq.mobile} {
     width: 283px;
@@ -158,13 +162,20 @@ export const ButtonStyled = styled("button")`
     padding: 16px;
 
     font-size: 16px;
-    ligth-height: 1.5;
+    line-height: 1.5;
 
-    &:focus,
+    &:focus-visible,
     &:hover {
-      cursor: pointer;
-      color: rgba(255, 255, 255, 1);
-      background-color: rgba(5, 5, 5, 1);
+      /* cursor: pointer; */
+
+      /* color: rgba(255, 255, 255, 1);
+      background-color: rgba(5, 5, 5, 1); */
+      background-color: rgba(0, 0, 0, 0.7);
+    }
+
+    &:disabled {
+      background-color: rgba(5, 5, 5, 0.2);
+      rgba(255, 255, 255, 0.4)
     }
   }
 

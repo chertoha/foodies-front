@@ -37,6 +37,7 @@ const SignIn = ({ switchForm, onClose }) => {
     register,
     handleSubmit,
     reset,
+    watch,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
@@ -45,6 +46,8 @@ const SignIn = ({ switchForm, onClose }) => {
       password: "",
     },
   });
+
+  const watchCredentials = watch();
 
   const onSubmit = async data => {
     dispatch(authSignInThunk(data))
@@ -107,7 +110,12 @@ const SignIn = ({ switchForm, onClose }) => {
           </IconStyled>
           <ErrorTextStyled>{errors.password?.message}</ErrorTextStyled>
         </InputContainerStyled>
-        <ButtonStyled type="submit">Sign in</ButtonStyled>
+        <ButtonStyled
+          type="submit"
+          disabled={!watchCredentials.email || !watchCredentials.password}
+        >
+          Sign in
+        </ButtonStyled>
       </FormStyled>
       <TextContainerStyled>
         <TextStyled>Don't have an account?</TextStyled>

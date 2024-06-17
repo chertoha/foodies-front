@@ -59,7 +59,7 @@ export const InputStyled = styled.input.attrs(props => props)`
 
   font-size: 14px;
   font-weight: 500;
-  ligth-height: 1.42;
+  line-height: 1.42;
   letter-spacing: -0.02em;
 
   border-radius: 30px;
@@ -85,7 +85,7 @@ export const InputStyled = styled.input.attrs(props => props)`
     padding: 16px 45px 16px 18px;
 
     font-size: 16px;
-    ligth-height: 1.5;
+    line-height: 1.5;
   }
 
   ${theme.mq.desktop} {
@@ -136,16 +136,20 @@ export const ButtonStyled = styled("button")`
   padding: 14px;
 
   font-size: 14px;
-  ligth-height: 1.42;
+  line-height: 1.42;
   font-weight: 700;
   text-transform: uppercase;
 
   border-radius: 30px;
   border: none;
-  color: rgba(255, 255, 255, 0.4);
-  background-color: rgba(5, 5, 5, 0.2);
-  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  color: ${p => p.theme.colors.white};
+  background-color: ${p => p.theme.colors.accent};
+  /* color: rgba(255, 255, 255, 0.4); */
+  /* background-color: rgba(5, 5, 5, 0.2); */
+  /* transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1); */
+  transition: ${p => p.theme.transitions.prop("background-color")};
 
   ${theme.mq.mobile} {
     width: 283px;
@@ -159,13 +163,19 @@ export const ButtonStyled = styled("button")`
     padding: 16px;
 
     font-size: 16px;
-    ligth-height: 1.5;
+    line-height: 1.5;
 
     &:focus,
     &:hover {
-      cursor: pointer;
-      color: rgba(255, 255, 255, 1);
-      background-color: rgba(5, 5, 5, 1);
+      /* cursor: pointer; */
+      /* color: rgba(255, 255, 255, 1);
+      background-color: rgba(5, 5, 5, 1); */
+      background-color: rgba(0, 0, 0, 0.7);
+    }
+
+    &:disabled {
+      background-color: rgba(5, 5, 5, 0.2);
+      rgba(255, 255, 255, 0.4)
     }
   }
 
