@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import theme from "styles/theme";
 import iconQuote from "assets/images/icons/quote.svg";
-import { body1, flexCenter, heading3, heading5, mt } from "styles/atomic";
+import { body1, flexCenter, heading3, heading5, mt, px } from "styles/atomic";
 
 export const Introduction = styled("p")`
   ${body1()}
@@ -58,6 +58,7 @@ export const SliderWrapper = styled("div")`
 `;
 
 export const Card = styled("div")`
+  ${px(3)};
   text-align: center;
   height: 100%;
   display: flex;
