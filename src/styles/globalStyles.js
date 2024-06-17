@@ -26,10 +26,6 @@ body {
   color: ${theme.colors.accent}
 }
 
-body.no-scroll {
-  overflow: hidden;
-}
-
 ul {
   list-style: none;
   margin: 0;
