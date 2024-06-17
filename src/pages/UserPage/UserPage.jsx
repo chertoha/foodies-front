@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { Suspense, lazy, useState } from "react";
+import { useState } from "react";
 
 import { useGetUserInfoQuery } from "../../redux/users/usersApi";
 import { useAuth } from "hooks/useAuth";
