@@ -43,6 +43,7 @@ export const Button = styled("button")`
 `;
 
 export const AvatarWrapper = styled("span")`
+  ${mr(2)};
   flex-shrink: 0;
   width: 32px;
   height: 32px;
@@ -50,6 +51,7 @@ export const AvatarWrapper = styled("span")`
   border-radius: ${p => p.theme.radii.round};
 
   ${theme.mq.tablet} {
+    ${mr(4)};
     width: 50px;
     height: 50px;
   }
