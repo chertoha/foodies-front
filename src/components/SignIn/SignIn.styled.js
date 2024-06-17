@@ -135,7 +135,7 @@ export const ButtonStyled = styled("button")`
   padding: 14px;
 
   font-size: 14px;
-  ligth-height: 1.42;
+  line-height: 1.42;
   font-weight: 700;
   text-transform: uppercase;
 
