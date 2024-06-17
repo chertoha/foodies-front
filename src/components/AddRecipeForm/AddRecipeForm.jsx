@@ -35,6 +35,7 @@ import Loader from "components/Loader";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "hooks/useAuth";
 import { ROUTES } from "config/router";
+import { useRevalidateUser } from "hooks/useRevalidateUser";
 // import { LocalStorage } from "services/storage";
 
 // const storage = new LocalStorage("recipe_form_data");
@@ -66,7 +67,7 @@ const AddRecipeForm = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
   const [createRecipe, { isLoading }] = useCreateRecipeMutation();
-
+  const { revalidateUserData } = useRevalidateUser();
   const methods = useForm({
     resolver: yupResolver(addRecipeSchema),
     defaultValues: initialValues,
@@ -118,6 +119,7 @@ const AddRecipeForm = () => {
       });
 
       await createRecipe(formData).unwrap();
+      revalidateUserData();
       reset(initialValues);
       navigate(`${ROUTES.USER}/${user._id}`);
       // const response = await axiosBaseQuery("/api/recipes", formData);

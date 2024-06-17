@@ -17,11 +17,12 @@ import {
   Button,
   Icon,
 } from "./UserPageListItems.styled";
+import { useRevalidateUser } from "hooks/useRevalidateUser";
 const UserPageListItems = ({ recipes, type, refetchRecipes }) => {
   const [deleteMyRecipe, { isLoading: isDeletingMyRecipe }] = useDeleteRecipeMutation();
   const [deleteMyFavoritesRecipe, { isLoading: isDeletingMyFavorite }] =
     useRemoveRecipeFromFavoritesMutation();
-
+  const { revalidateUserData } = useRevalidateUser();
   const handleDelete = async id => {
     try {
       if (type === "myRecipes") {
@@ -29,6 +30,7 @@ const UserPageListItems = ({ recipes, type, refetchRecipes }) => {
       } else if (type === "myFavorites") {
         await deleteMyFavoritesRecipe(id).unwrap();
       }
+      revalidateUserData();
       refetchRecipes();
     } catch (error) {
       console.error("Failed to delete the recipe:", error);
