@@ -108,7 +108,7 @@ const AreaSelect = () => {
 /* ================================INGREDIENT SELECT======================================== */
 /* ========================================================================================= */
 // eslint-disable-next-line no-unused-vars
-const IngredientsSelect = () => {
+const _IngredientsSelect = () => {
   const { data: ingredients } = useGetIngredientsQuery();
   const [ingredient, setIngredient] = useState(null);
 
