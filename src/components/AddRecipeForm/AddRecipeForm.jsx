@@ -173,7 +173,7 @@ const AddRecipeForm = () => {
                 {...register("title")}
               />
             </RecipeNameContainer>
-            {errors.description && <YulpErrorMessage>{errors.title.message}</YulpErrorMessage>}
+            {errors.title && <YulpErrorMessage>{errors.title.message}</YulpErrorMessage>}
           </FormTitles>
 
           <FormFields>
