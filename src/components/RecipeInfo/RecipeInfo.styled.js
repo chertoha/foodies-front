@@ -21,7 +21,7 @@ export const RecipeImageWrapper = styled.div`
     ${py(10)}
   }
   ${({ theme }) => theme.mq.desktop} {
-    min-width: 551px;
+    width: 551px;
     padding-top: 0px;
     padding-bottom: 0px;
   }

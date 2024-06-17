@@ -5,7 +5,7 @@ import theme from "styles/theme";
 export const StyledButton = styled("button")`
   /* max-width: 250px; */
   height: 48px;
-
+  width: 100%;
   ${py("14")};
   ${px("32")};
   border-radius: 30px;
@@ -23,7 +23,7 @@ export const StyledButton = styled("button")`
   }
 
   ${theme.mq.tablet} {
-    max-width: 394px;
+    /* max-width: 394px; */
     height: 56px;
     ${py(4)};
     ${px("120")};

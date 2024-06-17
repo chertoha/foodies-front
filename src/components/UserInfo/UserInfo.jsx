@@ -54,30 +54,32 @@ const UserInfo = ({ userId, avatar, name, recipesCount, followersCount }) => {
   };
   return (
     <UserInfoWrapp>
-      <UserCard>
-        <IconWrapp>
-          <UserAvatar
-            size={[80, 120, 120]}
-            src={avatar}
-            name={name}
-          />
-        </IconWrapp>
-        <UserCardTitle>{name}</UserCardTitle>
-        <UserCardInfo>
-          <UserCardtext>
-            <UserCardspan>Added recipes: {recipesCount}</UserCardspan>
-          </UserCardtext>
+      <div>
+        <UserCard>
+          <IconWrapp>
+            <UserAvatar
+              size={[80, 120, 120]}
+              src={avatar}
+              name={name}
+            />
+          </IconWrapp>
+          <UserCardTitle>{name}</UserCardTitle>
+          <UserCardInfo>
+            <UserCardtext>
+              <UserCardspan>Added recipes: {recipesCount}</UserCardspan>
+            </UserCardtext>
 
-          <UserCardtext>
-            <UserCardspan>Followers: {followersCount}</UserCardspan>
-          </UserCardtext>
-        </UserCardInfo>
-      </UserCard>
-      <ActiveButton
-        disabled={isFollowLoading || isUnFollowLoading}
-        label={isFollowing ? "Unfollow" : "Follow"}
-        onClick={() => handleFollowClick(id)}
-      />
+            <UserCardtext>
+              <UserCardspan>Followers: {followersCount}</UserCardspan>
+            </UserCardtext>
+          </UserCardInfo>
+        </UserCard>
+        <ActiveButton
+          disabled={isFollowLoading || isUnFollowLoading}
+          label={isFollowing ? "Unfollow" : "Follow"}
+          onClick={() => handleFollowClick(id)}
+        />
+      </div>
     </UserInfoWrapp>
   );
 };

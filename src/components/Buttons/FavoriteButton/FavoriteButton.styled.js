@@ -2,9 +2,11 @@ import styled from "styled-components";
 import { body1, px, py } from "styles/atomic";
 
 export const RecipePreparationButton = styled.button`
-  width: 260px;
+  /* width: 260px; */
   color: ${({ theme, $isFavorite }) => ($isFavorite ? theme.colors.light : theme.colors.dark)};
   ${body1()}
+  font-weight: 700;
+  font-family: "Mulish", sans-serif;
   text-transform: uppercase;
   display: flex;
   ${py("14")};
