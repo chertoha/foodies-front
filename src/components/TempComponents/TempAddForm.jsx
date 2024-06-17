@@ -108,7 +108,7 @@ const AreaSelect = () => {
 /* ================================INGREDIENT SELECT======================================== */
 /* ========================================================================================= */
 // eslint-disable-next-line no-unused-vars
-const _IngredientsSelect = () => {
+const IngredientsSelect = () => {
   const { data: ingredients } = useGetIngredientsQuery();
   const [ingredient, setIngredient] = useState(null);
 
@@ -299,6 +299,10 @@ const TempAddForm = () => {
 
           <div style={{ width: "300px", marginTop: "50px" }}>
             <button type="submit">Submit</button>
+          </div>
+
+          <div>
+            <IngredientsSelect />
           </div>
         </form>
       </FormProvider>
