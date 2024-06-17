@@ -29,6 +29,7 @@ import {
   YulpErrorMessage,
   IngredientsWrapper,
   SelectorAreas,
+  DescriptionErrorMessage,
 } from "./AddRecipeForm.styled";
 import { CategoriesSelector } from "./CategoriesSelector";
 import { Counter } from "components/Counter/Counter";
@@ -141,7 +142,7 @@ const AddRecipeForm = () => {
               />
               <InputSymbolsCounter>{`${descriptionLength}/200`}</InputSymbolsCounter>
               {errors.description && (
-                <YulpErrorMessage>{errors.description.message}</YulpErrorMessage>
+                <DescriptionErrorMessage>{errors.description.message}</DescriptionErrorMessage>
               )}
             </DescriptionContainer>
 

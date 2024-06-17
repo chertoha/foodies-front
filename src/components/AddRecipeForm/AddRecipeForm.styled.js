@@ -8,6 +8,7 @@ export const FormFields = styled.div`
 `;
 
 export const DescriptionContainer = styled.div`
+  position: relative;
   width: 100%;
   border-bottom: 1px rgba(5, 5, 5, 0.12) solid;
   padding-bottom: 16px;
@@ -275,6 +276,11 @@ export const YulpErrorMessage = styled.p`
   line-height: 24px;
   letter-spacing: -0.32px;
   color: ${({ theme }) => theme.colors.error};
+`;
+
+export const DescriptionErrorMessage = styled(YulpErrorMessage)`
+  position: absolute;
+  top: 100%;
 `;
 
 export const ButtonsWrapper = styled.div`
