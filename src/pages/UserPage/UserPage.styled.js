@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { mb, pb, mt, my, heading4 } from "styles/atomic";
+import { mb, mt, my, heading4 } from "styles/atomic";
 import theme from "styles/theme";
 
 export const SectionWrapper = styled("div")`
@@ -97,7 +97,6 @@ export const TabsButton = styled("button")`
   font-family: "Mulish", sans-serif;
   color: #05050599;
   ${heading4()}
-  // ${pb(4)}
   padding-bottom: 30px;
   text-transform: uppercase;
 

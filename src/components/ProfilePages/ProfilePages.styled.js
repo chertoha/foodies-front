@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { pt } from "styles/atomic";
 import theme from "styles/theme";
+import { pt } from "styles/atomic";
 
 export const SubTitleWrapper = styled("div")`
   ${pt(20)}

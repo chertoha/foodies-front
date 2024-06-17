@@ -76,7 +76,6 @@ export const stripsStyles = () => css`
 
 export const LogoWrapper = styled("div")`
   position: relative;
-  /* width: 197px; */
   ${pt("16")}
 
   ${stripsStyles()}
@@ -134,7 +133,6 @@ export const HeroWrapper = styled("div")`
 
   z-index: 10;
   top: 194px;
-  /* top: 54px; */
   left: 50%;
   transform: translateX(-50%);
   width: 300px;
@@ -145,7 +143,6 @@ export const HeroWrapper = styled("div")`
 
   ${theme.mq.tablet} {
     width: 678px;
-    /* top: 66px; */
     top: 217px;
   }
 

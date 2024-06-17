@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { mt, mb, body2 } from "styles/atomic";
 import theme from "styles/theme";
+import { mt, mb, body2 } from "styles/atomic";
 import { Link } from "react-router-dom";
 
 export const BackLink = styled(Link)`
@@ -15,17 +15,8 @@ export const BackLink = styled(Link)`
   cursor: pointer;
   text-transform: uppercase;
 
-  // &:hover {
-  //   color: orangered;
-  // }
-  ${theme.mq.mobileOnly} {
-  }
-
   ${theme.mq.tablet} {
     ${mb(5)};
-  }
-
-  ${theme.mq.desktop} {
   }
 `;
 export const Icon = styled("svg")`
@@ -33,13 +24,10 @@ export const Icon = styled("svg")`
   display: block;
   width: 16px;
   height: 16px;
-  ${theme.mq.mobileOnly} {
-  }
+
   ${theme.mq.tablet} {
     width: 18px;
     height: 18px;
-  }
-  ${theme.mq.desktop} {
   }
 `;
 export const RecipesWrapper = styled("div")`
@@ -48,8 +36,6 @@ export const RecipesWrapper = styled("div")`
   flex-direction: column;
   gap: 32px;
   ${mt(8)};
-  ${theme.mq.mobileOnly} {
-  }
 
   ${theme.mq.tablet} {
     ${mt(10)};
@@ -95,22 +81,15 @@ export const RecipeComponentItem = styled.li`
 export const RecipeSubDiv = styled.div`
   display: flex;
 
-  ${({ theme }) => theme.mq.tabletOnly} {
-  }
   ${({ theme }) => theme.mq.desktop} {
     width: 910px;
   }
 `;
 export const TitleWrapp = styled("div")`
   ${mb(4)};
-  ${theme.mq.mobileOnly} {
-  }
 
   ${theme.mq.tablet} {
     ${mb(5)};
-  }
-
-  ${theme.mq.desktop} {
   }
 `;
 
@@ -122,8 +101,5 @@ export const SubTitleWrapp = styled("div")`
 
   ${theme.mq.tablet} {
     max-width: 540px;
-  }
-
-  ${theme.mq.desktop} {
   }
 `;

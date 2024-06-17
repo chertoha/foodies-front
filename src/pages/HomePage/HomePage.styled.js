@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { mb, mt } from "styles/atomic";
 import theme from "styles/theme";
+import { mb, mt } from "styles/atomic";
 
 export const PageWrapper = styled("div")`
   ${mb(20)}

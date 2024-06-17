@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { px, py, pr, pl, body1 } from "styles/atomic";
 import theme from "styles/theme";
+import { px, py, pr, pl, body1 } from "styles/atomic";
 
 import ReactSelect from "react-select";
 
@@ -30,16 +30,10 @@ export const StyledSelect = styled(ReactSelect)`
     ${px("14")};
     ${pr(0)};
 
-    ${theme.mq.mobileOnly} {
-    }
-
     ${theme.mq.tablet} {
       ${py(4)};
       ${px("18")};
       ${pr(0)};
-    }
-
-    ${theme.mq.desktop} {
     }
   }
 
@@ -62,16 +56,10 @@ export const StyledSelect = styled(ReactSelect)`
       color: ${theme.colors.accent};
     }
 
-    ${theme.mq.mobileOnly} {
-    }
-
     ${theme.mq.tablet} {
       ${py(4)};
       ${px("18")};
       ${pl(2)};
-    }
-
-    ${theme.mq.desktop} {
     }
   }
 
@@ -84,26 +72,12 @@ export const StyledSelect = styled(ReactSelect)`
       color: ${theme.colors.accent};
     }
 
-    ${theme.mq.mobileOnly} {
-    }
-
     ${theme.mq.tablet} {
       font-size: ${theme.fontSizes.base};
-    }
-
-    ${theme.mq.desktop} {
     }
   }
 
   & .Select__input {
-    ${theme.mq.mobileOnly} {
-    }
-
-    ${theme.mq.tablet} {
-    }
-
-    ${theme.mq.desktop} {
-    }
   }
 
   & .Select__placeholder,
@@ -112,15 +86,6 @@ export const StyledSelect = styled(ReactSelect)`
     margin: 0;
 
     ${body1()};
-
-    ${theme.mq.mobileOnly} {
-    }
-
-    ${theme.mq.tablet} {
-    }
-
-    ${theme.mq.desktop} {
-    }
   }
 
   & .Select__menu {
@@ -130,7 +95,7 @@ export const StyledSelect = styled(ReactSelect)`
     background-color: ${theme.colors.light};
     overflow: hidden;
     scrollbar-width: 1px;
-    scrollbar-height: 5px;
+    /* scrollbar-height: 5px; */
   }
 
   & .Select__menu-list {
@@ -143,7 +108,7 @@ export const StyledSelect = styled(ReactSelect)`
     row-gap: 6px;
     max-height: 326px;
     scrollbar-width: 1px;
-    scrollbar-height: 5px;
+    /* scrollbar-height: 5px; */
   }
 
   & .Select__option {
@@ -168,15 +133,6 @@ export const StyledSelect = styled(ReactSelect)`
     &:active {
       color: ${theme.colors.accent};
       background-color: #0505051f;
-    }
-
-    ${theme.mq.mobileOnly} {
-    }
-
-    ${theme.mq.tablet} {
-    }
-
-    ${theme.mq.desktop} {
     }
   }
 `;

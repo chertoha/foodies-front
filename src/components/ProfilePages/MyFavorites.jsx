@@ -1,13 +1,12 @@
-import { useGetFavoriteRecipesQuery } from "../../redux/recipes/recipesApi";
-
-import { useWindowSize } from "../../hooks/useWindowSize";
-import { useState } from "react";
 import Paginator from "../Paginator/Paginator";
-
 import Loader from "../Loader/Loader";
 import SubTitle from "../SubTitle/SubTitle";
 import UserPageListItems from "../UserPageListItems/UserPageListItems";
+import { useGetFavoriteRecipesQuery } from "../../redux/recipes/recipesApi";
+import { useWindowSize } from "../../hooks/useWindowSize";
+import { useState } from "react";
 import { SubTitleWrapper } from "./ProfilePages.styled";
+
 const MyFavorites = () => {
   const { isMobile } = useWindowSize();
   const [currentPage, setCurrentPage] = useState(1);
@@ -28,7 +27,6 @@ const MyFavorites = () => {
     limit: itemsPerPage,
   });
 
-  // if (isFetchingMyFavorites) return <div>Loading...</div>;
   if (errorMyFavorites) return <div>Error loading My Favorites.</div>;
   if (!data) return null;
 

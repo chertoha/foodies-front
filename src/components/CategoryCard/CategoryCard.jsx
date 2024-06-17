@@ -1,4 +1,5 @@
 import React from "react";
+import SpriteIcon from "components/UIKit/SpriteIcon";
 import {
   CardContainer,
   CardImage,
@@ -6,7 +7,6 @@ import {
   CardButton,
   ButtonsContainer,
 } from "./CategoryCard.styled";
-import SpriteIcon from "components/UIKit/SpriteIcon";
 
 const CategoryCard = ({ category, large, onSelectCategory }) => {
   return (

@@ -1,6 +1,4 @@
 import Container from "components/Container";
-
-// import { FormProvider, useForm } from "react-hook-form";
 import MainTitle from "components/MainTitle";
 import Breadcrumbs from "components/UIKit/Breadcrumbs";
 import AddRecipeForm from "components/AddRecipeForm/AddRecipeForm";
@@ -11,14 +9,6 @@ import {
 } from "./AddRecipePage.styled";
 
 const AddRecipePage = () => {
-  // const methods = useForm({
-  //   defaultValues: {
-  //     thumb: null,
-  //   },
-  // });
-
-  // const onSubmit = data => console.log(data);
-
   return (
     <Container>
       <AddRecipePageContainer>

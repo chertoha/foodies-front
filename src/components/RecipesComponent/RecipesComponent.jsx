@@ -1,20 +1,13 @@
-import { useState } from "react";
-import { useSearchParams } from "react-router-dom";
-import { useGetRecipesQuery } from "../../redux/recipes/recipesApi";
-// import { useLazyGetRecipesQuery } from "../../redux/recipes/recipesApi";
-
-import { useWindowSize } from "../../hooks/useWindowSize";
-
 import Paginator from "../Paginator/Paginator";
-
 import SearchRecipes from "../SearchRecipes";
 import RecipeCard from "../RecipeCard/RecipeCard";
 import MainTitle from "../MainTitle/MainTitle";
 import SubTitle from "../SubTitle/SubTitle";
-
-// import { toast } from "react-toastify";
-
 import sprite from "assets/images/icons/sprite.svg";
+import { useState } from "react";
+import { useSearchParams } from "react-router-dom";
+import { useGetRecipesQuery } from "../../redux/recipes/recipesApi";
+import { useWindowSize } from "../../hooks/useWindowSize";
 import {
   BackLink,
   Icon,
@@ -41,14 +34,7 @@ const RecipesComponent = ({ category }) => {
     setCurrentPage(pageNumber);
   };
 
-  // const [trigger, { data: recipesData, error: recipesError, isFetching: isFetchingRecipes }] =
-  //   useLazyGetRecipesQuery();
-
-  const {
-    data: recipesData,
-    error: recipesError,
-    // isFetching: isFetchingRecipes,
-  } = useGetRecipesQuery({
+  const { data: recipesData, error: recipesError } = useGetRecipesQuery({
     page: currentPage,
     limit: itemsPerPage,
     category: category,
@@ -56,36 +42,23 @@ const RecipesComponent = ({ category }) => {
     ingredient: searchIngredient,
   });
 
-  // useEffect(() => {
-  //   trigger({
-  //     page: currentPage,
-  //     limit: itemsPerPage,
-  //     category: category,
-  //     area: searchArea,
-  //     ingredient: searchIngredient,
-  //   });
-  // }, [trigger, currentPage, itemsPerPage, category, searchArea, searchIngredient]);
-
   const handleFiltersChange = (name, value) => {
     const newParams = { category, area: searchArea, ingredient: searchIngredient };
     newParams[name] = value;
     setSearchParams(newParams);
   };
 
-  // if (isFetchingRecipes) return <div>Loading...</div>;
   if (recipesError) return <div>Error loading recipes.</div>;
   if (!recipesData) return null;
 
   const totalPages = Math.ceil(recipesData.total / itemsPerPage);
 
-  // console.log(recipesData);
   return (
     <div>
       <div>
         <SubTitleWrapp>
           <BackLink
             as="button"
-            // to={location.state?.from || "/"}
             onClick={() => setSearchParams({})}
           >
             <Icon>
@@ -128,18 +101,11 @@ const RecipesComponent = ({ category }) => {
                           ingredients: recipe.ingredients,
                           isFavorite: recipe.isFavorite || false,
                         }}
-                        // author={{ name: recipe.owner.name }}
-                        // author={{ name: recipe.owner }}
                         author={{
                           id: recipe.owner._id,
                           name: recipe.owner.name,
                           avatar: recipe.owner.avatar,
                         }}
-                        onSignIn={() => console.log("Sign in clicked")}
-                        onProfile={authorId => console.log(`Profile of author ${authorId} clicked`)}
-                        onToggleFavorite={recipeId =>
-                          console.log(`Favorite toggled for recipe ${recipeId}`)
-                        }
                       />
                     </RecipeComponentItem>
                   ))}

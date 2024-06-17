@@ -1,7 +1,7 @@
-import { Modal } from "components/Modal/Modal";
-import { Button, Label, Wrapper } from "./AuthToggler.styled";
 import SignIn from "components/SignIn";
 import SignUp from "components/SignUp";
+import { Modal } from "components/Modal/Modal";
+import { Button, Label, Wrapper } from "./AuthToggler.styled";
 import { useModalWindow } from "hooks/useModalWindow";
 import { useState } from "react";
 

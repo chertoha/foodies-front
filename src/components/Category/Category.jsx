@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { useLazyGetCategoriesQuery } from "../../redux/categories/categoriesApi";
 import CategoryList from "../CategoryGrid/CategoryList";
 import MainTitle from "components/MainTitle";
 import SubTitle from "components/SubTitle";
+import { useLazyGetCategoriesQuery } from "../../redux/categories/categoriesApi";
 import { MainTitleWrapper, SubTitleWrapper } from "./Category.styled";
 
 const Category = ({ onSelectCategory }) => {
@@ -53,20 +53,3 @@ const Category = ({ onSelectCategory }) => {
 };
 
 export default Category;
-
-// export const CategoryTest = ({ onSelectCategory }) => {
-//   const categories = ["Seafood", "Dessert", "Breakfast"];
-
-//   return (
-//     <div>
-//       {categories.map(category => (
-//         <button
-//           key={category}
-//           onClick={() => onSelectCategory(category)}
-//         >
-//           {category}
-//         </button>
-//       ))}
-//     </div>
-//   );
-// };

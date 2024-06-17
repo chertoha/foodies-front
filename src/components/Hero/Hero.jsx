@@ -1,13 +1,11 @@
 import React, { useState } from "react";
+import SignUp from "components/SignUp";
+import SignIn from "components/SignIn";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { getToken } from "../../redux/auth/selectors";
-
 import { useModalWindow } from "hooks/useModalWindow";
 import { Modal } from "components/Modal/Modal";
-
-import SignUp from "components/SignUp";
-import SignIn from "components/SignIn";
 import {
   HeroStyled,
   TitleStyled,
@@ -17,15 +15,6 @@ import {
   ImageSmallStyled,
   ImageBigStyled,
 } from "./Hero.styled";
-
-// import heroImageSmallMobile from "../../assets/images/hero/hero-image1-mobile.png";
-// import heroImageSmallMobile2x from "../../assets/images/hero/hero-image1-mobile@2x.png";
-// import heroImageSmallTablet from "../../assets/images/hero/hero-image1-tablet.png";
-// import heroImageSmallTablet2x from "../../assets/images/hero/hero-image1-tablet@2x.png";
-// import heroImageBigMobile from "../../assets/images/hero/hero-image2-mobile.png";
-// import heroImageBigMobile2x from "../../assets/images/hero/hero-image2-mobile@2x.png";
-// import heroImageBigTablet from "../../assets/images/hero/hero-image2-tablet.png";
-// import heroImageBigTablet2x from "../../assets/images/hero/hero-image2-tablet@2x.png";
 
 import heroImageSmallMobile from "../../assets/images/hero/hero-image1-mobile.jpg";
 import heroImageSmallMobile2x from "../../assets/images/hero/hero-image1-mobile@2x.jpg";
@@ -115,26 +104,3 @@ const Hero = () => {
 };
 
 export default Hero;
-
-//  <ImageSmallStyled
-//           srcSet={`
-//           /hero/hero-image1-mobile.png 70w,
-//           /hero/hero-image1-mobile@2x.png 140w,
-//           /hero/hero-image1-tablet.png 128w,
-//           /hero/hero-image1-tablet@2x.png 256w
-//            `}
-//           src="/hero/hero-image1-mobile.png"
-//           sizes="(min-width: 1440px) 128px,(min-width: 768px) 128px,(max-width: 767px) 70px"
-//           alt="hero recipe"
-//         />
-//         <ImageBigStyled
-//           srcSet={`
-//           /hero/hero-image2-mobile.png 190w,
-//           /hero-image2-mobile@2x.png 380w,
-//           /hero/hero-image2-tablet.png 302w,
-//           /hero/hero-image2-tablet@2x.png 604w
-//           `}
-//           src="/hero/hero-image2-mobile.png"
-//           sizes="(min-width: 1440px) 302px,(min-width: 768px) 302px,(max-width: 767px) 190px"
-//           alt="hero recipe"
-//         />

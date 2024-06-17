@@ -1,3 +1,8 @@
+import AvatarButton from "../Buttons/AvatarButton/AvatarButton";
+import ArrowButton from "../Buttons/ArrowButton/ArrowButton";
+import SectionTitle from "components/SectionTitle";
+import FavoriteWrapper from "../FavoriteWrapper/FavoriteWrapper";
+import HeartButton from "components/Buttons/HeartButton";
 import {
   CardWrapper,
   Image,
@@ -7,11 +12,6 @@ import {
   Text,
   ImageWrapper,
 } from "./RecipeCard.styled";
-import AvatarButton from "../Buttons/AvatarButton/AvatarButton";
-import ArrowButton from "../Buttons/ArrowButton/ArrowButton";
-import SectionTitle from "components/SectionTitle";
-import FavoriteWrapper from "../FavoriteWrapper/FavoriteWrapper";
-import HeartButton from "components/Buttons/HeartButton";
 
 const RecipeCard = ({ recipe, author, isAuthenticated }) => {
   return (

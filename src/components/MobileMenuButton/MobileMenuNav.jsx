@@ -21,14 +21,6 @@ const MobileMenuNav = ({ onClick }) => {
             Add recipe
           </Link>
         </Item>
-        {/* <Item>
-              <Link
-                onClick={close}
-                to={`user/666a03962990091f7536e7e6`}
-              >
-                Add recipe
-              </Link>
-            </Item> */}
       </List>
     </Nav>
   );

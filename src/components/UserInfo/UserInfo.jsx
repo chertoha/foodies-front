@@ -1,10 +1,8 @@
-import { useParams } from "react-router-dom";
-
-import { useAuth } from "../../hooks/useAuth";
-import { useFollowUserMutation, useUnfollowUserMutation } from "../../redux/users/usersApi";
-
 import UserAvatar from "../../components/UserAvatar/UserAvatar";
 import ActiveButton from "components/Buttons/ActiveButton/ActiveButton";
+import { useParams } from "react-router-dom";
+import { useAuth } from "../../hooks/useAuth";
+import { useFollowUserMutation, useUnfollowUserMutation } from "../../redux/users/usersApi";
 import {
   UserInfoWrapp,
   UserCard,
@@ -20,17 +18,8 @@ const UserInfo = ({ userId, avatar, name, recipesCount, followersCount }) => {
   const { id } = useParams();
   const { user } = useAuth();
   const { revalidateUserData } = useRevalidateUser();
-  // const [isFollowing, setIsFollowing] = useState(false);
   const [followUser, { isLoading: isFollowLoading }] = useFollowUserMutation();
   const [unfollowUser, { isLoading: isUnFollowLoading }] = useUnfollowUserMutation();
-
-  // console.log("user", user);
-  // useEffect(() => {
-  //   if (user && user.following) {
-  //     const isFollowingUser = user.following.includes(userId);
-  //     setIsFollowing(isFollowingUser);
-  //   }
-  // }, [user, userId]);
 
   const isFollowing = user.following.includes(userId);
 
@@ -38,14 +27,12 @@ const UserInfo = ({ userId, avatar, name, recipesCount, followersCount }) => {
     if (isFollowing) {
       try {
         await unfollowUser(followerId).unwrap();
-        // setIsFollowing(false);
       } catch (error) {
         console.error("Failed to unfollow user:", error);
       }
     } else {
       try {
         await followUser(followerId).unwrap();
-        // setIsFollowing(true);
       } catch (error) {
         console.error("Failed to follow user:", error);
       }

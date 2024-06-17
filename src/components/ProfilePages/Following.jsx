@@ -1,8 +1,7 @@
-import { useGetUserFollowingQuery } from "../../redux/users/usersApi";
-
 import Loader from "../Loader/Loader";
 import SubTitle from "../SubTitle/SubTitle";
 import FollowersList from "../FollowerList/FollowerList";
+import { useGetUserFollowingQuery } from "../../redux/users/usersApi";
 import { SubTitleWrapper } from "./ProfilePages.styled";
 
 const Following = () => {
@@ -15,7 +14,6 @@ const Following = () => {
     limit: 9,
   });
 
-  // if (isFetchingFollowing) return <div>Loading...</div>;
   if (errorFollowing) return <div>Error loading recipes.</div>;
   if (!data) return null;
 

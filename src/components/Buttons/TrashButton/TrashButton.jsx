@@ -1,5 +1,5 @@
-import { ButtonTrash } from "./TrashButton.styled";
 import SpriteIcon from "../../UIKit/SpriteIcon/SpriteIcon";
+import { ButtonTrash } from "./TrashButton.styled";
 
 const TrashButton = ({ isFavorite, onClick }) => {
   return (

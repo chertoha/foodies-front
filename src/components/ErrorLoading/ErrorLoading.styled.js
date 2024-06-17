@@ -1,9 +1,5 @@
 import styled from "styled-components";
 import theme from "styles/theme";
-import Container from "components/Container";
-import MainTitle from "components/MainTitle";
-import NotFound from "components/NotFound";
-import { ROUTES } from "config/router";
 import { Link } from "react-router-dom";
 import { body1, mt, px, py } from "styles/atomic";
 
@@ -46,28 +42,3 @@ export const GoHomeLink = styled(Link)`
     ${py(4)};
   }
 `;
-
-const NotFoundPage = () => {
-  return (
-    <>
-      <Container>
-        <NotFound />
-
-        <TitleWrapper>
-          <MainTitle label="404 - Page not found" />
-        </TitleWrapper>
-
-        <LinkWrapper>
-          <GoHomeLink
-            to={ROUTES.HOME}
-            replace={true}
-          >
-            Go to home page
-          </GoHomeLink>
-        </LinkWrapper>
-      </Container>
-    </>
-  );
-};
-
-export default NotFoundPage;

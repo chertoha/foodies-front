@@ -1,8 +1,8 @@
 import Breadcrumbs from "components/UIKit/Breadcrumbs";
 import RecipesPopular from "../../components/RecipesPopular/RecipesPopular";
 import Container from "../../components/Container/Container";
-import { RecipePageContainer } from "./RecipePage.styled";
 import RecipeInfo from "../../components/RecipeInfo/RecipeInfo";
+import { RecipePageContainer } from "./RecipePage.styled";
 import { useParams } from "react-router-dom";
 import { useGetRecipeQuery } from "../../redux/recipes/recipesApi";
 

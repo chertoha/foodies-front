@@ -1,12 +1,10 @@
-import { useWindowSize } from "../../hooks/useWindowSize";
-import { useState } from "react";
 import Paginator from "../Paginator/Paginator";
-
-import { useGetUserRecipesQuery } from "../../redux/users/usersApi";
-
 import Loader from "../Loader/Loader";
 import SubTitle from "../SubTitle/SubTitle";
 import UserPageListItems from "../UserPageListItems/UserPageListItems";
+import { useWindowSize } from "../../hooks/useWindowSize";
+import { useState } from "react";
+import { useGetUserRecipesQuery } from "../../redux/users/usersApi";
 import { SubTitleWrapper } from "./ProfilePages.styled";
 
 const UserRecipes = ({ id }) => {
@@ -26,7 +24,6 @@ const UserRecipes = ({ id }) => {
     refetch: refetchMyRecipes,
   } = useGetUserRecipesQuery(id);
 
-  // if (isFetchingUserRecipes) return <div>Loading...</div>;
   if (errorUserRecipes) return <div>Error loading recipes.</div>;
   if (!data) return null;
 

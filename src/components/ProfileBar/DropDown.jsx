@@ -1,8 +1,8 @@
 import SpriteIcon from "components/UIKit/SpriteIcon";
+import LogOut from "components/LogOut";
 import { useEffect, useRef } from "react";
 import { Item, List, StyledLink } from "./ProfileBar.styled";
 import { Modal } from "components/Modal/Modal";
-import LogOut from "components/LogOut";
 import { useModalWindow } from "hooks/useModalWindow";
 import { ROUTES } from "config/router";
 import { useAuth } from "hooks/useAuth";
@@ -14,6 +14,10 @@ const DropDown = ({ close: closeDropdown }) => {
   const { isOpen: isModalOpen, open: openModal, close: closeModal } = useModalWindow();
 
   useEffect(() => {
+    if (isModalOpen) {
+      return;
+    }
+
     const onOutsideDropdownClick = e => {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
         closeDropdown();
@@ -25,7 +29,7 @@ const DropDown = ({ close: closeDropdown }) => {
     return () => {
       window.removeEventListener("click", onOutsideDropdownClick);
     };
-  }, [closeDropdown]);
+  }, [closeDropdown, isModalOpen]);
 
   return (
     <>

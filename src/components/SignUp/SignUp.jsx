@@ -1,13 +1,11 @@
 import React, { useState } from "react";
+import sprite from "assets/images/icons/sprite.svg";
 import { useDispatch } from "react-redux";
 import { authSignUpThunk } from "../../redux/auth/thunks";
-
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { object, string } from "yup";
-
 import { toast } from "react-toastify";
-import sprite from "assets/images/icons/sprite.svg";
 import {
   FormWripper,
   TitleStyled,
@@ -38,6 +36,7 @@ const SignUp = ({ switchForm, onClose }) => {
     register,
     handleSubmit,
     reset,
+    watch,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
@@ -47,6 +46,8 @@ const SignUp = ({ switchForm, onClose }) => {
       password: "",
     },
   });
+
+  const watchCredentials = watch();
 
   const onSubmit = async data => {
     dispatch(authSignUpThunk(data))
@@ -61,25 +62,6 @@ const SignUp = ({ switchForm, onClose }) => {
         });
       });
   };
-
-  // const onSubmit = async data => {
-  //   try {
-  //     const res = await dispatch(authSignUpThunk(data));
-  //     if (res.type === "authSignUp/fulfilled") {
-  //       reset();
-  //       onClose();
-  //     }
-  //     if (res.type === "authSignUp/rejected") {
-  //       toast.error(`${res.payload}`, {
-  //         theme: "light",
-  //       });
-  //     }
-  //   } catch (error) {
-  //     toast.error(error.message, {
-  //       theme: "light",
-  //     });
-  //   }
-  // };
 
   return (
     <FormWripper>
@@ -125,7 +107,12 @@ const SignUp = ({ switchForm, onClose }) => {
           </IconStyled>
           <ErrorTextStyled>{errors.password?.message}</ErrorTextStyled>
         </InputContainerStyled>
-        <ButtonStyled type="submit">Create</ButtonStyled>
+        <ButtonStyled
+          type="submit"
+          disabled={!watchCredentials.email || !watchCredentials.name || !watchCredentials.password}
+        >
+          Create
+        </ButtonStyled>
       </FormStyled>
       <TextContainerStyled>
         <TextStyled>I already have an account?</TextStyled>

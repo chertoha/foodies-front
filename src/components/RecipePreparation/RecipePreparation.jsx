@@ -1,14 +1,14 @@
 import SubTitle from "components/SubTitle";
+import FavoriteButton from "../Buttons/FavoriteButton/FavoriteButton";
+import FavoriteWrapper from "../FavoriteWrapper/FavoriteWrapper";
+import SectionTitle from "components/SectionTitle";
 import {
   RecipePreparationContainer,
   PreparationDescriptionWrapper,
   PreparationTitleWrapper,
   ReadMoreButton,
 } from "./RecipePreparation.styled";
-import SectionTitle from "components/SectionTitle";
 import { useState } from "react";
-import FavoriteButton from "../Buttons/FavoriteButton/FavoriteButton";
-import FavoriteWrapper from "../FavoriteWrapper/FavoriteWrapper";
 
 const RecipePreparation = ({ preparation, recipeId }) => {
   const [showFullText, setShowFullText] = useState(false);
