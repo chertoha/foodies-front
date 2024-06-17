@@ -65,6 +65,8 @@ const pandingAuthCurrentUser = (state, _) => {
 const rejectedAuthCurrentUser = (state, { payload }) => {
   state.isLoading = false;
   state.error = payload;
+  state.user = null;
+  state.token = null;
 };
 
 const authUserSlice = createSlice({
