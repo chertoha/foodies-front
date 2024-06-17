@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { body1 } from "styles/atomic";
+import { body1, mt } from "styles/atomic";
 import theme from "styles/theme";
 
 export const FormFields = styled.div`
@@ -327,9 +327,13 @@ export const InstructionWrapper = styled.div`
   /* @media screen and (max-width: 767px) {
     gap: 16px;
   } */
-
+  ${mt(16)};
   ${theme.mq.mobileOnly} {
     gap: 16px;
+  }
+
+  ${theme.mq.tablet} {
+    ${mt(20)};
   }
 
   display: flex;

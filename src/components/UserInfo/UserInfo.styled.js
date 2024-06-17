@@ -62,6 +62,7 @@ export const Button = styled("span")`
   width: 28px;
   height: 28px;
   background-color: ${theme.colors.accent};
+  color: ${p => p.theme.colors.white};
   border: none;
   border-radius: 30px;
   cursor: pointer;
@@ -76,7 +77,6 @@ export const Button = styled("span")`
   }
 `;
 export const Icon = styled("svg")`
-  fill: ${theme.colors.light};
   display: block;
   width: 16px;
   height: 16px;
