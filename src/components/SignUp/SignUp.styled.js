@@ -17,9 +17,6 @@ export const FormWripper = styled("div")`
     padding: 80px;
     border-radius: 30px;
   }
-
-  ${theme.mq.desktop} {
-  }
 `;
 export const TitleStyled = styled("h2")`
   ${heading2};
@@ -28,9 +25,6 @@ export const TitleStyled = styled("h2")`
   ${theme.mq.tablet} {
     font-size: 32px;
     line-height: 1.25;
-  }
-
-  ${theme.mq.desktop} {
   }
 `;
 
@@ -45,9 +39,6 @@ export const FormStyled = styled("form")`
 
   ${theme.mq.tablet} {
     margin-top: 40px;
-  }
-
-  ${theme.mq.desktop} {
   }
 `;
 
@@ -87,20 +78,11 @@ export const InputStyled = styled.input.attrs(props => props)`
     font-size: 16px;
     line-height: 1.5;
   }
-
-  ${theme.mq.desktop} {
-  }
 `;
 
 export const InputContainerStyled = styled("div")`
   position: relative;
   width: 100%;
-
-  ${theme.mq.tablet} {
-  }
-
-  ${theme.mq.desktop} {
-  }
 `;
 
 export const IconStyled = styled.svg.attrs(props => props)`
@@ -108,7 +90,7 @@ export const IconStyled = styled.svg.attrs(props => props)`
   top: 24%;
   left: 85%;
   display: block;
-  // stroke: ${props => props.stroke};
+
   stroke: #050505;
 
   width: 18px;
@@ -145,10 +127,7 @@ export const ButtonStyled = styled("button")`
 
   color: ${p => p.theme.colors.white};
   background-color: ${p => p.theme.colors.accent};
-  /* color: rgba(255, 255, 255, 0.4); */
-  /* background-color: rgba(5, 5, 5, 0.2); */
-  /* transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1); */
+
   transition: ${p => p.theme.transitions.prop("background-color")};
 
   ${theme.mq.mobile} {
@@ -167,19 +146,13 @@ export const ButtonStyled = styled("button")`
 
     &:focus,
     &:hover {
-      /* cursor: pointer; */
-      /* color: rgba(255, 255, 255, 1);
-      background-color: rgba(5, 5, 5, 1); */
       background-color: rgba(0, 0, 0, 0.7);
     }
 
     &:disabled {
       background-color: rgba(5, 5, 5, 0.2);
-      rgba(255, 255, 255, 0.4)
+      color: rgba(255, 255, 255, 0.4);
     }
-  }
-
-  ${theme.mq.desktop} {
   }
 `;
 
@@ -193,9 +166,6 @@ export const TextContainerStyled = styled("div")`
   ${theme.mq.tablet} {
     margin-top: 20px;
   }
-
-  ${theme.mq.desktop} {
-  }
 `;
 
 export const TextStyled = styled("p")`
@@ -207,9 +177,6 @@ export const TextStyled = styled("p")`
   ${theme.mq.tablet} {
     font-size: 14px;
     line-height: 1.28;
-  }
-
-  ${theme.mq.desktop} {
   }
 `;
 
@@ -229,9 +196,6 @@ export const LinkTextStyled = styled("a")`
       cursor: pointer;
     }
   }
-
-  ${theme.mq.desktop} {
-  }
 `;
 
 export const ErrorTextStyled = styled("p")`
@@ -250,8 +214,5 @@ export const ErrorTextStyled = styled("p")`
   ${theme.mq.tablet} {
     font-size: 14px;
     line-height: 1.28;
-  }
-
-  ${theme.mq.desktop} {
   }
 `;

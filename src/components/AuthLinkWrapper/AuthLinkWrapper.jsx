@@ -1,9 +1,9 @@
-import { Modal } from "../Modal/Modal";
 import SignIn from "../SignIn/SignIn";
+import SignUp from "components/SignUp";
+import { Modal } from "../Modal/Modal";
 import { useModalWindow } from "../../hooks/useModalWindow";
 import { useAuth } from "../../hooks/useAuth";
 import { Link } from "react-router-dom";
-import SignUp from "components/SignUp";
 import { useState } from "react";
 
 const AuthLinkWrapper = ({ to, avatar }) => {

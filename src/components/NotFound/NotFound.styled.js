@@ -2,13 +2,9 @@ import styled from "styled-components";
 import theme from "styles/theme";
 
 export const Main = styled("div")`
-  /* min-height: 600px; */
   height: 300px;
-  /* height: 200px; */
   margin: 0px auto;
   width: auto;
-  /* max-width: 460px; */
-  /* max-width: 1060px; */
   display: flex;
   align-items: center;
   justify-content: center;

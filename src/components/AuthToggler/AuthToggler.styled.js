@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { flexCenter } from "styles/atomic";
 import theme from "styles/theme";
+import { flexCenter } from "styles/atomic";
 
 export const Wrapper = styled("div")`
   display: flex;
@@ -33,38 +33,6 @@ export const Button = styled("button")`
   border-radius: ${p => p.theme.radii.lg};
   transition: ${p => p.theme.transitions.prop("color")};
   border: 1px solid white;
-
-  // &:first-child {
-  //   color: ${p => p.theme.colors.dark};
-  // }
-
-  // &:first-child:hover {
-  //   color: #ffffff;
-  // }
-
-  // &:first-child ~ button > span {
-  //   transition: ${p => p.theme.transitions.prop("color")};
-  // }
-
-  // &:first-child:hover ~ button > span {
-  //   color: ${p => p.theme.colors.dark};
-  // }
-
-  // &:first-child::before {
-  //   position: absolute;
-  //   content: "";
-  //   width: 100%;
-  //   height: 100%;
-  //   border-radius: ${p => p.theme.radii.lg};
-  //   border: 1px solid ${p => p.theme.colors.grey};
-  //   background-color: ${p => p.theme.colors.dark};
-  //   transform: translateX(100%);
-  //   transition: ${p => p.theme.transitions.prop("transform")};
-  // }
-
-  // &:first-child:hover::before {
-  //   transform: translateX(0);
-  // }
 `;
 
 export const Label = styled("span")`

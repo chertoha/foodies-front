@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { body1, mb, my, numberTextRows } from "styles/atomic";
 import theme from "styles/theme";
+import { body1, mb, my, numberTextRows } from "styles/atomic";
 
 export const CardWrapper = styled.div`
   display: flex;
@@ -24,11 +24,6 @@ export const Image = styled.img`
   height: 100%;
   display: block;
   object-fit: cover;
-  /* height: 230px; */
-
-  /* ${theme.mq.tablet} {
-    height: 275px;
-  } */
 `;
 
 export const TitleCardWrapper = styled.div`

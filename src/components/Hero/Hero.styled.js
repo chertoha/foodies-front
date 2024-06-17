@@ -4,34 +4,15 @@ import { flexCenter } from "styles/atomic";
 
 export const HeroStyled = styled("div")`
   height: 100%;
-
-  /* margin: 0 8px; */
-  /* padding: 0 16px; */
-  /* padding-bottom: 100px; */
-  /* border-radius: 0 0 20px 20px; */
-  /* background-color: ${theme.colors.accent}; */
-
-  ${theme.mq.tablet} {
-    /* margin: 0 16px; */
-    /* padding-bottom: 91px; */
-    /* border-radius: 0 0 30px 30px; */
-  }
-  ${theme.mq.desktop} {
-    /* margin: 0 20px; */
-    /* padding-bottom: 82px; */
-  }
 `;
 export const TitleStyled = styled("h1")`
   max-width: 327px;
 
   margin: 0 auto;
-  /* padding-top: 140px; */
-  /* padding-top: 194px; */
 
   font-size: 40px;
   font-weight: 800;
   line-height: 1;
-  /* letter-spacing: -2%; */
   letter-spacing: -0.02em;
   text-align: center;
   text-transform: uppercase;
@@ -40,16 +21,12 @@ export const TitleStyled = styled("h1")`
 
   ${theme.mq.tablet} {
     max-width: 700px;
-    /* padding-top: 151px; */
-    /* padding-top: 217px; */
 
     font-size: 70px;
   }
+
   ${theme.mq.desktop} {
     max-width: 900px;
-    /* padding-top: 88px; */
-    /* padding-top: 154px; */
-
     font-size: 90px;
   }
 `;
@@ -99,7 +76,7 @@ export const ButtonStyled = styled("button")`
   color: ${theme.colors.light};
   border-radius: 30px;
   background-color: ${theme.colors.accent};
-  ontline: none;
+  outline: none;
   border: 1px solid rgba(255, 255, 255, 0.9);
 
   ${theme.mq.tablet} {

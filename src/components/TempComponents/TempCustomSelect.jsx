@@ -4,7 +4,7 @@ import { StyledSelect } from "./CustomSelect.styled";
 const TempCustomSelect = React.forwardRef(
   ({ name, options, value, onChange, placeholder }, ref) => {
     const handleChange = selectedOption => {
-      onChange(name, selectedOption ? selectedOption.value : ""); // Додаємо перевірку на undefined
+      onChange(name, selectedOption ? selectedOption.value : "");
     };
 
     return (

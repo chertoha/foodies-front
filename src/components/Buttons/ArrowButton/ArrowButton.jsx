@@ -1,5 +1,5 @@
-import { ButtonArrow } from "./ArrowButton.styled";
 import SpriteIcon from "../../UIKit/SpriteIcon/SpriteIcon";
+import { ButtonArrow } from "./ArrowButton.styled";
 
 const ArrowButton = ({ to }) => {
   return (

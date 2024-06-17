@@ -1,5 +1,5 @@
-import { ButtonHeart } from "./HeartButton.styled";
 import SpriteIcon from "../../UIKit/SpriteIcon/SpriteIcon";
+import { ButtonHeart } from "./HeartButton.styled";
 
 const HeartButton = ({ isChecked, onClick }) => {
   return (

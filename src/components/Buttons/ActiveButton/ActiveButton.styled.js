@@ -1,9 +1,8 @@
 import styled from "styled-components";
-import { px, py, body1 } from "styles/atomic";
 import theme from "styles/theme";
+import { px, py, body1 } from "styles/atomic";
 
 export const StyledButton = styled("button")`
-  /* max-width: 250px; */
   height: 48px;
   width: 100%;
   ${py("14")};
@@ -17,20 +16,13 @@ export const StyledButton = styled("button")`
   text-transform: uppercase;
   cursor: pointer;
   transition: ${theme.transitions.default};
-  ${theme.mq.mobileOnly} {
-    /* width: 100%; */
-    /* max-width: 343px; */
-  }
 
   ${theme.mq.tablet} {
-    /* max-width: 394px; */
     height: 56px;
     ${py(4)};
     ${px("120")};
   }
 
-  ${theme.mq.desktop} {
-  }
   &:hover {
     background-color: #6a6868;
   }

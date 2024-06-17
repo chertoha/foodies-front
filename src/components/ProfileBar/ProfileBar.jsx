@@ -1,5 +1,6 @@
 import DropDown from "./DropDown";
 import SpriteIcon from "components/UIKit/SpriteIcon";
+import MobileMenuButton from "components/MobileMenuButton";
 import { useState } from "react";
 import {
   Avatar,
@@ -10,7 +11,6 @@ import {
   Label,
   Wrapper,
 } from "./ProfileBar.styled";
-import MobileMenuButton from "components/MobileMenuButton";
 
 const ProfileBar = ({ user, inverse }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -37,7 +37,6 @@ const ProfileBar = ({ user, inverse }) => {
             </AvatarWrapper>
 
             <Label>{user.name}</Label>
-            {/* <Label>NADIIA AD</Label> */}
 
             <IconWrapper $open={isOpen}>
               <SpriteIcon

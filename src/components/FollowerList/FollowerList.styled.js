@@ -1,7 +1,7 @@
-import { Link } from "react-router-dom";
-import styled from "styled-components";
-import { py, px, mb, heading5, body2, body1 } from "styles/atomic";
 import theme from "styles/theme";
+import styled from "styled-components";
+import { Link } from "react-router-dom";
+import { py, px, mb, heading5, body2, body1 } from "styles/atomic";
 
 export const FollowerList = styled("ul")`
   display: flex;
@@ -10,12 +10,6 @@ export const FollowerList = styled("ul")`
   ${theme.mq.mobileOnly} {
     width: 100%;
     max-width: 343px;
-  }
-
-  ${theme.mq.tablet} {
-  }
-
-  ${theme.mq.desktop} {
   }
 `;
 
@@ -45,12 +39,6 @@ export const FollowerItemWrapp = styled("div")`
   gap: 16px;
   ${theme.mq.mobileOnly} {
   }
-
-  ${theme.mq.tablet} {
-  }
-
-  ${theme.mq.desktop} {
-  }
 `;
 
 export const FollowerImage = styled("img")`
@@ -76,15 +64,6 @@ export const FollowerTitle = styled("h4")`
   text-transform: uppercase;
   ${heading5()}
   ${mb(1)}
-  
-  ${theme.mq.mobileOnly} {
-  }
-
-  ${theme.mq.tablet} {
-  }
-
-  ${theme.mq.desktop} {
-  }
 `;
 
 export const FollowerText = styled("p")`
@@ -92,14 +71,6 @@ export const FollowerText = styled("p")`
 
   ${body2()}
   ${mb(2)}
-  ${theme.mq.mobileOnly} {
-  }
-
-  ${theme.mq.tablet} {
-  }
-
-  ${theme.mq.desktop} {
-  }
 `;
 
 export const FollowerButton = styled("button")`
@@ -116,17 +87,13 @@ export const FollowerButton = styled("button")`
   ${body1()}
   ${py(2)}
   ${px(4)}
-  ${theme.mq.mobileOnly} {
-  }
+
 
   ${theme.mq.tablet} {
     width: 116px;
     height: 44px;
     ${py("10")}
     ${px("24")}
-  }
-
-  ${theme.mq.desktop} {
   }
 `;
 export const CardList = styled("ul")`
@@ -158,9 +125,6 @@ export const CardListImage = styled("img")`
     height: 100px;
     border-radius: 15px;
   }
-
-  ${theme.mq.desktop} {
-  }
 `;
 export const LinkButton = styled(Link)`
   display: flex;
@@ -184,9 +148,6 @@ export const LinkButton = styled(Link)`
     width: 42px;
     height: 42px;
   }
-
-  ${theme.mq.desktop} {
-  }
 `;
 export const Icon = styled("svg")`
   fill: ${theme.colors.accent};
@@ -200,8 +161,5 @@ export const Icon = styled("svg")`
   ${theme.mq.tablet} {
     width: 18px;
     height: 18px;
-  }
-
-  ${theme.mq.desktop} {
   }
 `;

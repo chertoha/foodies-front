@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import { body1, flexCenter, heading3, heading5, mt } from "styles/atomic";
 import theme from "styles/theme";
 import iconQuote from "assets/images/icons/quote.svg";
+import { body1, flexCenter, heading3, heading5, mt } from "styles/atomic";
 
 export const Introduction = styled("p")`
   ${body1()}

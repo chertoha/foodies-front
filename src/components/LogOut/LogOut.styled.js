@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { heading2 } from "styles/atomic";
 import theme from "styles/theme";
+import { heading2 } from "styles/atomic";
 
 export const Wripper = styled("div")`
   display: flex;
@@ -66,7 +66,7 @@ export const ButtonStyled = styled("button")`
   padding: 14px;
 
   font-size: 14px;
-  ligth-height: 1.42;
+  line-height: 1.42;
   font-weight: 700;
   text-transform: uppercase;
 
@@ -89,7 +89,7 @@ export const ButtonStyled = styled("button")`
     padding: 16px;
 
     font-size: 16px;
-    ligth-height: 1.5;
+    line-height: 1.5;
 
     &:focus,
     &:hover {
@@ -110,7 +110,7 @@ export const ButtonCancelStyled = styled("button")`
   padding: 14px;
 
   font-size: 14px;
-  ligth-height: 1.42;
+  line-height: 1.42;
   font-weight: 700;
   text-transform: uppercase;
 
@@ -130,7 +130,7 @@ export const ButtonCancelStyled = styled("button")`
     padding: 16px;
 
     font-size: 16px;
-    ligth-height: 1.5;
+    line-height: 1.5;
 
     &:focus,
     &:hover {

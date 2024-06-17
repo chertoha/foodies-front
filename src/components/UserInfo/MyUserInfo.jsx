@@ -1,9 +1,9 @@
-import { Modal } from "components/Modal/Modal";
 import LogOut from "components/LogOut";
-import { useModalWindow } from "hooks/useModalWindow";
 import UserAvatar from "../../components/UserAvatar/UserAvatar";
-import sprite from "assets/images/icons/sprite.svg";
 import ActiveButton from "components/Buttons/ActiveButton/ActiveButton";
+import sprite from "assets/images/icons/sprite.svg";
+import { Modal } from "components/Modal/Modal";
+import { useModalWindow } from "hooks/useModalWindow";
 import { allowedImageMIMETypes } from "utils/allowedImageMimeTypes";
 import { useUpdateUserAvatarMutation } from "../../redux/users/usersApi";
 import { toast } from "react-toastify";

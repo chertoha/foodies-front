@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { pt } from "styles/atomic";
 import theme from "styles/theme";
+import { pt } from "styles/atomic";
 
 export const Wrapper = styled.div`
   ${pt(8)}
@@ -26,7 +26,7 @@ export const Button = styled.button`
   color: ${theme.colors.accent};
   transition: ${theme.transitions.default};
   padding: 0;
-  // background-color: ${theme.transitions.default};
+
   border: 1px solid ${theme.colors.accent};
 
   font-size: 14px;

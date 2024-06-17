@@ -1,7 +1,7 @@
-import { Controller, useFormContext } from "react-hook-form";
-import { useGetAreasQuery } from "../../redux/areas/areasApi";
 import SectionTitle from "components/SectionTitle";
 import CommonSelect from "components/UIKit/CommonSelect";
+import { Controller, useFormContext } from "react-hook-form";
+import { useGetAreasQuery } from "../../redux/areas/areasApi";
 import { YulpErrorMessage } from "./AddRecipeForm.styled";
 
 const AreaSelector = () => {

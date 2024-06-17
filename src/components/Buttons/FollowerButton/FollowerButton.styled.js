@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { py, px, body1 } from "styles/atomic";
 import theme from "styles/theme";
+import { py, px, body1 } from "styles/atomic";
 
 export const StyledButton = styled("button")`
   width: 92px;

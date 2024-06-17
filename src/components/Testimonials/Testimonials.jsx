@@ -1,3 +1,4 @@
+import MainTitle from "components/MainTitle/MainTitle";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, A11y, Autoplay } from "swiper/modules";
 import "swiper/css";
@@ -11,13 +12,10 @@ import {
   Text,
   TitleWrapper,
 } from "./Testimonials.styled";
-import MainTitle from "components/MainTitle/MainTitle";
 import { useGetTestimonialsQuery } from "../../redux/testimonials/testimonialsApi";
 
 const Testimonials = () => {
   const { data, isError } = useGetTestimonialsQuery({ page: 1, limit: 5 });
-
-  //console.log(data);
 
   if (!data) return;
 

@@ -104,7 +104,6 @@ const authPersistConfig = {
   whitelist: ["token", "user"],
 };
 
-// export const authUserReduser = authUserSlice.reducer;
 export const { triggerUserDataRefresh, resetUserDataRefresh } = authUserSlice.actions;
 export const persistedAuthReducer = persistReducer(authPersistConfig, authUserSlice.reducer);
 export default authUserSlice;

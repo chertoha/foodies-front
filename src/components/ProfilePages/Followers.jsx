@@ -1,9 +1,9 @@
-import { useGetUserFollowersQuery } from "../../redux/users/usersApi";
-
 import Loader from "../Loader/Loader";
 import SubTitle from "../SubTitle/SubTitle";
 import FollowersList from "../FollowerList/FollowerList";
+import { useGetUserFollowersQuery } from "../../redux/users/usersApi";
 import { SubTitleWrapper } from "./ProfilePages.styled";
+
 const Followers = ({ id }) => {
   const {
     data,
@@ -11,7 +11,6 @@ const Followers = ({ id }) => {
     isFetching: isFetchingFollowers,
   } = useGetUserFollowersQuery(id);
 
-  // if (isFetchingFollowers) return <div>Loading...</div>;
   if (errorFollowers) return <div>Error loading Followers.</div>;
   if (!data) return null;
 

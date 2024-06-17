@@ -1,3 +1,4 @@
+import ImageDropZone from "components/ImageDropZone/ImageDropZone";
 import { StyledSelect } from "components/CustomSelect/CustomSelect.styled";
 import { useGetIngredientsQuery } from "../../redux/ingredients/ingredientsApi";
 import { useEffect, useState } from "react";
@@ -5,35 +6,16 @@ import { useGetAreasQuery } from "../../redux/areas/areasApi";
 import { Controller, FormProvider, useFieldArray, useForm, useFormContext } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import ImageDropZone from "components/ImageDropZone/ImageDropZone";
 import { LocalStorage } from "services/storage";
-// import { schema } from "components/AddRecipeForm/yupValidation";
 
 const NAME_VALIDATION_RULE = yup.string().required("Ingredient field required");
 const MEASURE_VALIDATION_RULE = yup.string().required("Measure field required");
 
 export const addRecipeFormSchema = yup.object({
-  //   thumb: yup.mixed().required("Фото є обов'язковим"),
-  //   title: yup.string().required("Назва є обов'язковою"),
-  //   description: yup
-  //     .string()
-  //     .max(200, "Короткий опис не може перевищувати 200 символів")
-  //     .required("Короткий опис є обов'язковим"),
-  //   category: yup.string().required("Категорія є обов'язковою"),
-  //   time: yup
-  //     .number()
-  //     .min(1, "Час приготування повинен бути не менше 1 хвилини")
-  //     .required("Час приготування є обов'язковим"),
-  //   instructions: yup
-  //     .string()
-  //     .max(200, "Інструкція не може перевищувати 200 символів")
-  //     .required("Інструкція є обов'язковою"),
   ingredients: yup
     .array()
     .of(
       yup.object().shape({
-        // name: yup.string().required("Ingredient field required"),
-        // measure: yup.string().required("Measure field required"),
         name: NAME_VALIDATION_RULE,
         measure: MEASURE_VALIDATION_RULE,
       })
@@ -236,9 +218,6 @@ const IngredientList = () => {
       </div>
 
       {errors.ingredients && <span>{errors.ingredients.message}</span>}
-      {/* {errors.ingredients && errors.ingredients[0].measure && (
-        <span>{errors.ingredients[0].measure.message}</span>
-      )} */}
 
       <ul style={{ marginTop: "40px" }}>
         {fields.map(({ name, measure }, index) => (
@@ -280,9 +259,7 @@ const IngredientList = () => {
 const storage = new LocalStorage("add_recipe_form_data");
 
 const initialValues = {
-  //   ingredients: [],
   ingredients: [{ name: "Olive Oil", measure: "400gr" }],
-  //   area: "",
   area: "Irish",
   thumb: null,
 };
@@ -300,8 +277,8 @@ const TempAddForm = () => {
     storage.set(watchFields);
   }, [watchFields]);
 
-  const onSubmit = data => {
-    console.log(data);
+  const onSubmit = _data => {
+    // console.log(data);
   };
 
   return (

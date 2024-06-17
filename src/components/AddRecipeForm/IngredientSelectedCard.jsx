@@ -1,16 +1,13 @@
+import SpriteIcon from "components/UIKit/SpriteIcon";
 import {
   ImageWrapper,
   IngredientItem,
   IngredientsWrapper,
 } from "components/RecipeIngredients/RecipeIngredients.styled";
-import SpriteIcon from "components/UIKit/SpriteIcon";
 import { BtnDelete } from "./AddRecipeForm.styled";
-// import { useEffect } from "react";
 
 const IngredientCard = ({ ingredient, onDelete }) => {
-  // const { _id, name, quantity, img } = ingredient;
   const { name, measure, img } = ingredient;
-  // console.log(img);
 
   return (
     <>
@@ -24,7 +21,6 @@ const IngredientCard = ({ ingredient, onDelete }) => {
 
         <IngredientsWrapper>
           <BtnDelete
-            // onClick={() => onDelete(_id)}
             onClick={onDelete}
             type="button"
           >
@@ -34,7 +30,6 @@ const IngredientCard = ({ ingredient, onDelete }) => {
             />
           </BtnDelete>
           <span>{name}</span>
-          {/* <p>{quantity}</p> */}
           <p>{measure}</p>
         </IngredientsWrapper>
       </IngredientItem>

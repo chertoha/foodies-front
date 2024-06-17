@@ -1,12 +1,10 @@
-import { useWindowSize } from "../../hooks/useWindowSize";
-import { useState } from "react";
-
-import { useGetOwnRecipesQuery } from "../../redux/recipes/recipesApi";
-
 import Loader from "../Loader/Loader";
 import Paginator from "../Paginator/Paginator";
 import SubTitle from "../SubTitle/SubTitle";
 import UserPageListItems from "../UserPageListItems/UserPageListItems";
+import { useWindowSize } from "../../hooks/useWindowSize";
+import { useState } from "react";
+import { useGetOwnRecipesQuery } from "../../redux/recipes/recipesApi";
 import { SubTitleWrapper } from "./ProfilePages.styled";
 
 const MyRecipes = () => {
@@ -29,7 +27,6 @@ const MyRecipes = () => {
     limit: itemsPerPage,
   });
 
-  // if (isFetchingMyRecipes) return <div>Loading...</div>;
   if (errorMyRecipes) return <div>Error loading recipes.</div>;
   if (!data) return null;
 

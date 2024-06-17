@@ -2,8 +2,6 @@ import { useParams } from "react-router-dom";
 import { useState } from "react";
 
 import { useGetUserInfoQuery } from "../../redux/users/usersApi";
-import { useAuth } from "hooks/useAuth";
-
 import Container from "components/Container";
 import Breadcrumbs from "components/UIKit/Breadcrumbs";
 import MainTitle from "components/MainTitle/MainTitle";
@@ -11,7 +9,12 @@ import SubTitle from "components/SubTitle";
 import UserInfo from "components/UserInfo";
 import MyUserInfo from "../../components/UserInfo/MyUserInfo";
 import ErrorLoading from "components/ErrorLoading/ErrorLoading";
-
+import MyRecipes from "components/ProfilePages/MyRecipes";
+import MyFavorites from "components/ProfilePages/MyFavorites";
+import Followers from "components/ProfilePages/Followers";
+import Following from "components/ProfilePages/Following";
+import UserRecipes from "components/ProfilePages/UserRecipes";
+import { useAuth } from "hooks/useAuth";
 import {
   SectionWrapper,
   BreadcrumbsWrapp,
@@ -21,35 +24,6 @@ import {
   TabsList,
   TabsButton,
 } from "./UserPage.styled";
-import MyRecipes from "components/ProfilePages/MyRecipes";
-import MyFavorites from "components/ProfilePages/MyFavorites";
-import Followers from "components/ProfilePages/Followers";
-import Following from "components/ProfilePages/Following";
-import UserRecipes from "components/ProfilePages/UserRecipes";
-
-// import MyRecipes from "components/ProfilePages/MyRecipes";
-// import UserRecipes from "components/ProfilePages/UserRecipes";
-// import MyFavorites from "components/ProfilePages/MyFavorites";
-// import Followers from "components/ProfilePages/Followers";
-// import Following from "components/ProfilePages/Following";
-
-// import { toast } from "react-toastify";
-
-//  {
-//    isCurrentUserProfile ? (
-//      <>
-//        {allActiveTab === "My recipes" && <MyRecipes />}
-//        {allActiveTab === "My favorites" && <MyFavorites />}
-//        {allActiveTab === "Followers" && <Followers id={id} />}
-//        {allActiveTab === "Following" && <Following />}
-//      </>
-//    ) : (
-//      <>
-//        {lessActiveTab === "Recipes" && <UserRecipes id={id} />}
-//        {lessActiveTab === "Followers" && <Followers id={id} />}
-//      </>
-//    );
-//  }
 
 const allTabs = [
   { id: 1, tab: "My recipes", label: "My recipes" },
@@ -77,23 +51,14 @@ const UserPage = () => {
     setLessActiveTab(tab);
   };
 
-  const {
-    data: dataUserInfo,
-    error: errorUserInfo,
-    // isFetching: isFetchingUserInfo,
-  } = useGetUserInfoQuery(id);
+  const { data: dataUserInfo, error: errorUserInfo } = useGetUserInfoQuery(id);
 
-  // if (isFetchingUserInfo) return <Loader />;
-  // if (errorUserInfo) return <div>Error loading UserPage.</div>;
   if (errorUserInfo) return <ErrorLoading />;
   if (!dataUserInfo) return null;
 
-  // const dataUserInfo = user;
-  // console.log(dataUserInfo);
   return (
     <SectionWrapper>
       <Container>
-        {/* {isFetchingUserInfo && <Loader />} */}
         <BreadcrumbsWrapp>
           <Breadcrumbs current={"Profile"} />
         </BreadcrumbsWrapp>
@@ -115,13 +80,6 @@ const UserPage = () => {
               <MyUserInfo
                 isCurrentUserProfile={isCurrentUserProfile}
                 userId={user._id}
-                // avatar={dataUserInfo.avatar}
-                // name={dataUserInfo.name}
-                // email={dataUserInfo.email}
-                // recipesCount={dataUserInfo.recipesCount}
-                // favoritesCount={dataUserInfo.favoritesCount}
-                // followersCount={dataUserInfo.followersCount}
-                // followingCount={dataUserInfo.followingCount}
                 avatar={user.avatar}
                 name={user.name}
                 email={user.email}
@@ -188,7 +146,6 @@ const UserPage = () => {
                 {lessActiveTab === "Followers" && <Followers id={id} />}
               </>
             )}
-            {/* <Outlet /> */}
           </ListWrapp>
         </ProfileWrapp>
       </Container>

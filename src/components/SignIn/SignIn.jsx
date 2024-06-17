@@ -1,13 +1,11 @@
 import React, { useState } from "react";
+import sprite from "assets/images/icons/sprite.svg";
 import { useDispatch } from "react-redux";
 import { authSignInThunk } from "../../redux/auth/thunks";
-
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { object, string } from "yup";
-
 import { toast } from "react-toastify";
-import sprite from "assets/images/icons/sprite.svg";
 import {
   FormWripper,
   TitleStyled,
@@ -62,25 +60,6 @@ const SignIn = ({ switchForm, onClose }) => {
         });
       });
   };
-
-  // const onSubmit = async data => {
-  //   try {
-  //     const res = await dispatch(authSignInThunk(data));
-  //     if (res.type === "authSignIn/fulfilled") {
-  //       reset();
-  //       onClose();
-  //     }
-  //     if (res.type === "authSignIn/rejected") {
-  //       toast.error(`${res.payload}`, {
-  //         theme: "light",
-  //       });
-  //     }
-  //   } catch (error) {
-  //     toast.error(error.message, {
-  //       theme: "light",
-  //     });
-  //   }
-  // };
 
   return (
     <FormWripper>

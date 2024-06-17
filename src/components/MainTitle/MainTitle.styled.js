@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { heading2 } from "styles/atomic";
 import theme from "styles/theme";
+import { heading2 } from "styles/atomic";
 
 export const Title = styled("h1")`
   ${heading2()};

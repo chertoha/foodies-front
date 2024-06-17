@@ -1,7 +1,7 @@
-import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { px, py } from "styles/atomic";
 import theme from "styles/theme";
+import { Link } from "react-router-dom";
+import { px, py } from "styles/atomic";
 
 export const ButtonArrow = styled(Link)`
   background-color: ${theme.colors.accent};
@@ -15,10 +15,12 @@ export const ButtonArrow = styled(Link)`
   ${px("10")};
   color: ${p => p.theme.colors.dark};
   transition: ${p => p.theme.transitions.default};
+
   ${({ theme }) => theme.mq.tablet} {
     ${py(3)};
     ${px(3)};
   }
+
   ${({ theme }) => theme.mq.desktop} {
     &:hover {
       background-color: ${theme.colors.dark};

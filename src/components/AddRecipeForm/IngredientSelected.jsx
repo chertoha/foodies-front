@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
-import { useGetIngredientsQuery } from "../../redux/ingredients/ingredientsApi";
 import IngredientCard from "./IngredientSelectedCard";
 import SpriteIcon from "components/UIKit/SpriteIcon";
+import CommonSelect from "components/UIKit/CommonSelect";
+import { useEffect, useState } from "react";
+import { useGetIngredientsQuery } from "../../redux/ingredients/ingredientsApi";
 import { IngredientsList } from "components/RecipeIngredients/RecipeIngredients.styled";
 import {
   AddIngredientButton,
@@ -12,53 +13,11 @@ import {
   YulpErrorMessage,
 } from "./AddRecipeForm.styled";
 
-// import CustomSelect from "components/CustomSelect";
 import { useFieldArray, useFormContext } from "react-hook-form";
 import { MEASURE_VALIDATION_RULE, NAME_VALIDATION_RULE } from "./yupValidation";
 import { toast } from "react-toastify";
-import CommonSelect from "components/UIKit/CommonSelect";
-// import { ErrorMessage } from "components/ImageDropZone/ImageDropZone.styled";
 
-// const IngredientSelector = ({ selectedIngredients, setSelectedIngredients }) => {
 const IngredientSelector = () => {
-  // const { data: ingredients, isLoading, isError } = useGetIngredientsQuery(); // Використовуємо RTK Query для отримання інгредієнтів
-
-  // const [selectedIngredient, setSelectedIngredient] = useState("");
-  // const [quantity, setQuantity] = useState("");
-
-  // const handleIngredientChange = (_, value) => {
-  //   setSelectedIngredient(value);
-  // };
-
-  // const handleQuantityChange = event => {
-  //   setQuantity(event.target.value);
-  // };
-
-  // const handleAddIngredient = () => {
-  //   const isExist = selectedIngredients.some(ing => ing.name === selectedIngredient);
-  //   if (isExist) {
-  //     alert("This ingredient is already added");
-  //     return;
-  //   }
-  //   const ingredient = ingredients.result.find(ing => ing.name === selectedIngredient);
-  //   if (ingredient) {
-  //     const newSelectedIngredients = [...selectedIngredients, { ...ingredient, quantity }];
-  //     setSelectedIngredients(newSelectedIngredients);
-  //     // append({ ...ingredient, quantity });
-  //     // setSelectedIngredient("");
-  //     // setQuantity("");
-  //   }
-  // };
-
-  // const handleDeleteIngredient = id => {
-  //   const newSelectedIngredients = selectedIngredients.filter(ing => ing._id !== id);
-  //   setSelectedIngredients(newSelectedIngredients);
-  // };
-
-  // if (isLoading) return <div>Loading...</div>;
-  // if (isError) return <div>Error fetching ingredients</div>;
-  // if (!ingredients) return null;
-
   const { data: ingredients } = useGetIngredientsQuery();
   const [ingredient, setIngredient] = useState("");
   const [measure, setMeasure] = useState("");
@@ -112,8 +71,6 @@ const IngredientSelector = () => {
     const ingredient = ingredients.result.find(({ name }) => name === ingredientName);
     return ingredient.img;
   };
-
-  // console.log(errors);
 
   return (
     <IngredientsSelectorWrapper>

@@ -1,9 +1,8 @@
+import sprite from "assets/images/icons/sprite.svg";
 import {
   useDeleteRecipeMutation,
   useRemoveRecipeFromFavoritesMutation,
 } from "../../redux/recipes/recipesApi";
-
-import sprite from "assets/images/icons/sprite.svg";
 import {
   UserPageList,
   UserPageListItem,
@@ -18,6 +17,7 @@ import {
   Icon,
 } from "./UserPageListItems.styled";
 import { useRevalidateUser } from "hooks/useRevalidateUser";
+
 const UserPageListItems = ({ recipes, type, refetchRecipes }) => {
   const [deleteMyRecipe, { isLoading: isDeletingMyRecipe }] = useDeleteRecipeMutation();
   const [deleteMyFavoritesRecipe, { isLoading: isDeletingMyFavorite }] =
@@ -36,6 +36,7 @@ const UserPageListItems = ({ recipes, type, refetchRecipes }) => {
       console.error("Failed to delete the recipe:", error);
     }
   };
+
   return (
     <UserPageList>
       {recipes.map(({ _id, thumb, title, description }) => (

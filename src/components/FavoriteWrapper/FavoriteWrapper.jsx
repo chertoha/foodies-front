@@ -1,4 +1,5 @@
-// import { useFavoritesContext } from "components/App/App";
+import SignIn from "../SignIn/SignIn";
+import SignUp from "../SignUp";
 import {
   useAddRecipeToFavoritesMutation,
   useRemoveRecipeFromFavoritesMutation,
@@ -7,15 +8,12 @@ import { useAuth } from "hooks/useAuth";
 import { useModalWindow } from "hooks/useModalWindow";
 import { useRevalidateUser } from "hooks/useRevalidateUser";
 import { Modal } from "../Modal/Modal";
-import SignIn from "../SignIn/SignIn";
-import SignUp from "../SignUp";
 import { useState } from "react";
 
 const FavoriteWrapper = ({ recipeId, Button }) => {
   const [addToFavorite] = useAddRecipeToFavoritesMutation();
   const [removeFromFavorite] = useRemoveRecipeFromFavoritesMutation();
 
-  // const { favorites } = useFavoritesContext();
   const { user } = useAuth();
   const { revalidateUserData } = useRevalidateUser();
   const { close, isOpen, open } = useModalWindow();

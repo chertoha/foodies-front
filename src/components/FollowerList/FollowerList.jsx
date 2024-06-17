@@ -1,13 +1,8 @@
-import { useState, useEffect } from "react";
-import {
-  useFollowUserMutation,
-  // useGetCurrentUserQuery,
-  useUnfollowUserMutation,
-} from "../../redux/users/usersApi";
 import UserAvatar from "components/UserAvatar/UserAvatar";
 import FollowerButton from "components/Buttons/FollowerButton/FollowerButton";
 import sprite from "assets/images/icons/sprite.svg";
-// import ErrorLoading from "../ErrorLoading/ErrorLoading";
+import { useState, useEffect } from "react";
+import { useFollowUserMutation, useUnfollowUserMutation } from "../../redux/users/usersApi";
 
 import {
   FollowerList,
@@ -24,7 +19,6 @@ import { useAuth } from "hooks/useAuth";
 import { useRevalidateUser } from "hooks/useRevalidateUser";
 
 const FollowersList = ({ followers, type }) => {
-  // const { data: user, error } = useGetCurrentUserQuery();
   const { revalidateUserData } = useRevalidateUser();
   const { user } = useAuth();
   const [followUser] = useFollowUserMutation();
@@ -61,8 +55,6 @@ const FollowersList = ({ followers, type }) => {
     }
     revalidateUserData();
   };
-  // if (error) return <ErrorLoading />;
-  // if (!user) return null;
   return (
     <FollowerList>
       {followers.map(({ _id, avatar, name, recipes }) => (

@@ -1,3 +1,11 @@
+import Loader from "components/Loader";
+import ActiveButton from "components/Buttons/ActiveButton";
+import TrashButton from "components/Buttons/TrashButton";
+import SectionTitle from "components/SectionTitle";
+import IngredientSelector from "./IngredientSelected";
+import ImageDropZone from "components/ImageDropZone/ImageDropZone";
+import AreaSelector from "./AreaSelector";
+
 import { useForm, FormProvider } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { addRecipeSchema } from "./yupValidation";
@@ -22,23 +30,13 @@ import {
   IngredientsWrapper,
   SelectorAreas,
 } from "./AddRecipeForm.styled";
-import ActiveButton from "components/Buttons/ActiveButton";
-import TrashButton from "components/Buttons/TrashButton";
-import SectionTitle from "components/SectionTitle";
-import IngredientSelector from "./IngredientSelected";
-import ImageDropZone from "components/ImageDropZone/ImageDropZone";
 import { CategoriesSelector } from "./CategoriesSelector";
 import { Counter } from "components/Counter/Counter";
-import AreaSelector from "./AreaSelector";
 import { toast } from "react-toastify";
-import Loader from "components/Loader";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "hooks/useAuth";
 import { ROUTES } from "config/router";
 import { useRevalidateUser } from "hooks/useRevalidateUser";
-// import { LocalStorage } from "services/storage";
-
-// const storage = new LocalStorage("recipe_form_data");
 
 const initialValues = {
   title: "",
@@ -71,8 +69,6 @@ const AddRecipeForm = () => {
   const methods = useForm({
     resolver: yupResolver(addRecipeSchema),
     defaultValues: initialValues,
-    // defaultValues: _testInitialValues,
-    // defaultValues: async () => storage.get() || initialValues,
   });
 
   const {
@@ -83,28 +79,7 @@ const AddRecipeForm = () => {
     formState: { errors },
   } = methods;
 
-  // const watchFields = watch();
-
-  // useEffect(() => {
-  //   storage.set(watchFields);
-  // }, [watchFields]);
-
-  // const { fields, append, _remove } = useFieldArray({
-  //   control,
-  //   name: "ingredients",
-  // });
-
-  // const [counter, setCounter] = useState(1);
-  // const [selectedIngredients, setSelectedIngredients] = useState([]);
-  // const [preview, setPreview] = useState(null);
-  // const { data } = useGetCategoriesQuery({ limit: 1111 });
-
   const onSubmit = async data => {
-    // console.log({ ...data, cookTime: counter, ingredients: selectedIngredients, photo: preview });
-
-    // console.log(data.photo[0]);
-    // data.ingredients = selectedIngredients;
-    // console.log(data);
     try {
       const formData = new FormData();
       Object.keys(data).forEach(key => {
@@ -122,32 +97,10 @@ const AddRecipeForm = () => {
       revalidateUserData();
       reset(initialValues);
       navigate(`${ROUTES.USER}/${user._id}`);
-      // const response = await axiosBaseQuery("/api/recipes", formData);
-      // if (response.status === 200) {
-      //   // Перенаправлення на сторінку користувача
-      //   window.location.href = "/user";
-      // }
     } catch (error) {
-      // alert("Помилка: " + error.message);
       toast.error(`Error: ${error.message}`);
     }
   };
-
-  // const handleReset = () => {
-  //   reset();
-  //   // setPreview(null);
-  //   // setSelectedIngredients([]);
-  //   // setCounter(1);
-  //   setValue("time", 1);
-  // };
-
-  // const handlePhotoChange = e => {
-  //   const file = e.target.files[0];
-  //   if (file) {
-  //     setPreview(URL.createObjectURL(file));
-  //     setValue("photo", file);
-  //   }
-  // };
 
   const descriptionLength = watch("description")?.length || 0;
   const instructionsLength = watch("instructions")?.length || 0;
@@ -157,12 +110,7 @@ const AddRecipeForm = () => {
       <Form onSubmit={handleSubmit(onSubmit)}>
         {isLoading && <Loader />}
         <ImageField>
-          <ImageDropZone
-            // preview={preview}
-            // setPreview={setPreview}
-            name="thumb"
-            // validation={{ ...register("thumb") }}
-          />
+          <ImageDropZone name="thumb" />
         </ImageField>
 
         <FieldsInput>
@@ -198,17 +146,9 @@ const AddRecipeForm = () => {
             </DescriptionContainer>
 
             <CookingCategory>
-              <CategoriesSelector
-              // register={register}
-              // errors={errors}
-              />
+              <CategoriesSelector />
 
-              <Counter
-              // register={register}
-              // errors={errors}
-              // count={counter}
-              // setCount={setCounter}
-              />
+              <Counter />
             </CookingCategory>
 
             <SelectorAreas>
@@ -218,13 +158,7 @@ const AddRecipeForm = () => {
             <IngredientsWrapper>
               <SectionTitle label={"Ingredients"} />
 
-              <IngredientSelector
-              // fields={fields}
-              // append={append}
-              // selectedIngredients={selectedIngredients}
-              // setSelectedIngredients={setSelectedIngredients}
-              // {...register("ingredients")}
-              />
+              <IngredientSelector />
             </IngredientsWrapper>
 
             <InstructionWrapper>
@@ -247,7 +181,6 @@ const AddRecipeForm = () => {
             <ButtonsWrapper>
               <TrashButton
                 type="button"
-                // onClick={handleReset}
                 onClick={() => reset(initialValues)}
               ></TrashButton>
 

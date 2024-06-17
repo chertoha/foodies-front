@@ -1,17 +1,12 @@
 import styled from "styled-components";
-import { px, py, mb, mr, my, body1, body2, flexCenter } from "styles/atomic";
 import theme from "styles/theme";
+import { px, py, mb, mr, my, body1, body2, flexCenter } from "styles/atomic";
 
 export const UserInfoWrapp = styled("div")`
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  ${theme.mq.mobileOnly} {
-  }
-
-  ${theme.mq.tablet} {
-  }
 
   ${theme.mq.desktop} {
     justify-content: flex-start;
@@ -44,9 +39,6 @@ export const UserCard = styled("div")`
     ${py(10)};
     ${px(20)};
   }
-
-  ${theme.mq.desktop} {
-  }
 `;
 export const IconWrapp = styled("div")`
   position: relative;
@@ -72,21 +64,15 @@ export const Button = styled("span")`
     top: 76%;
     left: 34%;
   }
-
-  ${theme.mq.desktop} {
-  }
 `;
 export const Icon = styled("svg")`
   display: block;
   width: 16px;
   height: 16px;
-  ${theme.mq.mobileOnly} {
-  }
+
   ${theme.mq.tablet} {
     width: 18px;
     height: 18px;
-  }
-  ${theme.mq.desktop} {
   }
 `;
 export const UserCardTitle = styled("h3")`
@@ -99,15 +85,9 @@ export const UserCardTitle = styled("h3")`
   text-align: left;
   ${my(4)}
 
-  ${theme.mq.mobileOnly} {
-  }
-
   ${theme.mq.tablet} {
     ${my(5)}
     font-size: ${theme.fontSizes.xl};
-  }
-
-  ${theme.mq.desktop} {
   }
 `;
 
@@ -116,41 +96,15 @@ export const UserCardInfo = styled("div")`
   gap: 6px;
   align-items: flex-start;
   flex-direction: column;
-
-  ${theme.mq.mobileOnly} {
-  }
-
-  ${theme.mq.tablet} {
-  }
-
-  ${theme.mq.desktop} {
-  }
 `;
 
 export const UserCardtext = styled("p")`
   color: #050505e5;
   ${body1()};
   font-weight: ${theme.fontWeights.bold};
-
-  ${theme.mq.mobileOnly} {
-  }
-
-  ${theme.mq.tablet} {
-  }
-
-  ${theme.mq.desktop} {
-  }
 `;
 export const UserCardspan = styled("span")`
   color: #05050599;
   ${body2()};
   ${mr(2)};
-  ${theme.mq.mobileOnly} {
-  }
-
-  ${theme.mq.tablet} {
-  }
-
-  ${theme.mq.desktop} {
-  }
 `;

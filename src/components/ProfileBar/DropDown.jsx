@@ -1,8 +1,8 @@
 import SpriteIcon from "components/UIKit/SpriteIcon";
+import LogOut from "components/LogOut";
 import { useEffect, useRef } from "react";
 import { Item, List, StyledLink } from "./ProfileBar.styled";
 import { Modal } from "components/Modal/Modal";
-import LogOut from "components/LogOut";
 import { useModalWindow } from "hooks/useModalWindow";
 import { ROUTES } from "config/router";
 import { useAuth } from "hooks/useAuth";

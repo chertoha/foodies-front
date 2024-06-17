@@ -1,12 +1,12 @@
+import RecipeMainInfo from "../RecipeMainInfo/RecipeMainInfo";
+import RecipeIngredients from "../RecipeIngredients/RecipeIngredients";
+import RecipePreparation from "../RecipePreparation/RecipePreparation";
 import {
   Image,
   RecipeContentWrapper,
   RecipeImageWrapper,
   RecipeInfoContainer,
 } from "./RecipeInfo.styled";
-import RecipeMainInfo from "../RecipeMainInfo/RecipeMainInfo";
-import RecipeIngredients from "../RecipeIngredients/RecipeIngredients";
-import RecipePreparation from "../RecipePreparation/RecipePreparation";
 import { useGetRecipeQuery } from "../../redux/recipes/recipesApi";
 import { useParams } from "react-router-dom";
 import { useGetIngredientsQuery } from "../../redux/ingredients/ingredientsApi";

@@ -10,8 +10,6 @@ export const RecipePopularContainer = styled.div`
 
 export const RecipePopularList = styled.ul`
   width: 100%;
-  /* display: flex; */
-  /* flex-wrap: wrap; */
   gap: 20px;
   display: grid;
   grid-template-columns: 1fr;
@@ -36,13 +34,4 @@ export const RecipePopularList = styled.ul`
   }
 `;
 
-export const RecipeListItem = styled.li`
-  /* width: 100%; */
-  ${theme.mq.tablet} {
-    /* flex-basis: calc((100% - 20px) / 2); */
-  }
-
-  ${theme.mq.desktop} {
-    /* flex-basis: calc((100% - 60px) / 4); */
-  }
-`;
+export const RecipeListItem = styled.li``;

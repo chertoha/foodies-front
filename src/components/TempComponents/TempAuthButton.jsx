@@ -1,6 +1,6 @@
-import { Modal } from "components/Modal/Modal";
 import SignIn from "components/SignIn";
 import SignUp from "components/SignUp";
+import { Modal } from "components/Modal/Modal";
 import { useModalWindow } from "hooks/useModalWindow";
 import { useState } from "react";
 
