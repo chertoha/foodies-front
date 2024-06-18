@@ -2,12 +2,11 @@
 
 body.no-scroll {
   overflow: hidden;
-  padding-right: 3px;
 }
 
 body::-webkit-scrollbar,
 body.no-scroll::-webkit-scrollbar {
-  width: 3px;
+  width: 5px;
   display: flex;
 }
 
@@ -17,4 +16,10 @@ body::-webkit-scrollbar-track {
 
 body::-webkit-scrollbar-thumb {
   background: #050505;
+}
+
+@media (min-width: 1440px) {
+  body.no-scroll {
+    padding-right: 5px;
+  }
 }
